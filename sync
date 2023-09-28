@@ -22,6 +22,9 @@ synced_files = [
 
 def save():
     for p in  synced_files:
+        folder = "/".join(p[0].split("/")[0:-1])
+        if not os.path.exists(folder):
+            os.mkdir(folder)
         os.system(f"rsync -r {p[1]} {p[0]}")
         
 def restore():
