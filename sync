@@ -1,0 +1,35 @@
+#!venv/bin/python
+
+import os
+import argparse
+
+parser = argparse.ArgumentParser(
+                    prog='Dotfiles sync',
+                    description='Saves and restores my dotfiles',
+)
+parser.add_argument('action', choices=['save', 'restore'])
+
+
+synced_files = [
+    ('editor/helix/', '~/.config/helix/'),
+    ('de/i3/', '~/.config/i3/'),
+    ('shell/bash/.bashrc', '~/.bashrc'),
+    ('shell/bash/.bash_aliases', '~/.bash_aliases'),
+    ('shell/bash/.bash_env', '~/.bash_env'),
+    ('shell/bash/.bash_exec', '~/.bash_exec'),
+]
+
+def save():
+    for p in  synced_files:
+        os.system(f"rsync -r {p[1]} {p[0]}")
+        
+def restore():
+    for p in  synced_files:
+        os.system(f"rsync -r {p[0]} {p[1]}")
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+    if args.action == 'save':
+        save()
+    elif args.action == 'restore':
+        restore()

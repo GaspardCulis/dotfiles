@@ -1,0 +1,6 @@
+theme="sonokai"
+
+[keys.normal]
+backspace = {r = ":sh cargo run", p = ":sh python src/main.py"}
+
+
