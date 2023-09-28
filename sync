@@ -17,6 +17,7 @@ synced_files = [
     ('shell/bash/.bash_aliases', '~/.bash_aliases'),
     ('shell/bash/.bash_env', '~/.bash_env'),
     ('shell/bash/.bash_exec', '~/.bash_exec'),
+    ('shell/nu/.nu_aliases', '~/.nu_aliases'),
 ]
 
 def save():
