@@ -172,7 +172,7 @@ bindsym $mod+Shift+s mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec rio
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill

@@ -18,7 +18,8 @@ synced_files = [
     ('shell/bash/.bash_env', '~/.bash_env'),
     ('shell/bash/.bash_exec', '~/.bash_exec'),
     ('shell/nu/.nu_aliases', '~/.nu_aliases'),
-    ('term/rio/', '~/.config/rio/')
+    ('term/rio/', '~/.config/rio/'),
+    ('term/alacritty/', '~/.config/alacritty/'),
 ]
 
 def save():
