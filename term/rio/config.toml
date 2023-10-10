@@ -27,7 +27,7 @@ ignore_theme_selection_fg_color = false
 performance = "Low"
 
 # Theme
-theme = "Monokai Remastered"
+theme = "EndeavorOS"
 # It makes Rio look for the specified theme in the themes folder
 # (macos and linux: ~/.config/rio/themes/dracula.toml)
 # (windows: C:\Users\USER\AppData\Local\rio\themes\dracula.toml)
@@ -81,6 +81,7 @@ theme = "Monokai Remastered"
 #
 # Example
 [background]
+mode = "Color"
 opacity = 0.9
 #
 # [background.image]
@@ -217,8 +218,8 @@ weight = 600
 #
 # Example:
 #
-#   [colors]
-#   background = '#0F0D0E'
+[colors]
+background = '#08052b'
 #   foreground = '#F9F4DA'
 #   cursor = '#F38BA3'
 #   tabs = '#443d40'
