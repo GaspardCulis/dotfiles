@@ -9,3 +9,7 @@ alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
+
+# Obsidian
+alias life-push="rsync -r ~/Documents/Obsidian/Life/ pixel:~/storage/shared/Documents/Obsidian/Life/"
+alias life-pull="rsync -r pixel:~/storage/shared/Documents/Obsidian/Life/ ~/Documents/Obsidian/Life/"

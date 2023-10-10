@@ -172,7 +172,7 @@ bindsym $mod+Shift+s mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec rio
 
 # kill focused window
 bindsym $mod+q kill
@@ -408,8 +408,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /home/gaspard/Images/Wallpapers/Cool.jpg
-
+exec --no-startup-id sleep 1 && feh --bg-fill "/home/gaspard/Images/Wallpapers/ExylCollection/Desktop Flute Altar by Exyl.png" 
 exec picom --config ~/.config/picom/picom.conf
 
 exec udiskie
