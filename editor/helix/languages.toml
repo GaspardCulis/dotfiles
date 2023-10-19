@@ -1,10 +1,9 @@
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
+# language-servers = [{ command = "pyright-langserver", args = ["--stdio"] }]
 auto-format = true
 formatter = {command = 'black', args = ["--quiet", "-"]}
-config = ""
 
 [[language]]
 name = "html"
