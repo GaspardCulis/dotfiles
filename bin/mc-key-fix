@@ -1,0 +1,12 @@
+#!/bin/bash
+
+xmodmap -e "keycode 10 = 1"
+xmodmap -e "keycode 11 = 2"
+xmodmap -e "keycode 12 = 3"
+xmodmap -e "keycode 13 = 4"
+xmodmap -e "keycode 14 = 5"
+xmodmap -e "keycode 15 = 6"
+xmodmap -e "keycode 16 = 7"
+xmodmap -e "keycode 17 = 8"
+xmodmap -e "keycode 18 = 9"
+xmodmap -e "keycode 19 = 0"

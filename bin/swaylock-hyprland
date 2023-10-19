@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Run swaylock
+exec /usr/bin/swaylock \
+    "$@" \
+    --indicator \
+    --daemonize \
+    --clock \
+    --screenshots \
+    --effect-blur 20x10 \
+    --indicator-radius 100 \
+    --font 'Hack Nerd Font' \
+    --bs-hl-color '#FF3366' \
+    --inside-color '#CC99FF22' \
+    --inside-clear-color '#F3E6FFDD' \
+    --inside-ver-color '#9933FF22' \
+    --inside-wrong-color '#FF336622' \
+    --key-hl-color '#9933FF' \
+    --text-color '#F3E6FF' \
+    --text-caps-lock-color '#FFB3C6' \
+    --line-uses-ring \
+    --ring-color '#1A0033' \
+    --ring-clear-color '#9933FF' \
+    --ring-ver-color '#4F0099' \
+    --ring-wrong-color '#800020' \
+    --text-clear-color '#4F0099' \
+    --text-ver-color '#F3E6FF' \
+    --text-wrong-color '#FFB3C6' \
+    --separator-color '#00000000'
+

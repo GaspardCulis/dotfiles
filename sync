@@ -22,6 +22,13 @@ synced_files = [
     ('term/rio/', '~/.config/rio/'),
     ('term/alacritty/', '~/.config/alacritty/'),
     ('bar/waybar/', '~/.config/waybar/'),
+
+    ('bin/swaylock-hyprland', '~/.local/bin/swaylock-hyprland'),
+    ('bin/Hyprland', '~/.local/bin/Hyprland'),
+    ('bin/jaaj', '~/.local/bin/jaaj'),
+    ('bin/toggle-touchpad', '~/.local/bin/toggle-touchpad'),
+    ('bin/togglescreen', '~/.local/bin/togglescreen'),
+    ('bin/mc-key-fix', '~/.local/bin/mc-key-fix'),
 ]
 
 def save():

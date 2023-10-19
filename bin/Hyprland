@@ -1,0 +1,14 @@
+#!/bin/sh -xe
+
+# cd to home
+cd
+
+# XDG
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+# Execution
+exec ssh-agent \
+    dbus-launch --exit-with-session \
+    /usr/bin/Hyprland \
+    "$@"
+

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+  export XDG_RUNTIME_DIR=/run/user/$(id -u)
+fi
+
+export STATUS_FILE="$XDG_RUNTIME_DIR/screen.status"
+
+enable_screen() {
+  printf "true" > "$STATUS_FILE"
+
+  hyprctl dispatch dpms on
+}
+
+disable_screen() {
+  printf "false" > "$STATUS_FILE"
+
+  hyprctl dispatch dpms off
+}
+
+if ! [ -f "$STATUS_FILE" ]; then
+  disable_screen
+else
+  if [ $(cat "$STATUS_FILE") = "true" ]; then
+    disable_screen
+  elif [ $(cat "$STATUS_FILE") = "false" ]; then
+    enable_screen
+  fi
+fi
