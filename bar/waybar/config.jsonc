@@ -6,17 +6,18 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 50,
-    "modules-left": ["clock","custom/weather","wlr/workspaces"],
+    "modules-left": ["clock","custom/weather","hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["network", "bluetooth", "temperature","custom/power_profile","battery","pulseaudio","pulseaudio#microphone","tray"],
+    "modules-right": ["network", "bluetooth", "memory", "cpu", "temperature","custom/power_profile","battery","pulseaudio","pulseaudio#microphone","tray"],
     "hyprland/window": {
         "format": "{}"
     },
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
+        /*
         "persistent_workspaces": {
             "1": [],
             "2": [],
@@ -28,14 +29,16 @@
             "8": [],
             "9": [],
             "10": []
-        }
+        }*/
     },
     
     "custom/power_profile":{
         //shows the current power profile and switches to next on click
-        "exec": "asusctl profile -p | sed s:'Active profile is'::",
+        "exec": "~/.config/waybar/scripts/powerprofile.sh",
+        "return-type": "json",
         "interval": 30,
-        "format": "󰈐{}", 
+        "tooltip": false,
+        "format": "󰈐 {}",
         "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
         "signal": 8
     },
@@ -107,14 +110,16 @@
         "on-click": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
+        "scroll-step": 5,
+        "tooltip": false
     },
    
     "temperature": {
         "thermal-zone": 0,
         "critical-threshold": 80,
         "format": "{temperatureC}°C ",
-        "format-critical": "{temperatureC}°C "
+        "format-critical": "{temperatureC}°C ",
+        "tooltip": false
     },
 
     "network": {
@@ -125,6 +130,26 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+    },
+    
+    "cpu": {
+        "interval": 1,
+        "format": "󰻠 {usage:>2}%",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "states": {
+            "critical": 90,
+            "warning": 50
+        },
+    },
+        
+    "memory": {
+        "interval": 1,
+        "format": "󰍛 {used:0.1f}G/{total:0.1f}G",
+        "states": {
+            "critical": 90,
+            "warning": 50
+        },
+        "tooltip": false
     },
 
     "bluetooth": {
