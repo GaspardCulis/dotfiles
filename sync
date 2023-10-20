@@ -22,6 +22,7 @@ synced_files = [
     ('term/rio/', '~/.config/rio/'),
     ('term/alacritty/', '~/.config/alacritty/'),
     ('bar/waybar/', '~/.config/waybar/'),
+    ('misc/picom/', '~/.config/picom/'),
 
     ('bin/swaylock-hyprland', '~/.local/bin/swaylock-hyprland'),
     ('bin/Hyprland', '~/.local/bin/Hyprland'),
