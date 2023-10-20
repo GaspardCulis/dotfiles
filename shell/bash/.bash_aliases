@@ -12,3 +12,6 @@ alias gpl="git pull"
 # Obsidian
 alias life-push="rsync -r ~/Documents/Obsidian/Life/ pixel:~/storage/shared/Documents/Obsidian/Life/"
 alias life-pull="rsync -r pixel:~/storage/shared/Documents/Obsidian/Life/ ~/Documents/Obsidian/Life/"
+
+# Config
+alias editconf-i3="hx ~/.config/i3"

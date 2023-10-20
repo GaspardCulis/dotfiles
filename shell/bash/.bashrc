@@ -28,7 +28,7 @@ bind '"\e[B":history-search-forward'
 
 export PATH="$HOME/.local/bin:$PATH"
 
-export EDITOR="helix"
+export EDITOR="hx"
 
 export HISTFILESIZE=
 export HISTSIZE=
