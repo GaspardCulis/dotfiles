@@ -15,3 +15,19 @@ alias life-pull="rsync -r pixel:~/storage/shared/Documents/Obsidian/Life/ ~/Docu
 
 # Config
 alias editconf-i3="hx ~/.config/i3"
+
+# Generic stuff
+alias ls="ls --color=auto"
+alias ip="ip --color=auto"
+
+# uutils-coreutils aliases
+if command -v pacman &> /dev/null; then
+if pacman -Qi uutils-coreutils &> /dev/null; then
+  for b in $(yay -Ql uutils-coreutils | grep bin | cut -d ' ' -f 2 | cut -d '/' -f 4 | cut -d '-' -f 2); do
+    alias $b="uu-$b"
+  done
+  unalias [
+  alias ls="uu-ls --color=auto"
+fi
+fi
+
