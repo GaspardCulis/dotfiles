@@ -22,13 +22,15 @@ synced_files = [
     ('term/rio/', '~/.config/rio/'),
     ('term/alacritty/', '~/.config/alacritty/'),
     ('bar/waybar/', '~/.config/waybar/'),
+    ('home/xinitrc', '~/.xinitrc'),
     ('misc/picom/', '~/.config/picom/'),
     ('misc/runst/', '~/.config/runst/'),
 
     ('bin/swaylock-hyprland', '~/.local/bin/swaylock-hyprland'),
     ('bin/Hyprland', '~/.local/bin/Hyprland'),
     ('bin/jaaj', '~/.local/bin/jaaj'),
-    ('bin/toggle-touchpad', '~/.local/bin/toggle-touchpad'),
+    ('bin/xtoggle-touchpad', '~/.local/bin/xtoggle-touchpad'),
+    ('bin/wtoggle-touchpad', '~/.local/bin/wtoggle-touchpad'),
     ('bin/togglescreen', '~/.local/bin/togglescreen'),
     ('bin/mc-key-fix', '~/.local/bin/mc-key-fix'),
 ]
