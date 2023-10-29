@@ -1,0 +1,32 @@
+#!/bin/bash
+
+get-profile () {
+  asusctl profile -p | awk '{print $4}'
+}
+
+get-profile-json () {
+  profile="$(get-profile)"
+  state="idle"
+  if [ "$profile" == "Balanced" ]; then
+    state="info"
+  elif [ "$profile" == "Performance" ]; then
+    state="warning"
+  fi
+  echo "{\"icon\": \"\", \"state\": \"$state\", \"text\": \"$profile\", \"short_text\": \"\"}"
+}
+
+active_profile="$(get-profile)"
+
+if [ "$1" == "toggle" ]; then
+
+if [ "$active_profile" == "Quiet" ]; then
+  asusctl profile -P Balanced
+elif [ "$active_profile" == "Balanced" ]; then
+  asusctl profile -P Performance
+else
+  asusctl profile -P Quiet
+fi
+
+fi
+
+get-profile-json

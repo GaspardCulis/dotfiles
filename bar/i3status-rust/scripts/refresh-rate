@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+get-refresh-rate () {
+	xrandr --screen 0 | grep "*" | cut -d "*" -f 1 | awk '{print $NF}' | cut -d "." -f 1
+}
+
+get-refresh-rate-json () {
+  refresh_rate="$(get-refresh-rate)"
+  state="idle"
+  if [ "$refresh_rate" == "165" ]; then
+    state="info"
+  fi
+  echo "{\"icon\": \"\", \"state\": \"$state\", \"text\": \"${refresh_rate}Hz\", \"short_text\": \"\"}"
+}
+
+refresh_rate=$(get-refresh-rate)
+
+if [ "$1" == "toggle" ]; then
+	if [ $refresh_rate == "60" ]; then
+		xrandr --screen 0 -r 165
+		get-refresh-rate-json
+	else
+		xrandr --screen 0 -r 60
+		get-refresh-rate-json
+	fi
+else
+	get-refresh-rate-json
+fi

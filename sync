@@ -22,6 +22,7 @@ synced_files = [
     ('term/rio/', '~/.config/rio/'),
     ('term/alacritty/', '~/.config/alacritty/'),
     ('bar/waybar/', '~/.config/waybar/'),
+    ('bar/i3status-rust/', '~/.config/i3status-rust/'),
     ('home/xinitrc', '~/.xinitrc'),
     ('misc/picom/', '~/.config/picom/'),
     ('misc/runst/', '~/.config/runst/'),

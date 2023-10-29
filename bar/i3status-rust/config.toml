@@ -1,0 +1,70 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "solarized-dark"
+[theme.overrides]
+idle_bg = "#123456"
+idle_fg = "#abcdef"
+
+[icons]
+icons = "awesome4"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "custom"
+command = "~/.config/i3status-rust/scripts/toggle-profile"
+json = true
+[[block.click]]
+button = "left"
+cmd="~/.config/i3status-rust/scripts/toggle-profile toggle"
+sync = true
+update = true
+
+[[block]]
+block = "custom"
+command = "cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status"
+interval = 2
+format = " \uf26c   $text "
+
+[[block]]
+block = "custom"
+command = "~/.config/i3status-rust/scripts/refresh-rate"
+json = true
+[[block.click]]
+button = "left"
+cmd="~/.config/i3status-rust/scripts/refresh-rate toggle"
+sync = true
+update = true
+
+[[block]]
+block = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "available"
+alert_unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+format = " $icon root: $available.eng(w:2) "
+
+[[block]]
+block = "battery"
+interval = 5
+format = "$icon   $percentage $power $time"
+
+[[block]]
+block = "sound"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "time"
+interval = 1
+format = " $timestamp.datetime(f:'%a %d/%m %X') "
