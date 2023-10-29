@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DEVICE_ID=$(xinput | grep Touchpad | cut -d "=" -f2 | cut -f1)
+
+if [ $(xinput list-props $DEVICE_ID | grep "Device Enabled" | cut -d ':' -f 2 | xargs) == 1 ]; then
+	dunstify "Disabled touchpad"
+	xinput disable $DEVICE_ID
+else
+	dunstify "Enabled touchpad"
+	xinput enable $DEVICE_ID
+fi
+
