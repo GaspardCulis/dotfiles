@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 get-refresh-rate () {
-	xrandr --screen 0 | grep "*" | cut -d "*" -f 1 | awk '{print $NF}' | cut -d "." -f 1
+	xrandr --screen 0 | grep "*" | cut -d "*" -f 1 | awk '{print $NF}' | cut -d "." -f 1 | head -n 1
 }
 
 get-refresh-rate-json () {
