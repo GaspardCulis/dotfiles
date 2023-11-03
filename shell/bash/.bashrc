@@ -30,9 +30,8 @@ export HISTSIZE=
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
-if [ -f "$FNM_PATH" ]; then
-    export PATH="$FNM_PATH:$PATH"
-    eval "`fnm env`"
+if test -d "$FNM_PATH" ; then
+    eval "$(fnm env --use-on-cd)"
 fi
 
 . "$HOME/.cargo/env"
