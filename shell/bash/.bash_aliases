@@ -1,6 +1,7 @@
 alias ls='ls --color=auto'
 
 alias jaaj="jaaj | lolcat"
+alias uwu="uwu | lolcat"
 alias esp-idf-setup=". ~/.local/lib/esp-idf/export.sh"
 
 alias steam="steam-runtime"
