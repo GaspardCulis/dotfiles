@@ -31,8 +31,8 @@ gaps inner 10
 gaps outer 0
 
 # show window title bars (not officially supported with i3gaps)
-# default_border normal
-# default_floating_border pixel 0
+default_border normal
+default_floating_border pixel 0
 
 # window title alignment
 title_align center
