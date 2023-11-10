@@ -44,14 +44,9 @@ format = " $icon $mem_total_used_percents.eng(w:2) "
 format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
 
 [[block]]
-block = "disk_space"
-path = "/"
-info_type = "available"
-alert_unit = "GB"
-interval = 20
-warning = 20.0
-alert = 10.0
-format = " $icon root: $available.eng(w:2) "
+block = "net"
+format = " $icon {$signal_strength ($ssid)|} ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
+format_alt = "$icon   $device $ip $frequency "
 
 [[block]]
 block = "battery"
