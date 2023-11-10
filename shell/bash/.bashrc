@@ -43,3 +43,8 @@ fi
 if [ -f ~/.bash_exec ]; then
     source ~/.bash_exec
 fi
+
+FLUTTER_PATH="/opt/flutter/bin"
+if test -d "$FLUTTER_PATH"; then
+    export PATH="$FLUTTER_PATH:$PATH"
+fi
