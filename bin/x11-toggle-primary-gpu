@@ -1,0 +1,81 @@
+#!/bin/bash
+
+SHARED_DIR='/home/gaspard/.local/share/x11-toggle-gpu'
+XORG_DIR='/etc/X11/xorg.conf.d'
+
+AMD_CONF_FILE='20-amdgpu.conf'
+NVIDIA_CONF_FILE='10-nvidia-drm-outputclass.conf'
+
+get-mode () {
+  if [ -f "$XORG_DIR/$NVIDIA_CONF_FILE" ]; then
+    echo 'NVIDIA'
+  else
+    echo 'AMD'
+  fi
+}
+
+check-config () {
+  if [ ! -d "$SHARED_DIR" ]; then
+    echo "[ERROR] Shared dir could not be found."
+    exit 1
+  fi
+
+  if [ ! -d "$XORG_DIR" ]; then
+    echo "[ERROR] X11 config dir could not be found."
+    exit 2
+  fi
+
+  if [ -f "$XORG_DIR/$AMD_CONF_FILE" ] && [ -f "$XORG_DIR/$NVIDIA_CONF_FILE" ]; then
+    echo "[ERROR] Corrupted configuration folder."
+    exit 3
+  fi
+
+  CONF_FILE="$AMD_CONF_FILE"
+  if [ "$(get-mode)" == "NVIDIA" ]; then
+    CONF_FILE="$NVIDIA_CONF_FILE"
+  fi
+
+  if ! cmp --silent $SHARED_DIR/$CONF_FILE $XORG_DIR/$CONF_FILE ; then
+    echo "[ERROR] Corrupted configuration file."
+    exit 4
+  fi
+
+}
+
+gpu-toggle () {
+  MODE="$(get-mode)"
+
+  if [ "$MODE" == "AMD" ]; then
+    rm "$XORG_DIR/$AMD_CONF_FILE"
+    cp "$SHARED_DIR/$NVIDIA_CONF_FILE" "$XORG_DIR/$NVIDIA_CONF_FILE"
+  elif [ "$MODE" == "NVIDIA" ]; then
+    rm "$XORG_DIR/$NVIDIA_CONF_FILE"
+    cp "$SHARED_DIR/$AMD_CONF_FILE" "$XORG_DIR/$AMD_CONF_FILE"
+  fi
+
+  echo "[INFO] Primary GPU configuration toggled to $(get-mode)."
+}
+
+check-config
+
+if [ "$1" == "get" ]; then
+  echo "$(get-mode)"
+  exit 0
+fi
+
+if [ "$1" == "toggle" ]; then
+  # ROOT NEEDED
+  if [ "$EUID" -ne 0 ]
+    then echo "[ERROR] Please run as root"
+    exit
+  fi
+
+  gpu-toggle
+  
+  exit 0
+fi
+
+echo "Usage: $0 {get, toggle}"
+exit 1
+
+

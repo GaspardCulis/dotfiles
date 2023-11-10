@@ -26,6 +26,7 @@ synced_files = [
     ('home/xinitrc', '~/.xinitrc'),
     ('misc/picom/', '~/.config/picom/'),
     ('misc/runst/', '~/.config/runst/'),
+    ('misc/x11-toggle-gpu/', '~/.local/share/x11-toggle-gpu/'),
 
     ('bin/swaylock-hyprland', '~/.local/bin/swaylock-hyprland'),
     ('bin/Hyprland', '~/.local/bin/Hyprland'),
@@ -34,6 +35,7 @@ synced_files = [
     ('bin/wtoggle-touchpad', '~/.local/bin/wtoggle-touchpad'),
     ('bin/togglescreen', '~/.local/bin/togglescreen'),
     ('bin/mc-key-fix', '~/.local/bin/mc-key-fix'),
+    ('bin/x11-toggle-primary-gpu', '~/.local/bin/x11-toggle-primary-gpu'),
 ]
 
 def save():
