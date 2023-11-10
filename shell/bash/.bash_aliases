@@ -17,7 +17,7 @@ alias life-push="rsync -r ~/Documents/Obsidian/Life/ pixel:~/storage/shared/Docu
 alias life-pull="rsync -r pixel:~/storage/shared/Documents/Obsidian/Life/ ~/Documents/Obsidian/Life/"
 
 # Config
-alias editconf-i3="hx ~/.config/i3"
+alias confedit-i3="hx ~/.config/i3"
 
 # Generic stuff
 alias ls="ls --color=auto"
