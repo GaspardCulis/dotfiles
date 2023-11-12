@@ -11,6 +11,7 @@ icons = "awesome4"
 
 [[block]]
 block = "cpu"
+format = " $icon $utilization "
 
 [[block]]
 block = "custom"
