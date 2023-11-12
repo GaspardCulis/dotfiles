@@ -39,9 +39,9 @@ fi
 if type "x11-toggle-primary-gpu" > /dev/null; then
     if [ "$(x11-toggle-primary-gpu get)" == "NVIDIA" ]; then
         xrandr --setprovideroutputsource modesetting NVIDIA-0
-        xrandr --auto
     fi
 fi
+xrandr --auto
 
 setxkbmap fr
 exec i3
