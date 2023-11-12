@@ -1,0 +1,1 @@
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 cryptdevice=UUID=392ab4dc-51e3-49ef-a047-c528e335abe2:cryptlvm root=/dev/zephyrus-vg/root nvidia_drm.modeset=1 nvidia_drm.fbdev=1 amd_iommu=on vfio-pci.ids=10de:249d,10de:228b,10ec:8168"
