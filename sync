@@ -4,54 +4,57 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser(
-                    prog='Dotfiles sync',
-                    description='Saves and restores my dotfiles',
+    prog="Dotfiles sync",
+    description="Saves and restores my dotfiles",
 )
-parser.add_argument('action', choices=['save', 'restore'])
+parser.add_argument("action", choices=["save", "restore"])
 
 
 synced_files = [
-    ('editor/helix/', '~/.config/helix/'),
-    ('de/i3/', '~/.config/i3/'),
-    ('de/hypr/', '~/.config/hypr/'),
-    ('shell/bash/.bashrc', '~/.bashrc'),
-    ('shell/bash/.bash_aliases', '~/.bash_aliases'),
-    ('shell/bash/.bash_env', '~/.bash_env'),
-    ('shell/bash/.bash_exec', '~/.bash_exec'),
-    ('shell/nu/.nu_aliases', '~/.nu_aliases'),
-    ('term/rio/', '~/.config/rio/'),
-    ('term/alacritty/', '~/.config/alacritty/'),
-    ('bar/waybar/', '~/.config/waybar/'),
-    ('bar/i3status-rust/', '~/.config/i3status-rust/'),
-    ('home/xinitrc', '~/.xinitrc'),
-    ('misc/picom/', '~/.config/picom/'),
-    ('misc/runst/', '~/.config/runst/'),
-    ('misc/x11-toggle-gpu/', '~/.local/share/x11-toggle-gpu/'),
-
-    ('bin/swaylock-hyprland', '~/.local/bin/swaylock-hyprland'),
-    ('bin/Hyprland', '~/.local/bin/Hyprland'),
-    ('bin/jaaj', '~/.local/bin/jaaj'),
-    ('bin/xtoggle-touchpad', '~/.local/bin/xtoggle-touchpad'),
-    ('bin/wtoggle-touchpad', '~/.local/bin/wtoggle-touchpad'),
-    ('bin/togglescreen', '~/.local/bin/togglescreen'),
-    ('bin/mc-key-fix', '~/.local/bin/mc-key-fix'),
-    ('bin/x11-toggle-primary-gpu', '~/.local/bin/x11-toggle-primary-gpu'),
+    ("editor/helix/", "~/.config/helix/"),
+    ("de/i3/", "~/.config/i3/"),
+    ("de/hypr/", "~/.config/hypr/"),
+    ("shell/bash/.bashrc", "~/.bashrc"),
+    ("shell/bash/.bash_aliases", "~/.bash_aliases"),
+    ("shell/bash/.bash_env", "~/.bash_env"),
+    ("shell/bash/.bash_exec", "~/.bash_exec"),
+    ("shell/nu/.nu_aliases", "~/.nu_aliases"),
+    ("term/rio/", "~/.config/rio/"),
+    ("term/alacritty/", "~/.config/alacritty/"),
+    ("bar/waybar/", "~/.config/waybar/"),
+    ("bar/i3status-rust/", "~/.config/i3status-rust/"),
+    ("home/xinitrc", "~/.xinitrc"),
+    ("misc/picom/", "~/.config/picom/"),
+    ("misc/runst/", "~/.config/runst/"),
+    ("misc/mako/", "~/.config/mako/"),
+    ("misc/x11-toggle-gpu/", "~/.local/share/x11-toggle-gpu/"),
+    ("bin/swaylock-hyprland", "~/.local/bin/swaylock-hyprland"),
+    ("bin/Hyprland", "~/.local/bin/Hyprland"),
+    ("bin/jaaj", "~/.local/bin/jaaj"),
+    ("bin/xtoggle-touchpad", "~/.local/bin/xtoggle-touchpad"),
+    ("bin/wtoggle-touchpad", "~/.local/bin/wtoggle-touchpad"),
+    ("bin/togglescreen", "~/.local/bin/togglescreen"),
+    ("bin/mc-key-fix", "~/.local/bin/mc-key-fix"),
+    ("bin/x11-toggle-primary-gpu", "~/.local/bin/x11-toggle-primary-gpu"),
 ]
 
+
 def save():
-    for p in  synced_files:
+    for p in synced_files:
         folder = "/".join(p[0].split("/")[0:-1])
         if not os.path.exists(folder):
             os.mkdir(folder)
         os.system(f"rsync -r {p[1]} {p[0]}")
-        
+
+
 def restore():
-    for p in  synced_files:
+    for p in synced_files:
         os.system(f"rsync -r {p[0]} {p[1]}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     args = parser.parse_args()
-    if args.action == 'save':
+    if args.action == "save":
         save()
-    elif args.action == 'restore':
+    elif args.action == "restore":
         restore()
