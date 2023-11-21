@@ -36,6 +36,7 @@ synced_files = [
     ("bin/togglescreen", "~/.local/bin/togglescreen"),
     ("bin/mc-key-fix", "~/.local/bin/mc-key-fix"),
     ("bin/x11-toggle-primary-gpu", "~/.local/bin/x11-toggle-primary-gpu"),
+    ("bin/uwu-launcher", "~/.local/bin/uwu-launcher"),
 ]
 
 
