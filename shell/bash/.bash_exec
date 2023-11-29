@@ -1,3 +1,5 @@
 #!/usr/bin/bash
 
-jaaj
+if command -v jaaj &> /dev/null && command -v lolcat &> /dev/null; then
+  jaaj
+fi
