@@ -34,7 +34,10 @@ if test -d "$FNM_PATH" ; then
     eval "$(fnm env --use-on-cd)"
 fi
 
-. "$HOME/.cargo/env"
+CARGO_ENV_PATH="$HOME/.cargo/env"
+if [ -f "$CARGO_ENV_PATH" ]; then
+    . "$CARGO_ENV_PATH"
+fi
 
 if command -v starship > /dev/null; then
     eval "$(starship init bash)"
