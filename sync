@@ -14,6 +14,7 @@ synced_files = [
     ("editor/helix/", "~/.config/helix/"),
     ("de/i3/", "~/.config/i3/"),
     ("de/hypr/", "~/.config/hypr/"),
+    ("shell/bash/.bash_profile", "~/.bash_profile"),
     ("shell/bash/.bashrc", "~/.bashrc"),
     ("shell/bash/.bash_aliases", "~/.bash_aliases"),
     ("shell/bash/.bash_env", "~/.bash_env"),
