@@ -38,6 +38,8 @@ synced_files = [
     ("bin/mc-key-fix", "~/.local/bin/mc-key-fix"),
     ("bin/x11-toggle-primary-gpu", "~/.local/bin/x11-toggle-primary-gpu"),
     ("bin/uwu-launcher", "~/.local/bin/uwu-launcher"),
+    # Submodules
+    ("Ahurac-dotfiles/bin/ssh-fwd", "~/.local/bin/ssh-fwd"),
 ]
 
 
