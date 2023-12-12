@@ -1,0 +1,3 @@
+[submodule "Ahurac-dotfiles"]
+	path = Ahurac-dotfiles
+	url = https://gitea.ahur.ac/ahurac/dotfiles.git
