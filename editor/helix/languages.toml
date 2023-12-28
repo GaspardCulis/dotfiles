@@ -15,6 +15,16 @@ name = "astro"
 auto-format = true
 language-servers = [ "astro-ls" ]
 
+[language-server.spyglass]
+command="spyglassmc-language-server"
+
+[[language]]
+name = "mcfunction"
+scope = "source.mcfunction"
+file-types = [ "mcfunction" ]
+roots = [ "spyglass.json", ".spyglassrc.json" ]
+language-servers = [ "spyglass" ]
+
 [[language]]
 name = "html"
 formatter = { command = 'prettier', args = ["--parser", "html"] }
