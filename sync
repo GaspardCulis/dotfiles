@@ -24,6 +24,7 @@ synced_files = [
     ("term/alacritty/", "~/.config/alacritty/"),
     ("bar/waybar/", "~/.config/waybar/"),
     ("bar/i3status-rust/", "~/.config/i3status-rust/"),
+    ("bar/eww/", "~/.config/eww/"),
     ("home/xinitrc", "~/.xinitrc"),
     ("misc/picom/", "~/.config/picom/"),
     ("misc/runst/", "~/.config/runst/"),

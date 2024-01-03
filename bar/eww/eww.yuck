@@ -1,0 +1,59 @@
+(defpoll bots 
+  :initial `[]`
+  :interval "3s"
+  `curl http://localhost:42667/list`
+)
+
+(defpoll absolute_profit 
+  :interval "1s"
+  :initial 0
+  `echo $((RANDOM % 11))`
+)
+
+(defwidget profit-box [percent price]
+  (box :class {price >= 0 ? "profit" : "profit loss"} :space-evenly false
+    (label :text {price >= 0 ? "▲" : "▼"} :class "arrow" :halign "start")
+    (label :text "${round(percent, 2)}% (${round(price, 2)})" :class "price" :justify "center" :hexpand true)
+  )
+)
+
+(defwidget trades-box [] 
+  (box :orientation "v" :class "trades-box"
+    (box :orientation "h" :style "margin: 2px; font-weight: bold"
+      (label :text "Freqtrade" :style "font-family: Arial; font-size: 24px")
+      (label :text "Open profit")
+      (label :text "Closed profit")
+    )
+    (for bot in bots
+      (box :orientation "h" :style "margin: 2px"
+        (label :text "${bot.name}" :halign "start" :style "font-weight: bold; margin-right: 8px")
+        (profit-box :percent {bot.open_profit_pct} :price {bot.open_profit})
+        (profit-box :percent {bot.closed_profit_pct} :price {bot.closed_profit})
+      )
+    )
+  )
+)
+
+(defwidget profits-graph []
+  (box :class "trades-box"
+    (graph 
+      :value {arraylength(bots) > 1 ? -bots[2].open_profit_pct * 2.0 : 0} 
+      :time-range "20m"
+      :thickness 2
+      :line-style "round"
+      :dynamic true
+    )
+  )
+)
+
+(defwindow freqtrade
+  :monitor 0
+  :stacking "bg"
+  :geometry (geometry :x "0%"
+    :anchor "top right"
+  )
+  (box :orientation "v"
+    (trades-box)
+    (profits-graph)
+  )
+)

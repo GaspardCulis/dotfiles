@@ -1,0 +1,30 @@
+* {
+  all: unset;
+  font-family: "FiraCode Nerd Font";
+}
+
+.trades-box {
+  margin: 12px;
+  padding: 8px;
+  background-color: #121212;
+  border-radius: 8px;
+}
+
+.profit {
+  background-color: #121212;
+  border: solid 4px;
+  border-color: #12bb7b;
+  border-radius: 5px;
+
+  padding: 3px;
+  margin-left: 8px;
+
+  &.loss {
+    border-color: red;
+  }
+
+  .arrow {
+    margin-left: 6px;
+    font-size: 18px;
+  }
+}
