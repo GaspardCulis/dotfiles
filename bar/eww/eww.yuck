@@ -38,7 +38,7 @@
   (box :class "trades-box"
     (graph 
       :value {arraylength(bots) > 1 ? -bots[2].open_profit_pct * 2.0 : 0} 
-      :time-range "20m"
+      :time-range "40m"
       :thickness 2
       :line-style "round"
       :dynamic true
