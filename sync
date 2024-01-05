@@ -22,9 +22,9 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("action", choices=["save", "restore"])
 parser.add_argument(
-    "-s",
-    "--select",
-    help="Select the files and folders to sync",
+    "-a",
+    "--all",
+    help="Sync all files",
     action="store_true",
 )
 
@@ -125,7 +125,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     msg = ""
-    r = list_files(args.action == "save") if args.select else range(len(synced_files))
+    r = range(len(synced_files)) if args.all else list_files(args.action == "save")
     for ri, i in enumerate(r):
         if args.action == "save":
             save(synced_files[i])
