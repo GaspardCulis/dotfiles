@@ -45,22 +45,22 @@ synced_files = [
 ]
 
 
-def save():
-    for p in synced_files:
-        folder = "/".join(p[0].split("/")[0:-1])
-        if not os.path.exists(folder):
-            os.mkdir(folder)
-        os.system(f"rsync -r {p[1]} {p[0]}")
+def save(fd: tuple[str, str]):
+    folder = "/".join(fd[0].split("/")[0:-1])
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+    os.system(f"rsync -r {fd[1]} {fd[0]}")
 
 
-def restore():
-    for p in synced_files:
-        os.system(f"rsync -r {p[0]} {p[1]}")
+def restore(fd: tuple[str, str]):
+    os.system(f"rsync -r {fd[0]} {fd[1]}")
 
 
 if __name__ == "__main__":
     args = parser.parse_args()
     if args.action == "save":
-        save()
+        for p in synced_files:
+            save(p)
     elif args.action == "restore":
-        restore()
+        for p in synced_files:
+            restore(p)
