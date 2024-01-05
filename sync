@@ -3,12 +3,28 @@
 import os
 import argparse
 
+
+# https://stackoverflow.com/a/287944
+class bcolors:
+    BLUE = "\033[94m"
+    GREEN = "\033[92m"
+    PURPLE = "\033[95m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+
 parser = argparse.ArgumentParser(
     prog="Dotfiles sync",
     description="Saves and restores my dotfiles",
 )
 parser.add_argument("action", choices=["save", "restore"])
-
+parser.add_argument(
+    "-s",
+    "--select",
+    help="Select the files and folders to sync",
+    action="store_true",
+)
 
 synced_files = [
     ("editor/helix/", "~/.config/helix/"),
@@ -56,11 +72,43 @@ def restore(fd: tuple[str, str]):
     os.system(f"rsync -r {fd[0]} {fd[1]}")
 
 
+def list_files(reverse: bool = False) -> list[int]:
+    len_len = len(str(len(synced_files)))
+    for i, f in enumerate(synced_files):
+        i = str(i)
+        i = " " * (len_len - len(i)) + i
+
+        print(
+            f"{bcolors.PURPLE}{i} {bcolors.GREEN}{f[int(reverse)]} {bcolors.ENDC}-> {bcolors.GREEN}{f[int(not reverse)]}{bcolors.ENDC}"
+        )
+    user_action = input(
+        f"{bcolors.BOLD}{bcolors.BLUE}::{bcolors.ENDC} {bcolors.BOLD}Files to sync (eg: 1 2 3, 1-3):\n{bcolors.BLUE}::{bcolors.ENDC} "
+    )
+
+    # Parse input
+    out = []
+    if user_action.count("-") == 0:
+        out = list(map(lambda x: int(x), user_action.split()))
+    elif user_action.count("-") == 1:
+        out = list(range(*map(lambda x: int(x), user_action.split("-"))))
+        out += [out[-1] + 1]
+    else:
+        raise Exception("Invalid user input")
+
+    return out
+
+
 if __name__ == "__main__":
     args = parser.parse_args()
-    if args.action == "save":
-        for p in synced_files:
-            save(p)
-    elif args.action == "restore":
-        for p in synced_files:
-            restore(p)
+
+    msg = ""
+    r = list_files(args.action == "save") if args.select else range(len(synced_files))
+    for ri, i in enumerate(r):
+        if args.action == "save":
+            save(synced_files[i])
+        elif args.action == "restore":
+            restore(synced_files[i])
+        print(" " * len(msg), end="\r")
+        index = "0" * (len(str(len(r))) - len(str(ri + 1))) + str(ri + 1)
+        msg = f"[{index}/{len(r)}] Synced {synced_files[i]}"
+        print(msg, end="\r")
