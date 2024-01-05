@@ -1,13 +1,15 @@
 #!venv/bin/python
 
 import os
+import filecmp
 import argparse
 
 
 # https://stackoverflow.com/a/287944
 class bcolors:
-    BLUE = "\033[94m"
     GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    BLUE = "\033[94m"
     PURPLE = "\033[95m"
     ENDC = "\033[0m"
     BOLD = "\033[1m"
@@ -72,14 +74,33 @@ def restore(fd: tuple[str, str]):
     os.system(f"rsync -r {fd[0]} {fd[1]}")
 
 
+def needs_sync(fd: tuple[str, str]):
+    f1 = fd[0]
+    f2 = os.path.expanduser(fd[1])
+
+    def has_differences(dcmp):
+        differences = dcmp.left_only + dcmp.right_only + dcmp.diff_files
+        if differences:
+            return True
+        return any([has_differences(subdcmp) for subdcmp in dcmp.subdirs.values()])
+
+    return (
+        not filecmp.cmp(f1, f2)
+        if os.path.isfile(f1)
+        else has_differences(filecmp.dircmp(f1, f2))
+    )
+
+
 def list_files(reverse: bool = False) -> list[int]:
     len_len = len(str(len(synced_files)))
     for i, f in enumerate(synced_files):
         i = str(i)
         i = " " * (len_len - len(i)) + i
 
+        f_color = bcolors.YELLOW if needs_sync(f) else bcolors.GREEN
+
         print(
-            f"{bcolors.PURPLE}{i} {bcolors.GREEN}{f[int(reverse)]} {bcolors.ENDC}-> {bcolors.GREEN}{f[int(not reverse)]}{bcolors.ENDC}"
+            f"{bcolors.PURPLE}{i} {f_color }{f[int(reverse)]} {bcolors.ENDC}-> {f_color }{f[int(not reverse)]}{bcolors.ENDC}"
         )
 
     colon = ":" * len_len
