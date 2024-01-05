@@ -81,8 +81,10 @@ def list_files(reverse: bool = False) -> list[int]:
         print(
             f"{bcolors.PURPLE}{i} {bcolors.GREEN}{f[int(reverse)]} {bcolors.ENDC}-> {bcolors.GREEN}{f[int(not reverse)]}{bcolors.ENDC}"
         )
+
+    colon = ":" * len_len
     user_action = input(
-        f"{bcolors.BOLD}{bcolors.BLUE}::{bcolors.ENDC} {bcolors.BOLD}Files to sync (eg: 1 2 3, 1-3):\n{bcolors.BLUE}::{bcolors.ENDC} "
+        f"{bcolors.BOLD}{bcolors.BLUE}{colon}{bcolors.ENDC} {bcolors.BOLD}Files to sync (eg: 1 2 3, 1-3):\n{bcolors.BLUE}{colon}{bcolors.ENDC} "
     )
 
     # Parse input
