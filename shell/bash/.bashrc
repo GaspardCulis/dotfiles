@@ -26,7 +26,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="hx"
 
 export HISTFILESIZE=
-export HISTSIZE=4294967296
+export HISTSIZE=4294967295
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
