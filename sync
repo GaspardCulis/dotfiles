@@ -3,10 +3,19 @@
 import os
 import filecmp
 import argparse
+from enum import Enum
+
+
+class SyncStatus:
+    SAME = 1
+    DIFF = 2
+    SRC_MISSING = 3
+    DEST_MISSING = 4
 
 
 # https://stackoverflow.com/a/287944
 class bcolors:
+    RED = "\033[91m"
     GREEN = "\033[92m"
     YELLOW = "\033[93m"
     BLUE = "\033[94m"
@@ -74,7 +83,7 @@ def restore(fd: tuple[str, str]):
     os.system(f"rsync -r {fd[0]} {fd[1]}")
 
 
-def needs_sync(fd: tuple[str, str]):
+def get_sync_status(fd: tuple[str, str]) -> SyncStatus:
     f1 = fd[0]
     f2 = os.path.expanduser(fd[1])
 
@@ -84,11 +93,16 @@ def needs_sync(fd: tuple[str, str]):
             return True
         return any([has_differences(subdcmp) for subdcmp in dcmp.subdirs.values()])
 
-    return (
-        not filecmp.cmp(f1, f2)
-        if os.path.isfile(f1)
-        else has_differences(filecmp.dircmp(f1, f2))
-    )
+    if not os.path.exists(f1):
+        return SyncStatus.SRC_MISSING
+    elif not os.path.exists(f2):
+        return SyncStatus.DEST_MISSING
+    elif os.path.isfile(f1) and filecmp.cmp(f1, f2):
+        return SyncStatus.SAME
+    elif os.path.isdir(f1) and not has_differences(filecmp.dircmp(f1, f2)):
+        return SyncStatus.SAME
+    else:
+        return SyncStatus.DIFF
 
 
 def list_files(reverse: bool = False) -> list[int]:
@@ -97,10 +111,20 @@ def list_files(reverse: bool = False) -> list[int]:
         i = str(i)
         i = " " * (len_len - len(i)) + i
 
-        f_color = bcolors.YELLOW if needs_sync(f) else bcolors.GREEN
+        status = get_sync_status(f)
+        f1_c, f2_c = bcolors.GREEN, bcolors.GREEN
+
+        if status == SyncStatus.DIFF:
+            f1_c, f2_c = bcolors.YELLOW, bcolors.YELLOW
+        elif status == SyncStatus.SRC_MISSING:
+            f1_c = bcolors.RED if not reverse else f1_c
+            f2_c = bcolors.RED if reverse else f2_c
+        elif status == SyncStatus.DEST_MISSING:
+            f1_c = bcolors.RED if reverse else f1_c
+            f2_c = bcolors.RED if not reverse else f2_c
 
         print(
-            f"{bcolors.PURPLE}{i} {f_color }{f[int(reverse)]} {bcolors.ENDC}-> {f_color }{f[int(not reverse)]}{bcolors.ENDC}"
+            f"{bcolors.PURPLE}{i} {f1_c}{f[int(reverse)]} {bcolors.ENDC}-> {f2_c}{f[int(not reverse)]}{bcolors.ENDC}"
         )
 
     colon = ":" * len_len
