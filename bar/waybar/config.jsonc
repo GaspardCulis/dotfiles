@@ -14,6 +14,7 @@
     "temperature",
     "custom/power_profile",
     "custom/gpu_status",
+    "custom/refresh_rate",
     "battery",
     "pulseaudio",
     "pulseaudio#microphone",
@@ -102,6 +103,16 @@
     "tooltip": false,
     "format": "{}",
     "signal": 9
+  },
+
+  "custom/refresh_rate": {
+    "exec": "~/.config/waybar/scripts/refresh_rate.sh",
+    "return-type": "json",
+    "interval": 10,
+    "tooltip": false,
+    "format": "{}Hz",
+    "on-click": "~/.config/waybar/scripts/refresh_rate.sh toggle; pkill -SIGRTMIN+10 waybar",
+    "signal": 10
   },
 
   "pulseaudio": {

@@ -45,6 +45,7 @@ tooltip {
 
 #custom-power_profile,
 #custom-gpu_status,
+#custom-refresh_rate,
 #custom-weather,
 #window,
 #clock,
@@ -138,6 +139,14 @@ tooltip {
 }
 
 #custom-gpu_status:not(.suspended) {
+  color: #edae49;
+}
+
+#custom-refresh_rate {
+  color: #a6e3a1;
+}
+
+#custom-refresh_rate.overdrive {
   color: #edae49;
 }
 
