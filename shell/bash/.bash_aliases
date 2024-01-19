@@ -19,7 +19,7 @@ alias ip="ip --color=auto"
 # uutils-coreutils aliases
 if command -v pacman &> /dev/null; then
 if pacman -Qi uutils-coreutils &> /dev/null; then
-  for i in $(pacman -Ql uutils-coreutils | cut -d \  -f 2- | grep -E '^usr/bin/.+' | awk -F / '{ print $3 }' | sed 's/^uu-//' | grep -v '^\[$' | xargs); do
+  for i in $(pacman -Ql uutils-coreutils | cut -d \  -f 2- | grep -E '^/usr/bin/.+' | awk -F / '{ print $4 }' | sed 's/^uu-//' | grep -v '^\[$' | xargs); do
       alias "${i}=uu-${i}"
   done
   alias ls="uu-ls --color=auto"
