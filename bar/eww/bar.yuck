@@ -34,9 +34,12 @@
 )
 
 (defwidget connectivity []
-  (label
-    :class "connectivity"
-    :text "  ${connectivity.status == "down" ? "down" : connectivity.ssid}")
+  (eventbox
+    :onclick "bash -c 'iwgtk &> /dev/null &'"
+    (label
+      :class "connectivity"
+      :text "  ${connectivity.status == "down" ? "down" : connectivity.ssid}")
+  )
 )
 
 (defwidget bluetooth []
@@ -143,6 +146,7 @@
     :space-evenly false
     (container
       (time)
+      (label :text "") ; Else container spacing rule doesn't apply
       (connectivity)
       (label :text "") ; Else container spacing rule doesn't apply
       (bluetooth)
