@@ -1,0 +1,12 @@
+#!/bin/bash
+
+volume (){
+	vol=$(pamixer --get-volume-human)
+	mic_vol=$(pamixer --default-source --get-volume-human)
+	echo "{\"speaker\": \"${vol^}\", \"mic\": \"${mic_vol^}\"}"
+}
+
+volume
+pactl subscribe | grep --line-buffered "'change'" | while read -r line; do
+	volume
+done

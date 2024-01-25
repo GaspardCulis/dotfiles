@@ -1,0 +1,12 @@
+#!/bin/bash
+
+info (){
+	power=$(bluetoothctl show | grep Powered | awk '{print $2}' | sed 's/yes/on/g; s/no/off/g')
+	count=$(bluetoothctl devices Connected | wc -l)
+	echo "{\"power\": \"${power}\", \"count\": \"${count}\"}"
+}
+
+info
+dbus-monitor "interface=org.blueman.Applet" | while read -r line; do
+	info
+done

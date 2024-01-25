@@ -1,0 +1,63 @@
+.bar {
+  * {
+    color: #a4acc5;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .container {
+    margin: 0px 14px 0px 10px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 10px;
+    background-color: #181926;
+
+    & > * + * {
+      margin-left: 20px;
+    }
+  }
+
+  .time {
+    color: #c8906e;
+  }
+
+  .connectivity {
+    color: #c7b68e;
+  }
+
+  .bluetooth {
+    color: #6e91ca;
+  }
+
+  .volume {
+    color: #6e91ca;
+  }
+
+  .mic {
+    color: #a286c8;
+  }
+
+  & * {
+    .normal {
+      color: #86b985;
+    }
+    .warning {
+      color: #be8d3e;
+    }
+    .critical {
+      color: #cb535e;
+    }
+  }
+
+  .workspaces {
+    .workspace-entry {
+      margin: 0px 3px 0px 3px;
+      padding: 0px 8px 0px 8px;
+
+      &.current {
+        background: #326bb9;
+        border-radius: 10px;
+      }
+    }
+  }
+}

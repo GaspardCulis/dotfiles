@@ -1,0 +1,210 @@
+; Static vars
+(defvar GIGA 1073741824)
+
+(defpoll time :interval "10s"
+  `date +"  %H:%M    %a, %b %d"`)
+  
+(defpoll power_profile :interval "10s" :initial "" "~/.config/eww/scripts/power_profile")
+(defpoll gpu_status :initial "active" :interval "2s" "cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status")
+(defpoll refresh_rate :interval "10s" :initial "165" "~/.config/eww/scripts/refresh_rate")
+
+
+(deflisten connectivity :initial '{"status": "down"}' "~/.config/eww/scripts/get-connectivity wlan0")
+(deflisten bluetoothinfo :initial '{"count": 0}' "~/.config/eww/scripts/get-bluetooth-info")
+(deflisten workspaces :initial "[]" "~/.config/eww/scripts/hypr/get-workspaces")
+(deflisten current_workspace :initial "{\"id\": 1, \"title\": \"...\"}" "~/.config/eww/scripts/hypr/get-active-workspace")
+(deflisten window_title :initial "{\"id\": 1, \"title\": \"...\"}" "~/.config/eww/scripts/hypr/get-window-title")
+
+(deflisten volume :initial "{}" "~/.config/eww/scripts/get-volume")
+
+(defwidget container [?nopadding]
+  (box 
+    :class "container"
+    :style "padding: ${nopadding == true ? "0px" : "0px 10px 0px 10px"}"
+    :orientation "horizontal"
+    :halign "end"
+    :space-evenly false
+    (children))
+)
+
+(defwidget time []
+  (label
+    :class "time"
+    :text time)
+)
+
+(defwidget connectivity []
+  (label
+    :class "connectivity"
+    :text "  ${connectivity.status == "down" ? "down" : connectivity.ssid}")
+)
+
+(defwidget bluetooth []
+  (eventbox
+    :onclick "bash -c 'blueman-manager &> /dev/null &'"
+    (label
+      :class "bluetooth"
+      :text " ${bluetoothinfo.count > 0 ? bluetoothinfo.count : bluetoothinfo.power}")
+  )
+)
+
+(defwidget workspaces [monitor]
+  (eventbox :onscroll "bash ~/.config/eww/scripts/hypr/change-active-workspace {} ${current_workspace}" :class "workspaces"
+    (box :space-evenly true
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}" :visible "${workspace.monitor == monitor}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""}"
+            (label :text "${workspace.id}")
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwidget activewindow []
+  (label :text "${window_title ?: "..."}")
+)
+
+(defwidget ram []
+  (label 
+    :text "󰍛 ${round(EWW_RAM.used_mem/GIGA, 1)}G/${round(EWW_RAM.total_mem/GIGA, 1)}G"
+    :class "${EWW_RAM.used_mem >= EWW_RAM.total_mem * 0.9 ? "critical" : EWW_RAM.used_mem >= EWW_RAM.total_mem * 0.6 ? "warning" : ""}")
+)
+
+(defwidget cpu []
+  (label 
+    :text "󰻠 ${round(EWW_CPU.avg, 0)}%"
+    :class "${EWW_CPU.avg >= 90 ? "critical" : EWW_CPU.avg >= 60 ? "warning" :""}")
+)
+
+(defwidget temp []
+  (label
+    :text " ${EWW_TEMPS.ACPITZ_TEMP1}°C"
+    :class "${EWW_TEMPS.ACPITZ_TEMP1 >= 90 ? "critical" : EWW_TEMPS.ACPITZ_TEMP1 >= 70 ? "warning" : ""}")
+)
+
+(defvar PP_STATE '{"Quiet": "normal", "Balanced": "warning", "Performance": "critical"}')
+(defwidget powerprofile []
+  (button :onclick "~/.config/eww/scripts/power_profile next"
+    (label 
+      :text "󰈐 ${power_profile}"
+      :class "${PP_STATE[power_profile]}")
+  )
+)
+
+(defvar GPU_ICON '{"active": "󰍹", "suspended": "󰶐", "resuming": "󱄄"}')
+(defvar GPU_STATE '{"active": "warning", "suspended": "normal", "resuming": "warning"}')
+(defwidget gpustatus []
+  (label
+    :text "${GPU_ICON[gpu_status]} "
+    :class "${GPU_STATE[gpu_status]}")
+)
+
+(defwidget refreshrate []
+  (button :onclick "~/.config/eww/scripts/refresh_rate toggle"
+    (label
+      :text "${refresh_rate}Hz"
+      :class "${refresh_rate == "60" ? "normal" : "warning"}")
+  )
+)
+
+(defwidget battery []
+  (label
+    :text "${EWW_BATTERY.BAT0.status == "Discharging" ? "" : ""}   ${EWW_BATTERY.BAT0.capacity}%"
+    :class "${EWW_BATTERY.BAT0.capacity <= 15 ? "critical" : EWW_BATTERY.BAT0.capacity <= 40 ? "warning" : "normal"}")
+)
+
+(defwidget volume []
+  (eventbox
+    :onclick "pamixer -t"
+    :onscroll "echo {} | sed 's/up/-i/g; s/down/-d/g' | xargs -I{} pamixer {} 1"
+    (label
+      :text "${volume.speaker == "Muted" ? "󰝟" : ""} ${volume.speaker}"
+      :class "volume"
+    )
+  )
+)
+
+(defwidget mic []
+  (eventbox
+    :onclick "pamixer --default-source -t"
+    :onscroll "echo {} | sed 's/up/-i/g; s/down/-d/g' | xargs -I{} pamixer --default-source {} 1"
+    (label
+      :text "${volume.mic == "Muted" ? "" : ""} ${volume.mic}"
+      :class "mic"
+    )
+  )
+)
+
+(defwidget leftstuff [monitor]
+  (box
+    :space-evenly false
+    (container
+      (time)
+      (connectivity)
+      (label :text "") ; Else container spacing rule doesn't apply
+      (bluetooth)
+    )
+  
+    (container
+      :nopadding true
+      (workspaces :monitor monitor)
+    )
+  )
+)
+
+(defwidget centerstuff []
+  (container
+    (activewindow)
+  )
+)
+
+(defwidget rightstuff []
+  (box 
+    :space-evenly false
+    :halign "end"
+    (container
+      (ram)
+      (cpu)
+      (temp)
+      (powerprofile)
+      (box :space-evenly false
+        (gpustatus)
+        (refreshrate)
+      )
+      (battery)
+    )
+    (container
+      (volume)
+      (label :text "") ; Else container spacing rule doesn't apply
+      (mic)
+    )
+  )
+)
+
+(defwidget barwidget [monitor]
+  (centerbox 
+    :class "bar"
+    :orientation "horizontal"
+    (leftstuff :monitor monitor)
+    (centerstuff)
+    (rightstuff)
+  )
+)
+
+(defwindow bar [?monitor]
+  :namespace "eww.bar"
+  :monitor "${monitor ?: 0}"
+  :geometry (geometry 
+    :x "0%"
+    :y "8px"
+    :width "100%"
+    :height "38px"
+    :anchor "top center")
+  :stacking "fg"
+  :focusable false
+  :exclusive true
+  (barwidget :monitor "${monitor ?: 0}")
+)

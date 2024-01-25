@@ -1,0 +1,10 @@
+#!/bin/dash
+
+if [ "$1" = "next" ]; then
+  asusctl profile -n
+  profile=$(asusctl profile -p | sed s:'Active profile is '::)
+  eww update power_profile="$profile"
+else
+  asusctl profile -p | sed s:'Active profile is '::
+fi
+  
