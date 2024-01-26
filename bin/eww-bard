@@ -1,0 +1,46 @@
+#!/bin/dash
+
+WIDGET_NAME=bar
+
+mon_count=0
+
+# Generates $1 different window names
+gen_names () {
+	end=$(($1-1))
+	out=""
+	for i in $(seq 0 $end); do
+		out="$out $WIDGET_NAME:$WIDGET_NAME$i"
+	done
+	echo $out
+}
+
+# Generates $1 monitor args
+gen_args () {
+	end=$(($1-1))
+	out=""
+	for i in $(seq 0 $end); do
+		out="$out --arg $WIDGET_NAME$i:monitor=$i"
+	done
+	echo $out
+}
+
+update (){
+	monitors=$(hyprctl monitors -j)
+	count=$(echo "$monitors" | jq -c length)
+
+	if [ $mon_count -ne $count ]; then
+		# Close bars
+		eww close $(seq -s " " 0 $(($mon_count-1)))
+		# Open new window count
+		echo "eww open-many $(gen_names $count) $(gen_args $count)"
+		eww open-many $(gen_names $count) $(gen_args $count)
+		# Update mon_count
+		mon_count=$count		
+	fi		
+}
+
+update
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+	update
+done
+
