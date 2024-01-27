@@ -6,7 +6,7 @@ status (){
   status=$(cat /sys/class/net/wlan0/operstate)
 
   if [ "$status" != "down" ]; then
-    ssid=$(iw dev wlan0 link | grep SSID | awk '{print $2}')
+    ssid="$(iw dev wlan0 link | grep SSID | cut -d':' -f2)"
   fi
 
   echo "{\"status\": \"$status\", \"ssid\": \"$ssid\"}"

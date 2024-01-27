@@ -38,7 +38,8 @@
     :onclick "bash -c 'iwgtk &> /dev/null &'"
     (label
       :class "connectivity"
-      :text "  ${connectivity.status == "down" ? "down" : connectivity.ssid}")
+      :text " ${connectivity.status == "down" ? "down" : connectivity.ssid}"
+      :limit-width 14)
   )
 )
 
