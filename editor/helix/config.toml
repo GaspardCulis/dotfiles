@@ -11,3 +11,4 @@ select = "block"
 [keys.normal]
 backspace = {r = ":sh cargo run", p = ":sh python src/main.py"}
 a = ["ensure_selections_forward", "collapse_selection", "move_char_right", "insert_mode"]
+A-R = [":clipboard-paste-replace"]
