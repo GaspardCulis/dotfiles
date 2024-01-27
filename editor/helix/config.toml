@@ -4,6 +4,7 @@ theme="sonokai"
 mouse = false
 preview-completion-insert = false
 color-modes = true
+cursorline = true
 
 [editor.indent-guides]
 render = true
