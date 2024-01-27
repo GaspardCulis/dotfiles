@@ -5,6 +5,10 @@ mouse = false
 preview-completion-insert = false
 color-modes = true
 
+[editor.indent-guides]
+render = true
+character = "┆"
+
 [editor.soft-wrap]
 enable = true
 
