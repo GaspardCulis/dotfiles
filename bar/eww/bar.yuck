@@ -97,8 +97,8 @@
   )
 )
 
-(defvar GPU_ICON '{"active": "󰍹", "suspended": "󰶐", "resuming": "󱄄"}')
-(defvar GPU_STATE '{"active": "warning", "suspended": "normal", "resuming": "warning"}')
+(defvar GPU_ICON '{"active": "󰍹", "suspended": "󰶐", "resuming": "󱄄", "suspending": "󱄄"}')
+(defvar GPU_STATE '{"active": "warning", "suspended": "normal", "resuming": "warning", "suspending": "normal"}')
 (defwidget gpustatus []
   (label
     :text "${GPU_ICON[gpu_status]} "
