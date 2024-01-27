@@ -6,6 +6,8 @@
   
 (defpoll power_profile :interval "10s" :initial "" "~/.config/eww/scripts/power_profile")
 (defpoll gpu_status :initial "active" :interval "2s" "cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status")
+(defpoll power_now :initial "active" :interval "5s" "cat /sys/class/power_supply/BAT0/power_now")
+(defpoll energy_now :initial "active" :interval "5s" "cat /sys/class/power_supply/BAT0/energy_now")
 (defpoll refresh_rate :interval "10s" :initial "165" "~/.config/eww/scripts/refresh_rate")
 
 
@@ -116,8 +118,11 @@
 
 (defwidget battery []
   (label
-    :text "${EWW_BATTERY.BAT0.status == "Discharging" ? "" : ""}   ${EWW_BATTERY.BAT0.capacity}%"
-    :class "${EWW_BATTERY.BAT0.capacity <= 15 ? "critical" : EWW_BATTERY.BAT0.capacity <= 40 ? "warning" : "normal"}")
+    :text "${EWW_BATTERY.BAT0.status == "Discharging" ? 
+      "   ${EWW_BATTERY.BAT0.capacity}% (${round(energy_now/power_now, 0)}h${round((energy_now/power_now - round(energy_now/power_now - 0.5, 0)) * 60, 0)} at ${round(power_now/1000000, 2)}W)" : 
+      "   ${EWW_BATTERY.BAT0.capacity}%"
+    }"
+    :class "${EWW_BATTERY.BAT0.capacity <= 15 || power_now/1000000 > 25 ? "critical" : EWW_BATTERY.BAT0.capacity <= 40 || power_now/1000000 > 15 ? "warning" : "normal"}")
 )
 
 (defwidget volume []
