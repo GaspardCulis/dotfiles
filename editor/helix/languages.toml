@@ -29,6 +29,7 @@ formatter = {command = 'black', args = ["--quiet", "-"]}
 command = "astro-ls"
 args = ["--stdio"]
 config = {typescript = {tsdk = "/home/gaspard/.local/share/fnm/node-versions/v18.18.2/installation/lib/node_modules/typescript/lib"}, environment = "node"}
+timeout = 2
 
 [[language]]
 name = "astro"
