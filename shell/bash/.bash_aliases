@@ -7,7 +7,8 @@ alias esp-idf-setup=". ~/.local/lib/esp-idf/export.sh"
 alias steam="steam-runtime"
 
 # Git
-alias ga="git add"
+alias gs="git status"
+alias ga="git add -p"
 alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
