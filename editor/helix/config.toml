@@ -12,7 +12,6 @@ character = "┆"
 
 [editor.lsp]
 auto-signature-help = false
-display-inlay-hints = true
 display-messages = true
 
 [editor.soft-wrap]
