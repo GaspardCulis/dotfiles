@@ -1,6 +1,6 @@
 .bar {
   * {
-    color: #a4acc5;
+    color: $text;
     font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
     font-weight: bold;
     font-size: 16px;
@@ -10,7 +10,7 @@
     margin: 0px 14px 0px 10px;
     padding: 0px 10px 0px 10px;
     border-radius: 10px;
-    background-color: #181926;
+    background-color: $background;
 
     & > * + * {
       margin-left: 20px;
@@ -18,23 +18,23 @@
   }
 
   .time {
-    color: #c8906e;
+    color: $orange;
   }
 
   .connectivity {
-    color: #c7b68e;
+    color: $yellow;
   }
 
   .bluetooth {
-    color: #6e91ca;
+    color: $blue;
   }
 
   .volume {
-    color: #6e91ca;
+    color: $blue;
   }
 
   .mic {
-    color: #a286c8;
+    color: $purple;
   }
 
   .systray {
@@ -44,7 +44,7 @@
       menu {
         padding: 5px 5px;
         border-radius: 10px;
-        background-color: #181926;
+        background-color: $background;
 
         menuitem {
           margin: 1px 0;
@@ -70,13 +70,15 @@
 
   & * {
     .normal {
-      color: #86b985;
+      color: $normal;
     }
+
     .warning {
-      color: #be8d3e;
+      color: $warning;
     }
+
     .critical {
-      color: #cb535e;
+      color: $critical;
     }
   }
 
@@ -86,7 +88,7 @@
       padding: 0px 8px 0px 8px;
 
       &.current {
-        background: #326bb9;
+        background: $background-active;
         border-radius: 10px;
       }
     }

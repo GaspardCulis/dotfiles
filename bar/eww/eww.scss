@@ -1,4 +1,7 @@
-@import "./bar.scss" * {
+@import "./theme.scss";
+@import "./bar.scss";
+
+* {
   all: unset;
   font-family: "FiraCode Nerd Font";
 }
