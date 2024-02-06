@@ -1,6 +1,7 @@
 theme="sonokai"
 
 [editor]
+line-number = "relative"
 mouse = false
 preview-completion-insert = false
 color-modes = true
