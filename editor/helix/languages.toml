@@ -59,6 +59,13 @@ name = "css"
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 
 [[language]]
+name = "scss"
+formatter = { command = "prettier", args = ["--stdin-filepath", "dummy.scss"] }
+indent = { tab-width = 4, unit = "\t" }
+language-servers = ["vscode-css-language-server"]
+auto-format = true
+
+[[language]]
 name = "javascript"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
