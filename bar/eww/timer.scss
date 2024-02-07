@@ -1,0 +1,65 @@
+.timer {
+  padding-left: 60px;
+  padding-right: 60px;
+
+  background-color: $background;
+  border-radius: 20px;
+
+  .timer-title {
+    color: $text;
+    margin-top: 20px;
+    font-size: 24px;
+  }
+
+  .start-button {
+    .circle-progress {
+      color: $green;
+
+      transition: color 500ms;
+    }
+
+    .start-icon {
+      color: $green;
+      font-size: 28px;
+
+      transition: color 500ms;
+    }
+  }
+
+  .timer-text {
+    font-size: 32px;
+    padding-bottom: 30px;
+  }
+
+  &.work {
+    .start-button {
+      .circle-progress {
+        color: $red;
+
+        transition: color 500ms;
+      }
+
+      .start-icon {
+        color: $red;
+
+        transition: color 500ms;
+      }
+    }
+  }
+
+  &.pause {
+    .start-button {
+      .circle-progress {
+        color: $yellow;
+
+        transition: color 500ms;
+      }
+
+      .start-icon {
+        color: $yellow;
+
+        transition: color 500ms;
+      }
+    }
+  }
+}
