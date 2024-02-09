@@ -8,6 +8,8 @@ font='FiraCode Nerd Font' 11
 anchor=top-left
 outer-margin=0,30,0,0
 
+on-notify=exec mpv ~/.local/share/sfx/gaming-lock.wav
+
 [urgency=low]
 border-color=#cccccc
 
