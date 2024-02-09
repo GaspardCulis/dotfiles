@@ -1,5 +1,5 @@
-(include "./bar.yuck")
-(include "./timer.yuck")
+(include "./bar/widget.yuck")
+(include "./timer/widget.yuck")
 
 (defpoll bots 
   :initial `[]`
