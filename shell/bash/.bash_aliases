@@ -13,10 +13,6 @@ alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
 
-# Generic stuff
-alias ls="ls --color=auto"
-alias ip="ip --color=auto"
-
 # uutils-coreutils aliases
 if command -v pacman &> /dev/null; then
 if pacman -Qi uutils-coreutils &> /dev/null; then
@@ -26,3 +22,7 @@ if pacman -Qi uutils-coreutils &> /dev/null; then
   alias ls="uu-ls --color=auto"
 fi
 fi
+
+# Generic stuff
+alias ls="ls --color=auto"
+alias ip="ip --color=auto"
