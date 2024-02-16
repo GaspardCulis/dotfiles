@@ -1,5 +1,5 @@
 #!/usr/bin/bash
 
-if command -v jaaj &> /dev/null && command -v lolcat &> /dev/null; then
+if command -v jaaj &> /dev/null && command -v dotacat &> /dev/null; then
   jaaj
 fi
