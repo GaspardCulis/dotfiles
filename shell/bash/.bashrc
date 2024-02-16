@@ -45,7 +45,7 @@ if command -v starship > /dev/null; then
 fi
 
 if command -v zoxide > /dev/null; then
-    eval "$(zoxide init bash)"
+    eval "$(zoxide init --cmd cd bash)"
 fi
 
 if [ -f ~/.bash_exec ]; then
