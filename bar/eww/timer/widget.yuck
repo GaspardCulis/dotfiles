@@ -43,8 +43,13 @@
     (overlay
       (circular-progress
         :class "circle-progress"
-        :value 100
+        :value "${
+          timer-state == "inactive" ? 100 :
+            100 * (timer-start-time + (timer-state == "work" ? WORK_TIME_SEC : PAUSE_TIME_SEC) - timer-time)
+            / (timer-state == "work" ? WORK_TIME_SEC : PAUSE_TIME_SEC)
+        }"
         :thickness 6
+        :start-at 75
         :clockwise true)
       (label :class "start-icon" :text "${timer-state == "inactive" ? 'Start' : (timer-state == "work" ? "Working" : "Pause")}")
     )
