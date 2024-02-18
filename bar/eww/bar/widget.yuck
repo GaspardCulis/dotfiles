@@ -68,7 +68,9 @@
 )
 
 (defwidget activewindow []
-  (label :text "${hypr.title ?: "..."}")
+  (label
+    :text "${hypr.title ?: "..."}"
+    :limit-width 64)
 )
 
 (defwidget ram []
