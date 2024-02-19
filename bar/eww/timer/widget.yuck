@@ -27,11 +27,9 @@
   :initial "first"
   :run-while {timer-state == "pause"}
   `if [ "$(eww get timer-pause-period)" == "first" ]; then 
-    mpv ~/.local/share/sfx/uplifting-flute.wav &
     eww update timer-start-time=$(date +%s)
     echo next
   else 
-    mpv ~/.local/share/sfx/uplifting-flute.wav &
     notify-send -i ~/Images/Icons/moai.jpg "Pause period over" "Back to grinding we go."
     eww update timer-state=work
     echo first
