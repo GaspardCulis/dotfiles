@@ -4,7 +4,8 @@
 
 ### Hyprland config
 
-![Desktop preview](https://github.com/GaspardCulis/dotfiles/assets/79080828/a130fc92-4955-4a93-aaff-bfc8bc5c009e)
+![Desktop preview](https://github.com/GaspardCulis/dotfiles/assets/79080828/0d7c5655-40fe-4505-8ccd-030c4e38cbe4)
+
 
 ### i3 config
 
