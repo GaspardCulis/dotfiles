@@ -1,0 +1,47 @@
+.music {
+  background-color: $background;
+  border-radius: 20px;
+
+  padding: 20px;
+
+  .art {
+    background-size: cover;
+    min-width: 200px;
+    min-height: 200px;
+
+    border-radius: 20px;
+
+    transition: opacity 1s ease-in-out;
+  }
+
+  .player-container {
+    min-width: 300px;
+
+    .title {
+      font-size: 20px;
+      color: $purple;
+    }
+
+    .artist {
+      font-size: 16px;
+      color: $yellow;
+    }
+
+    button {
+      min-width: 32px;
+      min-height: 32px;
+
+      font-size: 20px;
+    }
+
+    button.playpause {
+      border-radius: 50%;
+      background-color: $green;
+      color: $background;
+
+      padding-top: 4px;
+      padding-right: 2px;
+      padding-left: 2px;
+    }
+  }
+}

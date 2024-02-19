@@ -1,0 +1,74 @@
+(defvar COVER_HIDDEN false) ; Bcz sometimes I listen to Geoxor, so, yeah...
+(defvar FALLBACK_COVER "/home/gaspard/Images/Icons/music-disk.png")
+(defvar PLAY_STATUS "⏸︎")
+
+(deflisten music_info :initial '{"title": "", "artist": "", "artUrl": "", "status": ""}' "~/.config/eww/scripts/get-music-info")
+
+(defwidget music []
+  (box
+    :class "music"
+    :orientation "h"
+    :spacing 25
+    :space-evenly false
+    (button
+      :class "art"
+      :vexpand false 
+      :hexpand false
+      :style "background-image: url('${COVER_HIDDEN ? FALLBACK_COVER : music_info.artUrl ?: FALLBACK_COVER }');"
+      :onclick `
+        if [ "$(eww get COVER_HIDDEN)" == "true" ]; then
+          eww update COVER_HIDDEN=false
+        else
+          eww update COVER_HIDDEN=true
+        fi
+      `)
+    (box
+      :class "player-container"
+      :orientation "v"
+      :vexpand true
+      :space-evenly false
+      :spacing 25
+      (label
+        :class "title"
+        :limit-width 22
+        :text "${music_info.title ?: "Not playing"}")
+      (label
+        :class "artist"
+        :limit-width 26
+        :text "${music_info.artist}")
+      (box
+        :orientation "h"
+        :halign "center"
+        :valign "center"
+        :spacing 25
+        :space-evenly false
+        :vexpand true
+        (button
+          :vexpand false
+          :onclick "playerctl previous"
+          :class "previous" " ⏪︎")
+        (button
+          :vexpand false
+          :onclick "playerctl play-pause"
+          :class "playpause" "${music_info.status == "Playing" ? "⏸︎" : "⏵︎"}")
+        (button
+          :vexpand false
+          :onclick "playerctl next"
+          :class "next" " ⏩︎")
+      )
+    )
+  )
+)
+
+(defwindow music
+  :namespace "eww.music"
+  :monitor 0
+  :geometry (geometry
+    :x "19%"
+    :y "10%"
+    :anchor "top left")
+  :stacking "bg"
+  :focusable false
+  :exclusive true
+  (music)
+)

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+info (){
+	title=$(playerctl metadata xesam:title 2> /dev/null)
+	artist=$(playerctl metadata xesam:artist 2> /dev/null)
+	artUrl=$(playerctl metadata mpris:artUrl 2> /dev/null)
+	status=$(playerctl status 2> /dev/null)
+	echo "{\"title\": \"${title}\", \"artist\": \"${artist}\", \"artUrl\": \"${artUrl}\", \"status\": \"${status}\"}"
+}
+
+info
+dbus-monitor "path=/org/mpris/MediaPlayer2,member=PropertiesChanged" | while read -r line; do
+	info
+done
