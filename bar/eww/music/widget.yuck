@@ -46,15 +46,15 @@
         (button
           :vexpand false
           :onclick "playerctl previous"
-          :class "previous" " ⏪︎")
+          :class "previous" "󰒮")
         (button
           :vexpand false
           :onclick "playerctl play-pause"
-          :class "playpause" "${music_info.status == "Playing" ? "⏸︎" : "⏵︎"}")
+          :class "playpause" "${music_info.status == "Playing" ? "󰏤" : " 󰐊"}")
         (button
           :vexpand false
           :onclick "playerctl next"
-          :class "next" " ⏩︎")
+          :class "next" "󰒭")
       )
     )
   )
