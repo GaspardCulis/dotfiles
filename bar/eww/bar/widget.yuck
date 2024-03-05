@@ -35,7 +35,7 @@
 
 (defwidget connectivity []
   (eventbox
-    :onclick "bash -c 'connman-gtk &> /dev/null &'"
+    :onclick "bash -c 'iwgtk &> /dev/null &'"
     (label
       :class "connectivity"
       :text " ${connectivity.status == "down" ? "down" : connectivity.ssid}"
