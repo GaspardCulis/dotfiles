@@ -3,13 +3,12 @@
 
 (defpoll time :interval "10s"
   `date +"  %H:%M    %a, %b %d"`)
-  
 (defpoll power_profile :interval "10s" :initial "" "~/.config/eww/scripts/power_profile")
 (defpoll gpu_status :initial "active" :interval "2s" "cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status")
 (defpoll power_now :initial "active" :interval "5s" "cat /sys/class/power_supply/BAT0/power_now")
 (defpoll energy_now :initial "active" :interval "5s" "cat /sys/class/power_supply/BAT0/energy_now")
 (defpoll refresh_rate :interval "10s" :initial "165" "~/.config/eww/scripts/refresh_rate")
-
+(defpoll vpn_status :interval "60s" :initial '{"connected": false}' "~/.config/eww/scripts/vpn_status")
 
 (deflisten connectivity :initial '{"status": "down"}' "~/.config/eww/scripts/get-connectivity wlan0")
 (deflisten bluetoothinfo :initial '{"count": 0}' "~/.config/eww/scripts/get-bluetooth-info")
@@ -31,6 +30,16 @@
   (label
     :class "time"
     :text time)
+)
+
+(defwidget vpn []
+  (button
+    :onclick `~/.config/eww/scripts/vpn_status toggle`
+    :timeout "10s"
+    (label
+      :class "vpn ${vpn_status.connected ? "connected" : "disconnected"}"
+      :text "${vpn_status.connected ? "󰯄 " : "󰦞 "}")
+  )
 )
 
 (defwidget connectivity []
@@ -156,6 +165,7 @@
       (connectivity)
       (label :text "") ; Else container spacing rule doesn't apply
       (bluetooth)
+      (vpn)
     )
   
     (container

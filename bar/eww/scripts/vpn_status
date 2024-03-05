@@ -1,0 +1,26 @@
+#!/bin/dash
+
+config=OVH
+
+is_connected (){
+  openvpn3 session-stats --config OVH > /dev/null 2>&1
+  if [ $? -ne 0 ] ; then
+    echo "false"
+  else
+    echo "true"
+  fi
+}
+
+connected="$(is_connected)"
+
+if [ "$1" = "toggle" ]; then
+  if [ "$connected" = "false" ]; then
+    openvpn3 session-start --config "$config" > /dev/null
+  else
+    openvpn3 session-manage --disconnect --config "$config" > /dev/null
+  fi
+  eww update vpn_status="{\"connected\": $(is_connected)}"
+  exit 0
+fi
+
+echo "{\"connected\": $(is_connected)}"
