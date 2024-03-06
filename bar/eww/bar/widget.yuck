@@ -189,6 +189,8 @@
       (ram)
       (cpu)
       (temp)
+    )
+    (container
       (powerprofile)
       (box :space-evenly false
         (gpustatus)
