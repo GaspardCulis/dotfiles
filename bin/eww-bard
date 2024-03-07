@@ -1,5 +1,9 @@
 #!/bin/dash
 
+# Start initial widgets
+eww open-many timer music
+
+# Monitor duplication daemon
 WIDGET_NAME=bar
 
 mon_count=0
