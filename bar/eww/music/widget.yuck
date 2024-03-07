@@ -1,4 +1,4 @@
-(defvar COVER_HIDDEN false) ; Bcz sometimes I listen to Geoxor, so, yeah...
+(defvar WAIFU_MODE false) ; Bcz sometimes I listen to Geoxor, so, yeah...
 (defvar FALLBACK_COVER "/home/gaspard/Images/Icons/music-disk.png")
 (defvar PLAY_STATUS "⏸︎")
 
@@ -14,7 +14,7 @@
       :class "art"
       :vexpand false 
       :hexpand false
-      :style "background-image: url('${COVER_HIDDEN ? FALLBACK_COVER : music_info.artUrl ?: FALLBACK_COVER }');"
+      :style "background-image: url('${WAIFU_MODE ? FALLBACK_COVER : music_info.artUrl ?: FALLBACK_COVER }');"
       :onclick `
         if [ "$(eww get COVER_HIDDEN)" == "true" ]; then
           eww update COVER_HIDDEN=false
