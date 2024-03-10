@@ -16,10 +16,10 @@
       :hexpand false
       :style "background-image: url('${WAIFU_MODE ? FALLBACK_COVER : music_info.artUrl ?: FALLBACK_COVER }');"
       :onclick `
-        if [ "$(eww get COVER_HIDDEN)" == "true" ]; then
-          eww update COVER_HIDDEN=false
+        if [ "$(eww get WAIFU_MODE)" == "true" ]; then
+          eww update WAIFU_MODE=false
         else
-          eww update COVER_HIDDEN=true
+          eww update WAIFU_MODE=true
         fi
       `)
     (box
