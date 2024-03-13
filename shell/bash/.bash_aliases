@@ -1,5 +1,3 @@
-alias ls='ls --color=auto'
-
 alias jaaj="jaaj | dotacat"
 alias uwu="uwu | dotacat"
 alias esp-idf-setup=". ~/.local/lib/esp-idf/export.sh"
@@ -26,3 +24,5 @@ fi
 # Generic stuff
 alias ls="ls --color=auto"
 alias ip="ip --color=auto"
+alias l="ls -alh --color=auto"
+alias tld="tree -L 2"
