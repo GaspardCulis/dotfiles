@@ -26,3 +26,5 @@ alias ls="ls --color=auto"
 alias ip="ip --color=auto"
 alias l="ls -alh --color=auto"
 alias tld="tree -L 2"
+
+alias mnt-s3="s3fs public ${S3_MOUNTPOINT} -o passwd_file=${HOME}/.passwd-s3fs -o host=${S3_HOST} -o endpoint=${S3_ENDPOINT}"
