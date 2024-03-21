@@ -64,8 +64,8 @@
   :namespace "eww.music"
   :monitor 0
   :geometry (geometry
-    :x "19%"
-    :y "10%"
+    :x "456px"
+    :y "128px"
     :anchor "top left")
   :stacking "bg"
   :focusable false
