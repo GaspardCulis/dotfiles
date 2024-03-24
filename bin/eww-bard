@@ -1,8 +1,5 @@
 #!/bin/dash
 
-# Start initial widgets
-eww open-many timer music
-
 # Monitor duplication daemon
 WIDGET_NAME=bar
 
@@ -43,7 +40,12 @@ update (){
 	fi		
 }
 
+# Open bar
 update
+
+# Open other widgets
+eww open-many timer music
+
 socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
 	update
 done
