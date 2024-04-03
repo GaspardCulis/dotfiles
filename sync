@@ -68,6 +68,7 @@ synced_files = [
     ("bin/x11-toggle-primary-gpu", "~/.local/bin/x11-toggle-primary-gpu"),
     ("bin/uwu-launcher", "~/.local/bin/uwu-launcher"),
     ("bin/eww-bard", "~/.local/bin/eww-bard"),
+    ("bin/wallpaperctl", "~/.local/bin/wallpaperctl"),
     # Submodules
     ("Ahurac-dotfiles/bin/ssh-fwd", "~/.local/bin/ssh-fwd"),
 ]

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]] || [[ ! $1 = @(daemon|change) ]]; then
+	echo "Usage:
+	$0 daemon|change"
+	exit 1
+fi
+
+export SWWW_TRANSITION=wipe
+export SWWW_TRANSITION_ANGLE=$RANDOM
+export SWWW_TRANSITION_FPS=60
+
+wallpapers_dir=~/Images/Wallpapers/enabled
+
+if [[ "$1" = "daemon" ]]; then
+  exec swww-daemon
+elif [[ "$1" = "change" ]]; then
+  img=$(find "$wallpapers_dir" -type f,l -exec realpath {} \; | shuf -n 1)
+  echo "$img"
+  exec swww img "$img"
+fi
