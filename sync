@@ -57,6 +57,7 @@ synced_files = [
     ("misc/runst/", "~/.config/runst/"),
     ("misc/mako/", "~/.config/mako/"),
     ("misc/swayosd/", "~/.config/swayosd/"),
+    ("misc/anyrun/", "~/.config/anyrun/"),
     ("misc/x11-toggle-gpu/", "~/.local/share/x11-toggle-gpu/"),
     ("bin/swaylock-hyprland", "~/.local/bin/swaylock-hyprland"),
     ("bin/Hyprland", "~/.local/bin/Hyprland"),
