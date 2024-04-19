@@ -1,10 +1,31 @@
 #!/bin/dash
 
+profile="$(powerprofilesctl get)"
+
+formatprofile() {
+  p="$(echo "$1" | sed 's/power-saver/quiet/g')"
+  echo "$(echo "$p" | sed 's/.*/\u&/')"
+}
+
 if [ "$1" = "next" ]; then
-  asusctl profile -n
-  profile=$(asusctl profile -p | sed s:'Active profile is '::)
-  eww update power_profile="$profile"
-else
-  asusctl profile -p | sed s:'Active profile is '::
+  case "$profile" in
+  	performance)
+  		powerprofilesctl set power-saver
+  		;;
+  	balanced)
+  		powerprofilesctl set performance
+  		;;
+  	power-saver)
+  		powerprofilesctl set balanced
+  		;;
+  	*)
+  		echo "Unknown power profile"
+  		exit 1
+  		;;
+  esac
+  profile="$(powerprofilesctl get)"
+  eww update power_profile="$(formatprofile $profile)"
 fi
+
+echo "$(formatprofile $profile)"
   
