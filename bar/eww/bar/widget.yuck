@@ -202,7 +202,7 @@
       (volume)
       (label :text "") ; Else container spacing rule doesn't apply
       (mic)
-      (systray :pack-direction "ltr" :class "systray")
+      (systray :orientation "h" :spacing 6 :class "systray")
     )
   )
 )
