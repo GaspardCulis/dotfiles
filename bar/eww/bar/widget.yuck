@@ -139,7 +139,7 @@
     :onclick "pamixer -t"
     :onscroll "echo {} | sed 's/up/-i/g; s/down/-d/g' | xargs -I{} pamixer {} 1"
     (label
-      :text "${volume.speaker == "Muted" ? "󰝟" : ""}  ${volume.speaker}"
+      :text "${volume.speaker == "Muted" ? "󰝟" : ""}   ${volume.speaker}"
       :class "volume"
     )
   )
