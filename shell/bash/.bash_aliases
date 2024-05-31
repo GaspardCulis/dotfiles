@@ -4,6 +4,10 @@ alias esp-idf-setup=". ~/.local/lib/esp-idf/export.sh"
 
 alias steam="steam-runtime"
 
+if command -v helix &> /dev/null; then
+  alias hx="helix"
+fi
+
 # Git
 alias gs="git status"
 alias ga="git add -p"
