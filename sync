@@ -49,6 +49,7 @@ synced_files = [
     ("shell/nu/.nu_aliases", "~/.nu_aliases"),
     ("term/rio/", "~/.config/rio/"),
     ("term/alacritty/", "~/.config/alacritty/"),
+    ("term/tmux/tmux.conf", "~/.config/tmux/tmux.conf"),
     ("bar/waybar/", "~/.config/waybar/"),
     ("bar/i3status-rust/", "~/.config/i3status-rust/"),
     ("bar/eww/", "~/.config/eww/"),

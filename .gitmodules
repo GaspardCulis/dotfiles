@@ -1,3 +1,6 @@
 [submodule "Ahurac-dotfiles"]
 	path = Ahurac-dotfiles
 	url = https://gitea.ahur.ac/ahurac/dotfiles.git
+[submodule "term/tmux/plugins/tpm"]
+	path = term/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
