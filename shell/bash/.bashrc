@@ -40,19 +40,19 @@ if [ -f "$CARGO_ENV_PATH" ]; then
     . "$CARGO_ENV_PATH"
 fi
 
-if command -v starship > /dev/null; then
-    eval "$(starship init bash)"
-fi
-
-if command -v zoxide > /dev/null; then
-    eval "$(zoxide init --cmd cd bash)"
+FLUTTER_PATH="/opt/flutter/bin"
+if test -d "$FLUTTER_PATH"; then
+    export PATH="$FLUTTER_PATH:$PATH"
 fi
 
 if [ -f ~/.bash_exec ]; then
     source ~/.bash_exec
 fi
 
-FLUTTER_PATH="/opt/flutter/bin"
-if test -d "$FLUTTER_PATH"; then
-    export PATH="$FLUTTER_PATH:$PATH"
+if command -v starship > /dev/null; then
+    eval "$(starship init bash)"
+fi
+
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init --cmd cd bash)"
 fi
