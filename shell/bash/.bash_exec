@@ -6,7 +6,7 @@ if [ "$(tty)" = /dev/tty1 ]; then
 fi
 
 # Start in tmux by default
-[[ $TERM != "screen" ]] && [ -z "$TMUX"  ] && exec tmux
+# [[ $TERM != "screen" ]] && [ -z "$TMUX"  ] && exec tmux
 
 if command -v jaaj &> /dev/null && command -v dotacat &> /dev/null; then
   jaaj
