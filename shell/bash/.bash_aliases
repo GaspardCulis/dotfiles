@@ -23,7 +23,7 @@ fi
 
 # Generic stuff
 if command -v lsd &> /dev/null; then
-  alias ld="lsd"
+  alias ls="lsd"
   alias l="lsd -alh"
 else
   alias ls="ls --color=auto"
