@@ -22,9 +22,14 @@ fi
 fi
 
 # Generic stuff
-alias ls="ls --color=auto"
+if command -v lsd &> /dev/null; then
+  alias ld="lsd"
+  alias l="lsd -alh"
+else
+  alias ls="ls --color=auto"
+  alias l="ls -alh --color=auto"
+fi
 alias ip="ip --color=auto"
-alias l="ls -alh --color=auto"
 alias tld="tree -L 2"
 
 alias mnt-s3="s3fs public ${S3_MOUNTPOINT} -o passwd_file=${HOME}/.passwd-s3fs -o host=${S3_HOST} -o endpoint=${S3_ENDPOINT}"
