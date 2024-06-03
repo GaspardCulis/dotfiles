@@ -16,6 +16,8 @@ fi
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
 
+[[ -z "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
+
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
 bind '"\e[A":history-search-backward'
