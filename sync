@@ -73,6 +73,7 @@ synced_files = [
     ("bin/wallpaperctl", "~/.local/bin/wallpaperctl"),
     # Submodules
     ("Ahurac-dotfiles/bin/ssh-fwd", "~/.local/bin/ssh-fwd"),
+    ("Ahurac-dotfiles/bin/watchbatch", "~/.local/bin/watchbatch"),
 ]
 
 
