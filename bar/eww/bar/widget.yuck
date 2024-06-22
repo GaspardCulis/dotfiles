@@ -15,8 +15,8 @@
   `date +"  %H:%M    %a, %b %d"`)
 (defpoll power_profile :interval "10s" :initial "" "~/.config/eww/scripts/power_profile")
 (defpoll gpu_status :initial "active" :interval "2s" "cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status")
-(defpoll power_now :initial "active" :interval "5s" "cat /sys/class/power_supply/BAT0/power_now")
-(defpoll energy_now :initial "active" :interval "5s" "cat /sys/class/power_supply/BAT0/energy_now")
+(defpoll power_now :initial "0" :interval "5s" "cat /sys/class/power_supply/BAT0/power_now")
+(defpoll energy_now :initial "0" :interval "5s" "cat /sys/class/power_supply/BAT0/energy_now")
 (defpoll refresh_rate :interval "10s" :initial "165" "~/.config/eww/scripts/refresh_rate")
 (defpoll vpn_status :interval "60s" :initial '{"connected": false}' "~/.config/eww/scripts/vpn_status")
 
@@ -67,7 +67,6 @@
     connectivity.state == "wireless" ? connectivity.wifi.ssid :
     connectivity.state == "tethering" ? "USB tethering" : ''
   }"
-      :tooltip "${connectivity.ip.local}"
       :limit-width 14)
   )
 )
