@@ -6,7 +6,7 @@ border-radius=4
 border-size=2
 font='FiraCode Nerd Font' 11
 anchor=bottom-right
-outer-margin=0,30,0,0
+outer-margin=0,4,8,0
 
 [urgency=low]
 border-color=#cccccc
