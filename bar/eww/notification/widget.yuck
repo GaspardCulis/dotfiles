@@ -1,0 +1,70 @@
+(defvar close_icon "/usr/share/icons/Qogir-ubuntu-dark/16/actions/window-close.svg")
+
+(deflisten notifications :initial '[{"id": 69, "dismissed": false, "app_name": "notify-send", "replaces_id": 0, "app_icon": "/home/gaspard/Images/memes/vroom.png", "summary": "Work period over", "body": "You can take a little nap now.", "actions": [], "hints": {"urgency": 1, "sender-pid": 12406}, "expire_timeout": -1}]' "~/.config/eww/scripts/get-notifications")
+
+(defwidget notification [notif]
+  (box 
+    :class "notification"
+    :space-evenly false
+    :orientation "v"
+    :spacing 6
+    (box :orientation "h" :spacing 8 :space-evenly false
+      (image 
+        :path "/usr/share/icons/Qogir-ubuntu/scalable/apps/spotify.svg"
+        :image-width 24 
+        :image-height 24)
+      (label 
+        :text "${notif.app_name}" 
+        :halign "start" 
+        :hexpand true)
+      (button :onclick "dbus-send --session --dest=org.freedesktop.Notifications --type=method_call /org/freedesktop/Notifications org.freedesktop.Notifications.CloseNotification uint32:${notif.id}"
+        (image 
+          :path "${close_icon}"
+          :image-width 24
+          :image-height 24)
+      )
+    )
+    (box :orientation "h" :space-evenly false :spacing 8
+      (box
+        :class "${notif.app_icon != "" ? "notification-icon" : ""}"
+        :style "background-image: url('${notif.app_icon}');"
+      )
+      (box 
+        :class "notification-text-container"
+        :orientation "v"
+        :hexpand true
+        :space-evenly false
+        (label
+          :class "notification-summary"
+          :text "${notif.summary}"
+          :halign "start")
+        (label
+          :text "${notif.body}"
+          :wrap true
+          :halign "fill"
+          :vexpand true)
+      )
+    )
+  )
+)
+
+(defwindow notification_overlay
+  :namespace "eww.notification_overlay"
+  :monitor 0
+  :geometry (geometry
+    :width "400px"
+    :anchor "bottom right")
+  :stacking "overlay"
+  :focusable false
+  :exclusive true
+  (box 
+    :class "notifications-container"
+    :orientation "v"
+    :halign "end"
+    :valign "end"
+    :spacing 6
+    (for notif in {jq(notifications, '[.[] | select(.dismissed == false)]')}
+      (notification :notif "${notif}")
+    )
+  )
+)

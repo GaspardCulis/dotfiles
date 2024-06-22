@@ -1,0 +1,26 @@
+.notifications-container {
+  padding: 8px;
+
+  .notification {
+    padding: 6px;
+    background-color: $background;
+    border-radius: 20px;
+
+    .notification-icon {
+      min-width: 128px;
+      min-height: 128px;
+
+      background-size: cover;
+      background-position: center center;
+      border-radius: 16px;
+    }
+
+    .notification-text-container {
+      padding-top: 6px;
+
+      .notification-summary {
+        font-weight: bold;
+      }
+    }
+  }
+}

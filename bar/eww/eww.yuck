@@ -2,5 +2,6 @@
 (include "./music/widget.yuck")
 (include "./timer/widget.yuck")
 (include "./freqtrade/widget.yuck")
+(include "./notification/widget.yuck")
 
 

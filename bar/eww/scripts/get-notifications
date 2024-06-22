@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+import sys
+import json
+import dbus
+from random import randint
+from gi.repository import GLib 
+from dbus.mainloop.glib import DBusGMainLoop
+
+notification_history = []
+
+def handle_notification(_, message):
+    keys = ["app_name", "replaces_id", "app_icon", "summary",
+          "body", "actions", "hints", "expire_timeout"]
+    args = message.get_args_list()
+    match message.get_member() :
+        case "Notify":
+            notification = dict([(keys[i], args[i]) for i in range(8)])
+            notification["dismissed"] = False
+            notification["id"] = randint(0, 8192 * 2)
+            notification_history.append(notification)
+        case "CloseNotification":
+            notification_id = int(args[0])
+            for notification in notification_history:
+                if notification["id"] == notification_id:
+                    notification["dismissed"] = True
+        case _:
+            return
+
+    print(json.dumps(notification_history), flush=True)
+
+def handle_notification_dismiss(_, message):
+    print("jaaj")
+    print(message)
+
+if __name__ == "__main__":
+    DBusGMainLoop(set_as_default=True)
+    
+    notification_bus = dbus.SessionBus()
+    notification_bus.add_match_string("type='method_call',interface='org.freedesktop.Notifications',eavesdrop=true")
+    notification_bus.add_message_filter(handle_notification)
+
+    loop = GLib.MainLoop()
+    loop.run()
