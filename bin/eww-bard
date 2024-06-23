@@ -44,7 +44,7 @@ update (){
 update
 
 # Open other widgets
-eww open-many timer music
+eww open-many timer music notification_overlay
 
 socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
 	update
