@@ -1,13 +1,28 @@
 #!/usr/bin/env python3
 
-import sys
 import json
 import dbus
 from random import randint
+from threading import Timer 
 from gi.repository import GLib 
 from dbus.mainloop.glib import DBusGMainLoop
 
+DEFAULT_NOTIF_TIMEOUT = 10 * 1000
+
 notification_history = []
+
+def set_timeout(fn, ms, *args, **kwargs): 
+    t = Timer(ms / 1000, fn, args=args, kwargs=kwargs) 
+    t.start() 
+    return t 
+
+def dismiss_notification(notification_id: int):
+    for notification in notification_history:
+        if notification["id"] == notification_id:
+            notification["dismissed"] = True
+
+    print(json.dumps(notification_history), flush=True)
+    
 
 def handle_notification(_, message):
     keys = ["app_name", "replaces_id", "app_icon", "summary",
@@ -19,19 +34,16 @@ def handle_notification(_, message):
             notification["dismissed"] = False
             notification["id"] = randint(0, 8192 * 2)
             notification_history.append(notification)
+
+            expire_timeout = int(notification["expire_timeout"])
+            set_timeout(dismiss_notification, expire_timeout if expire_timeout > 0 else DEFAULT_NOTIF_TIMEOUT, notification["id"])
+            
+            print(json.dumps(notification_history), flush=True)
         case "CloseNotification":
-            notification_id = int(args[0])
-            for notification in notification_history:
-                if notification["id"] == notification_id:
-                    notification["dismissed"] = True
+            dismiss_notification(int(args[0]))
         case _:
             return
 
-    print(json.dumps(notification_history), flush=True)
-
-def handle_notification_dismiss(_, message):
-    print("jaaj")
-    print(message)
 
 if __name__ == "__main__":
     DBusGMainLoop(set_as_default=True)
