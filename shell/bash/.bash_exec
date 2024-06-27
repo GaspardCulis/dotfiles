@@ -5,6 +5,11 @@ if [ "$(tty)" = /dev/tty1 ]; then
 	exec Hyprland
 fi
 
+# Start DE if on tty1
+if [ "$(tty)" = /dev/tty5 ]; then
+	exec gamescope -e -W 2560 -H 1440 -r 165 -- steam
+fi
+
 # Start in tmux by default
 # [[ $TERM != "screen" ]] && [ -z "$TMUX"  ] && exec tmux
 
