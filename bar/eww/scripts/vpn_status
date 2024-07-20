@@ -1,13 +1,13 @@
 #!/bin/dash
 
-config=OVH
+config=/etc/wireguard/ovh.conf
+interface_name="ovh"
 
 is_connected (){
-  openvpn3 session-stats --config OVH > /dev/null 2>&1
-  if [ $? -ne 0 ] ; then
-    echo "false"
-  else
+  if ip link show up | grep -q "$interface_name"; then
     echo "true"
+  else
+    echo "false"
   fi
 }
 
@@ -15,9 +15,9 @@ connected="$(is_connected)"
 
 if [ "$1" = "toggle" ]; then
   if [ "$connected" = "false" ]; then
-    openvpn3 session-start --config "$config" > /dev/null
+    sudo wg-quick up "$config" > /dev/null
   else
-    openvpn3 session-manage --disconnect --config "$config" > /dev/null
+    sudo wg-quick down "$config" > /dev/null
   fi
   eww update vpn_status="{\"connected\": $(is_connected)}"
   exit 0
