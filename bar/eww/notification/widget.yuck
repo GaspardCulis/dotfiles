@@ -1,23 +1,27 @@
 (defvar close_icon "/usr/share/icons/Qogir-ubuntu-dark/16/actions/window-close.svg")
 
-(deflisten notifications :initial '[{"id": 69, "dismissed": false, "app_name": "notify-send", "replaces_id": 0, "app_icon": "/home/gaspard/Images/memes/vroom.png", "summary": "Work period over", "body": "You can take a little nap now.", "actions": [], "hints": {"urgency": 1, "sender-pid": 12406}, "expire_timeout": -1}]' "~/.config/eww/scripts/get-notifications")
+(defvar end-binary "~/.cargo/bin/end-rs") 
+(defvar end-notifications '')
+(defvar end-histories '')
+(defvar end-replies '')
+(defvar end-reply-text '')
 
-(defwidget notification [notif]
+(defwidget notification[notification]
   (box 
     :class "notification"
     :space-evenly false
     :orientation "v"
     :spacing 6
     (box :orientation "h" :spacing 8 :space-evenly false
-      (image 
-        :path "/usr/share/icons/Qogir-ubuntu/scalable/apps/spotify.svg"
-        :image-width 24 
-        :image-height 24)
+      (box
+        :class "${notification.app_icon ?: "" != ""  ? "notification-app-icon" : ""}"
+        :style "background-image: url('${notification.app_icon}');"
+      )
       (label 
-        :text "${notif.app_name}" 
+        :text "${notification.application}" 
         :halign "start" 
         :hexpand true)
-      (button :onclick "dbus-send --session --dest=org.freedesktop.Notifications --type=method_call /org/freedesktop/Notifications org.freedesktop.Notifications.CloseNotification uint32:${notif.id}"
+      (button :onclick "${end-binary} close ${notification.id}"
         (image 
           :path "${close_icon}"
           :image-width 24
@@ -26,8 +30,8 @@
     )
     (box :orientation "h" :space-evenly false :spacing 8
       (box
-        :class "${notif.app_icon != "" ? "notification-icon" : ""}"
-        :style "background-image: url('${notif.app_icon}');"
+        :class "${notification.icon != "" ? "notification-icon" : ""}"
+        :style "background-image: url('${notification.icon}');"
       )
       (box 
         :class "notification-text-container"
@@ -36,13 +40,26 @@
         :space-evenly false
         (label
           :class "notification-summary"
-          :text "${notif.summary}"
+          :text "${notification.summary}"
           :halign "start")
         (label
-          :text "${notif.body}"
+          :text "${notification.body}"
           :wrap true
           :halign "fill"
           :vexpand true)
+        (box
+          :class "notification-buttons"
+          :orientation "horizontal"
+          :space-evenly false
+          :halign "end"
+          :vexpand false
+          (for action in {notification.actions}
+            (button
+              :class "notification-button"
+              :onclick "${end-binary} action ${notification.id} ${action.id}"
+              :vexpand false
+              {action.text}))
+        )
       )
     )
   )
@@ -57,14 +74,5 @@
   :stacking "overlay"
   :focusable false
   :exclusive true
-  (box 
-    :class "notifications-container"
-    :orientation "v"
-    :halign "end"
-    :valign "end"
-    :spacing 6
-    (for notif in {jq(notifications, '[.[] | select(.dismissed == false)]')}
-      (notification :notif "${notif}")
-    )
-  )
+  (literal :content end-notifications)
 )
