@@ -57,6 +57,7 @@ synced_files = [
     ("misc/picom/", "~/.config/picom/"),
     ("misc/runst/", "~/.config/runst/"),
     ("misc/mako/", "~/.config/mako/"),
+    ("misc/end-rs/", "~/.config/end-rs/"),
     ("misc/swayosd/", "~/.config/swayosd/"),
     ("misc/anyrun/", "~/.config/anyrun/"),
     ("misc/x11-toggle-gpu/", "~/.local/share/x11-toggle-gpu/"),
