@@ -1,6 +1,6 @@
 (defvar close_icon "/usr/share/icons/Qogir-ubuntu-dark/16/actions/window-close.svg")
 
-(defvar end-binary "~/.cargo/bin/end-rs") 
+(defvar end-binary "~/.local/bin/end-rs") 
 (defvar end-notifications '')
 (defvar end-histories '')
 (defvar end-replies '')
@@ -14,7 +14,7 @@
     :spacing 6
     (box :orientation "h" :spacing 8 :space-evenly false
       (box
-        :class "${notification.app_icon ?: "" != ""  ? "notification-app-icon" : ""}"
+        :class "${(notification.app_icon ?: "") != ""  ? "notification-app-icon" : ""}"
         :style "background-image: url('${notification.app_icon}');"
       )
       (label 
