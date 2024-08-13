@@ -6,7 +6,7 @@ icon_dirs = [
     "/usr/share/pixmaps",
 ]
 ### The theme to use for the icons
-icon_theme = "Adwaita"
+icon_theme = "Qogir"
 ### The default notification window
 ### Can be a single string or a vector of strings(for multi-monitor support)
 eww_notification_window = "notification_overlay"
