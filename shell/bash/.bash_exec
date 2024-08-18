@@ -10,8 +10,10 @@ if [ "$(tty)" = /dev/tty5 ]; then
 	exec gamescope -e -W 2560 -H 1440 -r 165 -- steam
 fi
 
-# Start in tmux by default
-# [[ $TERM != "screen" ]] && [ -z "$TMUX"  ] && exec tmux
+# Start in zellij by default
+export ZELLIJ_AUTO_EXIT=true
+export ZELLIJ_CONFIG_FILE=~/.config/zellij/config.kdl
+eval "$(zellij setup --generate-auto-start bash)"
 
 if command -v jaaj &> /dev/null && command -v dotacat &> /dev/null; then
   jaaj
