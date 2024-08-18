@@ -15,6 +15,23 @@ export ZELLIJ_AUTO_EXIT=true
 export ZELLIJ_CONFIG_FILE=~/.config/zellij/config.kdl
 eval "$(zellij setup --generate-auto-start bash)"
 
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if test -d "$FNM_PATH" ; then
+    export PATH="$FNM_PATH:$PATH"
+    eval "$(fnm env --use-on-cd)"
+fi
+
+# Prompt
+if command -v starship > /dev/null; then
+    eval "$(starship init bash)"
+fi
+
+# Zoxide
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init --cmd cd bash)"
+fi
+
 if command -v jaaj &> /dev/null && command -v dotacat &> /dev/null; then
   jaaj
 fi

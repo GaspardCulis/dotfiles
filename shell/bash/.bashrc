@@ -30,13 +30,6 @@ export EDITOR="hx"
 export HISTFILESIZE=
 export HISTSIZE=4294967295
 
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if test -d "$FNM_PATH" ; then
-    export PATH="$FNM_PATH:$PATH"
-    eval "$(fnm env --use-on-cd)"
-fi
-
 CARGO_ENV_PATH="$HOME/.cargo/env"
 if [ -f "$CARGO_ENV_PATH" ]; then
     . "$CARGO_ENV_PATH"
@@ -49,12 +42,4 @@ fi
 
 if [ -f ~/.bash_exec ]; then
     source ~/.bash_exec
-fi
-
-if command -v starship > /dev/null; then
-    eval "$(starship init bash)"
-fi
-
-if command -v zoxide > /dev/null; then
-    eval "$(zoxide init --cmd cd bash)"
 fi
