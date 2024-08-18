@@ -50,6 +50,7 @@ synced_files = [
     ("term/rio/", "~/.config/rio/"),
     ("term/alacritty/", "~/.config/alacritty/"),
     ("term/tmux/tmux.conf", "~/.config/tmux/tmux.conf"),
+    ("term/zellij/", "~/.config/zellij/"),
     ("bar/waybar/", "~/.config/waybar/"),
     ("bar/i3status-rust/", "~/.config/i3status-rust/"),
     ("bar/eww/", "~/.config/eww/"),
