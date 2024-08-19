@@ -5,7 +5,7 @@
 (defvar timer-start-time 0)
 
 (defpoll timer-time 
-  :interval "1s"
+  :interval "900ms"
   :run-while {timer-state != "inactive"}
   `date +%s`)
   
@@ -18,8 +18,8 @@
     echo next
   else 
     notify-send -c grind-timer -i ~/Images/Icons/moai.jpg "Work period over" "You can take a little nap now."
-    eww update timer-state=pause
-    echo first
+    eww update timer-state=pause timer-pause-period=first
+    echo final
   fi`) ; TODO: Put in a separate script
 
 (defpoll timer-pause-period
@@ -31,8 +31,8 @@
     echo next
   else 
     notify-send -c grind-timer -i ~/Images/Icons/moai.jpg "Pause period over" "Back to grinding we go."
-    eww update timer-state=work
-    echo first
+    eww update timer-state=work timer-work-period=first
+    echo final
   fi`) ; TODO: Put in a separate script
 
 (defwidget start-button []
