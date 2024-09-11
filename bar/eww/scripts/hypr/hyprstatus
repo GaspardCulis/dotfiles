@@ -9,11 +9,11 @@ current (){
 }
 
 title (){
-  hyprctl activewindow -j | jq --raw-output .title
+  hyprctl activewindow -j | jq .title
 }
 
 status (){
-  echo "{\"spaces\": $(spaces), \"current\": \"$(current)\", \"title\": \"$(title)\"}"
+  echo "{\"spaces\": $(spaces), \"current\": $(current), \"title\": $(title)}"
 }
 
 status
