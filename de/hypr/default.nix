@@ -14,7 +14,7 @@
   };
 
   # bar is required
-  imports = {
+  imports = [
     ../../bar
-  };
+  ];
 }

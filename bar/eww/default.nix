@@ -3,7 +3,7 @@
   ...
 } : {
   home.file = {
-    ".config/eww".source = .;
+    ".config/eww".source = ../eww;
   };
   
   home.packages = [
