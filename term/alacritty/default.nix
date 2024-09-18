@@ -8,6 +8,7 @@
   
   home.packages = [
     pkgs.alacritty
+    pkgs.fira-code-nerdfont
   ];
 }
 
