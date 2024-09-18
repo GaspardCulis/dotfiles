@@ -13,7 +13,7 @@ fi
 # Start in zellij by default
 export ZELLIJ_AUTO_EXIT=true
 export ZELLIJ_CONFIG_FILE=~/.config/zellij/config.kdl
-eval "$(zellij setup --generate-auto-start bash)"
+# eval "$(zellij setup --generate-auto-start bash)"
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
