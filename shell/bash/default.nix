@@ -8,7 +8,6 @@
     ".bashrc".source = ./.bashrc;
     ".bash_aliases".source = ./.bash_aliases;
     ".bash_exec".source = ./.bash_exec;
-    ".bash_profile".source = ./.bash_profile;
   };
   
   home.packages = [
