@@ -7,6 +7,7 @@
 
   imports = [
     ../../shell
+    ../../term
     ../../editor
     ../../de
   ];
