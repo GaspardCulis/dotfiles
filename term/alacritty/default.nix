@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 } : {
@@ -10,6 +11,8 @@
     pkgs.alacritty
     pkgs.fira-code-nerdfont
   ];
+
+  fonts.fontconfig.enable = true;
 }
 
 

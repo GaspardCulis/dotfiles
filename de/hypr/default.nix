@@ -12,4 +12,9 @@
     extraConfig = builtins.readFile ./hyprland.conf;
     plugins = [ hy3.packages.${pkgs.system}.hy3 ];
   };
+
+  # bar is required
+  imports = {
+    ../../bar
+  };
 }
