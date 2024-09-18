@@ -2,10 +2,12 @@
   pkgs,
   ...
 } : {
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ". ${./.bashrc}";
+  };
   
   home.file = {
-    ".bashrc".source = ./.bashrc;
     ".bash_aliases".source = ./.bash_aliases;
     ".bash_exec".source = ./.bash_exec;
   };
