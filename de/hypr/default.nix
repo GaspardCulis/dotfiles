@@ -6,6 +6,10 @@
   home.file = {
     ".config/hypr/hyprland.conf.d".source = ./hyprland.conf.d;
   };
+
+  home.packages = [
+    pkgs.egl-wayland # For NVIDIA compatibility
+  ];
   
   wayland.windowManager.hyprland = {
     enable = true;
