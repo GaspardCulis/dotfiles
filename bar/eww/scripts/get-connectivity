@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 print_state() {
   case "$1" in

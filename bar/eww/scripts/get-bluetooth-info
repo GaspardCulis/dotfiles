@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env dash
 
 info (){
 	power=$(bluetoothctl show | grep Powered | awk '{print $2}' | sed 's/yes/on/g; s/no/off/g')

@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 function clamp {
 	min=$1
 	max=$2
