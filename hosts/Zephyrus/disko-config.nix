@@ -1,6 +1,6 @@
 {
   disko.devices = {
-    nvme = {
+    disk = {
       samsung980 = {
         device = "/dev/nvme0n1";
         type = "disk";
