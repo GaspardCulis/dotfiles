@@ -14,6 +14,6 @@
     pkgs.jq
     pkgs.dash
     pkgs.socat
-    pkgs.power-profiles-ctl
+    pkgs.power-profiles-daemon
   ];
 }
