@@ -12,6 +12,8 @@
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
+  console.keyMap = "fr"
+
   # Nix
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
