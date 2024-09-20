@@ -5,6 +5,11 @@
 }: {
   home.file = {
     ".config/hypr/hyprland.conf.d".source = ./hyprland.conf.d;
+    # Hyprland launch wrapper
+    ".local/bin/Hyprland" = {
+      source = ../../bin/Hyprland;
+      executable = true;
+    };
   };
 
   home.packages = [
