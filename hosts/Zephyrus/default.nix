@@ -41,7 +41,6 @@
   # Programs
   environment.systemPackages = [
     pkgs.git
-    pkgs.dash
     pkgs.ncdu
     pkgs.neofetch
     pkgs.bottom
