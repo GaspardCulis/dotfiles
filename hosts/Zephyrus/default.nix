@@ -46,14 +46,13 @@
     pkgs.neofetch
     pkgs.bottom
     pkgs.htop
-    pkgs.nvtop
   ];
 
   # Services
   services.seatd.enable = true;
 
   # NVIDIA
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings" "nvtop"];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];
 
   hardware.graphics.enable = true;
 
