@@ -7,9 +7,9 @@
   programs.direnv.enable = true;
 
   imports = [
-    ../../shell
-    ../../term
-    ../../editor
-    ../../de
+    ../shell
+    ../term
+    ../editor
+    ../de
   ];
 }
