@@ -26,6 +26,7 @@
     extraGroups = [
       "wheel"
       "video"
+      "seat"
     ];
     group = "gaspard";
   };
@@ -39,6 +40,9 @@
 
   # Programs
   environment.systemPackages = [pkgs.git];
+
+  # Services
+  services.seatd.enable = true;
 
   # NVIDIA
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];

@@ -9,6 +9,7 @@
 
   home.packages = [
     pkgs.egl-wayland # For NVIDIA compatibility
+    pkgs.xdg-desktop-portal-hyprland
   ];
 
   wayland.windowManager.hyprland = {
