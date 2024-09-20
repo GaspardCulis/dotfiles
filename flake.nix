@@ -28,9 +28,8 @@
     nixpkgs,
     disko,
     home-manager,
-    hy3,
     ...
-  }: let
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
@@ -48,7 +47,7 @@
       "gaspard" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        extraSpecialArgs = {inherit hy3;};
+        extraSpecialArgs = {inherit inputs;};
         modules = [
           ./users/gaspard.nix
         ];
@@ -57,7 +56,7 @@
       "culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        extraSpecialArgs = {inherit hy3;};
+        extraSpecialArgs = {inherit inputs;};
         modules = [
           ./users/culisg.nix
         ];
