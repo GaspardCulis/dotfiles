@@ -39,17 +39,29 @@
         modules = [
           ./hosts/Zephyrus
           disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
         ];
       };
     };
 
-    homeConfigurations."culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    homeConfigurations = {
+      "gaspard" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
 
-      extraSpecialArgs = {inherit hy3;};
-      modules = [
-        ./users/culisg.nix
-      ];
+        extraSpecialArgs = {inherit hy3;};
+        modules = [
+          ./users/gaspard.nix
+        ];
+      };
+
+      "culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {inherit hy3;};
+        modules = [
+          ./users/culisg.nix
+        ];
+      };
     };
 
     devShells.${system}.default = pkgs.mkShell {
