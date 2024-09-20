@@ -9,7 +9,7 @@
     };
 
     disko = {
-      url = "github:nix-community/disko/make-disk-image";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
