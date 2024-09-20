@@ -31,6 +31,7 @@
     pkgs.slurp
     pkgs.hyprpicker
     pkgs.udiskie
+    pkgs.swww
     # Apps launchable from bindings
     pkgs.firefox
     pkgs.kitty
