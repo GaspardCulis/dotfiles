@@ -37,10 +37,13 @@
     };
   };
 
+  # Programs
+  environment.systemPackages = [pkgs.git];
+
   # NVIDIA
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -54,4 +57,6 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+
+  system.stateVersion = "24.11";
 }
