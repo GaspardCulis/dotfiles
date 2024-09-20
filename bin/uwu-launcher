@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 alacritty --class "uwu-uwu" -e /usr/bin/bash -c "uwu | dotacat && read" &
 alacritty --class "uwu-neofetch" -e /usr/bin/bash -c "echo '' && neofetch && read" &
