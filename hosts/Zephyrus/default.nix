@@ -36,4 +36,22 @@
       "gaspard" = import ../../users/gaspard.nix;
     };
   };
+
+  # NVIDIA
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];
+
+  hardware.opengl.enable = true;
+
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+
+    open = false; # Bruuh
+
+    prime = {
+      amdgpuBusId = "PCI:7:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
 }
