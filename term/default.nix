@@ -1,7 +1,6 @@
 {
   imports = [
     ./alacritty
+    ./zellij
   ];
 }
-
-
