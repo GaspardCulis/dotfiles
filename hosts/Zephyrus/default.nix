@@ -49,6 +49,7 @@
 
   # Services
   services.seatd.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   # NVIDIA
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];
