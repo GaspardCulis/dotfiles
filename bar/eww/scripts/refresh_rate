@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 refresh_rate=$(hyprctl -j monitors | jq '.[0].refreshRate | round')
 
 if [ "$1" = "toggle" ]; then

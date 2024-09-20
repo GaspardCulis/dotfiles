@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 spaces (){
 	hyprctl workspaces -j | jq -c 'map({id: .id, windows: .windows, monitor: .monitorID}) | sort_by(.id)'

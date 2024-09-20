@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Monitor duplication daemon
 WIDGET_NAME=bar

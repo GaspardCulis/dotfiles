@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 xmodmap -e "keycode 10 = 1"
 xmodmap -e "keycode 11 = 2"

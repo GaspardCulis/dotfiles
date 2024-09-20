@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env dash
 
 info (){
 	title=$(playerctl metadata xesam:title 2> /dev/null)
