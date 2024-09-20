@@ -48,7 +48,7 @@
 
       extraSpecialArgs = {inherit hy3;};
       modules = [
-        ./nix/profiles/culisg.nix
+        ./users/culisg.nix
       ];
     };
 
