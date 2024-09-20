@@ -10,11 +10,31 @@
       source = ../../bin/Hyprland;
       executable = true;
     };
+    # UWU launcher script
+    ".local/bin/uwu-launcher" = {
+      source = ../../bin/uwu-launcher;
+      executable = true;
+    };
+    # Togglescreen script
+    ".local/bin/togglescreen" = {
+      source = ../../bin/togglescreen;
+      executable = true;
+    };
   };
 
   home.packages = [
     pkgs.egl-wayland # For NVIDIA compatibility
     pkgs.xdg-desktop-portal-hyprland
+    # Common DE packages required in config
+    pkgs.wl-clipboard-rs
+    pkgs.grim
+    pkgs.slurp
+    pkgs.hyprpicker
+    pkgs.udiskie
+    # Apps launchable from bindings
+    pkgs.firefox
+    pkgs.kitty
+    pkgs.yazi
   ];
 
   wayland.windowManager.hyprland = {
@@ -26,5 +46,8 @@
   # bar is required
   imports = [
     ../../bar
+    ../../term/alacritty
+    ../../misc/swayosd
+    ../../misc/anyrun
   ];
 }
