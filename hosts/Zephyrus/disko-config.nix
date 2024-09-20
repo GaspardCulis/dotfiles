@@ -43,8 +43,15 @@
       pool = {
         type = "lvm_vg";
         lvs = {
+          swap = {
+            size = "16G";
+            content = {
+              type = "swap";
+              resumeDevice = true;
+            };
+          };
           root = {
-            size = "100M";
+            size = "64G";
             content = {
               type = "filesystem";
               format = "ext4";
@@ -54,16 +61,21 @@
               ];
             };
           };
+          var = {
+            size = "32G";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/var";
+            };
+          };
           home = {
-            size = "10M";
+            size = "100%FREE";
             content = {
               type = "filesystem";
               format = "ext4";
               mountpoint = "/home";
             };
-          };
-          raw = {
-            size = "10M";
           };
         };
       };
