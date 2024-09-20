@@ -10,5 +10,8 @@
 
   home.packages = [
     pkgs.eww
+    # Script dependencies
+    pkgs.jq
+    pkgs.socat
   ];
 }
