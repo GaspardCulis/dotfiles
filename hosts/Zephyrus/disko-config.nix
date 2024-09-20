@@ -31,7 +31,7 @@
                 additionalKeyFiles = [];
                 content = {
                   type = "lvm_pv";
-                  vg = "pool";
+                  vg = "zephyrus_vg";
                 };
               };
             };
@@ -40,7 +40,7 @@
       };
     };
     lvm_vg = {
-      pool = {
+      zephyrus_vg = {
         type = "lvm_vg";
         lvs = {
           swap = {
