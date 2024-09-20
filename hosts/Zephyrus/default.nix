@@ -39,13 +39,21 @@
   };
 
   # Programs
-  environment.systemPackages = [pkgs.git];
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.dash
+    pkgs.ncdu
+    pkgs.neofetch
+    pkgs.bottom
+    pkgs.htop
+    pkgs.nvtop
+  ];
 
   # Services
   services.seatd.enable = true;
 
   # NVIDIA
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings" "nvtop"];
 
   hardware.graphics.enable = true;
 
