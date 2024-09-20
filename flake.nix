@@ -18,12 +18,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hy3, ... }: 
-    let 
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-  {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    hy3,
+    ...
+  }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
     homeConfigurations."culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
@@ -41,6 +45,10 @@
         alejandra
         nil
       ];
+
+      shellHook = ''
+        export EDITOR=hx
+      '';
     };
   };
 }
