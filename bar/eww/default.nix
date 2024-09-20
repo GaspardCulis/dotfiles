@@ -14,5 +14,7 @@
     pkgs.jq
     pkgs.dash
     pkgs.socat
+    pkgs.pamixer
+    pkgs.pavucontrol
   ];
 }

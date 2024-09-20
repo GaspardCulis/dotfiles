@@ -23,9 +23,13 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
+  # Audio
+  hardware.pulseaudio.enable = true;
+
   # Services
   services.seatd.enable = true;
   services.blueman.enable = true;
+  services.pipewire.pulse.enable = true;
   services.power-profiles-daemon.enable = true;
 
   # Programs
@@ -66,6 +70,7 @@
       "wheel"
       "video"
       "seat"
+      "audio"
     ];
     group = "gaspard";
   };
