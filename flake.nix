@@ -8,6 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko/make-disk-image";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprland
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -21,6 +26,7 @@
   outputs = {
     self,
     nixpkgs,
+    disko,
     home-manager,
     hy3,
     ...
@@ -28,6 +34,15 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
+    nixosConfigurations = {
+      Zephyrus = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/Zephyrus
+          disko.nixosModules.disko
+        ];
+      };
+    };
+
     homeConfigurations."culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
