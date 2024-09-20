@@ -21,14 +21,10 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                extraOpenArgs = [];
                 settings = {
-                  # if you want to use the key for interactive login be sure there is no trailing newline
-                  # for example use `echo -n "password" > /tmp/secret.key`
-                  keyFile = "/tmp/secret.key";
                   allowDiscards = true;
+                  askPassword = true;
                 };
-                additionalKeyFiles = [];
                 content = {
                   type = "lvm_pv";
                   vg = "zephyrus_vg";
