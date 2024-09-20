@@ -35,6 +35,10 @@
     pkgs.firefox
     pkgs.kitty
     pkgs.yazi
+    # Theme
+    pkgs.bibata-cursors
+    pkgs.qogir-theme
+    pkgs.qogir-icon-theme
   ];
 
   wayland.windowManager.hyprland = {
