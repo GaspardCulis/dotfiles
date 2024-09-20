@@ -35,6 +35,7 @@
   in {
     nixosConfigurations = {
       Zephyrus = nixpkgs.lib.nixosSystem {
+        extraArgs = {inherit inputs;};
         modules = [
           ./hosts/Zephyrus
           disko.nixosModules.disko

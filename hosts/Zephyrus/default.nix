@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -25,5 +26,12 @@
       "video"
     ];
     group = "gaspard";
+  };
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "gaspard" = import ../../users/gaspard.nix;
+    };
   };
 }
