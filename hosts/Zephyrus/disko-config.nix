@@ -23,7 +23,7 @@
                 name = "crypted";
                 settings = {
                   allowDiscards = true;
-                  askPassword = true;
+                  # askPassword = true;
                 };
                 content = {
                   type = "lvm_pv";
