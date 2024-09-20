@@ -32,5 +32,15 @@
         ./nix/profiles/culisg.nix
       ];
     };
+
+    devShells.${system}.default = pkgs.mkShell {
+      nativeBuildInputs = with pkgs; [
+        git
+        helix
+        pkgs.home-manager
+        alejandra
+        nil
+      ];
+    };
   };
 }
