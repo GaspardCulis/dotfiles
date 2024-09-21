@@ -1,5 +1,5 @@
 ### Path to the eww binary
-eww_binary_path = "/usr/bin/eww"
+eww_binary_path = "eww"
 ### Where to find the icons for the notifications
 icon_dirs = [
     "/usr/share/icons",
