@@ -1,6 +1,6 @@
-(defvar close_icon "/usr/share/icons/Qogir-ubuntu-dark/16/actions/window-close.svg")
+(defvar close_icon "/home/gaspard/.config/eww/assets/icons/window-close.svg")
 
-(defvar end-binary "~/.local/bin/end-rs") 
+(defvar end-binary "end-rs") 
 (defvar end-notifications '')
 (defvar end-histories '')
 (defvar end-replies '')
