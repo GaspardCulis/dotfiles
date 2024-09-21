@@ -21,6 +21,11 @@
     hy3 = {
       url = "github:outfoxxed/hy3";
     };
+
+    end-rs = {
+      url = "github:GaspardCulis/end-rs/feat/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
