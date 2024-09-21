@@ -20,6 +20,11 @@
       source = ../../bin/togglescreen;
       executable = true;
     };
+    # Wallpaperctl script
+    ".local/bin/wallpaperctl" = {
+      source = ../../bin/wallpaperctl;
+      executable = true;
+    };
   };
 
   home.packages = [
