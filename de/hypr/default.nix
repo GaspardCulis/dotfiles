@@ -5,6 +5,7 @@
 }: {
   home.file = {
     ".config/hypr/hyprland.conf.d".source = ./hyprland.conf.d;
+    ".config/hypr/gamemode.sh".source = ./gamemode.sh;
     # Hyprland launch wrapper
     ".local/bin/Hyprland" = {
       source = ../../bin/Hyprland;
