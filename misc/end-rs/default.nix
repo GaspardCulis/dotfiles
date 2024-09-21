@@ -10,5 +10,6 @@
   home.packages = [
     inputs.end-rs
     pkgs.libnotify
+    pkgs.qogir-icon-theme
   ];
 }
