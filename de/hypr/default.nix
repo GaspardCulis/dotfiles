@@ -59,5 +59,6 @@
     ../../term/alacritty
     ../../misc/swayosd
     ../../misc/anyrun
+    ../../misc/end-rs
   ];
 }
