@@ -4,6 +4,8 @@ eww_binary_path = "eww"
 icon_dirs = [
     "/usr/share/icons",
     "/usr/share/pixmaps",
+    "/home/gaspard/.nix-profile/share/icons",
+    "/home/gaspard/.nix-profile/share/pixmaps",
 ]
 ### The theme to use for the icons
 icon_theme = "Qogir"
