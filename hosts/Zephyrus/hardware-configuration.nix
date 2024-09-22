@@ -2,6 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  pkgs,
   config,
   lib,
   modulesPath,
@@ -13,6 +14,7 @@
   ];
 
   boot = {
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     initrd = {
