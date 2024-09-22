@@ -7,6 +7,6 @@ volume (){
 }
 
 volume
-pactl subscribe | grep --line-buffered "'change'" | while read -r line; do
+pw-mon --color=never | grep --line-buffered "changed" | while read -r line; do
 	volume
 done
