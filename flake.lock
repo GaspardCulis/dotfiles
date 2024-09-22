@@ -64,16 +64,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1726917158,
+        "lastModified": 1726943802,
         "narHash": "sha256-Ooj+Io2qBvA1IOZ0Ueks4OYHN6ylhHTxSvkmwG1Wt4E=",
-        "owner": "GaspardCulis",
+        "owner": "Dr-42",
         "repo": "end-rs",
-        "rev": "11b6f3c1e8d795b67d1b18bc28874429316ff470",
+        "rev": "aced942e36ecd6d3ce4ab45cf1c79ca4e98f6267",
         "type": "github"
       },
       "original": {
-        "owner": "GaspardCulis",
-        "ref": "feat/nix",
+        "owner": "Dr-42",
         "repo": "end-rs",
         "type": "github"
       }

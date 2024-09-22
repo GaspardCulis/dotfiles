@@ -23,7 +23,7 @@
     };
 
     end-rs = {
-      url = "github:GaspardCulis/end-rs/feat/nix";
+      url = "github:Dr-42/end-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
