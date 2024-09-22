@@ -5,7 +5,11 @@
 }: {
   home.file = {
     ".config/hypr/hyprland.conf.d".source = ./hyprland.conf.d;
-    ".config/hypr/gamemode.sh".source = ./gamemode.sh;
+    # Gamemode script
+    ".config/hypr/gamemode.sh" = {
+      source = ./gamemode.sh;
+      executable = true;
+    };
     # Hyprland launch wrapper
     ".local/bin/Hyprland" = {
       source = ../../bin/Hyprland;
