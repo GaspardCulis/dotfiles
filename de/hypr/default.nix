@@ -36,7 +36,7 @@
     pkgs.egl-wayland # For NVIDIA compatibility
     pkgs.xdg-desktop-portal-hyprland
     # Common DE packages required in config
-    pkgs.wl-clipboard-rs
+    pkgs.wl-clipboard
     pkgs.grim
     pkgs.slurp
     pkgs.hyprpicker
