@@ -1,6 +1,7 @@
 #!/usr/bin/env dash
 
-print_state() {
+
+print_network_state() {
   case "$1" in
     eth*)
       echo ethernet
@@ -26,7 +27,7 @@ wifi_strength() {
   fi
 }
 
-print_infos() {
+print_network_infos() {
   if [ -n "$1" ]; then
     route_line=$(ip route show dev "$1" | awk '($1 == "default") { print }')
 
@@ -45,15 +46,27 @@ print_infos() {
 
 print_network_status() {
   device=$(ip route | awk '($1 == "default") { print $5 }')
-  state=$(print_state "$device")
+  state=$(print_network_state "$device")
 
   printf '{"state":"%s"%s}\n' \
     "$state" \
-    "$(print_infos "$device")"
+    "$(print_network_infos "$device")"
 }
 
-print_network_status
-tail -f -n 0 /run/dhcpcd/log /var/log/iwd/current | \
-while read -r _unused; do
-  print_network_status
+print_bluetooth_status (){
+	power=$(bluetoothctl show | grep Powered | awk '{print $2}' | sed 's/yes/on/g; s/no/off/g')
+	count=$(bluetoothctl devices Connected | wc -l)
+	echo "{\"power\": \"${power}\", \"count\": \"${count}\"}"
+}
+
+print_connectivity_info () {
+  network="$(print_network_status)"
+  bluetooth="$(print_bluetooth_status)"
+
+	echo "{\"bluetooth\": ${bluetooth}, \"network\": ${network}}"
+}
+
+print_connectivity_info
+dbus-monitor --system "interface=org.freedesktop.DBus.ObjectManager" 2> /dev/null | while read -r line; do
+	print_connectivity_info
 done
