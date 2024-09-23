@@ -37,6 +37,7 @@
     self,
     nixpkgs,
     disko,
+    deploy-rs,
     home-manager,
     ...
   } @ inputs: let
@@ -81,6 +82,19 @@
         ];
       };
     };
+
+    deploy.nodes.OVHCloud = {
+      hostname = "gasdev.fr";
+      profiles.system = {
+        user = "root";
+        sshUser = "root";
+        sshOpts = ["-p" "22"];
+        sudo = "";
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.OVHCloud;
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
     devShells.${system}.default = pkgs.mkShell {
       nativeBuildInputs = with pkgs; [
