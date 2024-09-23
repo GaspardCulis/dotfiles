@@ -47,6 +47,14 @@
           home-manager.nixosModules.home-manager
         ];
       };
+
+      OVHCloud = nixpkgs.lib.nixosSystem {
+        extraArgs = {inherit inputs;};
+        modules = [
+          ./hosts/OVHCloud
+          disko.nixosModules.disko
+        ];
+      };
     };
 
     homeConfigurations = {
