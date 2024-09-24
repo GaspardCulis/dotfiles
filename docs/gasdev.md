@@ -24,7 +24,7 @@ nix run github:nix-community/nixos-anywhere -- --flake .#<configuration name> ro
 
 ## Deploy configuration
 
-In order to deploy new configuration changes after the initial NixOS installation, I use [deploy-rs](https://github.com/serokell/deploy-rs). It requires a properly set-up **ssh-agent** and SSH keys being installed on the **gaspard** user.
+In order to deploy new configuration changes after the initial NixOS installation, I use [deploy-rs](https://github.com/serokell/deploy-rs). It requires a properly set-up **ssh-agent** and SSH keys being installed on the **root** user.
 
 Then you can deploy the new configuration:
 
