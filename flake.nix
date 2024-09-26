@@ -23,6 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprland
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -43,6 +48,7 @@
     nixpkgs,
     disko,
     deploy-rs,
+    sops-nix,
     home-manager,
     ...
   } @ inputs: let
@@ -64,6 +70,7 @@
         modules = [
           ./hosts/OVHCloud
           disko.nixosModules.disko
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
         ];
       };
