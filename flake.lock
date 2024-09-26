@@ -37,6 +37,26 @@
         "type": "github"
       }
     },
+    "caddy": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1727343602,
+        "narHash": "sha256-V1HAB1p11dcUyurJAB60tcgn4Su2gPoPJ6dZqmCDfiE=",
+        "owner": "GaspardCulis",
+        "repo": "nixos-caddy-ovh",
+        "rev": "df515b6bfd497de2d150867c4c13aab1e3d011ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GaspardCulis",
+        "repo": "nixos-caddy-ovh",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -362,6 +382,7 @@
     },
     "root": {
       "inputs": {
+        "caddy": "caddy",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "end-rs": "end-rs",
