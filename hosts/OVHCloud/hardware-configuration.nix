@@ -1,4 +1,9 @@
-{modulesPath, ...}: {
+{
+  modulesPath,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disko-config.nix
@@ -14,5 +19,14 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [22 80 443];
+  };
+
+  # Proxy
+  services.caddy = {
+    enable = true;
+    package = inputs.caddy.packages.${pkgs.system}.caddy;
+    virtualHosts."localhost".extraConfig = ''
+      respond "Hello, world!"
+    '';
   };
 }
