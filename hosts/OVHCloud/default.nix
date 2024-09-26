@@ -9,6 +9,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./sops.nix
   ];
 
   # Nix
