@@ -59,6 +59,7 @@
         modules = [
           ./hosts/OVHCloud
           disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
         ];
       };
     };

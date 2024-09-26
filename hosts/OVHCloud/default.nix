@@ -1,4 +1,6 @@
 {
+  inputs,
+  config,
   pkgs,
   lib,
   ...
@@ -31,4 +33,39 @@
     helix
     git
   ];
+
+  # User config
+  users.groups.gaspard = {
+    name = "gaspard";
+  };
+  users.users.gaspard = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+    ];
+    group = "gaspard";
+    openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
+  };
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      # FIX: No user config file
+      "gaspard" = {
+        home.username = "gaspard";
+        home.homeDirectory = "/home/gaspard";
+        home.stateVersion = "24.05";
+
+        programs.home-manager.enable = true;
+        programs.direnv.enable = true;
+
+        imports = [
+          ../../shell
+          ../../editor
+        ];
+      };
+    };
+  };
+
+  system.stateVersion = "24.11";
 }
