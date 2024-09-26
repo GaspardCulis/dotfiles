@@ -29,5 +29,5 @@ In order to deploy new configuration changes after the initial NixOS installatio
 Then you can deploy the new configuration:
 
 ```sh
-nix run github:serokell/deploy-rs .#<configuration name>
+deploy .#<configuration name>
 ```

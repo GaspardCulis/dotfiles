@@ -98,12 +98,13 @@
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
     devShells.${system}.default = pkgs.mkShell {
-      nativeBuildInputs = with pkgs; [
+      packages = with pkgs; [
+        alejandra
         git
         helix
-        pkgs.home-manager
-        alejandra
         nil
+        pkgs.home-manager
+        pkgs.deploy-rs
       ];
 
       shellHook = ''
