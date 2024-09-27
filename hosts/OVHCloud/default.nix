@@ -10,6 +10,7 @@
   imports = [
     ./hardware-configuration.nix
     ./sops.nix
+    ../../services
   ];
 
   # Nix
