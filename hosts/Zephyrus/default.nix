@@ -51,7 +51,16 @@
   ];
 
   # NVIDIA
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["nvidia-x11" "nvidia-settings"];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      # NVIDIA
+      "nvidia-x11"
+      "nvidia-settings"
+      # Steam
+      "steam"
+      "steam-original"
+      "steam-run"
+    ];
 
   hardware.graphics.enable = true;
 
