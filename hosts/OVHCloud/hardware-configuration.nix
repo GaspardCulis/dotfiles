@@ -30,9 +30,6 @@
   services.caddy = {
     enable = true;
     package = inputs.caddy.packages.${pkgs.system}.caddy;
-    virtualHosts."siuu.gasdev.fr".extraConfig = ''
-      respond "Hello, world!"
-    '';
   };
   systemd.services.caddy = {
     serviceConfig = {
