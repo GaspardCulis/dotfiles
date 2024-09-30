@@ -30,6 +30,11 @@
       source = ../../bin/wallpaperctl;
       executable = true;
     };
+    # Lock script
+    ".local/bin/swaylock-hyprland" = {
+      source = ../../bin/swaylock-hyprland;
+      executable = true;
+    };
   };
 
   home.packages = [
@@ -42,6 +47,7 @@
     pkgs.hyprpicker
     pkgs.udiskie
     pkgs.swww
+    pkgs.swaylock-effects
     # Apps launchable from bindings
     pkgs.firefox
     pkgs.kitty
