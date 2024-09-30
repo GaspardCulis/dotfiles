@@ -2,7 +2,6 @@
   inputs,
   pkgs,
   lib,
-  config,
   ...
 }: {
   imports = [
@@ -22,6 +21,8 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+
+  security.pam.services.swaylock = {};
 
   # Audio
   security.rtkit.enable = true;
