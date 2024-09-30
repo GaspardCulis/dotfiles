@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Run swaylock
-exec /usr/bin/swaylock \
+exec swaylock \
     "$@" \
     --indicator \
     --daemonize \
