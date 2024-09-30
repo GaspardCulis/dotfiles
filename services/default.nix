@@ -1,5 +1,6 @@
 {
   imports = [
     ./uptime-kuma
+    ./garage
   ];
 }
