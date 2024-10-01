@@ -41,14 +41,15 @@
   services.power-profiles-daemon.enable = true;
 
   # Programs
-  environment.systemPackages = [
-    pkgs.git
-    pkgs.wget
-    pkgs.ncdu
-    pkgs.neofetch
-    pkgs.bottom
-    pkgs.htop
-    pkgs.iwgtk
+  environment.systemPackages = with pkgs; [
+    git
+    wget
+    ncdu
+    neofetch
+    bottom
+    htop
+    iwgtk
+    podman-compose
   ];
 
   # NVIDIA
@@ -75,6 +76,16 @@
     prime = {
       amdgpuBusId = "PCI:7:0:0";
       nvidiaBusId = "PCI:1:0:0";
+    };
+  };
+
+  #Podman
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
     };
   };
 
