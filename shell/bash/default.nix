@@ -12,5 +12,6 @@
   home.packages = [
     pkgs.starship
     pkgs.zoxide
+    pkgs.lsd
   ];
 }
