@@ -16,6 +16,7 @@
     pkgs.dash
     pkgs.socat
     pkgs.pamixer
+    pkgs.playerctl
     pkgs.pavucontrol
   ];
 }
