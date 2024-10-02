@@ -115,6 +115,7 @@
         git
         helix
         nil
+        pkgs.sops
         pkgs.home-manager
         pkgs.deploy-rs
       ];
