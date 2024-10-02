@@ -1,7 +1,7 @@
 {
   imports = [
+    ./shadowsocks
     ./uptime-kuma
-    ./garage
     ./wireguard
   ];
 }
