@@ -1,6 +1,6 @@
 # TODO: Run as different user
 {...}: {
-  sops.secrets."garage/rpc_secret".owner = "root";
+  sops.secrets."garage/RPC_SECRET".owner = "root";
 
   services.caddy.virtualHosts."*.s3.gasdev.fr".extraConfig = ''
     reverse_proxy http://127.0.0.1:3900
@@ -23,7 +23,7 @@
         "/etc/garage.toml:/etc/garage.toml"
         "/var/lib/garage/meta:/var/lib/garage/meta"
         "/var/lib/garage/data:/var/lib/garage/data"
-        "/run/secrets/garage/rpc_secret:/run/secrets/garage/rpc_secret"
+        "/run/secrets/garage/RPC_SECRET:/run/secrets/garage/RPC_SECRET"
       ];
     };
   };
