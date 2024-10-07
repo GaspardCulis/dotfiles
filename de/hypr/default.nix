@@ -48,6 +48,7 @@
     pkgs.udiskie
     pkgs.swww
     pkgs.swaylock-effects
+    pkgs.brightnessctl
     # Apps launchable from bindings
     pkgs.firefox
     pkgs.kitty
