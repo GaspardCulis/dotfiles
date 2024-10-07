@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+WORK_TIME=1200
+PAUSE_TIME=300
+
+timer_state_pid=0
+timer_state_state="inactive"
+timer_state_time="00:00"
+timer_state_progress=100
+
+sub_timer_pid=0
+
+start_timer() {
+    timer_type=$1
+    duration=0
+
+    timer_state_state="$timer_type" # Update done later
+
+    if [ "$timer_type" = "work" ]; then
+        duration=$WORK_TIME
+        timer_type="pause"
+    elif [ "$timer_type" = "pause" ]; then
+        duration=$PAUSE_TIME
+        timer_type="work"
+    else
+        echo "Invalid argument"
+        exit 1
+    fi
+
+    for ((i=duration; i>=0; i--)); do
+        timer_state_progress=$((i * 100 / duration))
+        timer_state_time="$(date -u -d @$i +'%M:%S')"
+        update_timer_state
+        sleep 1
+    done
+
+    start_timer "$timer_type"
+}
+
+update_timer_state() {
+    echo "{\"pid\": $timer_state_pid, \"state\": \"$timer_state_state\", \"time\": \"$timer_state_time\", \"progress\": $timer_state_progress}"
+}
+
+handle_signal() {
+    # If a timer is running, kill it
+    if [ $sub_timer_pid -ne 0 ]; then
+        kill -9 $sub_timer_pid
+        sub_timer_pid=0
+        timer_state_state="inactive"
+        timer_state_progress=100
+        update_timer_state
+    else
+        start_timer "work" &
+        sub_timer_pid=$!
+        # Will wait forever
+        wait $sub_timer_pid
+    fi
+}
+
+# Set up the signal handler
+trap handle_signal SIGUSR1
+
+timer_state_pid=$$; update_timer_state
+
+while true; do
+    sleep infinity &
+    wait
+done
+

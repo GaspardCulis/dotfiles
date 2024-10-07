@@ -1,57 +1,18 @@
-(defvar WORK_TIME_SEC 1200)
-(defvar PAUSE_TIME_SEC 300)
-
-(defvar timer-state "inactive")
-(defvar timer-start-time 0)
-
-(defpoll timer-time 
-  :interval "900ms"
-  :run-while {timer-state != "inactive"}
-  `date +%s`)
-  
-(defpoll timer-work-period
-  :interval "20m"
-  :initial "first"
-  :run-while {timer-state == "work"}
-  `if [ "$(eww get timer-work-period)" == "first" ]; then 
-    eww update timer-start-time=$(date +%s)
-    echo next
-  else 
-    notify-send -c grind-timer -i ~/Images/Icons/moai.jpg "Work period over" "You can take a little nap now."
-    eww update timer-state=pause timer-pause-period=first
-    echo final
-  fi`) ; TODO: Put in a separate script
-
-(defpoll timer-pause-period
-  :interval "5m"
-  :initial "first"
-  :run-while {timer-state == "pause"}
-  `if [ "$(eww get timer-pause-period)" == "first" ]; then 
-    eww update timer-start-time=$(date +%s)
-    echo next
-  else 
-    notify-send -c grind-timer -i ~/Images/Icons/moai.jpg "Pause period over" "Back to grinding we go."
-    eww update timer-state=work timer-work-period=first
-    echo final
-  fi`) ; TODO: Put in a separate script
+(deflisten timer_state :initial '{"pid": 0, "state": "inactive", "time": "00:00", "progress": 100}' "~/.config/eww/scripts/timer")
 
 (defwidget start-button []
   (button
     :class "start-button"
     :vexpand true
-    :onclick "eww update timer-state=${timer-state == "inactive" ? "work" : "inactive"} timer-work-period=first timer-pause-period=first"
+    :onclick "kill -10 ${timer_state.pid}"
     (overlay
       (circular-progress
         :class "circle-progress"
-        :value "${
-          timer-state == "inactive" ? 100 :
-            100 * (timer-start-time + (timer-state == "work" ? WORK_TIME_SEC : PAUSE_TIME_SEC) - timer-time)
-            / (timer-state == "work" ? WORK_TIME_SEC : PAUSE_TIME_SEC)
-        }"
+        :value "${timer_state.progress}"
         :thickness 6
         :start-at 75
         :clockwise true)
-      (label :class "start-icon" :text "${timer-state == "inactive" ? 'Start' : (timer-state == "work" ? "Working" : "Pause")}")
+      (label :class "start-icon" :text "${timer_state.state == "inactive" ? 'Start' : (timer_state.state == "work" ? "Working" : "Pause")}")
     )
   )
 )
@@ -60,13 +21,13 @@
   (box
     :orientation "v"
     :space-evenly false
-    :class "timer ${timer-state}"
+    :class "timer ${timer_state.state}"
     (label :class "timer-title" :text "Grind timer")
     (start-button :valign "center" :vexpand true)
     (revealer
       :transition "slideup"
-      :reveal {timer-state != "inactive"}
-      (label :class "timer-text" :text "${timer-state != "inactive" ? formattime(timer-start-time - (3600 - (timer-state == "work" ? WORK_TIME_SEC : PAUSE_TIME_SEC)) - timer-time, "%H:%M:%S") : "00:20:00"}")
+      :reveal {timer_state.state != "inactive"}
+      (label :class "timer-text" :text "${timer_state.time}")
     )
   )
 )
