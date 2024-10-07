@@ -1,4 +1,4 @@
-(deflisten timer_state :initial '{"pid": 0, "state": "inactive", "time": "00:00", "progress": 100}' "~/.config/eww/scripts/timer")
+(deflisten timer_state :initial '{"pid": 0, "state": "inactive", "time": "00:00", "progress": 100000}' "~/.config/eww/scripts/timer")
 
 (defwidget start-button []
   (button
@@ -8,7 +8,7 @@
     (overlay
       (circular-progress
         :class "circle-progress"
-        :value "${timer_state.progress}"
+        :value "${timer_state.progress / 1000}"
         :thickness 6
         :start-at 75
         :clockwise true)

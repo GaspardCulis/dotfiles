@@ -6,7 +6,7 @@ PAUSE_TIME=300
 timer_state_pid=0
 timer_state_state="inactive"
 timer_state_time="00:00"
-timer_state_progress=100
+timer_state_progress=100000
 
 sub_timer_pid=0
 
@@ -29,7 +29,7 @@ start_timer() {
 
     i=$duration
     while [ "$i" -ge 0 ] ; do
-        timer_state_progress=$((i * 100 / duration))
+        timer_state_progress=$((i * 100000 / duration))
         timer_state_time="$(date -u -d @$i +'%M:%S')"
         update_timer_state
         sleep 1
