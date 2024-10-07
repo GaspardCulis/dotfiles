@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 WORK_TIME=1200
 PAUSE_TIME=300
@@ -27,11 +27,13 @@ start_timer() {
         exit 1
     fi
 
-    for ((i=duration; i>=0; i--)); do
+    i=$duration
+    while [ "$i" -ge 0 ] ; do
         timer_state_progress=$((i * 100 / duration))
         timer_state_time="$(date -u -d @$i +'%M:%S')"
         update_timer_state
         sleep 1
+        i=$(( i - 1 ))
     done
 
     start_timer "$timer_type"
@@ -57,8 +59,8 @@ handle_signal() {
     fi
 }
 
-# Set up the signal handler
-trap handle_signal SIGUSR1
+# Set up the SIGUSR1 signal handler
+trap handle_signal 10
 
 timer_state_pid=$$; update_timer_state
 
