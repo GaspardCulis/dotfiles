@@ -52,33 +52,6 @@
     podman-compose
   ];
 
-  # NVIDIA
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      # NVIDIA
-      "nvidia-x11"
-      "nvidia-settings"
-      # Steam
-      "steam"
-      "steam-original"
-      "steam-run"
-    ];
-
-  hardware.graphics.enable = true;
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-
-    open = false; # Bruuh
-
-    prime = {
-      amdgpuBusId = "PCI:7:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
-
   #Podman
   virtualisation.containers.enable = true;
   virtualisation = {
