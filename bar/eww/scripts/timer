@@ -56,7 +56,7 @@ handle_signal() {
         kill -9 $sub_timer_pid
         sub_timer_pid=0
         timer_state_state="inactive"
-        timer_state_progress=100
+        timer_state_progress=100000
         update_timer_state
     else
         start_timer "work" &
