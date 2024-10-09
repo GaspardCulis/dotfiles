@@ -1,18 +1,13 @@
-{
-  config,
-  pkgs,
-  ...
-} : {
+{pkgs, ...}: {
   home.file = {
     ".config/alacritty/alacritty.toml".source = ./alacritty.toml;
   };
-  
-  home.packages = [
-    pkgs.alacritty
-    pkgs.fira-code-nerdfont
+
+  home.packages = with pkgs; [
+    alacritty
+    fira-code-nerdfont
+    fira-code-symbols
   ];
 
   fonts.fontconfig.enable = true;
 }
-
-
