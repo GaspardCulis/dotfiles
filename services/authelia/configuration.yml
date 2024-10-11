@@ -1,0 +1,18 @@
+theme: 'auto'
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain: '*.gasdev.fr'
+      policy: one_factor
+server:
+  endpoints:
+    authz:
+      forward-auth:
+        implementation: 'ForwardAuth'
+session:
+  cookies:
+    - domain: 'gasdev.fr'
+      authelia_url: 'https://auth.gasdev.fr'
+      default_redirection_url: 'https://www.example.com'
+
