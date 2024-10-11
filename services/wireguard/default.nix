@@ -46,6 +46,11 @@
           publicKey = "42Vj5VG4bJpOUE7j5UW28IFSmPlV+X3tIA9ne55W0Fo=";
           allowedIPs = ["10.8.0.42/32"];
         }
+        {
+          # Family desktop
+          publicKey = "cpBhnLD4u5brDZsc2uqXVlelApCIXFdRnfJXJU1WDmM=";
+          allowedIPs = ["10.8.0.11/32"];
+        }
       ];
     };
   };
