@@ -33,4 +33,8 @@
     "d /var/lib/garage/meta 0700 root root -"
     "d /var/lib/garage/data 0700 root root -"
   ];
+
+  programs.bash.shellAliases = {
+    garage = "podman exec -it garage /garage";
+  };
 }
