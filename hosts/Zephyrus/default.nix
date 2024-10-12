@@ -31,7 +31,8 @@
     neofetch
     bottom
     htop
-    iwgtk
+    nm-tray
+    wg-netmanager
     podman-compose
     udisks
   ];
@@ -57,6 +58,7 @@
       "video"
       "seat"
       "audio"
+      "networkmanager"
     ];
     group = "gaspard";
   };
