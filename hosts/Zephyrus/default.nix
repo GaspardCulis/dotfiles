@@ -16,24 +16,7 @@
 
   console.keyMap = "fr";
 
-  # Network & Bluetooth
-  networking.wireless.iwd.enable = true;
-
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   security.pam.services.swaylock = {};
-
-  # Audio
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
 
   # Services
   services.seatd.enable = true;
