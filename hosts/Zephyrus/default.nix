@@ -33,6 +33,7 @@
     htop
     iwgtk
     podman-compose
+    udisks
   ];
 
   #Podman
