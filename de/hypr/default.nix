@@ -49,7 +49,7 @@
     swww
     swaylock-effects
     brightnessctl
-    nm-applet
+    networkmanagerapplet
     # Apps launchable from bindings
     firefox
     kitty
