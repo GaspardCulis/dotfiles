@@ -54,6 +54,10 @@
     firefox
     kitty
     yazi
+    # Yazi requirements
+    ffmpegthumbnailer
+    poppler
+    imagemagick
   ];
 
   home.pointerCursor = {
