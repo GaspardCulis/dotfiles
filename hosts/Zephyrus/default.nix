@@ -20,6 +20,7 @@
   # Services
   services.seatd.enable = true;
   services.blueman.enable = true;
+  services.udisks2.enable = true;
   services.power-profiles-daemon.enable = true;
 
   # Programs
@@ -32,7 +33,6 @@
     htop
     wg-netmanager
     podman-compose
-    udisks
   ];
 
   #Podman
