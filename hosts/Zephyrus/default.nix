@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  lib,
   ...
 }: {
   imports = [
@@ -31,7 +30,6 @@
     neofetch
     bottom
     htop
-    nm-tray
     wg-netmanager
     podman-compose
     udisks

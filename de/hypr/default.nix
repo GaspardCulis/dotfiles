@@ -37,22 +37,23 @@
     };
   };
 
-  home.packages = [
-    pkgs.egl-wayland # For NVIDIA compatibility
-    pkgs.xdg-desktop-portal-hyprland
+  home.packages = with pkgs; [
+    egl-wayland # For NVIDIA compatibility
+    xdg-desktop-portal-hyprland
     # Common DE packages required in config
-    pkgs.wl-clipboard
-    pkgs.grim
-    pkgs.slurp
-    pkgs.hyprpicker
-    pkgs.udiskie
-    pkgs.swww
-    pkgs.swaylock-effects
-    pkgs.brightnessctl
+    wl-clipboard
+    grim
+    slurp
+    hyprpicker
+    udiskie
+    swww
+    swaylock-effects
+    brightnessctl
+    nm-applet
     # Apps launchable from bindings
-    pkgs.firefox
-    pkgs.kitty
-    pkgs.yazi
+    firefox
+    kitty
+    yazi
   ];
 
   home.pointerCursor = {
