@@ -2,7 +2,15 @@
 {...}: {
   sops.secrets."garage/RPC_SECRET".owner = "root";
 
+  services.caddy.virtualHosts."s3.gasdev.fr".extraConfig = ''
+    reverse_proxy http://127.0.0.1:3900
+  '';
+
   services.caddy.virtualHosts."*.s3.gasdev.fr".extraConfig = ''
+    reverse_proxy http://127.0.0.1:3900
+  '';
+
+  services.caddy.virtualHosts."s3web.gasdev.fr".extraConfig = ''
     reverse_proxy http://127.0.0.1:3900
   '';
 
