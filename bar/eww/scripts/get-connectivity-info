@@ -9,6 +9,9 @@ print_network_state() {
     wlan*)
       echo wireless
       ;;
+    wlp*)
+      echo wireless
+      ;;
     usb*)
       echo tethering
       ;;
@@ -36,10 +39,10 @@ print_network_infos() {
       "$(echo "$route_line" | awk '{ print $3 }')"
 
     if [ "$state" = wireless ]; then
-      signal=$(iw dev "$1" link | awk '($1 == "signal:") { print $2}')
+      signal=$(nmcli -m multiline device wifi | grep '^\s*SIGNAL: ' | xargs | cut -d \  -f 2)
       printf ',"wifi":{"signal":"%s","ssid":"%s"}' \
         "$(wifi_strength "$signal")" \
-        "$(iw dev wlan0 info | grep '^\s*ssid ' | xargs | cut -d \  -f 2-)"
+        "$(nmcli -m multiline device wifi | grep '^\s*SSID: ' | xargs | cut -d \  -f 2)"
     fi
   fi
 }

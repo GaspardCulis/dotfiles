@@ -11,7 +11,6 @@
   home.packages = [
     pkgs.eww
     # Script dependencies
-    pkgs.iw
     pkgs.jq
     pkgs.dash
     pkgs.socat
