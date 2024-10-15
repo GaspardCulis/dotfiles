@@ -32,17 +32,19 @@ wifi_strength() {
 
 print_network_infos() {
   if [ -n "$1" ]; then
-    route_line=$(ip route show dev "$1" | awk '($1 == "default") { print }')
+    device="$1"
+    route_line=$(ip route show dev "$device" | awk '($1 == "default") { print }')
 
     printf ',"ip":{"local":"%s","gateway":"%s"}' \
       "$(echo "$route_line" | awk '{ print $7 }')" \
       "$(echo "$route_line" | awk '{ print $3 }')"
 
     if [ "$state" = wireless ]; then
-      signal=$(nmcli -m multiline device wifi | grep '^\s*SIGNAL: ' | xargs | cut -d \  -f 2)
+      ssid=$(nmcli connection show --active | grep "$device" | cut -d \  -f1)
+      signal=$(nmcli dev wifi list --rescan no | awk '/\*/{if (NR!=1) {print $8}}')
       printf ',"wifi":{"signal":"%s","ssid":"%s"}' \
         "$(wifi_strength "$signal")" \
-        "$(nmcli -m multiline device wifi | grep '^\s*SSID: ' | xargs | cut -d \  -f 2)"
+        "$ssid"
     fi
   fi
 }
