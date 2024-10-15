@@ -57,8 +57,14 @@
       "nvidia-settings"
     ];
 
-  hardware.graphics.enable = true;
-  hardware.opengl.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      mesa
+    ];
+  };
   hardware.nvidia = {
     modesetting.enable = true;
 
