@@ -2,7 +2,7 @@
 
 # Start DE if on tty1
 if [ "$(tty)" = /dev/tty1 ]; then
-	exec Hyprland
+	exec Hyprland-wrapper
 fi
 
 # Start DE if on tty1
