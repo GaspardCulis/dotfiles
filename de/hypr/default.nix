@@ -11,8 +11,8 @@
       executable = true;
     };
     # Hyprland launch wrapper
-    ".local/bin/Hyprland" = {
-      source = ../../bin/Hyprland;
+    ".local/bin/Hyprland-wrapper" = {
+      source = ../../bin/Hyprland-wrapper;
       executable = true;
     };
     # UWU launcher script
