@@ -40,8 +40,9 @@ print_network_infos() {
       "$(echo "$route_line" | awk '{ print $3 }')"
 
     if [ "$state" = wireless ]; then
-      ssid=$(nmcli connection show --active | grep "$device" | cut -d \  -f1)
-      signal=$(nmcli dev wifi list --rescan no | awk '/\*/{if (NR!=1) {print $8}}')
+      wireless_info=$(nmcli --get-values active,ssid,signal dev wifi list --rescan no | grep "^yes")
+      ssid=$(echo "$wireless_info" | cut -d : -f2)
+      signal=$(echo "$wireless_info" | cut -d : -f3)
       printf ',"wifi":{"signal":"%s","ssid":"%s"}' \
         "$(wifi_strength "$signal")" \
         "$ssid"
