@@ -23,7 +23,7 @@
     };
 
     end-rs = {
-      url = "github:Dr-42/end-rs";
+      url = "github:GaspardCulis/end-rs/fix/deadlocks";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
