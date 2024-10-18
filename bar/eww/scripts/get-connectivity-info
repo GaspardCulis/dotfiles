@@ -3,13 +3,10 @@
 
 print_network_state() {
   case "$1" in
-    eth*)
+    eth*|enp*)
       echo ethernet
       ;;
-    wlan*)
-      echo wireless
-      ;;
-    wlp*)
+    wlan*|wlp*)
       echo wireless
       ;;
     usb*)
