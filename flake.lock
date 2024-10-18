@@ -106,16 +106,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1729154804,
-        "narHash": "sha256-hh35utNgzDIBVVRH/wW/puIhKSgVTqdWaF9/EpU3ZZc=",
-        "owner": "GaspardCulis",
+        "lastModified": 1729221539,
+        "narHash": "sha256-REh7hzFcVv6LngqX5xcjJC5KM41k1oJ6accEJjrEihA=",
+        "owner": "Dr-42",
         "repo": "end-rs",
-        "rev": "242b9c3abeb1652a7993399e17f8da7595d74cd2",
+        "rev": "6f75f9fc569ef842c687fc908f573be5a414ce19",
         "type": "github"
       },
       "original": {
-        "owner": "GaspardCulis",
-        "ref": "fix/deadlocks",
+        "owner": "Dr-42",
         "repo": "end-rs",
         "type": "github"
       }
