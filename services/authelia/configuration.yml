@@ -43,8 +43,10 @@ storage:
     path: /data/db.sqlite3
 
 notifier:
-  filesystem:
-    filename: '/data/notification.txt'
+  smtp:
+    address: 'smtp.mail.ovh.net'
+    username: 'postmaster@gasdev.fr'
+    sender: 'Authelia <authelia@gasdev.fr>'
 
 log:
   level: 'info'
