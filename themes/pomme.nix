@@ -9,12 +9,12 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.qogir-theme;
-      name = "qogir-dark";
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-Dark-solid-nord";
     };
     iconTheme = {
-      package = pkgs.qogir-icon-theme;
-      name = "Qogir";
+      package = pkgs.whitesur-icon-theme;
+      name = "WhiteSur";
     };
   };
 }

@@ -11,5 +11,6 @@
     ../term
     ../editor
     ../de
+    ../themes/pomme.nix
   ];
 }
