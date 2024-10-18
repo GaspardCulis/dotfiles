@@ -16,10 +16,11 @@
       environment = {
         AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE = "/secrets/JWT_SECRET";
         AUTHELIA_SESSION_SECRET_FILE = "/secrets/SESSION_SECRET";
-        AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE = "/secrets/STORAGE_PASSWORD";
+        # AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE = "/secrets/STORAGE_PASSWORD";
         AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/secrets/STORAGE_ENCRYPTION_KEY";
       };
       volumes = [
+        "authelia-data:/data"
         "/run/secrets/authelia:/secrets"
         "/etc/authelia/configuration.yml:/config/configuration.yml"
       ];
