@@ -45,6 +45,9 @@
     };
   };
 
+  # ADB
+  programs.adb.enable = true;
+
   # User config
   users.groups.gaspard = {
     name = "gaspard";
@@ -56,6 +59,7 @@
       "video"
       "seat"
       "audio"
+      "adbusers"
       "networkmanager"
     ];
     group = "gaspard";
