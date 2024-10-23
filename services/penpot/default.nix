@@ -72,7 +72,7 @@
         PENPOT_DATABASE_URI = "postgresql://penpot-postgres/penpot";
         PENPOT_REDIS_URI = "redis://penpot-redis/0";
         # Storage
-        PENPOT_ASSETS_STORAGE_BACKEND = "assets-s3";
+        PENPOT_ASSETS_STORAGE_BACKEND = "assets-fs";
         # SMTP
         PENPOT_SMTP_DEFAULT_FROM = "no-reply@gasdev.fr";
         PENPOT_SMTP_DEFAULT_REPLY_TO = "no-reply@gasdev.fr";
