@@ -100,6 +100,9 @@
     penpot-postgres = {
       image = "docker.io/postgres:15";
       autoStart = true;
+      volumes = [
+        "penpot_postgres:/var/lib/postgresql/data"
+      ];
       environment = {
         POSTGRES_INITDB_ARGS = "--data-checksums";
         POSTGRES_DB = "penpot";
