@@ -49,7 +49,7 @@
         "penpot_assets:/opt/data/assets"
       ];
       environment = {
-        PENPOT_FLAGS = "disable-registration enable-login-with-oidc";
+        PENPOT_FLAGS = "disable-registration enable-login-with-oidc enable-oidc-registration disable-onboarding disable-onboarding-newsletter disable-onboarding-questions";
       };
       dependsOn = [
         "penpot-backend"
@@ -63,7 +63,7 @@
         "penpot_assets:/opt/data/assets"
       ];
       environment = {
-        PENPOT_FLAGS = "disable-login-with-password enable-login-with-oidc enable-oidc-registration enable-smtp disable-onboarding-newsletter disable-onboarding-questions";
+        PENPOT_FLAGS = "disable-registration enable-login-with-oidc enable-oidc-registration enable-smtp";
         # Auth
         PENPOT_OIDC_CLIENT_ID = "penpot";
         PENPOT_OIDC_BASE_URI = "https://auth.gasdev.fr";
