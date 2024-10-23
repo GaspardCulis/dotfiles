@@ -49,7 +49,7 @@
         "penpot_assets:/opt/data/assets"
       ];
       environment = {
-        PENPOT_FLAGS = "disable-login-with-password disable-registration enable-login-with-oidc";
+        PENPOT_FLAGS = "disable-login-with-password disable-registration enable-login-with-oidc disable-onboarding-newsletter disable-onboarding-questions";
       };
       dependsOn = [
         "penpot-backend"
