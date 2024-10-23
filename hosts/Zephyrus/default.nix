@@ -48,6 +48,9 @@
   # ADB
   programs.adb.enable = true;
 
+  # Gaming
+  programs.gamemode.enable = true;
+
   # User config
   users.groups.gaspard = {
     name = "gaspard";
@@ -60,6 +63,7 @@
       "seat"
       "audio"
       "adbusers"
+      "gamemode"
       "networkmanager"
     ];
     group = "gaspard";
