@@ -22,6 +22,10 @@
   services.blueman.enable = true;
   services.udisks2.enable = true;
   services.power-profiles-daemon.enable = true;
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 
   # Programs
   environment.systemPackages = with pkgs; [
