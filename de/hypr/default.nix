@@ -74,6 +74,7 @@
     extraConfig = builtins.readFile ./hyprland.conf;
     plugins = [inputs.hy3.packages.${pkgs.system}.hy3];
   };
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # bar is required
   imports = [
