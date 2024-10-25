@@ -11,6 +11,7 @@
     ../term
     ../editor
     ../de
+    ../gaming
     ../themes/pomme.nix
   ];
 }
