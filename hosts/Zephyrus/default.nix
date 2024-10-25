@@ -26,6 +26,9 @@
     enable = true;
     acceleration = "cuda";
   };
+  systemd.services.ollama = {
+    wantedBy = pkgs.lib.mkForce [];
+  };
 
   # Programs
   environment.systemPackages = with pkgs; [
