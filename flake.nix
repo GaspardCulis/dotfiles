@@ -8,8 +8,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    caddy = {
+      url = "github:GaspardCulis/nixos-caddy-ovh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -41,6 +56,8 @@
     self,
     nixpkgs,
     disko,
+    deploy-rs,
+    sops-nix,
     home-manager,
     ...
   } @ inputs: let
@@ -53,6 +70,16 @@
         modules = [
           ./hosts/Zephyrus
           disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+        ];
+      };
+
+      OVHCloud = nixpkgs.lib.nixosSystem {
+        extraArgs = {inherit inputs;};
+        modules = [
+          ./hosts/OVHCloud
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
         ];
       };
@@ -78,13 +105,28 @@
       };
     };
 
+    deploy.nodes.OVHCloud = {
+      hostname = "gasdev.fr";
+      profiles.system = {
+        user = "root";
+        sshUser = "root";
+        sshOpts = ["-p" "22"];
+        sudo = "";
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.OVHCloud;
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
     devShells.${system}.default = pkgs.mkShell {
-      nativeBuildInputs = with pkgs; [
+      packages = with pkgs; [
+        alejandra
         git
         helix
-        pkgs.home-manager
-        alejandra
         nil
+        pkgs.sops
+        pkgs.home-manager
+        pkgs.deploy-rs
       ];
 
       shellHook = ''
