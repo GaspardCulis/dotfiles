@@ -55,6 +55,10 @@
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia-settings"
+      "cuda_cudart"
+      "libcublas"
+      "cuda_cccl"
+      "cuda_nvcc"
     ];
 
   hardware.graphics = {
