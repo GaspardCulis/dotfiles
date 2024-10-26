@@ -62,6 +62,12 @@
       "libcublas"
       "cuda_cccl"
       "cuda_nvcc"
+      # Steam
+      "xow_dongle-firmware"
+      "steam"
+      "steam-original"
+      "steam-run"
+      "steam-unwrapped"
     ];
 
   hardware.graphics = {

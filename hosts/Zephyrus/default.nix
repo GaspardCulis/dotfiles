@@ -14,6 +14,7 @@
   time.timeZone = "Europe/Paris";
 
   console.keyMap = "fr";
+  services.xserver.xkb.layout = "fr";
 
   security.pam.services.swaylock = {};
 
@@ -40,6 +41,7 @@
     htop
     wg-netmanager
     podman-compose
+    mangohud
   ];
 
   #Podman
@@ -73,7 +75,6 @@
       "seat"
       "audio"
       "adbusers"
-      "gamemode"
       "networkmanager"
     ];
     group = "gaspard";
@@ -83,6 +84,46 @@
     extraSpecialArgs = {inherit inputs;};
     users = {
       "gaspard" = import ../../users/gaspard.nix;
+    };
+  };
+
+  # Steam specialisation
+  specialisation.steam.configuration = {
+    users.groups.steam = {
+      name = "steam";
+    };
+    users.users.steam = {
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "video"
+        "seat"
+        "audio"
+        "gamemode"
+        "networkmanager"
+      ];
+      group = "steam";
+    };
+
+    programs = {
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
+      steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+      };
+    };
+    hardware.xone.enable = true; # support for the xbox controller USB dongle
+    services.getty.autologinUser = "steam";
+    environment = {
+      loginShellInit = ''
+        [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
+      '';
     };
   };
 
