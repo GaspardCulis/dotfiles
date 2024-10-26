@@ -58,6 +58,9 @@
   # Gaming
   programs.gamemode.enable = true;
 
+  # Other
+  programs.nix-ld.enable = true;
+
   # User config
   users.groups.gaspard = {
     name = "gaspard";
