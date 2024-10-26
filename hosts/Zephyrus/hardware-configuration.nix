@@ -16,13 +16,16 @@
   boot = {
     kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
     kernelModules = ["kvm-amd"];
-    kernelParams = ["mem_sleep_default=deep"]; # Should fix/change suspend method
+    kernelParams = [
+      "mem_sleep_default=deep" # Should fix/change suspend method
+    ];
     extraModulePackages = [];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "usbhid" "sdhci_pci"];
       kernelModules = [];
     };
     loader = {
+      timeout = 2;
       efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
