@@ -75,6 +75,7 @@
       "seat"
       "audio"
       "adbusers"
+      "gamemode"
       "networkmanager"
     ];
     group = "gaspard";
@@ -94,8 +95,8 @@
     };
     users.users.steam = {
       isNormalUser = true;
+      createHome = true;
       extraGroups = [
-        "wheel"
         "video"
         "seat"
         "audio"
@@ -104,7 +105,6 @@
       ];
       group = "steam";
     };
-
     programs = {
       gamescope = {
         enable = true;
@@ -122,7 +122,7 @@
     services.getty.autologinUser = "steam";
     environment = {
       loginShellInit = ''
-        [[ "$(tty)" = "/dev/tty1" ]] && ./gs.sh
+        [[ "$(tty)" = "/dev/tty1" ]] && ${(pkgs.writeShellScript "gs.sh" "${builtins.readFile ../../bin/gs.sh}")}
       '';
     };
   };
