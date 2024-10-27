@@ -90,10 +90,27 @@
 
   # Steam specialisation
   specialisation.steam.configuration = {
+    system.nixos.tags = ["steam"];
+    users.groups.steam.name = "steam";
+    users.users.steam = {
+      isNormalUser = true;
+      createHome = true;
+      extraGroups = [
+        "video"
+        "seat"
+        "audio"
+        "gamemode"
+        "networkmanager"
+      ];
+      group = "steam";
+    };
     programs = {
       gamescope = {
         enable = true;
         capSysNice = true;
+        env = {
+          XKB_DEFAULT_LAYOUT = "fr";
+        };
       };
       steam = {
         enable = true;
@@ -104,6 +121,7 @@
       };
     };
     hardware.xone.enable = true; # support for the xbox controller USB dongle
+    services.getty.autologinUser = "steam";
     environment = {
       loginShellInit = ''
         [[ "$(tty)" = "/dev/tty1" ]] && ${(pkgs.writeShellScript "gs.sh" "${builtins.readFile ../../bin/gs.sh}")}
