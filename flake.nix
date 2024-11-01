@@ -50,6 +50,12 @@
       url = "github:GaspardCulis/anixrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # SteamOS
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -59,6 +65,7 @@
     deploy-rs,
     sops-nix,
     home-manager,
+    jovian,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -71,6 +78,7 @@
           ./hosts/Zephyrus
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
+          jovian.nixosModules.jovian
         ];
       };
 

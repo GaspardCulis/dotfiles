@@ -104,28 +104,15 @@
       ];
       group = "steam";
     };
-    programs = {
-      gamescope = {
-        enable = true;
-        capSysNice = true;
-        env = {
-          XKB_DEFAULT_LAYOUT = "fr";
-        };
-      };
-      steam = {
-        enable = true;
-        gamescopeSession.enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        localNetworkGameTransfers.openFirewall = true;
-      };
+    services.desktopManager.plasma6.enable = true;
+    jovian.steam = {
+      enable = true;
+      autoStart = true;
+      user = "steam";
+      desktopSession = "plasma";
     };
-    hardware.xone.enable = true; # support for the xbox controller USB dongle
-    services.getty.autologinUser = "steam";
-    environment = {
-      loginShellInit = ''
-        [[ "$(tty)" = "/dev/tty1" ]] && ${(pkgs.writeShellScript "gs.sh" "${builtins.readFile ../../bin/gs.sh}")}
-      '';
+    environment.sessionVariables = {
+      XKB_DEFAULT_LAYOUT = "fr";
     };
   };
 
