@@ -58,6 +58,10 @@
     ffmpegthumbnailer
     poppler
     imagemagick
+    # Other apps
+    vlc
+    qbittorrent
+    webcord
   ];
 
   home.pointerCursor = {
