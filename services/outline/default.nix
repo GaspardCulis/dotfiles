@@ -37,13 +37,8 @@
     };
 
     storage = {
-      storageType = "s3";
-      uploadBucketUrl = "https://s3.gasdev.fr";
-      uploadBucketName = "outline-bucket";
-      accessKey = "GKd60d7ca02de8478633442cf6";
-      secretKeyFile = config.sops.secrets."outline/S3_SECRET_KEY".path;
-      region = "garage";
-      forcePathStyle = false;
+      storageType = "local";
+      localRootDir = "/var/lib/outline/data";
     };
   };
 
