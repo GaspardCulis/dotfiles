@@ -5,6 +5,11 @@
   services.caddy.virtualHosts."s3.gasdev.fr *.s3.gasdev.fr" = {
     logFormat = "output file ${config.services.caddy.logDir}/access-s3.gasdev.fr.log";
     extraConfig = ''
+      header {
+        ?Access-Control-Allow-Headers *
+        ?Access-Control-Allow-Methods *
+        ?Access-Control-Allow-Origin *
+      }
       reverse_proxy http://127.0.0.1:3900
     '';
   };
