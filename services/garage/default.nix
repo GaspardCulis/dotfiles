@@ -1,22 +1,20 @@
 # TODO: Run as different user
-{...}: {
+{config, ...}: {
   sops.secrets."garage/RPC_SECRET".owner = "root";
 
-  services.caddy.virtualHosts."s3.gasdev.fr".extraConfig = ''
-    reverse_proxy http://127.0.0.1:3900
-  '';
+  services.caddy.virtualHosts."s3.gasdev.fr *.s3.gasdev.fr" = {
+    logFormat = "output file ${config.services.caddy.logDir}/access-s3.gasdev.fr.log";
+    extraConfig = ''
+      reverse_proxy http://127.0.0.1:3900
+    '';
+  };
 
-  services.caddy.virtualHosts."*.s3.gasdev.fr".extraConfig = ''
-    reverse_proxy http://127.0.0.1:3900
-  '';
-
-  services.caddy.virtualHosts."s3web.gasdev.fr".extraConfig = ''
-    reverse_proxy http://127.0.0.1:3900
-  '';
-
-  services.caddy.virtualHosts."*.s3web.gasdev.fr".extraConfig = ''
-    reverse_proxy http://127.0.0.1:3902
-  '';
+  services.caddy.virtualHosts."s3web.gasdev.fr *.s3web.gasdev.fr" = {
+    logFormat = "output file ${config.services.caddy.logDir}/access-s3web.gasdev.fr.log";
+    extraConfig = ''
+      reverse_proxy http://127.0.0.1:3902
+    '';
+  };
 
   virtualisation.oci-containers.containers = {
     garage = {
