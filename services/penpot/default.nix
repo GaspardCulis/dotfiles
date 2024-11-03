@@ -100,6 +100,7 @@
     penpot-postgres = {
       image = "docker.io/postgres:15";
       autoStart = true;
+      ports = [];
       volumes = [
         "penpot_postgres:/var/lib/postgresql/data"
       ];
