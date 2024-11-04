@@ -6,6 +6,7 @@
     ./penpot
     ./shadowsocks
     ./uptime-kuma
+    ./webdav
     ./wireguard
   ];
 }
