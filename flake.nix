@@ -56,6 +56,12 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Rasoberry PI
+    raspberry-pi-nix = {
+      url = "github:nix-community/raspberry-pi-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -66,6 +72,7 @@
     sops-nix,
     home-manager,
     jovian,
+    raspberry-pi-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -89,6 +96,15 @@
           disko.nixosModules.disko
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
+        ];
+      };
+
+      Pi4 = nixpkgs.lib.nixosSystem {
+        extraArgs = {inherit inputs;};
+        system = "aarch64-linux";
+        modules = [
+          raspberry-pi-nix.nixosModules.raspberry-pi
+          ./hosts/Pi4
         ];
       };
     };
