@@ -51,6 +51,11 @@
           publicKey = "cpBhnLD4u5brDZsc2uqXVlelApCIXFdRnfJXJU1WDmM=";
           allowedIPs = ["10.8.0.11/32"];
         }
+        {
+          # pi4
+          publicKey = "F9AkCI0FGkrFhCq+SvCT1F2RG2ApNUy+SeIj1+VPtXI=";
+          allowedIPs = ["10.8.0.31/32"];
+        }
       ];
     };
   };
