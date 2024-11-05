@@ -75,7 +75,7 @@ storage:
 
 notifier:
   smtp:
-    address: 'smtp.mail.ovh.net'
+    address: 'smtp.gasdev.fr'
     username: 'postmaster@gasdev.fr'
     sender: 'Authelia <authelia@gasdev.fr>'
 
