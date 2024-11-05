@@ -24,4 +24,15 @@
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos"
   ];
+
+  networking = {
+    interfaces."wlan0".useDHCP = true;
+    wireless = {
+      interfaces = ["wlan0"];
+      enable = true;
+      networks = {
+        "TestNetwork".psk = "not_an_actual_password_leak";
+      };
+    };
+  };
 }
