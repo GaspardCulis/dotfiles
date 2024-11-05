@@ -82,7 +82,7 @@ in {
     };
   };
 
-  networking.firewall.allowedTCPPorts = [22 465 993];
+  networking.firewall.allowedTCPPorts = [25 465 993];
 
   systemd.timers."stalwart-mail-update-certs" = {
     wantedBy = ["timers.target"];
