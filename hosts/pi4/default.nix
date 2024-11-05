@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -33,6 +37,34 @@
       networks = {
         "TestNetwork".psk = "not_an_actual_password_leak";
       };
+    };
+  };
+
+  # SOPS
+  sops.defaultSopsFile = ../../secrets/pi4/default.yaml;
+  sops.secrets."wireguard/private_key".owner = "root";
+
+  # Wireguard
+  networking.firewall = {
+    allowedUDPPorts = [51820];
+  };
+  networking.wireguard.interfaces = {
+    wg0 = {
+      ips = ["10.8.0.31/24"];
+      listenPort = 51820; # Should match firewall allowedUDPPorts
+
+      privateKeyFile = config.sops.secrets."wireguard/private_key".path;
+
+      peers = [
+        {
+          publicKey = "KLULII6VEUWMhyIba6oxxHdZsVP3TMVlNY1Vz49q7jg=";
+
+          allowedIPs = ["0.0.0.0/0"];
+
+          endpoint = "vpn.gasdev.fr:993";
+          persistentKeepalive = 25;
+        }
+      ];
     };
   };
 }
