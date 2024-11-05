@@ -34,6 +34,7 @@
       };
     };
     tmp.useTmpfs = true;
+    binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
   # Network & Bluetooth
