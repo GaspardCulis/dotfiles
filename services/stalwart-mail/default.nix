@@ -1,16 +1,20 @@
 {config, ...}: let
-  domain = "mail.gasdev.fr";
+  domain = "gasdev.fr";
 in {
   sops.secrets."stalwart-mail/ADMIN_SECRET".owner = "stalwart-mail";
 
   services.caddy.virtualHosts."${domain}".extraConfig = ''
+    redir https://www.gasdev.fr
+  '';
+
+  services.caddy.virtualHosts."mail.${domain}".extraConfig = ''
     reverse_proxy 127.0.0.1:8080
   '';
 
   services.stalwart-mail = {
     enable = true;
     settings = {
-      lookup.default.hostname = "${domain}";
+      lookup.default.hostname = "mail.${domain}";
       server = {
         tls.certificate = "default";
         http = {
@@ -107,7 +111,7 @@ in {
       cat "''\${CADDY_CERT_DIR}/${domain}.key" > "''\${STALWART_CERT_DIR}/${domain}.priv.pem"
 
       chown -R stalwart-mail:stalwart-mail "''\${STALWART_CERT_DIR}"
-      chmod -R 0600 "''\${STALWART_CERT_DIR}"
+      chmod -R 0700 "''\${STALWART_CERT_DIR}"
     '';
     serviceConfig = {
       Type = "oneshot";
