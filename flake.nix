@@ -100,9 +100,10 @@
         extraArgs = {inherit inputs;};
         system = "aarch64-linux";
         modules = [
-          nixos-hardware.nixosModules.raspberry-pi-4
-          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           ./hosts/pi4
+          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          nixos-hardware.nixosModules.raspberry-pi-4
+          sops-nix.nixosModules.sops
         ];
       };
     };
