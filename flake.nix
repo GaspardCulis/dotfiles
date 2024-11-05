@@ -58,10 +58,7 @@
     };
 
     # Rasoberry PI
-    raspberry-pi-nix = {
-      url = "github:nix-community/raspberry-pi-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = {
@@ -72,12 +69,12 @@
     sops-nix,
     home-manager,
     jovian,
-    raspberry-pi-nix,
+    nixos-hardware,
     ...
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-  in {
+  in rec {
     nixosConfigurations = {
       Zephyrus = nixpkgs.lib.nixosSystem {
         extraArgs = {inherit inputs;};
@@ -99,12 +96,13 @@
         ];
       };
 
-      Pi4 = nixpkgs.lib.nixosSystem {
+      pi4 = nixpkgs.lib.nixosSystem {
         extraArgs = {inherit inputs;};
         system = "aarch64-linux";
         modules = [
-          raspberry-pi-nix.nixosModules.raspberry-pi
-          ./hosts/Pi4
+          nixos-hardware.nixosModules.raspberry-pi-4
+          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+          ./hosts/pi4
         ];
       };
     };
@@ -139,6 +137,22 @@
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.OVHCloud;
       };
     };
+
+    images.pi4 =
+      (self.nixosConfigurations.pi4.extendModules {
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          {
+            disabledModules = ["profiles/base.nix"];
+          }
+        ];
+      })
+      .config
+      .system
+      .build
+      .sdImage;
+    packages.x86_64-linux.pi4-image = images.pi4;
+    packages.aarch64-linux.pi4-image = images.pi4;
 
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
