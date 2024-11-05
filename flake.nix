@@ -128,14 +128,26 @@
       };
     };
 
-    deploy.nodes.OVHCloud = {
-      hostname = "gasdev.fr";
-      profiles.system = {
-        user = "root";
-        sshUser = "root";
-        sshOpts = ["-p" "22"];
-        sudo = "";
-        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.OVHCloud;
+    deploy.nodes = {
+      OVHCloud = {
+        hostname = "gasdev.fr";
+        profiles.system = {
+          user = "root";
+          sshUser = "root";
+          sshOpts = ["-p" "22"];
+          sudo = "";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.OVHCloud;
+        };
+      };
+      pi4 = {
+        hostname = "10.8.0.31";
+        profiles.system = {
+          user = "root";
+          sshUser = "root";
+          sshOpts = ["-p" "22"];
+          sudo = "";
+          path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.pi4;
+        };
       };
     };
 
