@@ -3,7 +3,6 @@
     ./authelia
     ./garage
     ./outline
-    ./penpot
     ./shadowsocks
     ./stalwart-mail
     ./umami
