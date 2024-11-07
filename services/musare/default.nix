@@ -54,12 +54,16 @@ in {
     }
   '';
 
+  sops.secrets."musare/APP_SECRET".owner = "root";
+  sops.secrets."musare/YOUTUBE_API_KEY".owner = "root";
+  sops.secrets."musare/SPOTIFY_CLIENT_ID".owner = "root";
+  sops.secrets."musare/SPOTIFY_CLIENT_SECRET".owner = "root";
   sops.secrets."musare/MONGO_USER_USERNAME".owner = "root";
   sops.secrets."musare/MONGO_USER_PASSWORD".owner = "root";
   sops.secrets."musare/MONGO_ROOT_PASSWORD".owner = "root";
   sops.secrets."musare/REDIS_PASSWORD".owner = "root";
 
-  sops.templates."musare.env" = {
+  sops.templates."musare/.env" = {
     content = ''
       MONGO_USER_USERNAME=${config.sops.placeholder."musare/MONGO_USER_USERNAME"}
       MONGO_USER_PASSWORD=${config.sops.placeholder."musare/MONGO_USER_PASSWORD"}
@@ -70,6 +74,29 @@ in {
       REDIS_PASSWORD=meh_not_important
     '';
     owner = "root";
+  };
+  sops.templates."musare/config.json" = {
+    content = ''
+      {
+      	"configVersion": 12,
+      	"migration": false,
+      	"secret": "${config.sops.placeholder."musare/APP_SECRET"}",
+      	"port": 8080,
+      	"url": {
+      		"host": "music.gasdev.fr",
+      		"secure": true
+      	},
+      	"apis": {
+      		"youtube": {
+      			"key": "${config.sops.placeholder."musare/YOUTUBE_API_KEY"}"
+      		},
+          "spotify": {
+            "clientId": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_ID"}",
+            "clientSecret": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_SECRET"}"
+          }
+      	}
+      }
+    '';
   };
 
   virtualisation.oci-containers.containers = {
@@ -86,14 +113,14 @@ in {
       autoStart = true;
       volumes = [
         "${musare-backend}:/opt/app/"
-        "${./config.json}:/opt/app/config.json"
+        "${config.sops.templates."musare/config.json".path}:/opt/app/config.json"
       ];
       ports = [
         "32483:8080"
       ];
       workdir = "/opt/app";
       environmentFiles = [
-        config.sops.templates."musare.env".path
+        config.sops.templates."musare/.env".path
       ];
       dependsOn = ["mongo" "redis"];
     };
@@ -105,7 +132,7 @@ in {
         "musare-mongodb:/data/db"
       ];
       environmentFiles = [
-        config.sops.templates."musare.env".path
+        config.sops.templates."musare/.env".path
       ];
     };
     redis = {
@@ -116,7 +143,7 @@ in {
         "musare-redis:/data"
       ];
       environmentFiles = [
-        config.sops.templates."musare.env".path
+        config.sops.templates."musare/.env".path
       ];
     };
   };
