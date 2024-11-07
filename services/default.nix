@@ -2,6 +2,7 @@
   imports = [
     ./authelia
     ./garage
+    ./musare
     ./outline
     ./shadowsocks
     ./stalwart-mail
