@@ -85,9 +85,9 @@ in {
       		"secure": true
       	},
       	"apis": {
-      		"youtube": {
-      			"key": "${config.sops.placeholder."musare/YOUTUBE_API_KEY"}"
-      		},
+          "youtube": {
+            "key": "${config.sops.placeholder."musare/YOUTUBE_API_KEY"}"
+          },
           "spotify": {
             "clientId": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_ID"}",
             "clientSecret": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_SECRET"}"
