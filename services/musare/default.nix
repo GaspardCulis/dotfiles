@@ -136,7 +136,7 @@ in {
       environmentFiles = [
         config.sops.templates."musare/.env".path
       ];
-      dependsOn = ["mongo" "redis"];
+      dependsOn = ["musare-mongo" "musare-redis"];
     };
     musare-mongo = {
       image = "docker.io/mongo:latest";
