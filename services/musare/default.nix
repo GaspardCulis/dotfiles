@@ -43,8 +43,6 @@ in {
 
     @websockets {
         path /backend/*
-        header Connection upgrade
-        header Upgrade websocket
     }
 
     reverse_proxy @websockets localhost:32483
@@ -105,7 +103,14 @@ in {
       imageFile = pkgs.dockerTools.buildImage {
         name = "musare";
         tag = "backend";
-        contents = [pkgs.nodejs_18 pkgs.bash];
+        copyToRoot = pkgs.buildEnv {
+          name = "musare-backend-env";
+          paths = with pkgs; [
+            nodejs_18
+            curl
+            bash
+          ];
+        };
         config = {
           Cmd = ["node" "--es-module-specifier-resolution=node" "/opt/app/index.js"];
         };
@@ -119,6 +124,9 @@ in {
         "32483:8080"
       ];
       workdir = "/opt/app";
+      environment = {
+        NODE_TLS_REJECT_UNAUTHORIZED = "0";
+      };
       environmentFiles = [
         config.sops.templates."musare/.env".path
       ];
