@@ -92,7 +92,13 @@ in {
             "clientId": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_ID"}",
             "clientSecret": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_SECRET"}"
           }
-      	}
+      	},
+        "mongo": {
+          "host": "musare-mongo"
+        },
+        "redis": {
+      		"url": "redis://musare-redis:6379/0"
+        }
       }
     '';
   };
@@ -132,7 +138,7 @@ in {
       ];
       dependsOn = ["mongo" "redis"];
     };
-    mongo = {
+    musare-mongo = {
       image = "docker.io/mongo:latest";
       autoStart = true;
       volumes = [
@@ -143,7 +149,7 @@ in {
         config.sops.templates."musare/.env".path
       ];
     };
-    redis = {
+    musare-redis = {
       image = "docker.io/redis:7";
       autoStart = true;
       cmd = ["--notify-keyspace-events" "Ex" "--requirepass" "meh_not_important" "--appendonly" "yes"];
