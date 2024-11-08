@@ -76,15 +76,15 @@ in {
   sops.templates."musare/config.json" = {
     content = ''
       {
-      	"configVersion": 12,
-      	"migration": false,
-      	"secret": "${config.sops.placeholder."musare/APP_SECRET"}",
-      	"port": 8080,
-      	"url": {
-      		"host": "music.gasdev.fr",
-      		"secure": true
-      	},
-      	"apis": {
+        "configVersion": 12,
+        "migration": false,
+        "secret": "${config.sops.placeholder."musare/APP_SECRET"}",
+        "port": 8080,
+        "url": {
+          "host": "music.gasdev.fr",
+          "secure": true
+        },
+        "apis": {
           "youtube": {
             "key": "${config.sops.placeholder."musare/YOUTUBE_API_KEY"}"
           },
@@ -92,12 +92,12 @@ in {
             "clientId": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_ID"}",
             "clientSecret": "${config.sops.placeholder."musare/SPOTIFY_CLIENT_SECRET"}"
           }
-      	},
+        },
         "mongo": {
           "host": "musare-mongo"
         },
         "redis": {
-      		"url": "redis://musare-redis:6379/0"
+          "url": "redis://musare-redis:6379/0"
         }
       }
     '';
