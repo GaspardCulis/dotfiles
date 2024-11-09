@@ -124,7 +124,7 @@ in {
       autoStart = true;
       volumes = [
         "${musare-backend}:/opt/app/"
-        "${config.sops.templates."musare/config.json".path}:/opt/app/config.json"
+        "${config.sops.templates."musare/config.json".path}:/opt/app/config/local.json"
       ];
       ports = [
         "32483:8080"
