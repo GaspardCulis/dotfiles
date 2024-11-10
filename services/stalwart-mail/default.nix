@@ -2,51 +2,73 @@
   domain = "gasdev.fr";
 in {
   sops.secrets."stalwart-mail/ADMIN_SECRET".owner = "stalwart-mail";
+  sops.secrets."stalwart-mail/ACME_SECRET".owner = "stalwart-mail";
 
-  services.caddy.virtualHosts."${domain}".extraConfig = ''
-    redir https://www.gasdev.fr
-  '';
-
-  services.caddy.virtualHosts."mail.${domain}".extraConfig = ''
-    reverse_proxy 127.0.0.1:8080
-  '';
+  services.caddy.virtualHosts."mailadmin.${domain}" = {
+    extraConfig = ''
+      reverse_proxy http://127.0.01:8080
+    '';
+    serverAliases = [
+      "mta-sts.${domain}"
+      "autoconfig.${domain}"
+      "autodiscover.${domain}"
+      "mail.${domain}"
+    ];
+  };
+  networking.firewall.allowedTCPPorts = [25 465 587 993];
 
   services.stalwart-mail = {
     enable = true;
     settings = {
-      lookup.default.hostname = "mail.${domain}";
       server = {
-        tls.certificate = "default";
-        http = {
-          url = "protocol + '://' + key_get('default', 'hostname') + ':' + local_port";
-          use-x-forwarded = true;
+        hostname = "mx1.${domain}";
+        tls = {
+          enable = true;
+          implicit = true;
         };
         listener = {
           smtp = {
-            bind = ["[::]:25"];
             protocol = "smtp";
+            bind = "[::]:25";
           };
           submissions = {
-            bind = ["[::]:465"];
+            bind = "[::]:465";
             protocol = "smtp";
-            tls.implicit = true;
           };
-          imaptls = {
-            bind = ["[::]:993"];
+          imaps = {
+            bind = "[::]:993";
             protocol = "imap";
-            tls.implicit = true;
+          };
+          jmap = {
+            bind = "[::]:8080";
+            url = "https://mail.${domain}";
+            protocol = "jmap";
           };
           management = {
-            bind = "[::]:8080";
+            bind = ["127.0.0.1:8080"];
             protocol = "http";
           };
         };
       };
-      certificate.default = {
-        default = true;
-        cert = "%{file:/var/lib/stalwart-mail/cert/${domain}.pem}%";
-        private-key = "%{file:/var/lib/stalwart-mail/cert/${domain}.priv.pem}%";
+      lookup.default = {
+        hostname = "mx1.${domain}";
+        domain = "${domain}";
       };
+      acme."letsencrypt" = {
+        directory = "https://acme-v02.api.letsencrypt.org/directory";
+        challenge = "dns-01";
+        contact = "postmaster@${domain}";
+        domains = ["${domain}" "mx1.${domain}"];
+        provider = "cloudflare";
+        secret = "%{file:${config.sops.secrets."stalwart-mail/ACME_SECRET".path}}%";
+      };
+      session.auth = {
+        mechanisms = "[plain]";
+        directory = "'in-memory'";
+      };
+      session.rcpt.directory = "'in-memory'";
+      queue.outbound.next-hop = "'local'";
+      directory."imap".lookup.domains = ["${domain}"];
       storage = {
         data = "rocksdb";
         fts = "rocksdb";
@@ -83,39 +105,6 @@ in {
     serviceConfig = {
       StateDirectory = "stalwart-mail";
       StateDirectoryMode = "0740";
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = [25 465 993];
-
-  systemd.timers."stalwart-mail-update-certs" = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-      Unit = "stalwart-mail-update-certs.service";
-    };
-  };
-
-  systemd.services."stalwart-mail-update-certs" = {
-    script = ''
-      set -eu
-
-      CADDY_CERT_DIR="/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${domain}"
-      STALWART_CERT_DIR="/var/lib/stalwart-mail/cert"
-
-      mkdir -p "''\${CADDY_CERT_DIR}"
-      mkdir -p "''\${STALWART_CERT_DIR}"
-
-      cat "''\${CADDY_CERT_DIR}/${domain}.crt" > "''\${STALWART_CERT_DIR}/${domain}.pem"
-      cat "''\${CADDY_CERT_DIR}/${domain}.key" > "''\${STALWART_CERT_DIR}/${domain}.priv.pem"
-
-      chown -R stalwart-mail:stalwart-mail "''\${STALWART_CERT_DIR}"
-      chmod -R 0700 "''\${STALWART_CERT_DIR}"
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
     };
   };
 }
