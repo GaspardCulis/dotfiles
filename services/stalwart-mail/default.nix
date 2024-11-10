@@ -55,6 +55,7 @@ in {
         domain = "${domain}";
       };
       acme."letsencrypt" = {
+        default = true;
         directory = "https://acme-v02.api.letsencrypt.org/directory";
         challenge = "dns-01";
         contact = "postmaster@${domain}";
@@ -89,6 +90,11 @@ in {
         type = "stdout";
         level = "info";
         ansi = false;
+        enable = true;
+      };
+      tracer."journal" = {
+        type = "journal";
+        level = "info";
         enable = true;
       };
       authentication."fallback-admin" = {
