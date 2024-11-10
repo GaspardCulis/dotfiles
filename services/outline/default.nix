@@ -28,7 +28,7 @@
     };
 
     smtp = {
-      host = "smtp.gasdev.fr";
+      host = "mail.gasdev.fr";
       port = 465;
       username = "postmaster@gasdev.fr";
       passwordFile = config.sops.secrets."outline/SMTP_PASSWORD".path;
