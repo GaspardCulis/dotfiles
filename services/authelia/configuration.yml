@@ -76,12 +76,12 @@ storage:
 notifier:
   disable_startup_check: true
   smtp:
-    address: 'smtp://mail.gasdev.fr:25'
-    username: 'postmaster@gasdev.fr'
+    address: 'submissions://mail.gasdev.fr:465'
+    username: 'postmaster'
     sender: 'Authelia <authelia@gasdev.fr>'
-    identifier: 'mail.gasdev.fr'
-    tls:
-      server_name: 'mail.gasdev.fr'
+    # identifier: 'mail.gasdev.fr'
+    # tls:
+    #   server_name: 'mail.gasdev.fr'
 
 log:
   level: 'info'

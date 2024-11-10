@@ -30,10 +30,10 @@
     smtp = {
       host = "mail.gasdev.fr";
       port = 465;
-      username = "postmaster@gasdev.fr";
+      username = "postmaster";
       passwordFile = config.sops.secrets."outline/SMTP_PASSWORD".path;
-      fromEmail = "from.outline@gasdev.fr";
-      replyEmail = "reply.outline@gasdev.fr";
+      fromEmail = "outline@gasdev.fr";
+      replyEmail = "no-reply@gasdev.fr";
     };
 
     storage = {

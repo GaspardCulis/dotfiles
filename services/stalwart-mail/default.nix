@@ -6,13 +6,18 @@ in {
 
   services.caddy.virtualHosts."mailadmin.${domain}" = {
     extraConfig = ''
+      reverse_proxy http://127.0.01:40312
+    '';
+  };
+  services.caddy.virtualHosts."mail.${domain}" = {
+    extraConfig = ''
       reverse_proxy http://127.0.01:8080
     '';
     serverAliases = [
       "mta-sts.${domain}"
       "autoconfig.${domain}"
       "autodiscover.${domain}"
-      "mail.${domain}"
+      "${domain}"
     ];
   };
   networking.firewall.allowedTCPPorts = [25 465 587 993];
@@ -21,7 +26,7 @@ in {
     enable = true;
     settings = {
       server = {
-        hostname = "mx1.${domain}";
+        hostname = "mail.${domain}";
         tls = {
           enable = true;
           implicit = true;
@@ -34,41 +39,36 @@ in {
           submissions = {
             bind = "[::]:465";
             protocol = "smtp";
+            tls.implicit = true;
           };
           imaps = {
             bind = "[::]:993";
             protocol = "imap";
+            tls.implicit = true;
           };
           jmap = {
             bind = "[::]:8080";
-            url = "https://mail.${domain}";
-            protocol = "jmap";
+            protocol = "http";
+            tls.implicit = false;
           };
           management = {
-            bind = ["127.0.0.1:8080"];
+            bind = ["127.0.0.1:40312"];
             protocol = "http";
           };
         };
       };
       lookup.default = {
-        hostname = "mx1.${domain}";
+        hostname = "mail.${domain}";
         domain = "${domain}";
       };
-      acme."letsencrypt" = {
+      certificate.default = {
         default = true;
-        directory = "https://acme-v02.api.letsencrypt.org/directory";
-        challenge = "dns-01";
-        contact = "postmaster@${domain}";
-        domains = ["${domain}" "mx1.${domain}"];
-        provider = "cloudflare";
-        secret = "%{file:${config.sops.secrets."stalwart-mail/ACME_SECRET".path}}%";
+        cert = "%{file:/var/lib/stalwart-mail/cert/mail.${domain}.pem}%";
+        private-key = "%{file:/var/lib/stalwart-mail/cert/mail.${domain}.priv.pem}%";
       };
       session.auth = {
-        mechanisms = "[plain]";
-        directory = "'in-memory'";
+        mechanisms = "[plain, login]";
       };
-      session.rcpt.directory = "'in-memory'";
-      queue.outbound.next-hop = "'local'";
       directory."imap".lookup.domains = ["${domain}"];
       storage = {
         data = "rocksdb";
@@ -111,6 +111,37 @@ in {
     serviceConfig = {
       StateDirectory = "stalwart-mail";
       StateDirectoryMode = "0740";
+    };
+  };
+
+  systemd.timers."stalwart-mail-update-certs" = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+      Unit = "stalwart-mail-update-certs.service";
+    };
+  };
+
+  systemd.services."stalwart-mail-update-certs" = {
+    script = ''
+      set -eu
+
+      CADDY_CERT_DIR="/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/mail.${domain}"
+      STALWART_CERT_DIR="/var/lib/stalwart-mail/cert"
+
+      mkdir -p "''\${CADDY_CERT_DIR}"
+      mkdir -p "''\${STALWART_CERT_DIR}"
+
+      cat "''\${CADDY_CERT_DIR}/mail.${domain}.crt" > "''\${STALWART_CERT_DIR}/mail.${domain}.pem"
+      cat "''\${CADDY_CERT_DIR}/mail.${domain}.key" > "''\${STALWART_CERT_DIR}/mail.${domain}.priv.pem"
+
+      chown -R stalwart-mail:stalwart-mail "''\${STALWART_CERT_DIR}"
+      chmod -R 0700 "''\${STALWART_CERT_DIR}"
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
     };
   };
 }
