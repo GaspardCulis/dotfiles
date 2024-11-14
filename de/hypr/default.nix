@@ -61,6 +61,8 @@
     vlc
     qbittorrent
     webcord
+    # Firefox PWA
+    firefoxpwa
   ];
 
   home.pointerCursor = {
