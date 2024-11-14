@@ -51,7 +51,6 @@
     brightnessctl
     networkmanagerapplet
     # Apps launchable from bindings
-    firefox
     kitty
     yazi
     # Yazi requirements
@@ -79,6 +78,11 @@
     plugins = [inputs.hy3.packages.${pkgs.system}.hy3];
   };
   home.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts = [pkgs.firefoxpwa];
+  };
 
   # bar is required
   imports = [
