@@ -11,4 +11,5 @@ info (){
 info
 dbus-monitor "path=/org/mpris/MediaPlayer2,member=PropertiesChanged" | while read -r line; do
 	info
+  sleep 0.1
 done

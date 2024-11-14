@@ -72,4 +72,5 @@ print_connectivity_info () {
 print_connectivity_info
 dbus-monitor --system "interface=org.freedesktop.DBus.ObjectManager" 2> /dev/null | while read -r line; do
 	print_connectivity_info
+	sleep 0.1
 done
