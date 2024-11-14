@@ -39,6 +39,7 @@
     neofetch
     bottom
     htop
+    unzip
     wg-netmanager
     podman-compose
     mangohud
