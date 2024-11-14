@@ -10,7 +10,7 @@ file_store = { }
 
 [language-server.lsp-ai.config.models.codestral]
 type = "mistral_fim"
-fim_endpoint = "https://api.mistral.ai/v1/fim/completions"
+fim_endpoint = "https://codestral.mistral.ai/v1/fim/completions"
 model = "codestral-latest"
 auth_token_env_var_name = "CODESTRAL_API_KEY"
 
@@ -28,6 +28,7 @@ max_context = 1024
 
 [[language]]
 name = "rust"
+language-servers = [ "rust-analyzer", "lsp-ai" ]
 
 [language.debugger]
 command = "codelldb"
@@ -48,7 +49,7 @@ runInTerminal = false
 
 [[language]]
 name = "python"
-language-servers = [ "pyright", "ruff" ]
+language-servers = [ "pyright", "ruff", "lsp-ai" ]
 
 [language-server.pyright.config.python.analysis]
 typeCheckingMode = "basic"
@@ -101,7 +102,7 @@ formatter = { command = 'prettier', args = ["--parser", "css"] }
 name = "scss"
 formatter = { command = "prettier", args = ["--stdin-filepath", "dummy.scss"] }
 indent = { tab-width = 4, unit = "\t" }
-language-servers = ["vscode-css-language-server"]
+language-servers = ["vscode-css-language-server", "lsp-ai"]
 auto-format = true
 
 [[language]]
