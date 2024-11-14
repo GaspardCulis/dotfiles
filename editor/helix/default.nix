@@ -1,6 +1,7 @@
 {pkgs, ...}: {
-  home.packages = [
-    pkgs.helix
+  home.packages = with pkgs; [
+    helix
+    lsp-ai
   ];
 
   home.file = {
