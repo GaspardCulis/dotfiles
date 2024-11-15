@@ -10,7 +10,7 @@ export SWWW_TRANSITION=wipe
 export SWWW_TRANSITION_ANGLE=$RANDOM
 export SWWW_TRANSITION_FPS=60
 
-wallpapers_dir=~/Images/Wallpapers/enabled
+wallpapers_dir=~/Pictures/Wallpapers/enabled
 
 if [[ "$1" = "daemon" ]]; then
   exec swww-daemon

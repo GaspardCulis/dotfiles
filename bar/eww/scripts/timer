@@ -38,9 +38,9 @@ start_timer() {
 
     # Notify user
     if [ "$timer_type" = "pause" ]; then
-        notify-send -c grind-timer -i ~/Images/Icons/moai.jpg "Work period over" "You can take a little nap now."
+        notify-send -c grind-timer -i ~/Pictures/Icons/moai.jpg "Work period over" "You can take a little nap now."
     elif [ "$timer_type" = "work" ]; then
-        notify-send -c grind-timer -i ~/Images/Icons/moai.jpg "Pause period over" "Back to grinding we go."
+        notify-send -c grind-timer -i ~/Pictures/Icons/moai.jpg "Pause period over" "Back to grinding we go."
     fi
 
     start_timer "$timer_type"

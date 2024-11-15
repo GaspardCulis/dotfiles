@@ -1,5 +1,5 @@
 (defvar WAIFU_MODE false) ; Bcz sometimes I listen to Geoxor, so, yeah...
-(defvar FALLBACK_COVER "/home/gaspard/Images/Icons/music-disk.png")
+(defvar FALLBACK_COVER "/home/gaspard/Pictures/Icons/music-disk.png")
 (defvar PLAY_STATUS "⏸︎")
 
 (deflisten music_info :initial '{"title": "", "artist": "", "artUrl": "", "status": ""}' "~/.config/eww/scripts/get-music-info")
