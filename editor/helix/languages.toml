@@ -19,7 +19,7 @@ model = "codestral"
 
 [language-server.lsp-ai.config.completion.parameters]
 max_tokens = 64
-max_context = 1024
+max_context = 2048
 
 
 #################################
