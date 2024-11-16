@@ -74,14 +74,20 @@
       "steamdeck-hw-theme"
     ];
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
+  };
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
       vaapiVdpau
       libvdpau-va-gl
       mesa
     ];
   };
+
   hardware.nvidia = {
     modesetting.enable = true;
 
