@@ -63,6 +63,10 @@
 
   # Other
   programs.nix-ld.enable = true;
+  programs.localsend = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # User config
   users.groups.gaspard = {
