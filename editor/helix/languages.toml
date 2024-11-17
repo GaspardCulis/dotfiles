@@ -28,7 +28,7 @@ max_context = 2048
 
 [[language]]
 name = "rust"
-language-servers = [ "rust-analyzer", "lsp-ai" ]
+language-servers = [ "rust-analyzer" ]
 
 [language.debugger]
 command = "codelldb"
