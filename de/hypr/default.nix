@@ -39,6 +39,7 @@
 
   home.packages = with pkgs; [
     egl-wayland # For NVIDIA compatibility
+    xdg-utils
     xdg-desktop-portal-hyprland
     # Common DE packages required in config
     wl-clipboard
