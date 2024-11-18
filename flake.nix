@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,9 +57,6 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Rasoberry PI
-    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = {
@@ -81,6 +79,7 @@
         modules = [
           ./hosts/Zephyrus
           disko.nixosModules.disko
+          nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
         ];
