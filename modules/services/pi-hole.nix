@@ -6,10 +6,15 @@
 }:
 with lib; let
   cfg = config.jaajcorp.services.pi-hole;
-  apConfigFile = config.sops.templates."${cfg.ap.pskSopsKey}".path;
+  apConfigFile = config.sops.templates."pi-hole/create_ap.conf".path;
 in {
   options.jaajcorp.services.pi-hole = {
     enable = mkEnableOption "Enable pi-hole service";
+    webAdminSecret = mkOption {
+      type = types.nonEmptyStr;
+      description = "Sops secret key storing the web admin password";
+    };
+
     ap = {
       enable = mkEnableOption "Enable wireless access point";
       internetIface = mkOption {
@@ -36,18 +41,33 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [53 80];
-    networking.firewall.allowedUDPPorts = [53 67];
+    # Pi-hole container
+    sops.secrets."${cfg.webAdminSecret}".owner = mkIf cfg.enable "root";
+    sops.templates."pi-hole/container.env" = mkIf cfg.enable {
+      content = ''
+        TZ='Europe/France'
+        WEBPASSWORD=${config.sops.placeholder."${cfg.webAdminSecret}"}
+      '';
+      owner = "root";
+    };
+    networking.firewall = mkIf cfg.enable {
+      allowedTCPPorts = [53 80];
+      allowedUDPPorts = [53 67];
+    };
     virtualisation.oci-containers.containers = {
       pi-hole = {
         image = "docker.io/pihole/pihole:latest";
         autoStart = true;
         extraOptions = ["--network=host"];
+        environmentFiles = [
+          config.sops.templates."pi-hole/container.env".path
+        ];
       };
     };
 
+    # AP
     sops.secrets."${cfg.ap.pskSopsKey}".owner = "root";
-    sops.templates."${cfg.ap.pskSopsKey}" = mkIf cfg.ap.enable {
+    sops.templates."pi-hole/create_ap.conf" = mkIf cfg.ap.enable {
       content = ''
         WIFI_IFACE=${cfg.ap.wifiIface}
         INTERNET_IFACE=${cfg.ap.internetIface}
