@@ -1,3 +1,3 @@
 {...}: {
-  services = {...}: {imports = [./services];};
+  imports = [./services];
 }
