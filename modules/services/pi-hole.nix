@@ -62,6 +62,10 @@ in {
         environmentFiles = [
           config.sops.templates."pi-hole/container.env".path
         ];
+        volumes = [
+          "pihole-etc:/etc/pihole"
+          "pihole-dnsmasq.d:/etc/dnsmasq.d"
+        ];
       };
     };
 
