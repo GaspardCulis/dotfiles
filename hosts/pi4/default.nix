@@ -14,7 +14,12 @@
   time.timeZone = "Europe/Paris";
 
   environment.systemPackages = with pkgs; [
+    podman-compose
     helix
+    unzip
+    htop
+    ncdu
+    wget
     git
   ];
 
