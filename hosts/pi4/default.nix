@@ -86,6 +86,7 @@
   # Services config
   jaajcorp.services.pi-hole = {
     enable = true;
+    webAdminSecret = "pi-hole/web_admin_password";
     ap = {
       enable = true;
       internetIface = "end0";
