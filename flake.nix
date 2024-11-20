@@ -106,6 +106,7 @@
         system = "aarch64-linux";
         modules = [
           ./hosts/pi4
+          ./modules
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
           sops-nix.nixosModules.sops

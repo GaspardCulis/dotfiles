@@ -83,5 +83,17 @@
   sops.defaultSopsFile = ../../secrets/pi4/default.yaml;
   sops.secrets."wireguard/private_key".owner = "root";
 
+  # Services config
+  jaajcorp.services.pi-hole = {
+    enable = true;
+    ap = {
+      enable = true;
+      internetIface = "end0";
+      wifiIface = "wlan0";
+      ssid = "Bababooey";
+      pskSopsKey = "pi-hole/psk";
+    };
+  };
+
   system.stateVersion = "24.11";
 }
