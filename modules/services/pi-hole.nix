@@ -28,14 +28,21 @@ in {
         type = types.nonEmptyStr;
         description = "Sops secret key used as a template placeholder";
       };
+      freqBand = mkOption {
+        type = types.enum ["2.4" "5"];
+        default = "2.4";
+      };
     };
   };
 
   config = mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [53 80];
+    networking.firewall.allowedUDPPorts = [53 67];
     virtualisation.oci-containers.containers = {
       pi-hole = {
         image = "docker.io/pihole/pihole:latest";
         autoStart = true;
+        extraOptions = ["--network=host"];
       };
     };
 
@@ -46,6 +53,8 @@ in {
         INTERNET_IFACE=${cfg.ap.internetIface}
         SSID=${cfg.ap.ssid}
         PASSPHRASE=${config.sops.placeholder."${cfg.ap.pskSopsKey}"}
+        FREQ_BAND=${cfg.ap.freqBand}
+        DHCP_HOSTS=127.0.0.1
       '';
       owner = "root";
     };
