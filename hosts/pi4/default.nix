@@ -92,6 +92,7 @@
       wifiIface = "wlan0";
       ssid = "Bababooey";
       pskSopsKey = "pi-hole/psk";
+      freqBand = "5";
     };
   };
 
