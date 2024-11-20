@@ -29,14 +29,14 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos"
   ];
 
-  networking = {
-    interfaces."wlan0".useDHCP = true;
-    wireless = {
-      interfaces = ["wlan0"];
+  # Podman
+  virtualisation = {
+    containers.enable = true;
+    oci-containers.backend = "podman";
+    podman = {
       enable = true;
-      networks = {
-        "TestNetwork".psk = "not_an_actual_password_leak";
-      };
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
     };
   };
 
