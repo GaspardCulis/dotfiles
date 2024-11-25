@@ -1,7 +1,7 @@
 {
   description = "Configuration Home Manager jaajesque";
 
-  inputs = {
+  inputs ={
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
@@ -31,11 +31,12 @@
 
     # Hyprland
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      follows = "hy3/hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?rev=a425fbebe4cf4238e48a42f724ef2208959d66cf&submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3";
+      url = "github:outfoxxed/hy3?ref=hl0.45.0";
+      inputs.hyprland.follows = "hyprland";
     };
 
     end-rs = {
