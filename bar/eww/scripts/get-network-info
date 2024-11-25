@@ -19,11 +19,17 @@ print_network_state() {
 }
 
 wifi_strength() {
-    if [ "$1" -le 20 ]; then echo terrible
-  elif [ "$1" -le 40 ]; then echo bad
-  elif [ "$1" -le 60 ]; then echo mediocre
-  elif [ "$1" -le 80 ]; then echo good
-  else                       echo excellent
+  if [ -n "$1" ]; then
+  
+      if [ "$1" -le 20 ]; then echo terrible
+    elif [ "$1" -le 40 ]; then echo bad
+    elif [ "$1" -le 60 ]; then echo mediocre
+    elif [ "$1" -le 80 ]; then echo good
+    else                       echo excellent
+    fi
+  
+  else
+    echo terrible
   fi
 }
 
