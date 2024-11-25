@@ -1,5 +1,5 @@
 #!/bin/sh
 
-alacritty --class "uwu-uwu" -e /usr/bin/bash -c "uwu | dotacat && read" &
-alacritty --class "uwu-neofetch" -e /usr/bin/bash -c "echo '' && neofetch && read" &
+alacritty --class "uwu-uwu" -e /bin/sh -c "uwu | dotacat && read" &
+alacritty --class "uwu-neofetch" -e /bin/sh -c "echo '' && neofetch && read" &
 alacritty --class "uwu-btm" -e btm &
