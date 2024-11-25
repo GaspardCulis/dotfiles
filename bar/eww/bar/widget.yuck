@@ -20,7 +20,8 @@
 (defpoll refresh_rate :interval "10s" :initial "165" "~/.config/eww/scripts/refresh_rate")
 (defpoll vpn_status :interval "60s" :initial '{"connected": false}' "~/.config/eww/scripts/vpn_status")
 
-(deflisten connectivity :initial '{"bluetooth": {}, "network": {}}' "~/.config/eww/scripts/get-connectivity-info")
+(deflisten network :initial '{}' "~/.config/eww/scripts/get-network-info")
+(deflisten bluetooth :initial '{}' "~/.config/eww/scripts/get-bluetooth-info")
 (deflisten hypr :initial '{"spaces": [], "current": 0, "title": ""}' "~/.config/eww/scripts/hypr/hyprstatus")
 
 (deflisten volume :initial "{}" "~/.config/eww/scripts/get-volume")
@@ -56,14 +57,14 @@
     (label
       :class "connectivity"
       :text "${
-    connectivity.network.state == "wireless"
-      ? network-icon["wifi-${connectivity.network.wifi.signal}"]
-      : network-icon[connectivity.network.state]
+    network.state == "wireless"
+      ? network-icon["wifi-${network.wifi.signal}"]
+      : network-icon[network.state]
   }   ${
-    connectivity.network.state == "disconnected" ? "No network" :
-    connectivity.network.state == "ethernet" ? "Ethernet" :
-    connectivity.network.state == "wireless" ? connectivity.network.wifi.ssid :
-    connectivity.network.state == "tethering" ? "USB tethering" : ''
+    network.state == "disconnected" ? "No network" :
+    network.state == "ethernet" ? "Ethernet" :
+    network.state == "wireless" ? network.wifi.ssid :
+    network.state == "tethering" ? "USB tethering" : ''
   }"
       :limit-width 14)
   )
@@ -74,7 +75,7 @@
     :onclick "bash -c 'blueman-manager &> /dev/null &'"
     (label
       :class "bluetooth"
-      :text " ${connectivity.bluetooth.count > 0 ? connectivity.bluetooth.count : connectivity.bluetooth.power}")
+      :text " ${bluetooth.count > 0 ? bluetooth.count : bluetooth.power}")
   )
 )
 

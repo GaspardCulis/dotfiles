@@ -56,21 +56,7 @@ print_network_status() {
     "$(print_network_infos "$device")"
 }
 
-print_bluetooth_status (){
-	power=$(bluetoothctl show | grep Powered | awk '{print $2}' | sed 's/yes/on/g; s/no/off/g')
-	count=$(bluetoothctl devices Connected | wc -l)
-	echo "{\"power\": \"${power}\", \"count\": \"${count}\"}"
-}
-
-print_connectivity_info () {
-  network="$(print_network_status)"
-  bluetooth="$(print_bluetooth_status)"
-
-	echo "{\"bluetooth\": ${bluetooth}, \"network\": ${network}}"
-}
-
-print_connectivity_info
-dbus-monitor --system "interface=org.freedesktop.DBus.ObjectManager" 2> /dev/null | while read -r line; do
-	print_connectivity_info
-	sleep 0.1
+print_network_status
+nmcli m | while read -r line; do
+	print_network_status
 done

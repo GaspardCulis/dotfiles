@@ -1,0 +1,12 @@
+#!/usr/bin/env dash
+
+print_bluetooth_info(){
+	power=$(bluetoothctl show | grep Powered | awk '{print $2}' | sed 's/yes/on/g; s/no/off/g')
+	count=$(bluetoothctl devices Connected | wc -l)
+	echo "{\"power\": \"${power}\", \"count\": \"${count}\"}"
+}
+
+print_bluetooth_info
+bluetoothctl | while read -r line; do
+	print_bluetooth_info
+done
