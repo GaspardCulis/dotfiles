@@ -8,7 +8,7 @@ icon_dirs = [
     "/home/gaspard/.nix-profile/share/pixmaps",
 ]
 ### The theme to use for the icons
-icon_theme = "Qogir"
+icon_theme = "WhiteSur"
 ### The default notification window
 ### Can be a single string or a vector of strings(for multi-monitor support)
 eww_notification_window = "notification_overlay"
