@@ -7,6 +7,6 @@ print_bluetooth_info(){
 }
 
 print_bluetooth_info
-bluetoothctl | while read -r line; do
+dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged',path_namespace='/org/bluez'" | while read -r line; do
 	print_bluetooth_info
 done
