@@ -62,6 +62,7 @@
     vlc
     qbittorrent
     webcord
+    wdisplays
     # Firefox PWA
     firefoxpwa
   ];
