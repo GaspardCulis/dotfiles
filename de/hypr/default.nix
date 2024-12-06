@@ -65,6 +65,9 @@
     wdisplays
     # Firefox PWA
     firefoxpwa
+    # Fonts
+    noto-fonts
+    noto-fonts-color-emoji
   ];
 
   home.pointerCursor = {
