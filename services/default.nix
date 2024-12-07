@@ -8,6 +8,7 @@
     ./stalwart-mail
     ./umami
     ./uptime-kuma
+    ./vaultwarden
     ./webdav
     ./wireguard
   ];
