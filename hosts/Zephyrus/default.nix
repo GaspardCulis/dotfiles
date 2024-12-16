@@ -123,6 +123,16 @@
     environment.sessionVariables = {
       XKB_DEFAULT_LAYOUT = "fr";
     };
+    # Gaming optimizations
+    boot = {
+      kernelParams = [
+        "clocksource=tsc"
+        "tsc=reliable"
+      ];
+      kernel.sysctl = {
+        "kernel.split_lock_mitigate" = 0;
+      };
+    };
   };
 
   system.stateVersion = "24.11";
