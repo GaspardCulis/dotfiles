@@ -108,6 +108,7 @@
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
           sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
         ];
       };
     };
