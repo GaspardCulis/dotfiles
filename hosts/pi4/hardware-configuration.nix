@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -15,6 +16,27 @@
     loader = {
       generic-extlinux-compatible.enable = lib.mkDefault true;
       grub.enable = lib.mkDefault false;
+    };
+  };
+
+  # Wireguard
+  networking.firewall = {
+    allowedUDPPorts = [51820];
+  };
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = ["10.8.0.31/32"];
+      listenPort = 51820; # Should match firewall allowedUDPPorts
+      privateKeyFile = config.sops.secrets."wireguard/private_key".path;
+
+      peers = [
+        {
+          publicKey = "KLULII6VEUWMhyIba6oxxHdZsVP3TMVlNY1Vz49q7jg=";
+          allowedIPs = ["0.0.0.0/0"];
+          endpoint = "vpn.gasdev.fr:993";
+          persistentKeepalive = 25;
+        }
+      ];
     };
   };
 }
