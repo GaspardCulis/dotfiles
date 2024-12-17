@@ -9,7 +9,6 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./sops.nix
     ../../services
   ];
 
@@ -60,6 +59,13 @@
     openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
   };
 
+  jaajcorp = {
+    services.caddy = {
+      enable = true;
+      enableOVHAcme = true;
+    };
+  };
+
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users = {
@@ -79,6 +85,10 @@
       };
     };
   };
+
+  # SOPS
+  sops.defaultSopsFile = ../../secrets/OVHCloud/default.yaml;
+  sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
   system.stateVersion = "24.11";
 }
