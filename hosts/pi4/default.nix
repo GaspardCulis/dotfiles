@@ -84,16 +84,22 @@
   sops.secrets."wireguard/private_key".owner = "root";
 
   # Services config
-  gasdev.services.pi-hole = {
-    enable = true;
-    webAdminSecret = "pi-hole/web_admin_password";
-    ap = {
+  gasdev = {
+    services.caddy = {
       enable = true;
-      internetIface = "end0";
-      wifiIface = "wlan0";
-      ssid = "Bababooey";
-      pskSopsKey = "pi-hole/psk";
-      freqBand = "5";
+    };
+
+    services.pi-hole = {
+      enable = true;
+      webAdminSecret = "pi-hole/web_admin_password";
+      ap = {
+        enable = true;
+        internetIface = "end0";
+        wifiIface = "wlan0";
+        ssid = "Bababooey";
+        pskSopsKey = "pi-hole/psk";
+        freqBand = "5";
+      };
     };
   };
 
