@@ -149,7 +149,7 @@
         profiles.system = {
           user = "root";
           sshUser = "root";
-          sshOpts = ["-p" "22"];
+          sshOpts = ["-p" "22" "-J" "root@gasdev.fr"];
           sudo = "";
           path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.pi4;
         };
