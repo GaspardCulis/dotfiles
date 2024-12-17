@@ -95,6 +95,7 @@
         extraArgs = {inherit inputs;};
         modules = [
           ./hosts/OVHCloud
+          ./modules
           disko.nixosModules.disko
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
