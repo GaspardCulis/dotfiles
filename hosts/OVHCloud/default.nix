@@ -59,7 +59,7 @@
     openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
   };
 
-  jaajcorp = {
+  gasdev = {
     services.caddy = {
       enable = true;
       enableOVHAcme = true;
