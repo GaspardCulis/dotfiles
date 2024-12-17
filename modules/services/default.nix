@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./caddy.nix
+    ./code-server.nix
     ./outline.nix
     ./pi-hole.nix
   ];

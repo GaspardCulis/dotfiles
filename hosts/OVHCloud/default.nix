@@ -86,6 +86,14 @@
     };
   };
 
+  # Redirect to Pi4
+  services.caddy.virtualHosts."pi.gasdev.fr *.pi.gasdev.fr" = {
+    logFormat = "output file ${config.services.caddy.logDir}/access-pi.gasdev.fr.log";
+    extraConfig = ''
+      reverse_proxy http://10.8.0.31
+    '';
+  };
+
   # SOPS
   sops.defaultSopsFile = ../../secrets/OVHCloud/default.yaml;
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
