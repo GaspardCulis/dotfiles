@@ -45,4 +45,9 @@
       EnvironmentFile = config.sops.templates."caddy.env".path;
     };
   };
+
+  # Redirect to Pi4
+  services.caddy.virtualHosts."pi.gasdev.fr".extraConfig = ''
+    reverse_proxy http://10.8.0.31
+  '';
 }
