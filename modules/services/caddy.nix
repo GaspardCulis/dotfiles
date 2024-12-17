@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jaajcorp.services.caddy;
+  cfg = config.gasdev.services.caddy;
 in {
-  options.jaajcorp.services.caddy = {
+  options.gasdev.services.caddy = {
     enable = mkEnableOption "Enable Caddy reverse proxy";
     enableOVHAcme = mkEnableOption "Enable OVH ACME provider configuration";
   };

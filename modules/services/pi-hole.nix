@@ -5,10 +5,10 @@
   ...
 }:
 with lib; let
-  cfg = config.jaajcorp.services.pi-hole;
+  cfg = config.gasdev.services.pi-hole;
   apConfigFile = config.sops.templates."pi-hole/create_ap.conf".path;
 in {
-  options.jaajcorp.services.pi-hole = {
+  options.gasdev.services.pi-hole = {
     enable = mkEnableOption "Enable pi-hole service";
     webAdminSecret = mkOption {
       type = types.nonEmptyStr;

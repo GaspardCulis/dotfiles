@@ -4,11 +4,11 @@
   ...
 }:
 with lib; let
-  cfg = config.jaajcorp.services.outline;
-  auth = config.jaajcorp.services.auth;
-  mail = config.jaajcorp.services.mail;
+  cfg = config.gasdev.services.outline;
+  auth = config.gasdev.services.auth;
+  mail = config.gasdev.services.mail;
 in {
-  options.jaajcorp.services.outline = {
+  options.gasdev.services.outline = {
     enable = mkEnableOption "Enable Outline service";
     domain = mkOption {
       type = types.nonEmptyStr;
