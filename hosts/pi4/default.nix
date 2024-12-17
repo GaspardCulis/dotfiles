@@ -84,7 +84,7 @@
   sops.secrets."wireguard/private_key".owner = "root";
 
   # Services config
-  jaajcorp.services.pi-hole = {
+  gasdev.services.pi-hole = {
     enable = true;
     webAdminSecret = "pi-hole/web_admin_password";
     ap = {
