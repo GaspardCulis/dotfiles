@@ -88,19 +88,6 @@
     services.caddy = {
       enable = true;
     };
-
-    services.pi-hole = {
-      enable = true;
-      webAdminSecret = "pi-hole/web_admin_password";
-      ap = {
-        enable = true;
-        internetIface = "end0";
-        wifiIface = "wlan0";
-        ssid = "Bababooey";
-        pskSopsKey = "pi-hole/psk";
-        freqBand = "5";
-      };
-    };
   };
 
   system.stateVersion = "24.11";
