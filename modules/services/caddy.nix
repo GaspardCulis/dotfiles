@@ -16,7 +16,10 @@ in {
   config = mkIf cfg.enable {
     services.caddy = {
       enable = true;
-      package = inputs.caddy.packages.${pkgs.system}.caddy; # FIX: Only use thi package if enableOVHAcme
+      package =
+        if cfg.enableOVHAcme
+        then inputs.caddy.packages.${pkgs.system}.caddy
+        else pkgs.caddy;
 
       globalConfig = mkIf cfg.enableOVHAcme ''
         acme_dns ovh {
