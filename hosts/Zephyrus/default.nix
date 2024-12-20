@@ -117,8 +117,9 @@
       user = "steam";
       desktopSession = "plasma";
     };
-    environment.systemPackages = [
-      inputs.suyu.packages."${pkgs.system}".default
+    environment.systemPackages = with pkgs; [
+      inputs.suyu.packages."${system}".default
+      vintagestory
     ];
     environment.sessionVariables = {
       XKB_DEFAULT_LAYOUT = "fr";

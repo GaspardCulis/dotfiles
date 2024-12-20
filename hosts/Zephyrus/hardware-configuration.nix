@@ -71,7 +71,12 @@
       "steam-unwrapped"
       "steam-jupiter-unwrapped"
       "steamdeck-hw-theme"
+      # Games
+      "vintagestory"
     ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-runtime-7.0.20"
+  ];
 
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
