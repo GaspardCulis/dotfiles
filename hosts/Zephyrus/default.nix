@@ -119,6 +119,7 @@
     };
     environment.systemPackages = with pkgs; [
       inputs.suyu.packages."${system}".default
+      prismlauncher
       vintagestory
     ];
     environment.sessionVariables = {
