@@ -111,11 +111,17 @@
       group = "steam";
     };
     services.desktopManager.plasma6.enable = true;
-    jovian.steam = {
-      enable = true;
-      autoStart = true;
-      user = "steam";
-      desktopSession = "plasma";
+    jovian = {
+      steam = {
+        enable = true;
+        autoStart = true;
+        user = "steam";
+        desktopSession = "plasma";
+      };
+      steamos = {
+        enableSysctlConfig = true;
+        enableDefaultCmdlineConfig = true;
+      };
     };
     environment.systemPackages = with pkgs; [
       inputs.suyu.packages."${system}".default
@@ -131,9 +137,6 @@
         "clocksource=tsc"
         "tsc=reliable"
       ];
-      kernel.sysctl = {
-        "kernel.split_lock_mitigate" = 0;
-      };
     };
   };
 
