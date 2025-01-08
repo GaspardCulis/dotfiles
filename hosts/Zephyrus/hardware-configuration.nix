@@ -14,7 +14,7 @@
 
   boot = {
     kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["amdgpu"];
     kernelParams = [
       "mem_sleep_default=deep" # Should fix/change suspend method
     ];
