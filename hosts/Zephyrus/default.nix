@@ -31,6 +31,7 @@
   systemd.services.ollama = {
     wantedBy = pkgs.lib.mkForce [];
   };
+  systemd.services.NetworkManager-wait-online.enable = false; # Faster boot time
 
   # Programs
   environment.systemPackages = with pkgs; [
