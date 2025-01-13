@@ -135,6 +135,7 @@
 
     environment.systemPackages = with pkgs; [
       mangohud
+      firefoxpwa
       # Games
       inputs.suyu.packages."${system}".default
       prismlauncher
