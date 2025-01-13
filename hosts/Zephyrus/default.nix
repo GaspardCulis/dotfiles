@@ -44,7 +44,6 @@
     unzip
     wg-netmanager
     podman-compose
-    mangohud
   ];
 
   #Podman
@@ -98,6 +97,7 @@
   # Steam specialisation
   specialisation.steam.configuration = {
     system.nixos.tags = ["steam"];
+
     users.groups.steam.name = "steam";
     users.users.steam = {
       isNormalUser = true;
@@ -111,7 +111,9 @@
       ];
       group = "steam";
     };
+
     services.desktopManager.plasma6.enable = true;
+
     jovian = {
       steam = {
         enable = true;
@@ -124,11 +126,20 @@
         enableDefaultCmdlineConfig = true;
       };
     };
+
+    programs.firefox = {
+      enable = true;
+      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
+    };
+
     environment.systemPackages = with pkgs; [
+      mangohud
+      # Games
       inputs.suyu.packages."${system}".default
       prismlauncher
       vintagestory
     ];
+
     environment.sessionVariables = {
       XKB_DEFAULT_LAYOUT = "fr";
     };
