@@ -130,7 +130,7 @@
       mangohud
       firefoxpwa
       # Games
-      inputs.suyu.packages."${system}".default
+      suyu
       prismlauncher
       vintagestory
     ];
