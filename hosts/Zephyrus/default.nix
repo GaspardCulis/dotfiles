@@ -24,13 +24,6 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   services.power-profiles-daemon.enable = true;
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
-  systemd.services.ollama = {
-    wantedBy = pkgs.lib.mkForce [];
-  };
   systemd.services.NetworkManager-wait-online.enable = false; # Faster boot time
 
   # Programs
