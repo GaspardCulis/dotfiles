@@ -3,6 +3,7 @@ theme="jaaj"
 [editor]
 line-number = "relative"
 mouse = false
+end-of-line-diagnostics = "hint"
 preview-completion-insert = false
 color-modes = true
 cursorline = true
@@ -14,6 +15,9 @@ character = "┆"
 [editor.lsp]
 auto-signature-help = false
 display-messages = true
+
+[editor.inline-diagnostics]
+cursor-line = "error"
 
 [editor.soft-wrap]
 enable = true
