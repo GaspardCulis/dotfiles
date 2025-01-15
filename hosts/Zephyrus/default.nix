@@ -129,6 +129,7 @@
     environment.systemPackages = with pkgs; [
       mangohud
       firefoxpwa
+      appimage-run
       # Games
       suyu
       prismlauncher
