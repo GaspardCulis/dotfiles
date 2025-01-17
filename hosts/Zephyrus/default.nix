@@ -126,6 +126,8 @@
       nativeMessagingHosts.packages = [pkgs.firefoxpwa];
     };
 
+    virtualisation.waydroid.enable = true;
+
     environment.systemPackages = with pkgs; [
       mangohud
       firefoxpwa
