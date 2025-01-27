@@ -134,6 +134,7 @@
       appimage-run
       # Games
       suyu
+      rpcs3
       prismlauncher
       vintagestory
     ];
