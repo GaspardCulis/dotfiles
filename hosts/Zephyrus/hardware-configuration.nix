@@ -50,6 +50,14 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # Fix pipewire battery drain (https://shorturl.at/G9iDS)
+    wireplumber.extraConfig = {
+      wireplumber.profiles = {
+        main = {
+          monitor.libcamera = "disabled";
+        };
+      };
+    };
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
