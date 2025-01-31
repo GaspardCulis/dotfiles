@@ -36,6 +36,7 @@
     htop
     unzip
     wg-netmanager
+    networkmanager-openconnect
     podman-compose
   ];
 
