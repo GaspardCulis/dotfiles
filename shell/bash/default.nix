@@ -7,7 +7,7 @@
     enable = true;
     bashrcExtra = ''
       . ${./.bashrc}
-      ${inputs.jaaj-rs.packages.${pkgs.system}.default}/bin/jaaj-rs
+      ${inputs.jaaj-rs.packages.${pkgs.system}.lolcat}/bin/jaaj-rs
     '';
   };
 

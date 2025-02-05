@@ -593,11 +593,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738683560,
-        "narHash": "sha256-uwO2Kq+PA2JTgj/+QYKMyhp8dOuZdUKgNiTxKewHAP4=",
+        "lastModified": 1738764929,
+        "narHash": "sha256-28JoqAGAucxQjWZBcWpZ0cGyZnhwiYt5Dsa/AMrRuXM=",
         "ref": "refs/heads/main",
-        "rev": "014c4f88a16c2cf9a8eef8a8ddc6524e5179b6d7",
-        "revCount": 12,
+        "rev": "a833fe8e208743cb3312e0e6679166d41fac8485",
+        "revCount": 13,
         "type": "git",
         "url": "https://git.ahur.ac/Jaaj-San/jaaj-rs"
       },
