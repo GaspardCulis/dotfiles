@@ -1,7 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.bash = {
     enable = true;
-    bashrcExtra = ". ${./.bashrc}";
+    bashrcExtra = ''
+      . ${./.bashrc}
+      ${inputs.jaaj-rs.packages.${pkgs.system}.default}/bin/jaaj-rs
+    '';
   };
 
   home.file = {

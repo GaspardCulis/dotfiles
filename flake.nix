@@ -53,6 +53,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    jaaj-rs = {
+      url = "git+https://git.ahur.ac/Jaaj-San/jaaj-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # SteamOS
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
