@@ -81,6 +81,8 @@
     group = "gaspard";
   };
 
+  nix.settings.trusted-users = ["root" "gaspard"];
+
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users = {
