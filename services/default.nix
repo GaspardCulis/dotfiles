@@ -3,6 +3,7 @@
     ./authelia
     ./garage
     ./musare
+    ./nakama
     ./outline
     ./shadowsocks
     ./stalwart-mail
