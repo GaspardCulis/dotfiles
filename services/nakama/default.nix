@@ -71,7 +71,7 @@
       cmd = [
         "-ecx"
         ''
-          echo $POSTGRES_PASSWORD && /nakama/nakama migrate up --config /nakama/data/config.yml --database.address postgres:$POSTGRES_PASSWORD@nakama-db:5432/nakama && exec /nakama/nakama --config /nakama/data/config.yml --database.address postgres:$POSTGRES_PASSWORD@nakama-db:5432/nakama
+          /nakama/nakama migrate up --config /nakama/data/config.yml --database.address postgres:$POSTGRES_PASSWORD@nakama-db:5432/nakama && exec /nakama/nakama --config /nakama/data/config.yml --database.address postgres:$POSTGRES_PASSWORD@nakama-db:5432/nakama
         ''
       ];
     };
