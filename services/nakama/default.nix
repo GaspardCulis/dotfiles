@@ -61,6 +61,7 @@
         "127.0.0.1:7351:7351"
       ];
       volumes = [
+        "nakama-data:/nakama/data"
         "${config.sops.templates."nakama/config.yml".path}:/nakama/data/config.yml"
       ];
       dependsOn = ["nakama-db"];
