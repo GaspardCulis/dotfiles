@@ -67,9 +67,7 @@
       environmentFiles = [
         config.sops.templates."nakama/db.env".path
       ];
-      entrypoint = ''
-        /bin/sh -ecx "/nakama/nakama migrate up --database.address postgres:$\{POSTGRES_PASSWORD}@postgres:5432/nakama && exec /nakama/nakama --database.address postgres:$\{POSTGRES_PASSWORD}@postgres:5432/nakama"
-      '';
+      cmd = ["/bin/sh" "-ecx" "/nakama/nakama migrate up --database.address postgres:$\{POSTGRES_PASSWORD}@nakama-db:5432/nakama && exec /nakama/nakama --database.address postgres:$\{POSTGRES_PASSWORD}@nakama-db:5432/nakama"];
     };
 
     nakama-db = {
