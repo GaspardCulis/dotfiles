@@ -35,6 +35,7 @@
     bottom
     htop
     unzip
+    cachix
     wg-netmanager
     networkmanager-openconnect
     podman-compose
