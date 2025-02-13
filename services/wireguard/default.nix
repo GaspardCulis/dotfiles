@@ -56,6 +56,11 @@
           publicKey = "F9AkCI0FGkrFhCq+SvCT1F2RG2ApNUy+SeIj1+VPtXI=";
           allowedIPs = ["10.8.0.31/32"];
         }
+        {
+          # Leito
+          publicKey = "L7FNP+XjELr4AYW3jeZNKNS25ukJ3rMvIz3YYSYd61Y=";
+          allowedIPs = ["10.8.0.111/32"];
+        }
       ];
     };
   };
