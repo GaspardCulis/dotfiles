@@ -11,6 +11,10 @@ alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
 
+# Nix
+alias ns="nix-shell"
+alias nsp="nix-shell -p"
+
 # uutils-coreutils aliases
 if command -v pacman &> /dev/null; then
 if pacman -Qi uutils-coreutils &> /dev/null; then
