@@ -5,6 +5,9 @@
 }: {
   programs.bash = {
     enable = true;
+    historyFileSize = 4294967295;
+    historySize = 4294967295;
+
     bashrcExtra = ''
       . ${./.bashrc}
       ${inputs.jaaj-rs.packages.${pkgs.system}.lolcat}/bin/jaaj-rs
