@@ -5,5 +5,6 @@
     ./stalwart-mail.nix
     ./outline.nix
     ./uptime-kuma.nix
+    ./vaultwarden.nix
   ];
 }
