@@ -34,6 +34,7 @@
     services.mail.enable = true;
     services.nakama.enable = true;
     services.outline.enable = true;
+    services.umami.enable = true;
     services.uptime-kuma.enable = true;
     services.vaultwarden.enable = true;
   };
