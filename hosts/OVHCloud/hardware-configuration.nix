@@ -1,6 +1,6 @@
 {
+  lib,
   modulesPath,
-  pkgs,
   ...
 }: {
   imports = [
@@ -8,20 +8,10 @@
     ./disko-config.nix
   ];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-
-  # Firewall
-  networking.nftables.enable = true;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [22 80 443];
-  };
-
-  # Proxy
-  environment.systemPackages = with pkgs; [
-    nss.tools
-  ];
 }
