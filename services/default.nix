@@ -11,6 +11,5 @@
     ./uptime-kuma
     ./vaultwarden
     ./webdav
-    ./wireguard
   ];
 }
