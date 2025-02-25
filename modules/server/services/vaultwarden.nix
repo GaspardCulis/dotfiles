@@ -17,7 +17,7 @@ in {
     };
     port = mkOption {
       type = types.ints.unsigned;
-      description = "Internal docker port used";
+      description = "Internal container port";
       default = 9092;
     };
   };

@@ -10,15 +10,15 @@ with lib; let
   mail = config.gasdev.services.mail;
 in {
   options.gasdev.services.outline = {
-    enable = mkEnableOption "Enable Outline service";
+    enable = mkEnableOption "Enable ervice";
     domain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which Outline is served.";
+      description = "Public domain";
       default = "outline.${domain}";
     };
     port = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the port on which Outline runs on.";
+      description = "Internal port";
       default = 7143;
     };
   };
