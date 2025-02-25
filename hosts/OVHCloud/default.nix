@@ -32,6 +32,7 @@
     services.auth.enable = true;
     services.mail.enable = true;
     services.outline.enable = true;
+    services.uptime-kuma.enable = true;
   };
 
   # SOPS
