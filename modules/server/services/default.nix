@@ -1,8 +1,9 @@
 {...}: {
   imports = [
     ./authelia.nix
-    ./outline.nix
+    ./garage.nix
     ./stalwart-mail.nix
+    ./outline.nix
     ./uptime-kuma.nix
   ];
 }
