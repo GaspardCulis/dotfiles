@@ -1,22 +1,14 @@
-{
-  inputs,
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../services
   ];
 
-  # Nix
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
+  # Firewall
+  networking.nftables.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [22];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -30,68 +22,15 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos"
   ];
 
-  # Podman
-  virtualisation = {
-    containers.enable = true;
-    oci-containers.backend = "podman";
-    podman = {
-      enable = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     helix
     git
   ];
 
-  # User config
-  users.groups.gaspard = {
-    name = "gaspard";
-  };
-  users.users.gaspard = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-    ];
-    group = "gaspard";
-    openssh.authorizedKeys.keys = config.users.users.root.openssh.authorizedKeys.keys;
-  };
-
   gasdev = {
-    services.caddy = {
-      enable = true;
-      enableOVHAcme = true;
-    };
-  };
-
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    users = {
-      # FIX: No user config file
-      "gaspard" = {
-        home.username = "gaspard";
-        home.homeDirectory = "/home/gaspard";
-        home.stateVersion = "24.11";
-
-        programs.home-manager.enable = true;
-        programs.direnv.enable = true;
-
-        imports = [
-          ../../shell
-          ../../editor
-        ];
-      };
-    };
-  };
-
-  # Redirect to Pi4
-  services.caddy.virtualHosts."pi.gasdev.fr *.pi.gasdev.fr" = {
-    logFormat = "output file ${config.services.caddy.logDir}/access-pi.gasdev.fr.log";
-    extraConfig = ''
-      reverse_proxy http://10.8.0.31
-    '';
+    services.auth.enable = true;
+    services.mail.enable = true;
+    services.outline.enable = true;
   };
 
   # SOPS
