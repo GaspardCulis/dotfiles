@@ -10,15 +10,15 @@ with lib; let
   mail = config.gasdev.services.mail;
 in {
   options.gasdev.services.auth = {
-    enable = mkEnableOption "Enable Authelia auth service";
+    enable = mkEnableOption "Enable service";
     domain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which Authelia is served.";
+      description = "Public domain";
       default = "auth.${domain}";
     };
     port = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the internal port exposed by the container.";
+      description = "Internal container port";
       default = 9091;
     };
   };

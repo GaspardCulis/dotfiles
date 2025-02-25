@@ -8,15 +8,15 @@ with lib; let
   cfg = config.gasdev.services.uptime-kuma;
 in {
   options.gasdev.services.uptime-kuma = {
-    enable = mkEnableOption "Enable Uptime Kuma service";
+    enable = mkEnableOption "Enable service";
     domain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which Uptime Kuma is served.";
+      description = "Public domain";
       default = "uptime.${domain}";
     };
     port = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the port on which Uptime Kuma runs on.";
+      description = "Internal container port";
       default = 3001;
     };
   };
