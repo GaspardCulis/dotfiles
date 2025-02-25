@@ -23,13 +23,14 @@ in {
   };
 
   config = {
+    sops.secrets."vaultwarden/ADMIN_TOKEN".owner = "root";
+    sops.secrets."vaultwarden/SMTP_USERNAME".owner = "root";
+    sops.secrets."vaultwarden/SMTP_PASSWORD".owner = "root";
+
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    sops.secrets."vaultwarden/ADMIN_TOKEN".owner = "root";
-    sops.secrets."vaultwarden/SMTP_USERNAME".owner = "root";
-    sops.secrets."vaultwarden/SMTP_PASSWORD".owner = "root";
     sops.templates."vaultwarden.env" = {
       content = ''
         ADMIN_TOKEN=${config.sops.placeholder."vaultwarden/ADMIN_TOKEN"}
