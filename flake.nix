@@ -91,23 +91,29 @@
         ];
       };
 
-      OVHCloud = nixpkgs.lib.nixosSystem {
-        extraArgs = {inherit inputs;};
-        modules = [
-          ./hosts/OVHCloud
-          ./modules
-          disko.nixosModules.disko
-          sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      OVHCloud = let
+        domain = "gasdev.fr";
+      in
+        nixpkgs.lib.nixosSystem {
+          extraArgs = {
+            inherit inputs;
+            inherit domain;
+          };
+          modules = [
+            ./hosts/OVHCloud
+            ./modules/common
+            ./modules/server
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+          ];
+        };
 
       pi4 = nixpkgs.lib.nixosSystem {
         extraArgs = {inherit inputs;};
         system = "aarch64-linux";
         modules = [
           ./hosts/pi4
-          ./modules
+          ./modules/common
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
           sops-nix.nixosModules.sops
