@@ -40,7 +40,7 @@ in {
       default = 7351;
     };
   };
-  config = {
+  config = mkIf cfg.enable {
     sops.secrets."nakama/DB_PASS".owner = "root";
     sops.secrets."nakama/SERVER_KEY".owner = "root";
     sops.secrets."nakama/ENCRYPTION_KEY".owner = "root";

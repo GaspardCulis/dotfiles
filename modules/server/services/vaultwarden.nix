@@ -22,7 +22,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     sops.secrets."vaultwarden/ADMIN_TOKEN".owner = "root";
     sops.secrets."vaultwarden/SMTP_USERNAME".owner = "root";
     sops.secrets."vaultwarden/SMTP_PASSWORD".owner = "root";

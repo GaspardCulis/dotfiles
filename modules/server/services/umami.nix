@@ -21,7 +21,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     sops.secrets."umami/APP_SECRET".owner = "root";
     sops.secrets."umami/DB_USER".owner = "root";
     sops.secrets."umami/DB_PASS".owner = "root";
