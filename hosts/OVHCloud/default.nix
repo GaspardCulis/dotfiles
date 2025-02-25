@@ -32,6 +32,7 @@
     services.auth.enable = true;
     services.garage.enable = true;
     services.mail.enable = true;
+    services.nakama.enable = true;
     services.outline.enable = true;
     services.uptime-kuma.enable = true;
     services.vaultwarden.enable = true;
