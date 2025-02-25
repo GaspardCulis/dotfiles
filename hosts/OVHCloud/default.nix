@@ -34,6 +34,7 @@
     services.mail.enable = true;
     services.outline.enable = true;
     services.uptime-kuma.enable = true;
+    services.vaultwarden.enable = true;
   };
 
   # SOPS
