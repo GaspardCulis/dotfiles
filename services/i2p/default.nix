@@ -8,8 +8,9 @@
   '';
 
   virtualisation.oci-containers.containers = {
-    uptime-kuma = {
+    i2p = {
       image = "docker.io/geti2p/i2p";
+      pull = "newer";
       autoStart = true;
       environment = {
         JVM_XMX = "256m";

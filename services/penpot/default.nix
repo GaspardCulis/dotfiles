@@ -43,6 +43,7 @@
   virtualisation.oci-containers.containers = {
     penpot-frontend = {
       image = "docker.io/penpotapp/frontend:latest";
+      pull = "newer";
       autoStart = true;
       ports = ["127.0.0.1:9001:80"];
       volumes = [
@@ -58,6 +59,7 @@
     };
     penpot-backend = {
       image = "docker.io/penpotapp/backend:latest";
+      pull = "newer";
       autoStart = true;
       volumes = [
         "penpot_assets:/opt/data/assets"
@@ -91,6 +93,7 @@
     };
     penpot-exporter = {
       image = "docker.io/penpotapp/exporter:latest";
+      pull = "newer";
       autoStart = true;
       environment = {
         PENPOT_PUBLIC_URI = "http://penpot-frontend";
@@ -99,6 +102,7 @@
     };
     penpot-postgres = {
       image = "docker.io/postgres:15";
+      pull = "newer";
       autoStart = true;
       ports = [];
       volumes = [
@@ -114,6 +118,7 @@
     };
     penpot-redis = {
       image = "docker.io/redis:7";
+      pull = "newer";
       autoStart = true;
     };
   };

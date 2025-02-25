@@ -18,6 +18,7 @@
   virtualisation.oci-containers.containers = {
     vaultwarden = {
       image = "docker.io/vaultwarden/server:latest-alpine";
+      pull = "newer";
       autoStart = true;
       ports = [
         "127.0.0.1:9092:80"

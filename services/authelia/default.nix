@@ -14,6 +14,7 @@
   virtualisation.oci-containers.containers = {
     authelia = {
       image = "docker.io/authelia/authelia:latest";
+      pull = "newer";
       autoStart = true;
       ports = ["127.0.0.1:9091:9091"];
       environment = {

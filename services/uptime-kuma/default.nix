@@ -6,6 +6,7 @@
   virtualisation.oci-containers.containers = {
     uptime-kuma = {
       image = "docker.io/louislam/uptime-kuma:1";
+      pull = "newer";
       autoStart = true;
       ports = ["127.0.0.1:3001:3001"];
       volumes = [
