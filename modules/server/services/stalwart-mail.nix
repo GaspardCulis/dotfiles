@@ -8,25 +8,25 @@ with lib; let
   cfg = config.gasdev.services.mail;
 in {
   options.gasdev.services.mail = {
-    enable = mkEnableOption "Enable Mail service";
+    enable = mkEnableOption "Enable service";
     smtpDomain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which the SMTP API is served.";
+      description = "Public SMTP domain";
       default = "mail.${domain}";
     };
     adminDomain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which the webadmin interface iis served.";
+      description = "Public Web admin-panel domain";
       default = "mailadmin.${domain}";
     };
     jmapPort = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the internal port used by the JMAP API";
+      description = "Internal JMAP port";
       default = 8080;
     };
     adminPort = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the internal port used by the Webadmin server";
+      description = "Internal Web admin-panel port";
       default = 40312;
     };
   };

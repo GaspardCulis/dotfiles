@@ -9,30 +9,30 @@ with lib; let
   cfg = config.gasdev.services.garage;
 in {
   options.gasdev.services.garage = {
-    enable = mkEnableOption "Enable Garage service";
+    enable = mkEnableOption "Enable service";
     domain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which the S3 API is served.";
+      description = "Public S3 API domain";
       default = "s3.${domain}";
     };
     webDomain = mkOption {
       type = types.nonEmptyStr;
-      description = "Defines the domain on which the Web S3 API is served.";
+      description = "Public S3 Web API domain";
       default = "s3web.${domain}";
     };
     apiPort = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the port on which the S3 API runs on.";
+      description = "Internal S3 API port";
       default = 3900;
     };
     rpcPort = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the port on which the RPC API runs on.";
+      description = "Internal RPC port";
       default = 3901;
     };
     webPort = mkOption {
       type = types.ints.unsigned;
-      description = "Defines the port on which the Web S3 API runs on.";
+      description = "Internal Web API port";
       default = 3902;
     };
   };
