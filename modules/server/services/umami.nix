@@ -22,13 +22,13 @@ in {
   };
 
   config = {
-    services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
-      reverse_proxy http://127.0.0.1:${toString cfg.port}
-    '';
-
     sops.secrets."umami/APP_SECRET".owner = "root";
     sops.secrets."umami/DB_USER".owner = "root";
     sops.secrets."umami/DB_PASS".owner = "root";
+
+    services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
+      reverse_proxy http://127.0.0.1:${toString cfg.port}
+    '';
 
     sops.templates."umami.env" = {
       content = ''

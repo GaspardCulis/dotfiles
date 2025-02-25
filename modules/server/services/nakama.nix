@@ -41,6 +41,15 @@ in {
     };
   };
   config = {
+    sops.secrets."nakama/DB_PASS".owner = "root";
+    sops.secrets."nakama/SERVER_KEY".owner = "root";
+    sops.secrets."nakama/ENCRYPTION_KEY".owner = "root";
+    sops.secrets."nakama/REFRESH_ENCRYPTION_KEY".owner = "root";
+    sops.secrets."nakama/HTTP_KEY".owner = "root";
+    sops.secrets."nakama/CONSOLE_USER".owner = "root";
+    sops.secrets."nakama/CONSOLE_PASS".owner = "root";
+    sops.secrets."nakama/SIGNING_KEY".owner = "root";
+
     services.caddy.virtualHosts."${cfg.grpcDomain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.grpcPort}
     '';
@@ -52,15 +61,6 @@ in {
     services.caddy.virtualHosts."${cfg.webDomain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.webPort}
     '';
-
-    sops.secrets."nakama/DB_PASS".owner = "root";
-    sops.secrets."nakama/SERVER_KEY".owner = "root";
-    sops.secrets."nakama/ENCRYPTION_KEY".owner = "root";
-    sops.secrets."nakama/REFRESH_ENCRYPTION_KEY".owner = "root";
-    sops.secrets."nakama/HTTP_KEY".owner = "root";
-    sops.secrets."nakama/CONSOLE_USER".owner = "root";
-    sops.secrets."nakama/CONSOLE_PASS".owner = "root";
-    sops.secrets."nakama/SIGNING_KEY".owner = "root";
 
     sops.templates."nakama/db.env" = {
       content = ''
