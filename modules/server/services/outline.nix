@@ -1,5 +1,6 @@
 {
   config,
+  domain,
   lib,
   ...
 }:
@@ -13,24 +14,22 @@ in {
     domain = mkOption {
       type = types.nonEmptyStr;
       description = "Defines the domain on which Outline is served.";
+      default = "outline.${domain}";
     };
     port = mkOption {
       type = types.ints.unsigned;
       description = "Defines the port on which Outline runs on.";
-    };
-    secrets = {
-      oidcClientSecretFile = mkOption {
-        type = types.nonEmptyStr;
-      };
-      smtpPassword = mkOption {
-        type = types.nonEmptyStr;
-      };
+      default = 7143;
     };
   };
 
   config = mkIf cfg.enable {
+    sops.secrets."outline/OIDC_CLIENT_SECRET".owner = "outline";
+    sops.secrets."outline/SMTP_PASSWORD".owner = "outline";
+    sops.secrets."outline/S3_SECRET_KEY".owner = "outline";
+
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
-      reverse_proxy http://127.0.0.1:${cfg.port}
+      reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
     services.outline = {
@@ -45,17 +44,17 @@ in {
         tokenUrl = "https://${auth.domain}/api/oidc/token";
         displayName = "Authelia";
         clientId = "outline";
-        clientSecretFile = cfg.secrets.oidcClientSecretFile;
+        clientSecretFile = config.sops.secrets."outline/OIDC_CLIENT_SECRET".path;
         scopes = ["openid" "offline_access" "profile" "email"];
       };
 
       smtp = {
-        host = "${mail.stmpDomain}";
+        host = "${mail.smtpDomain}";
         port = 465;
         username = "postmaster";
-        passwordFile = config.secrets.smtpPassword;
-        fromEmail = "outline@${mail.domain}";
-        replyEmail = "no-reply@${mail.domain}";
+        passwordFile = config.sops.secrets."outline/SMTP_PASSWORD".path;
+        fromEmail = "outline@${domain}";
+        replyEmail = "no-reply@${domain}";
       };
 
       storage = {
