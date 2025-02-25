@@ -10,7 +10,7 @@ with lib; let
   mail = config.gasdev.services.mail;
 in {
   options.gasdev.services.outline = {
-    enable = mkEnableOption "Enable ervice";
+    enable = mkEnableOption "Enable service";
     domain = mkOption {
       type = types.nonEmptyStr;
       description = "Public domain";
