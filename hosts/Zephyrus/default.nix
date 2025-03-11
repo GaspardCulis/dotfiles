@@ -74,6 +74,7 @@
       "wheel"
       "video"
       "seat"
+      "uucp"
       "audio"
       "adbusers"
       "gamemode"
