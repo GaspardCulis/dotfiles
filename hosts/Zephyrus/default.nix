@@ -76,6 +76,7 @@
       "seat"
       "uucp"
       "audio"
+      "dialout"
       "adbusers"
       "gamemode"
       "networkmanager"
