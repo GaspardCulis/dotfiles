@@ -13,6 +13,8 @@ in {
   ];
 
   options.gasdev.desktop = {
+    enable = mkEnableOption "Enable desktop config";
+
     apps = {
       terminal = mkOption {
         description = "Default terminal emulator app";
@@ -51,7 +53,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     home.packages = [cfg.theme.font.package] ++ cfg.theme.font.extraPackages;
 
     fonts.fontconfig.enable = true;
