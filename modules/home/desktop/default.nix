@@ -1,13 +1,17 @@
 {
   config,
   _inputs,
-  _pkgs,
+  pkgs,
   lib,
   ...
 }:
 with lib; let
-  _cfg = config.gasdev.desktop;
+  cfg = config.gasdev.desktop;
 in {
+  imports = [
+    ./hypr
+  ];
+
   options.gasdev.desktop = {
     apps = {
       terminal = mkOption {
@@ -31,9 +35,25 @@ in {
         default = "anyrun";
       };
     };
+    theme = {
+      font = {
+        name = mkOption {
+          description = "Default font name";
+          type = types.string;
+          default = "FiraCode Nerd Font";
+        };
+        package = mkPackageOption pkgs "fira-code-nerdfont" {};
+        extraPackages = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [pkgs.fira-code-symbols];
+        };
+      };
+    };
   };
 
-  imports = [
-    ./hypr
-  ];
+  config = {
+    home.packages = [cfg.theme.font.package] ++ cfg.theme.font.extraPackages;
+
+    fonts.fontconfig.enable = true;
+  };
 }

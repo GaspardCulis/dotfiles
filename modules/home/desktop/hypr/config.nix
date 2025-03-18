@@ -175,7 +175,7 @@
 
   plugin = {
     hy3 = {
-      tabs.text_font = "FiraCode Nerd Font";
+      tabs.text_font = config.gasdev.desktop.theme.font.name;
     };
   };
 
