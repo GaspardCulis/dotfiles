@@ -62,6 +62,17 @@ in {
           default = [];
         };
       };
+      gtk = {
+        enable = mkEnableOption "Enable GTK config" {
+          default = true;
+        };
+        name = mkOption {
+          description = "Default GTK theme";
+          type = types.string;
+          default = "WhiteSur";
+        };
+        package = mkPackageOption pkgs "WhiteSur-Dark-solid-nord" {};
+      };
     };
   };
 
@@ -75,5 +86,17 @@ in {
       ++ cfg.theme.icons.extraPackages;
 
     fonts.fontconfig.enable = true;
+
+    gtk = {
+      enable = cfg.theme.gtk.enable;
+      theme = {
+        package = cfg.theme.gtk.package;
+        name = cfg.theme.gtk.name;
+      };
+      iconTheme = {
+        package = cfg.theme.icons.package;
+        name = cfg.theme.icons.name;
+      };
+    };
   };
 }
