@@ -66,9 +66,9 @@ in {
         name = mkOption {
           description = "Default GTK theme";
           type = types.string;
-          default = "WhiteSur";
+          default = "WhiteSur-Dark-solid-nord";
         };
-        package = mkPackageOption pkgs "WhiteSur-Dark-solid-nord" {};
+        package = mkPackageOption pkgs "whitesur-gtk-theme" {};
       };
     };
   };
