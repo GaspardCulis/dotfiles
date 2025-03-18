@@ -1,19 +1,20 @@
 {...}: {
-  imports = [
-    ../shell
-    ../term
-    ../editor
-    ../de
-    ../gaming
-    ../themes/pomme.nix
-  ];
-
   home.username = "gaspard";
   home.homeDirectory = "/home/gaspard";
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
+
+  gasdev = {
+    shell = {
+      bash.enable = true;
+      emulator.alacritty.enable = true;
+    };
+    desktop = {
+      hypr.enable = true;
+    };
+  };
 
   xdg.mimeApps = {
     enable = true;

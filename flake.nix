@@ -128,6 +128,7 @@
 
         extraSpecialArgs = {inherit inputs;};
         modules = [
+          ./modules/home
           ./users/gaspard.nix
         ];
       };
