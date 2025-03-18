@@ -173,6 +173,12 @@
     workspace_swipe = true;
   };
 
+  plugin = {
+    hy3 = {
+      tabs.text_font = "FiraCode Nerd Font";
+    };
+  };
+
   xwayland = {
     force_zero_scaling = true;
   };
