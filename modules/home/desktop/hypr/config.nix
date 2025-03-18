@@ -32,10 +32,10 @@
       "$mainMod SHIFT, E, pin,"
       "$mainMod, F, fullscreen"
 
-      "$mainMod, RETURN, exec, ${config.gasdev.desktop.terminal}"
-      "$mainMod, B, exec, ${config.gasdev.desktop.browser}"
-      "$mainMod, N, exec, ${config.gasdev.desktop.explorer}"
-      "$mainMod, R, exec, ${config.gasdev.desktop.launcher}"
+      "$mainMod, RETURN, exec, ${config.gasdev.desktop.apps.terminal}"
+      "$mainMod, B, exec, ${config.gasdev.desktop.apps.browser}"
+      "$mainMod, N, exec, ${config.gasdev.desktop.apps.explorer}"
+      "$mainMod, R, exec, ${config.gasdev.desktop.apps.launcher}"
 
       "$mainMod, M, exec, prismlauncher"
       "$mainMod, L, exec, swaylock-hyprland"
