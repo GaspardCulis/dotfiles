@@ -29,14 +29,15 @@ in {
       enable = true;
       historyFileSize = 4294967295;
       historySize = 4294967295;
-      sessionVariables = {
-        EDITOR = "hx";
-      };
       initExtra = mkIf cfg.jaaj.enable ''
         eval "$(starship init bash)"
         eval "$(zoxide init --cmd cd bash)"
 
-        ${if cfg.jaaj.colors then inputs.jaaj-rs.packages.${pkgs.system}.lolcat else inputs.jaaj-rs.packages.${pkgs.system}.default}/bin/jaaj-rs
+        ${
+          if cfg.jaaj.colors
+          then inputs.jaaj-rs.packages.${pkgs.system}.lolcat
+          else inputs.jaaj-rs.packages.${pkgs.system}.default
+        }/bin/jaaj-rs
       '';
       bashrcExtra = ''
         [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
@@ -46,20 +47,20 @@ in {
         bind '"\e[B":history-search-forward'
       '';
       shellAliases = {
-        gs="git status";
-        ga="git add -p";
-        gc="git commit";
-        gp="git push";
-        gpl="git pull";
+        gs = "git status";
+        ga = "git add -p";
+        gc = "git commit";
+        gp = "git push";
+        gpl = "git pull";
 
-        ns="nix-shell";
-        nsp="nix-shell -p";
+        ns = "nix-shell";
+        nsp = "nix-shell -p";
 
-        ls="lsd";
-        l="lsd -alh";
+        ls = "lsd";
+        l = "lsd -alh";
 
-        ip="ip --color=auto";
-        tld="tree -L 2";
+        ip = "ip --color=auto";
+        tld = "tree -L 2";
       };
     };
     home.packages = [

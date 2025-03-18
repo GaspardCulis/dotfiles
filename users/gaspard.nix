@@ -11,9 +11,8 @@
       bash.enable = true;
       emulator.alacritty.enable = true;
     };
-    desktop = {
-      hypr.enable = true;
-    };
+    desktop.hypr.enable = true;
+    editor.helix.enable = true;
   };
 
   xdg.mimeApps = {
