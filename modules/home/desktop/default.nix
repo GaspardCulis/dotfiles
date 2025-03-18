@@ -50,11 +50,29 @@ in {
           default = [pkgs.fira-code-symbols];
         };
       };
+      icons = {
+        name = mkOption {
+          description = "Default icon pack name";
+          type = types.string;
+          default = "WhiteSur";
+        };
+        package = mkPackageOption pkgs "whitesur-icon-theme" {};
+        extraPackages = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [];
+        };
+      };
     };
   };
 
   config = mkIf cfg.enable {
-    home.packages = [cfg.theme.font.package] ++ cfg.theme.font.extraPackages;
+    home.packages =
+      [
+        cfg.theme.font.package
+        cfg.theme.icons.package
+      ]
+      ++ cfg.theme.font.extraPackages
+      ++ cfg.theme.icons.extraPackages;
 
     fonts.fontconfig.enable = true;
   };
