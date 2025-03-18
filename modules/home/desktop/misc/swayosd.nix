@@ -11,7 +11,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.swayosd.enable = true;
+    services.swayosd = {
+      enable = true;
+      stylePath = "${config.home.homeDirectory}/.config/swayosd/style.css";
+    };
 
     home.file = {
       ".config/swayosd/style.css".text = ''
