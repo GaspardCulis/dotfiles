@@ -11,7 +11,10 @@
       bash.enable = true;
       emulator.alacritty.enable = true;
     };
-    desktop.hypr.enable = true;
+    desktop = {
+      enable = true;
+      hypr.enable = true;
+    };
     editor.helix.enable = true;
   };
 
