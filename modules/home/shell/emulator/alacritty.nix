@@ -5,7 +5,7 @@
 }:
 with lib; let
   cfg = config.gasdev.shell.emulator.alacritty;
-in  {
+in {
   options.gasdev.shell.emulator.alacritty = {
     enable = mkEnableOption "Enable module";
   };
@@ -32,15 +32,15 @@ in  {
         };
         font = {
           size = 10.0;
-          normal.family = "FiraCode Nerd Font";
-          bold.family = "FiraCode Nerd Font";
-          italic.family = "FiraCode Nerd Font";
-          bold_italic.family = "FiraCode Nerd Font";
+          normal.family = config.gasdev.desktop.theme.font.name;
+          bold.family = config.gasdev.desktop.theme.font.name;
+          italic.family = config.gasdev.desktop.theme.font.name;
+          bold_italic.family = config.gasdev.desktop.theme.font.name;
         };
         window = {
           opacity = 0.8;
         };
       };
     };
-  };  
+  };
 }
