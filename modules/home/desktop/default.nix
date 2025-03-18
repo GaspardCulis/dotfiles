@@ -18,22 +18,22 @@ in {
     apps = {
       terminal = mkOption {
         description = "Default terminal emulator app";
-        type = types.string;
+        type = types.str;
         default = "alacritty";
       };
       browser = mkOption {
         description = "Default web browser app";
-        type = types.string;
+        type = types.str;
         default = "firefox";
       };
       explorer = mkOption {
         description = "Default file explorer app";
-        type = types.string;
+        type = types.str;
         default = "kitty --class=explorer yazi";
       };
       launcher = mkOption {
         description = "Default quick launcher app";
-        type = types.string;
+        type = types.str;
         default = "anyrun";
       };
     };
@@ -46,7 +46,7 @@ in {
       font = {
         name = mkOption {
           description = "Default font name";
-          type = types.string;
+          type = types.str;
           default = "FiraCode Nerd Font";
         };
         package = mkPackageOption pkgs "fira-code-nerdfont" {};
@@ -58,7 +58,7 @@ in {
       icons = {
         name = mkOption {
           description = "Default icon pack name";
-          type = types.string;
+          type = types.str;
           default = "WhiteSur";
         };
         package = mkPackageOption pkgs "whitesur-icon-theme" {};
@@ -70,7 +70,7 @@ in {
       gtk = {
         name = mkOption {
           description = "Default GTK theme";
-          type = types.string;
+          type = types.str;
           default = "WhiteSur-Dark-solid-nord";
         };
         package = mkPackageOption pkgs "whitesur-gtk-theme" {};
