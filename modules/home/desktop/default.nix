@@ -63,9 +63,6 @@ in {
         };
       };
       gtk = {
-        enable = mkEnableOption "Enable GTK config" {
-          default = true;
-        };
         name = mkOption {
           description = "Default GTK theme";
           type = types.string;
@@ -88,7 +85,7 @@ in {
     fonts.fontconfig.enable = true;
 
     gtk = {
-      enable = cfg.theme.gtk.enable;
+      enable = true;
       theme = {
         package = cfg.theme.gtk.package;
         name = cfg.theme.gtk.name;
