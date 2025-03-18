@@ -38,6 +38,11 @@ in {
       };
     };
     theme = {
+      color-scheme = mkOption {
+        description = "Default color scheme name";
+        type = types.enum ["light" "dark"];
+        default = "light";
+      };
       font = {
         name = mkOption {
           description = "Default font name";
@@ -76,11 +81,22 @@ in {
   config = mkIf cfg.enable {
     home.packages =
       [
+        pkgs.dconf
+
         cfg.theme.font.package
         cfg.theme.icons.package
       ]
       ++ cfg.theme.font.extraPackages
       ++ cfg.theme.icons.extraPackages;
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme =
+          if cfg.theme.color-scheme == "light"
+          then "prefer-light"
+          else "prefer-dark";
+      };
+    };
 
     fonts.fontconfig.enable = true;
 
