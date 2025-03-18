@@ -10,6 +10,7 @@ with lib; let
 in {
   imports = [
     ./hypr
+    ./misc/swayosd.nix
   ];
 
   options.gasdev.desktop = {
