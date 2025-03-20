@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     ./shell
-    ./editor
     ./desktop
   ];
 }
