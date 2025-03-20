@@ -82,6 +82,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    gasdev.desktop.apps = {
+      alacritty.enable = cfg.apps.terminal == "alacritty";
+      firefox.enable = cfg.apps.browser == "firefox";
+    };
+
     home.packages =
       [
         pkgs.dconf
