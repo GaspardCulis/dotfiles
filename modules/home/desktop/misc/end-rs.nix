@@ -16,6 +16,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    gasdev.desktop.eww.enable = true;
+
     home.file = {
       ".config/end-rs/config.toml".source = (pkgs.formats.toml {}).generate "end-rs-config.toml" {
         eww_binary_path = "${pkgs.eww}/bin/eww";
