@@ -1,4 +1,12 @@
-{config}: {
+{config}: let
+  swayosd-client = "${config.gasdev.desktop.swayosd.package}/bin/swayosd-client";
+  uwu-launcher = ../../../../bin/uwu-launcher;
+  swaylock = ../../../../bin/swaylock-hyprland;
+
+  gamemode = ../../../../de/hypr/gamemode.sh;
+  power-profile-next = "${../../../../bar/eww/scripts/power_profile} next";
+  refresh-rate-toggle = "${../../../../bar/eww/scripts/refresh_rate} toggle";
+in {
   monitor = ",preferred,auto,1";
 
   env = [
@@ -37,14 +45,24 @@
       "$mainMod, R, exec, ${config.gasdev.desktop.apps.launcher}"
 
       "$mainMod, M, exec, prismlauncher"
-      "$mainMod, L, exec, swaylock-hyprland"
-      "$mainMod, U, exec, ${../../../../bin/uwu-launcher}"
+      "$mainMod, L, exec, ${swaylock}"
+      "$mainMod, U, exec, ${uwu-launcher}"
 
-      ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-      ",XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
+      ",XF86AudioMute, exec, ${swayosd-client} --output-volume mute-toggle"
+      ",XF86AudioMicMute, exec, ${swayosd-client} --input-volume mute-toggle"
+
+      ", XF86AudioPlay, exec, playerctl play-pause"
+      ", XF86AudioPause, exec, playerctl play-pause"
+      ", XF86AudioNext, exec, playerctl next"
+      ", XF86AudioPrev, exec, playerctl previous"
 
       ",237, exec, brightnessctl -d asus::kbd_backlight set 33%-"
       ",238, exec, brightnessctl -d asus::kbd_backlight set 33%+"
+
+      "$mainMod, F5, exec, ${gamemode}"
+      ",XF86Launch4, exec, ${power-profile-next}"
+      "$mainMod+SHIFT, o, exec, ${refresh-rate-toggle}"
+
       # Hy3
       "$mainMod, d, hy3:makegroup, h, ephemeral"
       "$mainMod+SHIFT, d, hy3:makegroup, v, ephemeral"
@@ -93,10 +111,10 @@
     );
 
   binde = [
-    ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
-    ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
-    ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
-    ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
+    ",XF86AudioLowerVolume, exec, ${swayosd-client} --output-volume lower"
+    ",XF86AudioRaiseVolume, exec, ${swayosd-client} --output-volume raise"
+    ",XF86MonBrightnessDown, exec, ${swayosd-client} --brightness lower"
+    ",XF86MonBrightnessUp, exec, ${swayosd-client} --brightness raise"
 
     "$mainMod+ALT, right, resizeactive, 30 0"
     "$mainMod+ALT, left, resizeactive, -30 0"
