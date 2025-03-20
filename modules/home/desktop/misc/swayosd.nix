@@ -9,7 +9,7 @@ with lib; let
 in {
   options.gasdev.desktop.swayosd = {
     enable = mkEnableOption "Enable opiniated SwayOSD service";
-    package = mkPackageOption pkgs "swayosd";
+    package = mkPackageOption pkgs "swayosd" {};
   };
 
   config = mkIf cfg.enable {
