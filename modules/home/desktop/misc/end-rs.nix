@@ -57,22 +57,21 @@ in {
     systemd.user = {
       services.end-rs = {
         Unit = {
-          Description = " Eww notification daemon (in Rust)";
-          PartOf = [config.wayland.systemd.target];
-          After = [config.wayland.systemd.target];
-          ConditionEnvironment = "WAYLAND_DISPLAY";
-          StartLimitBurst = 5;
-          StartLimitIntervalSec = 10;
+          Description = "Eww notification daemon (in Rust)";
+          PartOf = ["graphical-session.target"];
         };
 
         Service = {
-          Type = "simple";
+          Type = "dbus";
+          BusName = "org.freedesktop.Notifications";
           ExecStart = "${cfg.package}/bin/end-rs daemon";
           Restart = "always";
           RestartSec = "2s";
         };
 
-        Install = {WantedBy = [config.wayland.systemd.target];};
+        Install = {
+          WantedBy = ["graphical-session.target"];
+        };
       };
     };
   };
