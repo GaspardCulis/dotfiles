@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.gasdev.editor.helix;
+  cfg = config.gasdev.shell.helix;
 in {
-  options.gasdev.editor.helix = {
+  options.gasdev.shell.helix = {
     enable = mkEnableOption "Enable opiniated helix config";
   };
 
