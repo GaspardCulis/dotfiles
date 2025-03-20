@@ -11,6 +11,7 @@ in {
   imports = [
     ./hypr
     ./misc/swayosd.nix
+    ./misc/end-rs.nix
   ];
 
   options.gasdev.desktop = {
