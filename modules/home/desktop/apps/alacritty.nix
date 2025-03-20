@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.gasdev.shell.emulator.alacritty;
+  cfg = config.gasdev.desktop.apps.alacritty;
 in {
-  options.gasdev.shell.emulator.alacritty = {
+  options.gasdev.desktop.apps.alacritty = {
     enable = mkEnableOption "Enable module";
   };
 

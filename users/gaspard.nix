@@ -9,7 +9,6 @@
   gasdev = {
     shell = {
       bash.enable = true;
-      emulator.alacritty.enable = true;
     };
     desktop = {
       enable = true;
