@@ -9,13 +9,13 @@
   gasdev = {
     shell = {
       bash.enable = true;
+      helix.enable = true;
     };
     desktop = {
       enable = true;
       hypr.enable = true;
       end-rs.enable = true;
     };
-    editor.helix.enable = true;
   };
 
   services = {
