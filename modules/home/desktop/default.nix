@@ -10,6 +10,7 @@ with lib; let
 in {
   imports = [
     ./hypr
+    ./apps
     ./misc/swayosd.nix
     ./misc/end-rs.nix
   ];
