@@ -9,8 +9,9 @@ with lib; let
   cfg = config.gasdev.desktop;
 in {
   imports = [
-    ./hypr
     ./apps
+    ./eww
+    ./hypr
     ./misc/swayosd.nix
     ./misc/end-rs.nix
   ];
