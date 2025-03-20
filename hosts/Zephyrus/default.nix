@@ -88,6 +88,9 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
+    sharedModules = [
+      ../../modules/home
+    ];
     users = {
       "gaspard" = import ../../users/gaspard.nix;
     };
