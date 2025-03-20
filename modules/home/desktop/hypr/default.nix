@@ -10,6 +10,14 @@ with lib; let
 in {
   options.gasdev.desktop.hypr = {
     enable = mkEnableOption "Enable opiniated Hyprland config";
+    extraPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = with pkgs; [
+        egl-wayland # For NVIDIA compatibility
+        xdg-utils
+        wl-clipboard
+      ];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -19,6 +27,22 @@ in {
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       plugins = [inputs.hy3.packages.${pkgs.system}.hy3];
     };
+
+    gasdev.desktop = {
+      swayosd.enable = true;
+    };
+
+    home.packages = with pkgs;
+      [
+        # Required packages
+        brightnessctl
+        playerctl
+        grim
+        slurp
+        hyprpicker
+        swaylock-effects
+      ]
+      ++ cfg.extraPackages;
 
     home.pointerCursor = {
       gtk.enable = true;
