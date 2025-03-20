@@ -19,6 +19,10 @@
     editor.helix.enable = true;
   };
 
+  services = {
+    udiskie.enable = true;
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
