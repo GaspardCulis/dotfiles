@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -8,11 +9,13 @@ with lib; let
 in {
   options.gasdev.desktop.swayosd = {
     enable = mkEnableOption "Enable opiniated SwayOSD service";
+    package = mkPackageOption pkgs "swayosd";
   };
 
   config = mkIf cfg.enable {
     services.swayosd = {
       enable = true;
+      package = cfg.package;
       stylePath = "${config.home.homeDirectory}/.config/swayosd/style.css";
     };
 
