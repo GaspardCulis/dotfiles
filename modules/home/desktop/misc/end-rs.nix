@@ -61,6 +61,8 @@ in {
         Unit = {
           Description = "Eww notification daemon (in Rust)";
           PartOf = ["graphical-session.target"];
+          Requires = ["eww.service"];
+          After = ["eww.service"];
         };
 
         Service = {
