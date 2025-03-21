@@ -10,6 +10,7 @@
     shell = {
       bash.enable = true;
       helix.enable = true;
+      zellij.enable = true;
     };
     desktop = {
       enable = true;
