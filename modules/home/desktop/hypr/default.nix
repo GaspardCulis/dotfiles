@@ -31,6 +31,7 @@ in {
     gasdev.desktop = {
       swayosd.enable = true;
       end-rs.enable = true;
+      swww.enable = true;
       eww = {
         enable = true;
         widget = {
@@ -43,9 +44,6 @@ in {
 
     services = {
       udiskie.enable = true;
-      services = {
-        swww.enable = true;
-      };
     };
 
     home.packages = with pkgs;
