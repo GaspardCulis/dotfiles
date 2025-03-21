@@ -30,6 +30,6 @@ in {
   };
 
   config = mkIf config.gasdev.desktop.enable {
-    home.packages = cfg.packages + cfg.extraPackages;
+    home.packages = cfg.packages ++ cfg.extraPackages;
   };
 }
