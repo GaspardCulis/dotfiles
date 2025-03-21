@@ -30,6 +30,15 @@ in {
 
     gasdev.desktop = {
       swayosd.enable = true;
+      end-rs.enable = true;
+      eww = {
+        enable = true;
+        widget = {
+          bar.enable = true;
+          music.enable = true;
+          timer.enable = true;
+        };
+      };
     };
 
     home.packages = with pkgs;
