@@ -54,7 +54,7 @@ in {
             ExecStart =
               if type == "simple"
               then "${cfg.package}/bin/eww open ${name}"
-              else "${cfg.package}/bin/eww open ${name}:${name}0 --arg ${name}0:monitor=${toString monitor}";
+              else "${cfg.package}/bin/eww open-many ${name}:${name}0 --arg ${name}0:monitor=${toString monitor}";
           };
 
           Install = {
