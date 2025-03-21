@@ -50,6 +50,7 @@ in {
         slurp
         hyprpicker
         swaylock-effects
+        networkmanagerapplet
       ]
       ++ cfg.extraPackages;
 
