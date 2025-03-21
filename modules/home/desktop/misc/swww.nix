@@ -17,6 +17,7 @@ in {
     home.sessionVariables = {
       SWWW_TRANSITION = "random";
       SWWW_TRANSITION_FPS = "60";
+      SWWW_TRANSITION_DURATION = "1.5";
     };
 
     home.packages = [
