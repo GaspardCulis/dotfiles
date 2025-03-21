@@ -208,6 +208,12 @@ in {
     workspace_swipe = true;
   };
 
+  misc = {
+    disable_hyprland_logo = true;
+    disable_splash_rendering = true;
+    force_default_wallpaper = 0;
+  };
+
   plugin = {
     hy3 = {
       tabs.text_font = config.gasdev.desktop.theme.font.name;
