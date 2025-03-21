@@ -9,6 +9,10 @@
 in {
   monitor = ",preferred,auto,1";
 
+  exec-once = [
+    "nm-applet"
+  ];
+
   env = [
     "GDK_BACKEND, wayland,x11"
     "SDL_VIDEODRIVER, wayland"
