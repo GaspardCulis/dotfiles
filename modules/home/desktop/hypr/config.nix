@@ -137,6 +137,27 @@ in {
     ", mouse_up, hy3:focustab, r, require_hovered"
   ];
 
+  windowrulev2 = [
+    "workspace 9 silent, class:(WebCord)"
+    "workspace 9 silent, class:(Element)"
+
+    "float, class:(localsend_app)"
+    "float, class:(nm-connection-editor)"
+    "float, class:(.blueman-manager-wrapped)"
+    "float, class:(localsend_app)"
+    "float, class:(PrismLauncher)"
+    # UwU
+    "float, class:(uwu-uwu)"
+    "size 470 650, class:(uwu-uwu)"
+    "move 70% 15%, class:(uwu-uwu)"
+    "float, class:(uwu-neofetch)"
+    "size 820 490, class:(uwu-neofetch)"
+    "move 10% 10%, class:(uwu-neofetch)"
+    "float, class:(uwu-btm)"
+    "size 1024 640, class:(uwu-btm)"
+    "move 25% 50%, class:(uwu-btm)"
+  ];
+
   animations = {
     enabled = true;
 
