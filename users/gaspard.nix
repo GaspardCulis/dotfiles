@@ -17,6 +17,10 @@
     };
   };
 
+  services = {
+    ssh-agent.enable = true;
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
