@@ -12,8 +12,7 @@ in {
     ./apps
     ./eww
     ./hypr
-    ./misc/swayosd.nix
-    ./misc/end-rs.nix
+    ./misc
   ];
 
   options.gasdev.desktop = {
@@ -83,9 +82,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    gasdev.desktop.apps = {
-      alacritty.enable = cfg.apps.terminal == "alacritty";
-      firefox.enable = cfg.apps.browser == "firefox";
+    gasdev.desktop = {
+      anyrun.enable = cfg.apps.launcher == "anyrun";
+      apps = {
+        alacritty.enable = cfg.apps.terminal == "alacritty";
+        firefox.enable = cfg.apps.browser == "firefox";
+      };
     };
 
     home.packages =
