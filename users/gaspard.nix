@@ -14,7 +14,6 @@
     desktop = {
       enable = true;
       hypr.enable = true;
-      end-rs.enable = true;
     };
   };
 
