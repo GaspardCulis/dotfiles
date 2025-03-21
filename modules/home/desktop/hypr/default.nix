@@ -16,6 +16,7 @@ in {
         egl-wayland # For NVIDIA compatibility
         xdg-utils
         wl-clipboard
+        wdisplays
       ];
     };
   };
