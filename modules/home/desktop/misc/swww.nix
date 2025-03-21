@@ -10,7 +10,7 @@ with lib; let
 in {
   options.gasdev.desktop.swww = {
     enable = mkEnableOption "Enable opiniated end-rs service config";
-    package = mkPackageOption pkgs "swww";
+    package = mkPackageOption pkgs "swww" {};
   };
 
   config = mkIf cfg.enable {
