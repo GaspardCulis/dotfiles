@@ -18,6 +18,10 @@
 
   security.pam.services.swaylock = {};
 
+  gasdev = {
+    podman.enable = true;
+  };
+
   # Services
   services.seatd.enable = true;
   services.blueman.enable = true;
@@ -38,18 +42,7 @@
     cachix
     wg-netmanager
     networkmanager-openconnect
-    podman-compose
   ];
-
-  #Podman
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
 
   # ADB
   programs.adb.enable = true;
