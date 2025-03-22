@@ -101,7 +101,7 @@
           };
           modules = [
             ./hosts/OVHCloud
-            ./modules/common
+            ./modules/system
             ./modules/server
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
@@ -113,7 +113,7 @@
         system = "aarch64-linux";
         modules = [
           ./hosts/pi4
-          ./modules/common
+          ./modules/system
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
           sops-nix.nixosModules.sops
