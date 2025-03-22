@@ -84,6 +84,7 @@
         extraArgs = {inherit inputs;};
         modules = [
           ./hosts/Zephyrus
+          ./modules/system
           disko.nixosModules.disko
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
