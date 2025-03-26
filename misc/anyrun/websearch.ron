@@ -1,7 +1,0 @@
-Config(
-  prefix: "?",
-  engines: [DuckDuckGo, Google, Custom(
-    name: "SearX",
-    url: "searx.be/?q={}",
-  )]
-)
