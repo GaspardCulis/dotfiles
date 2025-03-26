@@ -1,8 +1,0 @@
-Config(
-    prefix: "",
-    symbols: {
-        "tableflip": "(╯°□°)╯︵ ┻━┻",
-        "shrug": "¯\\_(ツ)_/¯",
-    },
-    max_entries: 3,
-)
