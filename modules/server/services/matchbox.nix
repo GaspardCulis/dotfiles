@@ -51,7 +51,7 @@ in {
     systemd.services.matchbox = {
       description = "A signaling server for WebRTC peer-to-peer full-mesh networking";
       after = ["network-online.target"];
-      wants = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
       enable = true;
       serviceConfig = {
         Restart = "always";
