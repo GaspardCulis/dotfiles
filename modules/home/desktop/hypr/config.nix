@@ -63,6 +63,9 @@ in {
       ",237, exec, brightnessctl -d asus::kbd_backlight set 33%-"
       ",238, exec, brightnessctl -d asus::kbd_backlight set 33%+"
 
+      "$mainMod, F6, exec, grim -g \"$(slurp)\" - | wl-copy"
+      "$mainMod, DOLLAR, exec, hyprpicker --autocopy"
+
       "$mainMod, F5, exec, ${gamemode}"
       ",XF86Launch4, exec, ${power-profile-next}"
       "$mainMod+SHIFT, o, exec, ${refresh-rate-toggle}"
