@@ -1,0 +1,73 @@
+#window {
+  background-color: transparent;
+  color: #a4acc5;
+}
+
+box#main {
+  border-radius: 10px;
+  background-color: #282936;
+  border: 2px solid #2bc1df;
+}
+
+entry#entry {
+  min-height: 40px;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  color: whitesmoke;
+}
+
+list#main {
+  background-color: transparent;
+}
+
+#plugin {
+  background: transparent;
+  padding-bottom: 5px;
+}
+
+#match {
+  padding: 2.5px;
+  border-radius: 4px;
+  color: #a4acc5;
+}
+
+#match:selected {
+  background: #383946;
+  border-right: 4px solid #7e9cd8;
+  border-left: 4px solid #7e9cd8;
+  color: #7e9cd8;
+}
+
+#match:selected label#info {
+  color: #b0b0b0;
+  animation: fade 0.1s linear;
+}
+
+@keyframes fade {
+  0% {
+    color: transparent;
+  }
+
+  100% {
+    color: #b0b0b0;
+  }
+}
+
+#match label#info {
+  color: transparent;
+}
+
+#match:hover {
+  background: #383946;
+}
+
+label#match-desc {
+  font-size: 10px;
+  color: #b0b0b0;
+}
+
+label#plugin {
+  font-size: 14px;
+}

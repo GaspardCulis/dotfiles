@@ -1,0 +1,23 @@
+default-timeout=5000
+text-color=#dff0f4
+border-color=#aadbf2
+background-color=#0e4158
+border-radius=4
+border-size=2
+font='FiraCode Nerd Font' 11
+anchor=bottom-right
+outer-margin=0,4,8,0
+
+[urgency=low]
+border-color=#cccccc
+
+[urgency=normal]
+border-color=#d08770
+
+[urgency=high]
+border-color=#bf616a
+default-timeout=0
+
+[category=grind-timer]
+on-notify=exec mpv ~/.local/share/sfx/uplifting-flute.wav
+
