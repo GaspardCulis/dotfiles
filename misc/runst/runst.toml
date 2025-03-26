@@ -1,0 +1,33 @@
+[global]
+    log_verbosity = "info"
+    startup_notification = false
+    geometry = "480x64+0+0"
+    wrap_content = true
+    font = "FiraCode 10"
+    template = """
+    [{{app_name}}] <b>{{summary}}</b>\
+    {% if body %} {{body}}{% endif %} \
+    {% if now(timestamp=true) - timestamp > 60 %} \
+        ({{ (now(timestamp=true) - timestamp) | humantime }} ago)\
+    {% endif %}\
+    {% if unread_count > 1 %} ({{unread_count}}){% endif %}
+    """
+
+[urgency_low]
+    background = "#000000"
+    foreground = "#505050"
+    timeout = 2
+    text = "low"
+
+[urgency_normal]
+    background = "#bcbcb2"
+    foreground = "#3f3c35"
+    timeout = 10
+    auto_clear = true
+    text = "normal"
+
+[urgency_critical]
+    background = "#3f3c35"
+    foreground = "#bcbcb2"
+    timeout = 0
+    text = "critical"
