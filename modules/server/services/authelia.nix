@@ -56,7 +56,9 @@ in {
           "authelia-data:/data"
           "/run/secrets/authelia:/secrets"
           "/etc/authelia/configuration.yml:/config/configuration.yml"
+          "/etc/authelia/jwks-config.yml:/config/jwks-config.yml"
         ];
+        cmd = ["--config" "/config/configuration.yml,/config/jwks-config.yml"];
       };
     };
 
@@ -90,7 +92,6 @@ in {
 
       identity_providers = {
         oidc = {
-          jwks = [{key = "{{ secret \"/secrets/OIDC_JWKS_PRIVATE_KEY\" | mindent 10 \"|\" | msquote }}";}];
           clients = [
             {
               client_id = "penpot";
@@ -164,5 +165,12 @@ in {
       duo_api = {disable = true;};
       ntp = {address = "udp://time.cloudflare.com:123";};
     };
+
+    environment.etc."authelia/jwks-config.yml".text = ''
+      identity_providers:
+        oidc:
+          jwks:
+            - key: {{ secret "/secrets/OIDC_JWKS_PRIVATE_KEY" | mindent 10 "|" | msquote }}
+    '';
   };
 }
