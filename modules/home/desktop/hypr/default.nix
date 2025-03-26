@@ -15,7 +15,6 @@ in {
       default = with pkgs; [
         egl-wayland # For NVIDIA compatibility
         xdg-utils
-        wl-clipboard
         wdisplays
       ];
     };
@@ -55,6 +54,7 @@ in {
         grim
         slurp
         hyprpicker
+        wl-clipboard
         swaylock-effects
         networkmanagerapplet
       ]
