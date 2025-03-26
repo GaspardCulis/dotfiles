@@ -27,6 +27,7 @@ in {
           mouse = false;
           preview-completion-insert = false;
           soft-wrap.enable = true;
+          inline-diagnostics.cursor-line = "error";
 
           cursor-shape = {
             insert = "bar";
