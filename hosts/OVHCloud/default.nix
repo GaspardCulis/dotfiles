@@ -25,6 +25,7 @@
 
   environment.systemPackages = with pkgs; [
     helix
+    htop
     git
   ];
 
