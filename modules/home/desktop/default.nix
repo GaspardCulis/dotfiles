@@ -32,7 +32,7 @@ in {
       explorer = mkOption {
         description = "Default file explorer app";
         type = types.str;
-        default = "kitty --class=explorer yazi";
+        default = "cosmic-files";
       };
       launcher = mkOption {
         description = "Default quick launcher app";
@@ -98,7 +98,12 @@ in {
         cfg.theme.icons.package
       ]
       ++ cfg.theme.font.extraPackages
-      ++ cfg.theme.icons.extraPackages;
+      ++ cfg.theme.icons.extraPackages
+      ++ (
+        if cfg.apps.explorer == "cosmic-files"
+        then [pkgs.cosmic-files]
+        else []
+      );
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
