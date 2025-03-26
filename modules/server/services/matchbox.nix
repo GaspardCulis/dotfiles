@@ -45,7 +45,11 @@ in {
 
   config = mkIf cfg.enable {
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
-      reverse_proxy http://127.0.0.1:${toString cfg.port}
+      @websockets {
+          path /*
+      }
+
+      reverse_proxy @websockets localhost:${toString cfg.port}
     '';
 
     systemd.services.matchbox = {
