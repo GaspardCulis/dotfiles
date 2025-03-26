@@ -21,22 +21,22 @@ in {
     apps = {
       terminal = mkOption {
         description = "Default terminal emulator app";
-        type = types.str;
+        type = types.enum ["alacritty"];
         default = "alacritty";
       };
       browser = mkOption {
         description = "Default web browser app";
-        type = types.str;
+        type = types.enum ["firefox"];
         default = "firefox";
       };
       explorer = mkOption {
         description = "Default file explorer app";
-        type = types.str;
+        type = types.enum ["cosmic-files"];
         default = "cosmic-files";
       };
       launcher = mkOption {
         description = "Default quick launcher app";
-        type = types.str;
+        type = types.enum ["anyrun"];
         default = "anyrun";
       };
     };
