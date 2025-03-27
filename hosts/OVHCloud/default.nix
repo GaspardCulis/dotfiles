@@ -12,11 +12,19 @@
   };
 
   # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    settings = {
-      PasswordAuthentication = false;
+  services = {
+    fail2ban = {
+      enable = true;
+      maxretry = 5;
+      bantime = "10m";
+      bantime-increment.enable = true;
+    };
+    openssh = {
+      enable = true;
+      ports = [22];
+      settings = {
+        PasswordAuthentication = false;
+      };
     };
   };
   users.users.root.openssh.authorizedKeys.keys = [
