@@ -14,7 +14,10 @@
     };
     desktop = {
       enable = true;
-      hypr.enable = true;
+      hypr = {
+        enable = true;
+        autoStart = true;
+      };
     };
   };
 

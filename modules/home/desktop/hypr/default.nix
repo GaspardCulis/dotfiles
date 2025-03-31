@@ -7,9 +7,16 @@
 }:
 with lib; let
   cfg = config.gasdev.desktop.hypr;
+  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 in {
   options.gasdev.desktop.hypr = {
     enable = mkEnableOption "Enable opiniated Hyprland config";
+    autoStart = mkEnableOption "Enable Hyprland autostart on tty";
+    autoStartTTY = mkOption {
+      type = types.ints.unsigned;
+      description = "TTY to autostart on";
+      default = 1;
+    };
     extraPackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = with pkgs; [
@@ -24,7 +31,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       settings = import ./config.nix {inherit config;};
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = package;
       plugins = [inputs.hy3.packages.${pkgs.system}.hy3];
     };
 
@@ -59,6 +66,14 @@ in {
         networkmanagerapplet
       ]
       ++ cfg.extraPackages;
+
+    programs.bash = mkIf cfg.autoStart {
+      initExtra = ''
+        if [ "$(tty)" = /dev/tty${toString cfg.autoStartTTY} ]; then
+        	exec ${package}/bin/Hyprland
+        fi
+      '';
+    };
 
     home.pointerCursor = {
       gtk.enable = true;
