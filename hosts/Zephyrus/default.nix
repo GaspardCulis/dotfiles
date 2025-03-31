@@ -44,17 +44,20 @@
     networkmanager-openconnect
   ];
 
-  # ADB
-  programs.adb.enable = true;
+  programs = {
+    nix-ld.enable = true;
+    adb.enable = true;
+    gamemode.enable = true;
 
-  # Gaming
-  programs.gamemode.enable = true;
-
-  # Other
-  programs.nix-ld.enable = true;
-  programs.localsend = {
-    enable = true;
-    openFirewall = true;
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
+    gnupg.agent = {
+      enable = true;
+      enableBrowserSocket = true;
+      enableSSHSupport = true;
+    };
   };
 
   # User config
