@@ -35,6 +35,7 @@
     git
     wget
     ncdu
+    gnupg
     neofetch
     bottom
     htop
