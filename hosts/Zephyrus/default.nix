@@ -35,7 +35,6 @@
     git
     wget
     ncdu
-    gnupg
     neofetch
     bottom
     htop
@@ -53,11 +52,6 @@
     localsend = {
       enable = true;
       openFirewall = true;
-    };
-    gnupg.agent = {
-      enable = true;
-      enableBrowserSocket = true;
-      enableSSHSupport = true;
     };
   };
 
