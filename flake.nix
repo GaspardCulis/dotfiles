@@ -31,11 +31,11 @@
 
     # Hyprland
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.47.0";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.48.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.47.0";
+      url = "github:outfoxxed/hy3?ref=hl0.48.0";
       inputs.hyprland.follows = "hyprland";
     };
 
