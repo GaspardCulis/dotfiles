@@ -120,6 +120,11 @@ in {
               command = ["rustfmt"];
             })
             (lang {
+              name = "wgsl";
+              pkg = wgsl-analyzer;
+              command = ["wgslfmt"];
+            })
+            (lang {
               name = "python";
               pkg = yapf;
               command = ["yapf"];
@@ -134,6 +139,11 @@ in {
               auto-format = true;
             }
           ];
+        language-server = {
+          wgsl_analyzer = {
+            command = "${pkgs.wgsl-analyzer}/bin/wgsl-analyzer";
+          };
+        };
       };
     };
   };
