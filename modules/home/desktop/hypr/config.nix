@@ -1,7 +1,7 @@
 {config}: let
   swayosd-client = "${config.gasdev.desktop.swayosd.package}/bin/swayosd-client";
-  uwu-launcher = ../../../../bin/uwu-launcher;
-  swaylock = ../../../../bin/swaylock-hyprland;
+  uwu-launcher = ../../../../bin/hypr/uwu-launcher;
+  swaylock = ../../../../bin/hypr/swaylock-hyprland;
 
   gamemode = ../../../../bin/hypr/gamemode.sh;
   power-profile-next = "${../../../../config/eww/scripts/power_profile} next";
