@@ -14,7 +14,7 @@ in {
 
   config = mkIf cfg.enable {
     home.file = {
-      ".config/zellij/config.kdl".source = ../../../term/zellij/config.kdl;
+      ".config/zellij/config.kdl".source = ../../../config/zellij/config.kdl;
     };
 
     home.packages = [

@@ -45,11 +45,11 @@ in {
         showResultsImmediately = false;
         maxEntries = null;
       };
-      extraCss = builtins.readFile ../../../../misc/anyrun/style.css;
+      extraCss = builtins.readFile ../../../../config/anyrun/style.css;
 
-      extraConfigFiles."applications.ron".text = builtins.readFile ../../../../misc/anyrun/applications.ron;
-      extraConfigFiles."symbols.ron".text = builtins.readFile ../../../../misc/anyrun/symbols.ron;
-      extraConfigFiles."websearch.ron".text = builtins.readFile ../../../../misc/anyrun/websearch.ron;
+      extraConfigFiles."applications.ron".text = builtins.readFile ../../../../config/anyrun/applications.ron;
+      extraConfigFiles."symbols.ron".text = builtins.readFile ../../../../config/anyrun/symbols.ron;
+      extraConfigFiles."websearch.ron".text = builtins.readFile ../../../../config/anyrun/websearch.ron;
     };
   };
 }

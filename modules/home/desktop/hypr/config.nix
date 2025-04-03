@@ -3,9 +3,9 @@
   uwu-launcher = ../../../../bin/uwu-launcher;
   swaylock = ../../../../bin/swaylock-hyprland;
 
-  gamemode = ../../../../de/hypr/gamemode.sh;
-  power-profile-next = "${../../../../bar/eww/scripts/power_profile} next";
-  refresh-rate-toggle = "${../../../../bar/eww/scripts/refresh_rate} toggle";
+  gamemode = ../../../../bin/hypr/gamemode.sh;
+  power-profile-next = "${../../../../config/eww/scripts/power_profile} next";
+  refresh-rate-toggle = "${../../../../config/eww/scripts/refresh_rate} toggle";
 in {
   monitor = ",preferred,auto,1";
 

@@ -23,7 +23,7 @@ in {
       enableBashIntegration = config.gasdev.shell.bash.enable;
     };
 
-    home.file.".config/eww".source = ../../../../bar/eww;
+    home.file.".config/eww".source = ../../../../config/eww;
 
     home.packages = [
       # Script dependencies
