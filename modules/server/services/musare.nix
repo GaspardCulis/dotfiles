@@ -89,7 +89,7 @@ in {
         MONGO_INITDB_ROOT_PASSWORD=${config.sops.placeholder."musare/MONGO_ROOT_PASSWORD"}
         MONGO_INITDB_ROOT_USERNAME=admin
         MONGO_INITDB_DATABASE=musare
-        REDIS_PASSWORD=meh_not_important
+        REDIS_PASSWORD=${config.sops.placeholder."musare/REDIS_PASSWORD"}
       '';
       owner = "root";
     };
@@ -170,12 +170,14 @@ in {
         ];
       };
       musare-redis = {
-        image = "docker.io/redis:7";
+        image = "docker.io/bitnami/redis:latest";
         autoStart = true;
-        cmd = ["--notify-keyspace-events" "Ex" "--requirepass" "meh_not_important" "--appendonly" "yes"];
         volumes = [
           "musare-redis:/data"
         ];
+        environment = {
+          REDIS_EXTRA_FLAGS = "--notify-keyspace-events Ex --appendonly yes";
+        };
         environmentFiles = [
           config.sops.templates."musare/.env".path
         ];
