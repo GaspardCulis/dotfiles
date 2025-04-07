@@ -31,7 +31,7 @@ in {
           TERM = "alacritty";
         };
         font = {
-          size = 10.0;
+          size = 14.0;
           normal.family = config.gasdev.desktop.theme.font.name;
           bold.family = config.gasdev.desktop.theme.font.name;
           italic.family = config.gasdev.desktop.theme.font.name;
