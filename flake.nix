@@ -31,11 +31,11 @@
 
     # Hyprland
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.47.0";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.48.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.47.0";
+      url = "github:outfoxxed/hy3?ref=hl0.48.0";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -84,6 +84,7 @@
         extraArgs = {inherit inputs;};
         modules = [
           ./hosts/Zephyrus
+          ./modules/system
           disko.nixosModules.disko
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
@@ -91,21 +92,29 @@
         ];
       };
 
-      OVHCloud = nixpkgs.lib.nixosSystem {
-        extraArgs = {inherit inputs;};
-        modules = [
-          ./hosts/OVHCloud
-          disko.nixosModules.disko
-          sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      OVHCloud = let
+        domain = "gasdev.fr";
+      in
+        nixpkgs.lib.nixosSystem {
+          extraArgs = {
+            inherit inputs;
+            inherit domain;
+          };
+          modules = [
+            ./hosts/OVHCloud
+            ./modules/system
+            ./modules/server
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+          ];
+        };
 
       pi4 = nixpkgs.lib.nixosSystem {
         extraArgs = {inherit inputs;};
         system = "aarch64-linux";
         modules = [
           ./hosts/pi4
+          ./modules/system
           "${nixpkgs}/nixos/modules/profiles/minimal.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
           sops-nix.nixosModules.sops
@@ -120,6 +129,7 @@
 
         extraSpecialArgs = {inherit inputs;};
         modules = [
+          ./modules/home
           ./users/gaspard.nix
         ];
       };

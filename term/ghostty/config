@@ -1,9 +1,0 @@
-background = #000000
-background-opacity = 0.8
-
-cursor-style = bar
-
-font-size = 10.0
-font-family = FiraCode Nerd Font
-
-window-decoration = false

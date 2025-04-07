@@ -1,19 +1,29 @@
 {...}: {
-  imports = [
-    ../shell
-    ../term
-    ../editor
-    ../de
-    ../gaming
-    ../themes/pomme.nix
-  ];
-
   home.username = "gaspard";
   home.homeDirectory = "/home/gaspard";
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
+
+  gasdev = {
+    shell = {
+      bash.enable = true;
+      helix.enable = true;
+      zellij.enable = true;
+    };
+    desktop = {
+      enable = true;
+      hypr = {
+        enable = true;
+        autoStart = true;
+      };
+    };
+  };
+
+  services = {
+    ssh-agent.enable = true;
+  };
 
   xdg.mimeApps = {
     enable = true;

@@ -18,6 +18,10 @@
 
   security.pam.services.swaylock = {};
 
+  gasdev = {
+    podman.enable = true;
+  };
+
   # Services
   services.seatd.enable = true;
   services.blueman.enable = true;
@@ -38,30 +42,17 @@
     cachix
     wg-netmanager
     networkmanager-openconnect
-    podman-compose
   ];
 
-  #Podman
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
+  programs = {
+    nix-ld.enable = true;
+    adb.enable = true;
+    gamemode.enable = true;
+
+    localsend = {
       enable = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
+      openFirewall = true;
     };
-  };
-
-  # ADB
-  programs.adb.enable = true;
-
-  # Gaming
-  programs.gamemode.enable = true;
-
-  # Other
-  programs.nix-ld.enable = true;
-  programs.localsend = {
-    enable = true;
-    openFirewall = true;
   };
 
   # User config
@@ -88,6 +79,9 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
+    sharedModules = [
+      ../../modules/home
+    ];
     users = {
       "gaspard" = import ../../users/gaspard.nix;
     };

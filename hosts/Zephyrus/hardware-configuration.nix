@@ -96,7 +96,6 @@
       intel-vaapi-driver
       vaapiVdpau
       libvdpau-va-gl
-      mesa
     ];
   };
 
