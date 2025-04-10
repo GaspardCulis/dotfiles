@@ -138,7 +138,7 @@
       "   ${EWW_BATTERY.BAT0.capacity}% (${round(energy_now/power_now, 0)}h${round((energy_now/power_now - round(energy_now/power_now - 0.5, 0)) * 60, 0)} at ${round(power_now/1000000, 2)}W)" : 
       "   ${EWW_BATTERY.BAT0.capacity}%"
     }"
-    :class "${EWW_BATTERY.BAT0.status == "Discharging" ? EWW_BATTERY.BAT0.capacity <= 15 || power_now/1000000 > 25 ? "critical" : EWW_BATTERY.BAT0.capacity <= 40 || power_now/1000000 > 15 ? "warning" : "normal" : "normal"}")
+    :class "${EWW_BATTERY.BAT0.status == "Discharging" ? EWW_BATTERY.BAT0.capacity <= 15 || power_now/1000000 > 25 ? "critical" : EWW_BATTERY.BAT0.capacity <= 30 || power_now/1000000 > 15 ? "warning" : "normal" : "normal"}")
 )
 
 (defwidget volume []
