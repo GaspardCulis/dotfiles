@@ -6,27 +6,8 @@
 
   # Firewall
   networking.nftables.enable = true;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [22];
-  };
+  networking.firewall.enable = true;
 
-  # Enable the OpenSSH daemon.
-  services = {
-    fail2ban = {
-      enable = true;
-      maxretry = 5;
-      bantime = "10m";
-      bantime-increment.enable = true;
-    };
-    openssh = {
-      enable = true;
-      ports = [22];
-      settings = {
-        PasswordAuthentication = false;
-      };
-    };
-  };
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos"
   ];
@@ -38,6 +19,11 @@
   ];
 
   gasdev = {
+    openssh = {
+      enable = true;
+      openFirewall = true;
+    };
+
     services.auth.enable = true;
     services.garage.enable = true;
     services.mail.enable = true;
