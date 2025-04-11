@@ -20,6 +20,10 @@
 
   gasdev = {
     podman.enable = true;
+    openssh = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   # Services
