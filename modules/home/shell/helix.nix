@@ -120,6 +120,11 @@ in {
               command = ["rustfmt"];
             })
             (lang {
+              name = "toml";
+              pkg = taplo;
+              command = ["taplo" "fmt" "-"];
+            })
+            (lang {
               name = "wgsl";
               pkg = wgsl-analyzer;
               command = ["wgslfmt"];
