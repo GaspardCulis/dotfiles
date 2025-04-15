@@ -42,6 +42,21 @@ in {
           Cryptomining = true;
           Fingerprinting = true;
         };
+
+        ExtensionSettings = with builtins; let
+          extension = shortId: uuid: {
+            name = uuid;
+            value = {
+              install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+          };
+        in
+          listToAttrs [
+            (extension "ublock-origin" "uBlock0@raymondhill.net")
+            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+            (extension "tabliss" "extension@tabliss.io")
+          ];
       };
 
       profiles."gaspard" = mkIf cfg.profiles.gaspard.enable {
