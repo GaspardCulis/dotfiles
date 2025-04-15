@@ -18,12 +18,23 @@
         enable = true;
         autoStart = true;
       };
+      apps = {
+        firefox = {
+          progressiveWebApps.enable = true;
+          profiles.gaspard.enable = true;
+        };
+      };
     };
   };
 
   services = {
     ssh-agent.enable = true;
   };
+
+  home.file.".ssh/authorized_keys".text = ''
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICm9trfkWL5FVHuo/5YONd+oZY4nQnpHLDOnXoOrl9j9 u0_a220@pixel
+  '';
 
   xdg.mimeApps = {
     enable = true;
