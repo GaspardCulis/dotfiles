@@ -62,6 +62,21 @@ in {
             then [(extension "pwas-for-firefox" "firefoxpwa@filips.si")]
             else []
           );
+
+        Preferences = {
+          "browser.contentblocking.category" = {
+            Value = "strict";
+            Status = "locked";
+          };
+          "extensions.pocket.enabled" = lock-false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
+          "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
+          "browser.newtabpage.activity-stream.showSponsored" = lock-false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+        };
       };
 
       profiles."gaspard" = mkIf cfg.profiles.gaspard.enable {
