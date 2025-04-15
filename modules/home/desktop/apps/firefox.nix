@@ -53,17 +53,26 @@ in {
             };
           };
         in
-          listToAttrs [
-            (extension "ublock-origin" "uBlock0@raymondhill.net")
-            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-          ]
-          ++ (
-            if cfg.progressiveWebApps.enable
-            then [(extension "pwas-for-firefox" "firefoxpwa@filips.si")]
-            else []
-          );
+          listToAttrs ([
+              (extension "ublock-origin" "uBlock0@raymondhill.net")
+              (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+            ]
+            ++ (
+              if cfg.progressiveWebApps.enable
+              then [(extension "pwas-for-firefox" "firefoxpwa@filips.si")]
+              else []
+            ));
 
-        Preferences = {
+        Preferences = let
+          lock-false = {
+            Value = false;
+            Status = "locked";
+          };
+          lock-true = {
+            Value = true;
+            Status = "locked";
+          };
+        in {
           "browser.contentblocking.category" = {
             Value = "strict";
             Status = "locked";
