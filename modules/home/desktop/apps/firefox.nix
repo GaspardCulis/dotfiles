@@ -31,6 +31,19 @@ in {
       package = cfg.package;
       nativeMessagingHosts = optional cfg.progressiveWebApps.enable cfg.progressiveWebApps.package;
 
+      policies = {
+        DisableTelemetry = true;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableFirefoxAccounts = true;
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+      };
+
       profiles."gaspard" = mkIf cfg.profiles.gaspard.enable {
         isDefault = true;
         search = {
