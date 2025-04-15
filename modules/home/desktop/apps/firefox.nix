@@ -34,7 +34,7 @@ in {
       profiles."gaspard" = mkIf cfg.profiles.gaspard.enable {
         isDefault = true;
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
           engines = {
             "Nix Packages" = {
               urls = [
@@ -107,12 +107,12 @@ in {
                   ];
                 }
               ];
-              iconUpdateURL = "https://crates.io/favicon.ico";
+              icon = "https://crates.io/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = ["@cr"];
             };
 
-            "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
+            "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
             "Wikipedia".metaData.alias = "@w";
           };
         };
