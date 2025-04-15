@@ -30,6 +30,7 @@ in {
       enable = true;
       package = cfg.package;
       nativeMessagingHosts = optional cfg.progressiveWebApps.enable cfg.progressiveWebApps.package;
+      languagePacks = ["fr" "en-US"];
 
       policies = {
         DisableTelemetry = true;
@@ -55,8 +56,12 @@ in {
           listToAttrs [
             (extension "ublock-origin" "uBlock0@raymondhill.net")
             (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-            (extension "pwas-for-firefox" "firefoxpwa@filips.si")
-          ];
+          ]
+          ++ (
+            if cfg.progressiveWebApps.enable
+            then [(extension "pwas-for-firefox" "firefoxpwa@filips.si")]
+            else []
+          );
       };
 
       profiles."gaspard" = mkIf cfg.profiles.gaspard.enable {
