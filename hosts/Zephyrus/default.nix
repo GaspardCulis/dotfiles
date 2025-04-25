@@ -36,13 +36,6 @@
 
   # Programs
   environment.systemPackages = with pkgs; [
-    git
-    wget
-    ncdu
-    neofetch
-    bottom
-    htop
-    unzip
     cachix
     wg-netmanager
     networkmanager-openconnect
