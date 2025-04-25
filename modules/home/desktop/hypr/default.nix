@@ -68,9 +68,9 @@ in {
       ++ cfg.extraPackages;
 
     programs.bash = mkIf cfg.autoStart {
-      initExtra = ''
+      initExtra = lib.mkAfter ''
         if [ "$(tty)" = /dev/tty${toString cfg.autoStartTTY} ]; then
-        	exec ${package}/bin/Hyprland
+          exec ${package}/bin/Hyprland
         fi
       '';
     };
