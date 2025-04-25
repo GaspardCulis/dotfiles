@@ -2,6 +2,7 @@
   imports = [
     ./podman.nix
     ./openssh.nix
+    ./users.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

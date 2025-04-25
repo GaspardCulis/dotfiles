@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -23,6 +19,18 @@
     openssh = {
       enable = true;
       openFirewall = true;
+    };
+    users.gaspard = {
+      enable = true;
+      enableDesktop = true;
+      extraGroups = [
+        "uucp"
+        "audio"
+        "dialout"
+        "adbusers"
+        "gamemode"
+        "networkmanager"
+      ];
     };
   };
 
@@ -49,38 +57,6 @@
     localsend = {
       enable = true;
       openFirewall = true;
-    };
-  };
-
-  # User config
-  users.groups.gaspard = {
-    name = "gaspard";
-  };
-  users.users.gaspard = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "video"
-      "seat"
-      "uucp"
-      "audio"
-      "dialout"
-      "adbusers"
-      "gamemode"
-      "networkmanager"
-    ];
-    group = "gaspard";
-  };
-
-  nix.settings.trusted-users = ["root" "gaspard"];
-
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    sharedModules = [
-      ../../modules/home
-    ];
-    users = {
-      "gaspard" = import ../../users/gaspard.nix;
     };
   };
 
