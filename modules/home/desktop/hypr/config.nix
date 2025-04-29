@@ -4,6 +4,7 @@
   swaylock = ../../../../bin/hypr/swaylock-hyprland;
 
   gamemode = ../../../../bin/hypr/gamemode.sh;
+  togglescreen = ../../../../bin/hypr/togglescreen;
   power-profile-next = "${../../../../config/eww/scripts/power_profile} next";
   refresh-rate-toggle = "${../../../../config/eww/scripts/refresh_rate} toggle";
 in {
@@ -67,6 +68,7 @@ in {
       "$mainMod, DOLLAR, exec, hyprpicker --autocopy"
 
       "$mainMod, F5, exec, ${gamemode}"
+      "$mainMod, F9, exec, ${togglescreen}"
       ",XF86Launch4, exec, ${power-profile-next}"
       "$mainMod+SHIFT, o, exec, ${refresh-rate-toggle}"
 
