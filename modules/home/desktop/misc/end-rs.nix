@@ -68,6 +68,7 @@ in {
         Service = {
           Type = "dbus";
           BusName = "org.freedesktop.Notifications";
+          ExecStartPre = "${config.gasdev.desktop.eww.package}/bin/eww update end-binary=${cfg.package}/bin/end-rs";
           ExecStart = "${cfg.package}/bin/end-rs daemon";
           Restart = "always";
           RestartSec = "2s";
