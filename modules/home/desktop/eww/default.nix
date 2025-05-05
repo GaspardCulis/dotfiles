@@ -54,7 +54,7 @@ in {
             ExecStart =
               if type == "simple"
               then "${cfg.package}/bin/eww open ${name}"
-              else "${cfg.package}/bin/eww open-many ${name}:${name}0 --arg ${name}0:monitor=${toString monitor}";
+              else "${cfg.package}/bin/eww open-many ${name}:${name}${toString monitor} --arg ${name}${toString monitor}:monitor=${toString monitor}";
           };
 
           Install = {
@@ -84,6 +84,12 @@ in {
           name = "bar";
           type = "window";
           monitor = 0;
+        });
+
+        eww-bar-extmon = mkIf cfg.widget.bar.enable (mkWidget {
+          name = "bar";
+          type = "window";
+          monitor = 1;
         });
 
         eww-music = mkIf cfg.widget.music.enable (mkWidget {name = "music";});
