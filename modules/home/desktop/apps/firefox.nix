@@ -91,6 +91,7 @@ in {
       profiles."gaspard" = mkIf cfg.profiles.gaspard.enable {
         isDefault = true;
         search = {
+          force = true; # Avoid HM complaining about `search.json.mozlz4`
           default = "ddg";
           engines = {
             "Nix Packages" = {
