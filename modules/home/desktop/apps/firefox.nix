@@ -94,6 +94,23 @@ in {
           force = true; # Avoid HM complaining about `search.json.mozlz4`
           default = "ddg";
           engines = {
+            "GitHub" = {
+              urls = [
+                {
+                  template = "https://github.com/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+
+              icon = "https://github.githubassets.com/favicons/favicon.png";
+              definedAliases = ["@gh"];
+            };
+
             "Nix Packages" = {
               urls = [
                 {
