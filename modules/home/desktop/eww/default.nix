@@ -42,6 +42,7 @@ in {
           name,
           type ? "simple",
           monitor ? 0,
+          enable ? false,
         }: {
           Unit = {
             Description = "Eww ${name} widget";
@@ -57,7 +58,7 @@ in {
               else "${cfg.package}/bin/eww open-many ${name}:${name}${toString monitor} --arg ${name}${toString monitor}:monitor=${toString monitor}";
           };
 
-          Install = {
+          Install = mkIf enable {
             WantedBy = ["graphical-session.target"];
           };
         };
@@ -90,6 +91,7 @@ in {
           name = "bar";
           type = "window";
           monitor = 1;
+          enable = false;
         });
 
         eww-music = mkIf cfg.widget.music.enable (mkWidget {name = "music";});
