@@ -11,5 +11,6 @@
     ./umami.nix
     ./uptime-kuma.nix
     ./vaultwarden.nix
+    ./webdav.nix
   ];
 }

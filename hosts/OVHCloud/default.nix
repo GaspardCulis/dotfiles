@@ -30,6 +30,7 @@
     services.umami.enable = true;
     services.uptime-kuma.enable = true;
     services.vaultwarden.enable = true;
+    services.webdav.enable = true;
   };
 
   # SOPS
