@@ -18,7 +18,7 @@
       openFirewall = true;
     };
 
-    users.gaspard.enable = true;
+    # users.gaspard.enable = true;
 
     services.auth.enable = true;
     services.garage.enable = true;
