@@ -39,7 +39,7 @@ in {
     virtualisation.oci-containers.containers = {
       authelia = {
         image = "docker.io/authelia/authelia:latest";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         ports = ["127.0.0.1:${toString cfg.port}:${toString cfg.port}"];
         environment = {

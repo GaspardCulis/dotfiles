@@ -96,7 +96,7 @@ in {
     virtualisation.oci-containers.containers = {
       nakama = {
         image = "registry.heroiclabs.com/heroiclabs/nakama:latest";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         ports = [
           "127.0.0.1:${toString cfg.grpcPort}:7349"
@@ -122,7 +122,7 @@ in {
 
       nakama-db = {
         image = "docker.io/postgres:12.2-alpine";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         volumes = ["nakama-db:/var/lib/postgresql/data"];
         environment = {

@@ -62,7 +62,7 @@ in {
     virtualisation.oci-containers.containers = {
       garage = {
         image = "docker.io/dxflrs/garage:v1.0.0";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         ports = [
           "127.0.0.1:${toString cfg.apiPort}:3900"

@@ -48,7 +48,7 @@ in {
     virtualisation.oci-containers.containers = {
       umami = {
         image = "ghcr.io/umami-software/umami:postgresql-latest";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         ports = ["127.0.0.1:${toString cfg.port}:3000"];
         dependsOn = ["umami-db"];
@@ -61,7 +61,7 @@ in {
       };
       umami-db = {
         image = "docker.io/postgres:15-alpine";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         environment = {
           POSTGRES_DB = "umami";

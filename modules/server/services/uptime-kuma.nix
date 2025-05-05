@@ -29,7 +29,7 @@ in {
     virtualisation.oci-containers.containers = {
       uptime-kuma = {
         image = "docker.io/louislam/uptime-kuma:1";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         ports = ["127.0.0.1:${toString cfg.port}:3001"];
         volumes = [
