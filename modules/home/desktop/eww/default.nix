@@ -42,7 +42,7 @@ in {
           name,
           type ? "simple",
           monitor ? 0,
-          enable ? false,
+          enable ? true,
         }: {
           Unit = {
             Description = "Eww ${name} widget";
