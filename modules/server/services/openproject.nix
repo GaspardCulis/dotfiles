@@ -48,7 +48,7 @@ in {
         ];
         environment = {
           OPENPROJECT_HOST__NAME = "${cfg.domain}";
-          OPENPROJECT_HTTPS = "false";
+          OPENPROJECT_HTTPS = "true";
         };
         environmentFiles = [
           config.sops.templates."openproject.env".path
