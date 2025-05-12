@@ -81,7 +81,7 @@
   in rec {
     nixosConfigurations = {
       Zephyrus = nixpkgs.lib.nixosSystem {
-        extraArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./hosts/Zephyrus
           ./modules/system
@@ -96,7 +96,7 @@
         domain = "gasdev.fr";
       in
         nixpkgs.lib.nixosSystem {
-          extraArgs = {
+          specialArgs = {
             inherit inputs;
             inherit domain;
           };
@@ -111,7 +111,7 @@
         };
 
       pi4 = nixpkgs.lib.nixosSystem {
-        extraArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         system = "aarch64-linux";
         modules = [
           ./hosts/pi4
