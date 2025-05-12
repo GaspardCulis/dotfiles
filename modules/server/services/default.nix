@@ -7,6 +7,7 @@
     ./musare.nix
     ./nakama.nix
     ./stalwart-mail.nix
+    ./openproject.nix
     ./outline.nix
     ./umami.nix
     ./uptime-kuma.nix
