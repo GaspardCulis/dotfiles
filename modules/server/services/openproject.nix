@@ -62,6 +62,9 @@ in {
           OPENPROJECT_SMTP__DOMAIN = "${domain}";
           OPENPROJECT_SMTP__AUTHENTICATION = "plain";
           OPENPROJECT_SMTP__SSL = "true";
+          # Perf
+          OPENPROJECT_WEB_WORKERS = "1";
+          OPENPROJECT_WEB_MIN__THREADS = "1";
         };
         environmentFiles = [
           config.sops.templates."openproject.env".path
