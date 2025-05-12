@@ -52,7 +52,10 @@ in {
           type = types.str;
           default = "FiraCode Nerd Font";
         };
-        package = mkPackageOption pkgs "fira-code-nerdfont" {};
+        package = mkOption {
+          type = types.package;
+          default = pkgs.nerd-fonts.fira-code;
+        };
         extraPackages = lib.mkOption {
           type = lib.types.listOf lib.types.package;
           default = [pkgs.fira-code-symbols];
