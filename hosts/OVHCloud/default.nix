@@ -26,6 +26,7 @@
     services.matchbox.enable = true;
     services.musare.enable = true;
     services.nakama.enable = true;
+    services.openproject.enable = true;
     services.outline.enable = true;
     services.umami.enable = true;
     services.uptime-kuma.enable = true;
