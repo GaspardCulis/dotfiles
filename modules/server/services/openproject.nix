@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.gasdev.services.openproject;
+  mail = config.gasdev.services.mail;
 in {
   options.gasdev.services.openproject = {
     enable = mkEnableOption "Enable service";
@@ -22,6 +23,8 @@ in {
   };
   config = mkIf cfg.enable {
     sops.secrets."openproject/SECRET_KEY_BASE".owner = "root";
+    sops.secrets."openproject/SMTP_USER_NAME".owner = "root";
+    sops.secrets."openproject/SMTP_PASSWORD".owner = "root";
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
@@ -30,6 +33,8 @@ in {
     sops.templates."openproject.env" = {
       content = ''
         OPENPROJECT_SECRET_KEY_BASE=${config.sops.placeholder."openproject/SECRET_KEY_BASE"}
+        OPENPROJECT_SMTP__USER__NAME=${config.sops.placeholder."openproject/SMTP_USER_NAME"}
+        OPENPROJECT_SMTP__PASSWORD=${config.sops.placeholder."openproject/SMTP_PASSWORD"}
       '';
       owner = "root";
     };
@@ -49,6 +54,14 @@ in {
         environment = {
           OPENPROJECT_HOST__NAME = "${cfg.domain}";
           OPENPROJECT_HTTPS = "true";
+          # SMTP
+          OPENPROJECT_MAIL__FROM = "openproject@${domain}";
+          OPENPROJECT_EMAIL__DELIVERY__METHOD = "smtp";
+          OPENPROJECT_SMTP__ADDRESS = "${mail.smtpDomain}";
+          OPENPROJECT_SMTP__PORT = "465";
+          OPENPROJECT_SMTP__DOMAIN = "${domain}";
+          OPENPROJECT_SMTP__AUTHENTICATION = "plain";
+          OPENPROJECT_SMTP__SSL = "true";
         };
         environmentFiles = [
           config.sops.templates."openproject.env".path
