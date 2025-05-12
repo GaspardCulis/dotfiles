@@ -36,7 +36,7 @@ in {
 
     virtualisation.oci-containers.containers = {
       openproject = {
-        image = "docker.io/openproject/openproject:15";
+        image = "docker.io/openproject/openproject:15-slim";
         pull = "newer";
         autoStart = true;
         ports = [
