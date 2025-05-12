@@ -42,7 +42,7 @@ in {
     virtualisation.oci-containers.containers = {
       openproject = {
         image = "docker.io/openproject/openproject:15";
-        pull = "newer";
+        # pull = "newer";
         autoStart = true;
         ports = [
           "127.0.0.1:${toString cfg.port}:80"
