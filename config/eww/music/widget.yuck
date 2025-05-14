@@ -67,7 +67,7 @@
     :x "456px"
     :y "128px"
     :anchor "top left")
-  :stacking "bg"
+  :stacking "bottom"
   :focusable false
   :exclusive true
   (music)
