@@ -14,7 +14,6 @@
 
   boot = {
     kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-    kernelModules = ["amdgpu"];
     kernelParams = [
       "mem_sleep_default=deep" # Should fix/change suspend method
     ];
@@ -107,19 +106,6 @@
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-runtime-7.0.20"
   ];
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
-  };
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

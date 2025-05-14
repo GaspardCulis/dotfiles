@@ -115,13 +115,6 @@
     environment.sessionVariables = {
       XKB_DEFAULT_LAYOUT = "fr";
     };
-    # Gaming optimizations
-    boot = {
-      kernelParams = [
-        "clocksource=tsc"
-        "tsc=reliable"
-      ];
-    };
   };
 
   system.stateVersion = "24.11";
