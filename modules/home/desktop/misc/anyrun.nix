@@ -8,10 +8,6 @@
 with lib; let
   cfg = config.gasdev.desktop.anyrun;
 in {
-  imports = [
-    inputs.anyrun.homeManagerModules.anyrun
-  ];
-
   options.gasdev.desktop.anyrun = {
     enable = mkEnableOption "Enable opiniated anyrun config";
     anixrun.enable = mkEnableOption "Enable anixrun extra plugin";
