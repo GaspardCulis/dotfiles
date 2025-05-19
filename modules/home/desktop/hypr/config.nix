@@ -240,7 +240,7 @@ in {
 
   plugin = {
     hy3 = {
-      tabs.text_font = config.gasdev.desktop.theme.font.name;
+      tabs.text_font = config.stylix.fonts.monospace.name;
       autotile.enable = true;
     };
   };
