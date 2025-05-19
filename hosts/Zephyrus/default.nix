@@ -60,6 +60,7 @@
 
   stylix = {
     enable = true;
+    image = ../../assets/wallpaper.png;
   };
 
   programs = {
