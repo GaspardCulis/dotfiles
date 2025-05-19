@@ -193,5 +193,9 @@ in {
         };
       };
     };
+
+    stylix.targets.firefox.profileNames = mkIf cfg.profiles.gaspard.enable [
+      "gaspard"
+    ];
   };
 }
