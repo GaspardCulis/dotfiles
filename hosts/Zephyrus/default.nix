@@ -58,6 +58,10 @@
     networkmanager-openconnect
   ];
 
+  stylix = {
+    enable = true;
+  };
+
   programs = {
     niri.enable = true;
     nix-ld.enable = true;
