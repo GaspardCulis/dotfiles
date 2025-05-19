@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    stylix.url = "github:nix-community/stylix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,6 +81,7 @@
     deploy-rs,
     grub2-themes,
     home-manager,
+    stylix,
     jovian,
     niri-flake,
     nixos-hardware,
@@ -97,6 +99,7 @@
           ./modules/system
           disko.nixosModules.disko
           grub2-themes.nixosModules.default
+          stylix.nixosModules.stylix
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
@@ -144,6 +147,7 @@
         extraSpecialArgs = {inherit inputs;};
         modules = [
           niri-flake.homeModules.niri
+          stylix.nixosModules.stylix
           ./modules/home
           ./users/gaspard.nix
         ];
