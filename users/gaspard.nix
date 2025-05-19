@@ -27,6 +27,11 @@
     };
   };
 
+  stylix = {
+    enable = true;
+    image = ../assets/wallpaper.png;
+  };
+
   services = {
     ssh-agent.enable = true;
   };
