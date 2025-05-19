@@ -18,7 +18,7 @@ in {
     programs.helix = {
       enable = true;
       settings = {
-        theme = "jaaj";
+        theme = lib.mkForce "jaaj";
         editor = {
           color-modes = true;
           cursorline = true;
@@ -61,7 +61,7 @@ in {
 
       themes = {
         jaaj = {
-          inherits = "sonokai";
+          inherits = "stylix";
           "ui.background" = {};
         };
       };
