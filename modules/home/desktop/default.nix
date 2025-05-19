@@ -41,26 +41,6 @@ in {
       };
     };
     theme = {
-      color-scheme = mkOption {
-        description = "Default color scheme name";
-        type = types.enum ["light" "dark"];
-        default = "light";
-      };
-      font = {
-        name = mkOption {
-          description = "Default font name";
-          type = types.str;
-          default = "FiraCode Nerd Font";
-        };
-        package = mkOption {
-          type = types.package;
-          default = pkgs.nerd-fonts.fira-code;
-        };
-        extraPackages = lib.mkOption {
-          type = lib.types.listOf lib.types.package;
-          default = [pkgs.fira-code-symbols];
-        };
-      };
       icons = {
         name = mkOption {
           description = "Default icon pack name";
@@ -97,25 +77,14 @@ in {
       [
         pkgs.dconf
 
-        cfg.theme.font.package
         cfg.theme.icons.package
       ]
-      ++ cfg.theme.font.extraPackages
       ++ cfg.theme.icons.extraPackages
       ++ (
         if cfg.apps.explorer == "cosmic-files"
         then [pkgs.cosmic-files]
         else []
       );
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme =
-          if cfg.theme.color-scheme == "light"
-          then "prefer-light"
-          else "prefer-dark";
-      };
-    };
 
     fonts.fontconfig.enable = true;
 
@@ -129,10 +98,6 @@ in {
 
     gtk = {
       enable = true;
-      theme = {
-        package = cfg.theme.gtk.package;
-        name = cfg.theme.gtk.name;
-      };
       iconTheme = {
         package = cfg.theme.icons.package;
         name = cfg.theme.icons.name;
