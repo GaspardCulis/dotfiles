@@ -60,6 +60,13 @@
     };
   };
 
+  boot.loader.grub2-theme = {
+    enable = true;
+    theme = "tela";
+    footer = true;
+    customResolution = "2560x1440";
+  };
+
   # Steam specialisation
   specialisation.steam.configuration = {
     system.nixos.tags = ["steam"];
