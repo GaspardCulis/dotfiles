@@ -75,6 +75,7 @@
     nixpkgs,
     disko,
     deploy-rs,
+    grub2-themes,
     sops-nix,
     home-manager,
     jovian,
@@ -91,6 +92,7 @@
           ./hosts/Zephyrus
           ./modules/system
           disko.nixosModules.disko
+          grub2-themes.nixosModules.default
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
