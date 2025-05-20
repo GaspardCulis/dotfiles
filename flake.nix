@@ -35,10 +35,7 @@
     };
 
     # Hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.49.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.49.0";
     hy3 = {
       url = "github:outfoxxed/hy3?ref=hl0.49.0";
       inputs.hyprland.follows = "hyprland";
