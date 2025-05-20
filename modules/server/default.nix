@@ -6,6 +6,14 @@
 }: {
   imports = [./services];
 
+  # Save on storage
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   # Firewall
   networking.nftables.enable = true;
   networking.firewall = {
