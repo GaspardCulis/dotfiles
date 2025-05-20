@@ -39,6 +39,7 @@
   services.blueman.enable = true;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
+  services.thermald.enable = true;
   services.power-profiles-daemon.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false; # Faster boot time
 
