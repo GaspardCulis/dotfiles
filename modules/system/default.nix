@@ -19,5 +19,6 @@
     htop
     unzip
     neofetch
+    uutils-coreutils-noprefix
   ];
 }
