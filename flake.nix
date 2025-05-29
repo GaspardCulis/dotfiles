@@ -62,6 +62,10 @@
 
     # SteamOS
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    suyu = {
+      url = "git+https://git.suyu.dev/suyu/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

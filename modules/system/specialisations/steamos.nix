@@ -1,5 +1,5 @@
 {
-  _inputs,
+  inputs,
   config,
   pkgs,
   lib,
@@ -63,7 +63,7 @@ in {
         firefoxpwa
         appimage-run
         # Games
-        suyu
+        inputs.suyu.packages.${pkgs.system}.suyu
         rpcs3
         prismlauncher
         vintagestory
