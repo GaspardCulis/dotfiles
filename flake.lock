@@ -210,6 +210,24 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -743,23 +761,23 @@
     },
     "suyu": {
       "inputs": {
+        "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "systems": "systems_4"
+        ]
       },
       "locked": {
-        "lastModified": 1714727263,
-        "narHash": "sha256-R+x0UZrBedeR6w+h44JaGwuQJrut5VVD2yjNgYNt9f4=",
-        "ref": "refs/heads/master",
-        "rev": "4013bb63ca2217eab5c4a25e266d68d908b96791",
-        "revCount": 15,
-        "type": "git",
-        "url": "https://git.suyu.dev/suyu/nix-flake"
+        "lastModified": 1726259531,
+        "narHash": "sha256-84sIM3Gd7e6PhjsBT2EiiAInJlKQsb4HpgUPTYr6eg0=",
+        "owner": "Noodlez1232",
+        "repo": "suyu-flake",
+        "rev": "e3ea28163248edaf5fe2a65f92e9ef3593bdc20a",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.suyu.dev/suyu/nix-flake"
+        "owner": "Noodlez1232",
+        "repo": "suyu-flake",
+        "type": "github"
       }
     },
     "systems": {
@@ -809,16 +827,16 @@
     },
     "systems_4": {
       "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default-linux",
+        "repo": "default",
         "type": "github"
       }
     },
