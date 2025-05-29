@@ -3,6 +3,7 @@
     ./podman.nix
     ./openssh.nix
     ./users.nix
+    ./specialisations/steamos.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
