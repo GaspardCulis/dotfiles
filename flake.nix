@@ -61,7 +61,7 @@
     };
 
     # SteamOS
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS?ref=68a0ab533308ac7f8981ab36270d438e5f7fb54d";
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
   };
 
   outputs = {
