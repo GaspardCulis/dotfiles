@@ -11,6 +11,9 @@
   networking.wireguard.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
+      # Use AmneziaWG implementation for DPI obfuscation
+      type = "amneziawg";
+
       # Determines the IP address and subnet of the server's end of the tunnel interface.
       ips = ["10.8.0.1/24"];
 
@@ -28,11 +31,6 @@
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.8.0.0/24 -o ens3 -j MASQUERADE
       '';
 
-      # Path to the private key file.
-      #
-      # Note: The private key can also be included inline via the privateKey option,
-      # but this makes the private key world-readable; thus, using privateKeyFile is
-      # recommended.
       privateKeyFile = "/run/secrets/wireguard/private_key";
 
       peers = [

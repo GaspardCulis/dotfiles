@@ -38,6 +38,7 @@
         "networkmanager"
       ];
     };
+    specialisations.steamos.enable = true;
   };
 
   # Services
@@ -72,70 +73,6 @@
     theme = "tela";
     footer = true;
     customResolution = "2560x1440";
-  };
-
-  # Steam specialisation
-  specialisation.steam.configuration = {
-    system.nixos.tags = ["steam"];
-
-    users.groups.steam.name = "steam";
-    users.users.steam = {
-      isNormalUser = true;
-      createHome = true;
-      extraGroups = [
-        "video"
-        "seat"
-        "audio"
-        "gamemode"
-        "networkmanager"
-      ];
-      group = "steam";
-    };
-
-    services.desktopManager.plasma6.enable = true;
-    services.flatpak.enable = true;
-
-    jovian = {
-      steam = {
-        enable = true;
-        autoStart = true;
-        user = "steam";
-        desktopSession = "plasma";
-      };
-      steamos = {
-        enableSysctlConfig = true;
-        enableDefaultCmdlineConfig = true;
-      };
-    };
-
-    programs.firefox = {
-      enable = true;
-      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-    };
-
-    virtualisation.waydroid.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      mangohud
-      firefoxpwa
-      appimage-run
-      # Games
-      suyu
-      rpcs3
-      prismlauncher
-      vintagestory
-    ];
-
-    environment.sessionVariables = {
-      XKB_DEFAULT_LAYOUT = "fr";
-    };
-    # Gaming optimizations
-    boot = {
-      kernelParams = [
-        "clocksource=tsc"
-        "tsc=reliable"
-      ];
-    };
   };
 
   system.stateVersion = "24.11";

@@ -3,6 +3,7 @@
     ./podman.nix
     ./openssh.nix
     ./users.nix
+    ./specialisations/steamos.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -19,5 +20,6 @@
     htop
     unzip
     neofetch
+    uutils-coreutils-noprefix
   ];
 }

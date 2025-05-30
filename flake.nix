@@ -61,8 +61,9 @@
     };
 
     # SteamOS
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    suyu = {
+      url = "github:Noodlez1232/suyu-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
