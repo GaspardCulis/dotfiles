@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./authelia.nix
+    ./beszel.nix
     ./garage.nix
     ./khoj.nix
     ./matchbox.nix
