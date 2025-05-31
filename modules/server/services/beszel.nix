@@ -22,6 +22,7 @@ in {
     };
     agent = {
       enable = mkEnableOption "Enable service";
+      usePodman = mkEnableOption "Use the Podman API instead of the Docker one";
       address = mkOption {
         type = types.nonEmptyStr;
         description = "Address to bind to";
@@ -63,11 +64,15 @@ in {
 
     systemd.services.beszel-agent = mkIf cfg.agent.enable {
       enable = true;
-      description = "A signaling server for WebRTC peer-to-peer full-mesh networking";
+      description = "Lightweight server monitoring platform";
+      environment = mkIf cfg.agent.usePodman {
+        DOCKER_HOST = "unix:///var/run/podman/podman.sock";
+      };
       wants = ["network-online.target"];
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig = {
+        Group = mkIf cfg.agent.usePodman "podman";
         Restart = "always";
         ExecStart = ''
           ${pkgs.beszel}/bin/beszel-agent -key "${cfg.agent.key}" -listen "${cfg.agent.address}:${toString cfg.agent.port}"
