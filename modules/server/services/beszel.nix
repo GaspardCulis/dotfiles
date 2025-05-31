@@ -1,0 +1,78 @@
+{
+  config,
+  domain,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.gasdev.services.beszel;
+in {
+  options.gasdev.services.beszel = {
+    enable = mkEnableOption "Enable service";
+    domain = mkOption {
+      type = types.nonEmptyStr;
+      description = "Public domain";
+      default = "monitor.${domain}";
+    };
+    port = mkOption {
+      type = types.ints.unsigned;
+      description = "Internal port";
+      default = 8090;
+    };
+    agent = {
+      enable = mkEnableOption "Enable service";
+      address = mkOption {
+        type = types.nonEmptyStr;
+        description = "Address to bind to";
+        default = "127.0.0.1";
+      };
+      port = mkOption {
+        type = types.ints.unsigned;
+        description = "Internal port";
+        default = 45876;
+      };
+      key = mkOption {
+        type = types.nonEmptyStr;
+        description = "Public key";
+      };
+    };
+  };
+
+  config = {
+    services.caddy.virtualHosts."${cfg.domain}".extraConfig = mkIf cfg.enable ''
+      reverse_proxy http://127.0.0.1:${toString cfg.port}
+    '';
+
+    virtualisation.oci-containers.containers = mkIf cfg.enable {
+      beszel-admin = {
+        image = "docker.io/henrygd/beszel";
+        pull = "newer";
+        autoStart = true;
+        extraOptions = [
+          "--network=host" # Allows connections to localhost agent
+        ];
+        ports = [
+          "127.0.0.1:${toString cfg.port}:8090"
+        ];
+        volumes = [
+          "beszel_data:/beszel_data"
+        ];
+      };
+    };
+
+    systemd.services.beszel-agent = mkIf cfg.agent.enable {
+      enable = true;
+      description = "A signaling server for WebRTC peer-to-peer full-mesh networking";
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        Restart = "always";
+        ExecStart = ''
+          ${pkgs.beszel}/bin/beszel-agent -key "${cfg.agent.key}" -listen "${cfg.agent.address}:${toString cfg.agent.port}"
+        '';
+      };
+    };
+  };
+}
