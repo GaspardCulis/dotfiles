@@ -35,6 +35,7 @@
     services.nakama.enable = true;
     services.openproject.enable = true;
     services.outline.enable = true;
+    services.tandoor.enable = true;
     services.umami.enable = true;
     services.uptime-kuma.enable = true;
     services.vaultwarden.enable = true;
