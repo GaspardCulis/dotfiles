@@ -61,7 +61,7 @@ in {
 
     virtualisation.oci-containers.containers = {
       garage = {
-        image = "docker.io/dxflrs/garage:v1.0.0";
+        image = "docker.io/dxflrs/garage:v1.1.0";
         pull = "newer";
         autoStart = true;
         ports = [
