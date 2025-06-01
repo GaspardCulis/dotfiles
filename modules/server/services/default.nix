@@ -10,6 +10,7 @@
     ./stalwart-mail.nix
     ./openproject.nix
     ./outline.nix
+    ./tandoor.nix
     ./umami.nix
     ./uptime-kuma.nix
     ./vaultwarden.nix
