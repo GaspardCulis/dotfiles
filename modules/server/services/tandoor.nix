@@ -24,12 +24,20 @@ in {
 
   config = mkIf cfg.enable {
     sops.secrets."tandoor/SECRET_KEY".owner = "root";
+    sops.secrets."tandoor/S3_ACCESS_KEY".owner = "root";
+    sops.secrets."tandoor/S3_SECRET_ACCESS_KEY".owner = "root";
     sops.secrets."tandoor/POSTGRES_USER".owner = "root";
     sops.secrets."tandoor/POSTGRES_PASSWORD".owner = "root";
 
     sops.templates."tandoor.env" = {
       content = ''
         SECRET_KEY=${config.sops.placeholder."tandoor/SECRET_KEY"}
+        S3_REGION_NAME=garage
+        S3_BUCKET_NAME=tandoor
+        S3_ENDPOINT_URL=https://s3.gasdev.fr
+        S3_CUSTOM_DOMAIN=tandoor.s3web.gasdev.fr
+        S3_ACCESS_KEY=${config.sops.placeholder."tandoor/S3_ACCESS_KEY"}
+        S3_SECRET_ACCESS_KEY=${config.sops.placeholder."tandoor/S3_SECRET_ACCESS_KEY"}
       '';
       owner = "root";
     };
@@ -67,7 +75,6 @@ in {
         ];
         volumes = [
           "tandoor-staticfiles:/opt/recipes/staticfiles"
-          "tandoor-mediafiles:/opt/recipes/mediafiles"
         ];
       };
 
