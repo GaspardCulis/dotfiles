@@ -1,7 +1,6 @@
 {
   config,
   domain,
-  pkgs,
   lib,
   ...
 }:
@@ -14,7 +13,7 @@ in {
     domain = mkOption {
       type = types.nonEmptyStr;
       description = "Public domain";
-      default = "tandoor.${domain}";
+      default = "cook.${domain}";
     };
     port = mkOption {
       type = types.ints.unsigned;
