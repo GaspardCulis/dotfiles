@@ -101,10 +101,7 @@
         domain = "gasdev.fr";
       in
         nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit domain;
-          };
+          specialArgs = {inherit inputs domain;};
           modules = [
             ./hosts/OVHCloud
             ./modules/system
@@ -115,18 +112,22 @@
           ];
         };
 
-      pi4 = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "aarch64-linux";
-        modules = [
-          ./hosts/pi4
-          ./modules/system
-          "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-          nixos-hardware.nixosModules.raspberry-pi-4
-          sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      pi4 = let
+        domain = "pi.gasdev.fr";
+      in
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs domain;};
+          system = "aarch64-linux";
+          modules = [
+            ./hosts/pi4
+            ./modules/system
+            ./modules/server
+            "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+            nixos-hardware.nixosModules.raspberry-pi-4
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
+          ];
+        };
     };
 
     homeConfigurations = {
