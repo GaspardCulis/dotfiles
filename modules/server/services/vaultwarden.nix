@@ -53,7 +53,7 @@ in {
         ];
         environment = {
           SIGNUPS_ALLOWED = "false";
-          DOMAIN = "http://${cfg.domain}";
+          DOMAIN = "https://${cfg.domain}";
           # SMTP
           SMTP_HOST = "${mail.smtpDomain}";
           SMTP_PORT = "465";
