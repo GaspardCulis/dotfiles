@@ -96,7 +96,7 @@ in {
           config.sops.templates."tandoor-db.env".path
         ];
         volumes = [
-          "tandoor-db:/opt/recipes/staticfiles"
+          "tandoor-db:/var/lib/postgresql/data"
         ];
       };
     };
