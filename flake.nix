@@ -140,15 +140,6 @@
           ./users/gaspard.nix
         ];
       };
-
-      "culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./users/culisg.nix
-        ];
-      };
     };
 
     deploy.nodes = {
