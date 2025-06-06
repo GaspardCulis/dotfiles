@@ -87,10 +87,11 @@
       config,
       pkgs,
       ...
-    }: {
-      inherit inputs;
-      imports = [./modules/system];
-    };
+    }:
+      {
+        imports = [./modules/system];
+      }
+      inputs;
     nixosModules."server" = import ./modules/server;
 
     homeManagerModules.default = import ./modules/home;
