@@ -83,7 +83,9 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in rec {
-    nixosModules.default = import ./modules/system inputs nixpkgs;
+    nixosModules.default = {...}: {
+      imports = [./modules/system {inherit inputs;}];
+    };
     nixosModules."server" = {...}: {
       imports = [./modules/server inputs];
     };
