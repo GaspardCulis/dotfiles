@@ -89,7 +89,6 @@
       lib,
       ...
     }: {
-      nixpkgs.pkgs = pkgs;
       imports = [./modules/system inputs];
     };
     nixosModules."server" = {...}: {
