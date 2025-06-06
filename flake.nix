@@ -87,6 +87,7 @@
       config,
       inputs,
       pkgs,
+      ...
     }: {imports = [./modules/system];};
     nixosModules."server" = import ./modules/server;
 
