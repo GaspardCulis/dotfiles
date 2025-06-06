@@ -84,8 +84,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in rec {
     nixosModules.default = {...}: {
-      specialArgs = {inherit inputs;};
-      imports = [./modules/system];
+      imports = [./modules/system inputs];
     };
     nixosModules."server" = import ./modules/server;
 
