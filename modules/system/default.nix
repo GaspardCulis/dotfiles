@@ -1,4 +1,4 @@
-{inputs}: {pkgs, ...}: {
+{inputs, ...}: {pkgs, ...}: {
   imports = [
     ./podman.nix
     ./openssh.nix
