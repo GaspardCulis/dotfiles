@@ -83,6 +83,11 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in rec {
+    nixosModules.default = import ./modules/system inputs;
+    nixosModules."server" = import ./modules/server inputs;
+
+    homeManagerModules.default = import ./modules/home self;
+
     nixosConfigurations = {
       Zephyrus = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
