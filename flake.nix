@@ -85,10 +85,12 @@
   in rec {
     nixosModules.default = {
       config,
-      inputs,
       pkgs,
       ...
-    }: {imports = [./modules/system];};
+    }: {
+      inherit inputs;
+      imports = [./modules/system];
+    };
     nixosModules."server" = import ./modules/server;
 
     homeManagerModules.default = import ./modules/home;
