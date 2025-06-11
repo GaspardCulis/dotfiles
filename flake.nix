@@ -83,11 +83,6 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in rec {
-    nixosModules.default = import ./modules/system {inherit inputs;};
-    nixosModules."server" = import ./modules/server;
-
-    homeManagerModules.default = import ./modules/home;
-
     nixosConfigurations = {
       Zephyrus = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
@@ -143,6 +138,15 @@
         modules = [
           ./modules/home
           ./users/gaspard.nix
+        ];
+      };
+
+      "culisg@im2ag" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./users/culisg.nix
         ];
       };
     };
