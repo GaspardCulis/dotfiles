@@ -20,6 +20,7 @@ in {
         vlc
         qbittorrent
         prismlauncher
+        thunderbird
         element-desktop
         webcord
       ];
