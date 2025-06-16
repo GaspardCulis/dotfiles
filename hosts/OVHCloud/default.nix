@@ -35,6 +35,11 @@
     services.nakama.enable = true;
     services.outline.enable = true;
     services.tandoor.enable = true;
+    services.turn-rs = {
+      enable = true;
+      interface = "51.210.104.210";
+      openFirewall = true;
+    };
     services.umami.enable = true;
     services.uptime-kuma.enable = true;
     services.vaultwarden.enable = true;
