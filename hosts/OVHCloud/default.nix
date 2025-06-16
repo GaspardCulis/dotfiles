@@ -33,7 +33,6 @@
     services.mail.enable = true;
     services.matchbox.enable = true;
     services.nakama.enable = true;
-    services.openproject.enable = true;
     services.outline.enable = true;
     services.tandoor.enable = true;
     services.umami.enable = true;
