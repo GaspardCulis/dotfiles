@@ -23,6 +23,7 @@ in {
     agent = {
       enable = mkEnableOption "Enable service";
       usePodman = mkEnableOption "Use the Podman API instead of the Docker one";
+      openFirewall = mkEnableOption "Open firewall for SSH connections";
       address = mkOption {
         type = types.nonEmptyStr;
         description = "Address to bind to";
@@ -78,6 +79,10 @@ in {
           ${pkgs.beszel}/bin/beszel-agent -key "${cfg.agent.key}" -listen "${cfg.agent.address}:${toString cfg.agent.port}"
         '';
       };
+    };
+
+    networking.firewall = mkIf cfg.agent.openFirewall {
+      allowedTCPPorts = [cfg.agent.port];
     };
   };
 }

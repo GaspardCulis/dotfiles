@@ -18,8 +18,11 @@
       grub.enable = lib.mkDefault false;
     };
   };
+  # Network & Bluetooth
+  networking.networkmanager.enable = true;
 
   # Wireguard
+  networking.firewall.checkReversePath = "loose";
   networking.firewall = {
     allowedUDPPorts = [51820];
   };
