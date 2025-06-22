@@ -22,6 +22,7 @@ in {
         prismlauncher
         thunderbird
         element-desktop
+        youtube-music
         webcord
       ];
     };
