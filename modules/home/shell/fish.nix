@@ -27,7 +27,7 @@ in {
   config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
-      loginShellInit = mkIf cfg.jaaj.enable ''
+      interactiveShellInit = mkIf cfg.jaaj.enable ''
         ${
           if cfg.jaaj.colors
           then inputs.jaaj-rs.packages.${pkgs.system}.lolcat
@@ -35,8 +35,8 @@ in {
         }/bin/jaaj-rs
       '';
       shellInit = ''
-        (${pkgs.starship}/bin/starship init fish --print-full-init | psub) | source
-        ${pkgs.zoxide} init --cmd cd fish | source
+        source (${pkgs.starship}/bin/starship init fish --print-full-init | psub)
+        ${pkgs.zoxide}/bin/zoxide init --cmd cd fish | source
       '';
       shellAbbrs = {
         gs = "git status";
