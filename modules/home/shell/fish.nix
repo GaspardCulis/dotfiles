@@ -27,13 +27,20 @@ in {
   config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
-      interactiveShellInit = mkIf cfg.jaaj.enable ''
-        ${
-          if cfg.jaaj.colors
-          then inputs.jaaj-rs.packages.${pkgs.system}.lolcat
-          else inputs.jaaj-rs.packages.${pkgs.system}.default
-        }/bin/jaaj-rs
-      '';
+      functions = {
+        fish_greeting = {
+          body =
+            if cfg.jaaj.enable
+            then ''
+              ${
+                if cfg.jaaj.colors
+                then inputs.jaaj-rs.packages.${pkgs.system}.lolcat
+                else inputs.jaaj-rs.packages.${pkgs.system}.default
+              }/bin/jaaj-rs''
+            else "";
+        };
+      };
+
       shellInit = ''
         source (${pkgs.starship}/bin/starship init fish --print-full-init | psub)
         ${pkgs.zoxide}/bin/zoxide init --cmd cd fish | source
