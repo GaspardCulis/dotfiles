@@ -38,6 +38,10 @@ in {
         type = types.nonEmptyStr;
         description = "Public key";
       };
+      extraFilesystems = mkOption {
+        type = types.listOf types.str;
+        description = "Extra filesystems to be monitored";
+      };
     };
   };
 
@@ -66,9 +70,13 @@ in {
     systemd.services.beszel-agent = mkIf cfg.agent.enable {
       enable = true;
       description = "Lightweight server monitoring platform";
-      environment = mkIf cfg.agent.usePodman {
-        DOCKER_HOST = "unix:///var/run/podman/podman.sock";
-      };
+      environment =
+        mkIf cfg.agent.usePodman {
+          DOCKER_HOST = "unix:///var/run/podman/podman.sock";
+        }
+        // (mkIf (cfg.agent.extraFilesystems != null) {
+          EXTRA_FILESYSTEMS = builtins.concatStringsSep "," cfg.agent.extraFilesystems;
+        });
       wants = ["network-online.target"];
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
