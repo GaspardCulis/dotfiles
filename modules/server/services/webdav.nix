@@ -19,6 +19,11 @@ in {
       description = "Internal port";
       default = 6065;
     };
+    directory = mkOption {
+      type = types.nonEmptyStr;
+      description = "Directory data is stored in";
+      default = "/var/lib/webdav";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -46,7 +51,7 @@ in {
         port = cfg.port;
         tls = false;
         behindProxy = true;
-        directory = "/var/lib/webdav";
+        directory = cfg.directory;
 
         users = [
           {
