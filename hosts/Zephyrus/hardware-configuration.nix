@@ -42,6 +42,8 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  # XBox wireless support
+  hardware.xpadneo.enable = true;
 
   # Audio
   security.rtkit.enable = true;
