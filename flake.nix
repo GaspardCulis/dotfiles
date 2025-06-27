@@ -41,7 +41,10 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    niri.url = "github:sodiboo/niri-flake";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     end-rs = {
       url = "github:Dr-42/end-rs";
@@ -78,7 +81,7 @@
     grub2-themes,
     home-manager,
     jovian,
-    niri,
+    niri-flake,
     nixos-hardware,
     sops-nix,
     ...
@@ -97,7 +100,7 @@
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
-          niri.nixosModules.niri
+          niri-flake.nixosModules.niri
         ];
       };
 
@@ -140,7 +143,7 @@
 
         extraSpecialArgs = {inherit inputs;};
         modules = [
-          niri.homeModules.niri
+          niri-flake.homeModules.niri
           ./modules/home
           ./users/gaspard.nix
         ];
