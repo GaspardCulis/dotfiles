@@ -65,6 +65,7 @@ in {
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
     XDG_CURRENT_DESKTOP = "Niri";
     XDG_SESSION_TYPE = "wayland";
