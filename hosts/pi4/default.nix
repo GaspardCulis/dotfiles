@@ -27,6 +27,13 @@
     };
   };
 
+  services.caddy.globalConfig = ''
+    auto_https off
+    servers {
+    	trusted_proxies static 10.8.0.0/24
+    }
+  '';
+
   # SOPS
   sops.defaultSopsFile = ../../secrets/pi4/default.yaml;
   sops.secrets."wireguard/private_key".owner = "root";

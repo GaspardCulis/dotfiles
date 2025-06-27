@@ -43,8 +43,12 @@
     services.umami.enable = true;
     services.uptime-kuma.enable = true;
     services.vaultwarden.enable = true;
-    services.webdav.enable = true;
   };
+
+  # Proxy to Pi4
+  services.caddy.virtualHosts."pi.gasdev.fr, *.pi.gasdev.fr".extraConfig = ''
+    reverse_proxy 10.8.0.31:80
+  '';
 
   # SOPS
   sops.defaultSopsFile = ../../secrets/OVHCloud/default.yaml;
