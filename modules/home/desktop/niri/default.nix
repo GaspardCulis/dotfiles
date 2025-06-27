@@ -55,5 +55,8 @@ in {
         fi
       '';
     };
+
+    # TODO: Common wayland config ?
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }
