@@ -17,7 +17,7 @@ in {
 
   binds = with config.lib.niri.actions; {
     "Mod+Q".action = close-window;
-    "Mod+F".action = toggle-windowed-fullscreen;
+    "Mod+F".action = fullscreen-window;
 
     "Mod+Return" = {
       action.spawn = "${apps.terminal}";
@@ -58,5 +58,24 @@ in {
     "Mod+underscore".action.focus-workspace = 8;
     "Mod+ccedilla".action.focus-workspace = 9;
     "Mod+agrave".action.focus-workspace = 10;
+  };
+
+  environment = {
+    GDK_BACKEND = "wayland,x11";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+
+    XDG_CURRENT_DESKTOP = "Niri";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Niri";
+
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+
+    XCURSOR_SIZE = "24";
+    MOZ_ENABLE_WAYLAND = "1";
   };
 }
