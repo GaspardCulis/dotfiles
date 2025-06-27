@@ -72,6 +72,7 @@ in {
         rust-analyzer
         jdt-language-server
         bash-language-server
+        typescript-language-server
         marksman
         python3Packages.python-lsp-server
         nil
