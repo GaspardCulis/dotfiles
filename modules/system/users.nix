@@ -68,7 +68,7 @@ in {
             };
             desktop = mkIf cfg.gaspard.enableDesktop {
               enable = true;
-              hypr = {
+              niri = {
                 enable = true;
                 autoStart = true;
               };
