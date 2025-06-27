@@ -6,7 +6,6 @@
 }:
 with lib; let
   cfg = config.gasdev.desktop.niri;
-  apps = config.gasdev.desktop.apps;
   package = config.programs.niri.package;
 in {
   options.gasdev.desktop.niri = {
@@ -27,15 +26,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.niri.settings = {
-      input.keyboard.xkb.layout = "fr";
-
-      binds = {
-        "Mod+Return".action.spawn = "${apps.terminal}";
-        "Mod+B".action.spawn = "${apps.browser}";
-        "Mod+N".action.spawn = "${apps.explorer}";
-        "Mod+R".action.spawn = "${apps.launcher}";
-      };
+    programs.niri = {
+      settings = import ./config.nix {inherit config;};
     };
 
     programs.bash = mkIf cfg.autoStart {
