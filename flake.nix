@@ -76,10 +76,11 @@
     disko,
     deploy-rs,
     grub2-themes,
-    sops-nix,
     home-manager,
     jovian,
+    niri,
     nixos-hardware,
+    sops-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -96,6 +97,7 @@
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
+          niri.nixosModules.niri
         ];
       };
 
@@ -138,6 +140,7 @@
 
         extraSpecialArgs = {inherit inputs;};
         modules = [
+          niri.homeModules.niri
           ./modules/home
           ./users/gaspard.nix
         ];
