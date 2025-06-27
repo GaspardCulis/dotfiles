@@ -51,7 +51,7 @@ in {
     programs.bash = mkIf cfg.autoStart {
       initExtra = lib.mkAfter ''
         if [ "$(tty)" = /dev/tty${toString cfg.autoStartTTY} ]; then
-          exec ${package}/bin/niri
+          exec ${package}/bin/niri-session
         fi
       '';
     };
