@@ -30,6 +30,24 @@ in {
       settings = import ./config.nix {inherit config;};
     };
 
+    gasdev.desktop = {
+      swayosd.enable = true;
+      end-rs.enable = true;
+      swww.enable = true;
+      eww = {
+        enable = true;
+        widget = {
+          bar.enable = true;
+          music.enable = true;
+          timer.enable = true;
+        };
+      };
+    };
+
+    services = {
+      udiskie.enable = true;
+    };
+
     programs.bash = mkIf cfg.autoStart {
       initExtra = lib.mkAfter ''
         if [ "$(tty)" = /dev/tty${toString cfg.autoStartTTY} ]; then
