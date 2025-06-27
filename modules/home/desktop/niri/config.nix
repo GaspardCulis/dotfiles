@@ -79,4 +79,6 @@ in {
     XCURSOR_SIZE = "24";
     MOZ_ENABLE_WAYLAND = "1";
   };
+
+  hotkey-overlay.skip-at-startup = true;
 }
