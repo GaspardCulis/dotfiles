@@ -41,6 +41,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    niri.url = "github:sodiboo/niri-flake";
+
     end-rs = {
       url = "github:Dr-42/end-rs";
       inputs.nixpkgs.follows = "nixpkgs";
