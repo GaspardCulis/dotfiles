@@ -207,7 +207,7 @@
         helix
         nil
         pkgs.sops
-        pkgs.home-manager
+        home-manager.packages."${system}".home-manager
         pkgs.deploy-rs
       ];
 

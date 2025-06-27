@@ -58,6 +58,7 @@
   ];
 
   programs = {
+    niri.enable = true;
     nix-ld.enable = true;
     adb.enable = true;
     gamemode.enable = true;
