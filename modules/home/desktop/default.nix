@@ -1,6 +1,5 @@
 {
   config,
-  _inputs,
   pkgs,
   lib,
   ...
@@ -13,6 +12,7 @@ in {
     ./eww
     ./hypr
     ./misc
+    ./niri
   ];
 
   options.gasdev.desktop = {
