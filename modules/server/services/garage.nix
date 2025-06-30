@@ -23,6 +23,10 @@ in {
         type = types.ints.unsigned;
         default = 1;
       };
+      bootstrap_peers = mkOption {
+        type = types.listOf types.str;
+        default = [];
+      };
     };
     expose = mkOption {
       type = types.bool;
@@ -104,6 +108,8 @@ in {
       metadata_auto_snapshot_interval = "6h";
 
       replication_factor = cfg.settings.replication_factor;
+
+      bootstrap_peers = cfg.settings.bootstrap_peers;
 
       compression_level = 2;
 
