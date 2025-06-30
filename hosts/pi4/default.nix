@@ -35,6 +35,9 @@
           rpc_public_addr = "10.8.0.31";
           data_dir = "/mnt/garage/data";
           metadata_dir = "/mnt/garage/meta";
+          bootstrap_peers = [
+            "c186e9f0cb65c9f9a442196dbd3db58cbceb68f7fc6ad6002fb338c349c20c4a@10.8.0.1:3901"
+          ];
         };
       };
 

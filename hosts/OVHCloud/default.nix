@@ -37,7 +37,7 @@
         replication_factor = 2;
         rpc_public_addr = "10.8.0.1";
         bootstrap_peers = [
-          "09c34a75861e794a0842f018237d1e445308c6f3488b1609717ac05815a2e41e@10.8.0.31:3901"
+          "c1166e37e36ac85369cd3a9fd1fb44f372869a078ce9e8ee642d00b3fb87dc01@10.8.0.31:3901"
         ];
       };
     };
