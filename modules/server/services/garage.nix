@@ -103,8 +103,8 @@ in {
     };
 
     environment.etc."garage.toml".source = (pkgs.formats.toml {}).generate "garage-config.toml" {
-      metadata_dir = cfg.settings.metadata_dir;
-      data_dir = cfg.settings.data_dir;
+      metadata_dir = "/var/lib/garage/meta";
+      data_dir = "/var/lib/garage/data";
       db_engine = "lmdb";
       metadata_auto_snapshot_interval = "6h";
 
