@@ -31,7 +31,13 @@
     };
     services.garage = {
       enable = true;
-      settings.replication_factor = 2;
+      settings = {
+        replication_factor = 2;
+        rpc_public_addr = "10.8.0.1";
+        bootstrap_peers = [
+          "09c34a75861e794a0842f018237d1e445308c6f3488b1609717ac05815a2e41e@10.8.0.31:3901"
+        ];
+      };
     };
     services.mail.enable = true;
     services.matchbox.enable = true;

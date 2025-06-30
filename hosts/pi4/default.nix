@@ -30,6 +30,7 @@
         expose = false;
         settings = {
           replication_factor = 2;
+          rpc_public_addr = "10.8.0.31";
           data_dir = "/mnt/garage/data";
           metadata_dir = "/mnt/garage/meta";
         };

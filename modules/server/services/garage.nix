@@ -27,6 +27,9 @@ in {
         type = types.listOf types.str;
         default = [];
       };
+      rpc_public_addr = mkOption {
+        type = types.nonEmptyStr;
+      };
     };
     expose = mkOption {
       type = types.bool;
@@ -87,10 +90,8 @@ in {
         image = "docker.io/dxflrs/garage:v1.1.0";
         pull = "newer";
         autoStart = true;
-        ports = [
-          "127.0.0.1:${toString cfg.apiPort}:3900"
-          "127.0.0.1:${toString cfg.rpcPort}:3901"
-          "127.0.0.1:${toString cfg.webPort}:3902"
+        extraOptions = [
+          "--network=host"
         ];
         volumes = [
           "/etc/garage.toml:/etc/garage.toml"
@@ -114,7 +115,7 @@ in {
       compression_level = 2;
 
       rpc_bind_addr = "[::]:${toString cfg.rpcPort}";
-      rpc_public_addr = "0.0.0.0:${toString cfg.rpcPort}";
+      rpc_public_addr = "${cfg.settings.rpc_public_addr}:${toString cfg.rpcPort}";
       rpc_secret_file = "/run/secrets/garage/RPC_SECRET";
 
       s3_api = {
