@@ -25,6 +25,16 @@
         extraFilesystems = ["/mnt"];
       };
 
+      garage = {
+        enable = true;
+        expose = false;
+        settings = {
+          replication_factor = 2;
+          data_dir = "/mnt/garage/data";
+          metadata_dir = "/mnt/garage/meta";
+        };
+      };
+
       webdav = {
         enable = true;
         directory = "/mnt/webdav";
