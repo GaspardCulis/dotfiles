@@ -85,8 +85,8 @@ in {
         ];
         volumes = [
           "/etc/garage.toml:/etc/garage.toml"
-          "/var/lib/garage/meta:/var/lib/garage/meta"
-          "/var/lib/garage/data:/var/lib/garage/data"
+          "${cfg.settings.data_dir}:/var/lib/garage/data"
+          "${cfg.settings.metadata_dir}:/var/lib/garage/meta"
           "/run/secrets/garage/RPC_SECRET:/run/secrets/garage/RPC_SECRET"
         ];
       };
@@ -119,8 +119,8 @@ in {
     };
 
     systemd.tmpfiles.rules = [
-      "d /var/lib/garage/meta 0700 root root -"
-      "d /var/lib/garage/data 0700 root root -"
+      "d ${cfg.settings.metadata_dir} 0700 root root -"
+      "d ${cfg.settings.data_dir} 0700 root root -"
     ];
 
     programs.bash.shellAliases = {
