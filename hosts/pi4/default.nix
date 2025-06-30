@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  networking.hostName = "pi4";
+
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos"
   ];

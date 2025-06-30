@@ -4,6 +4,8 @@
     ./wireguard.nix
   ];
 
+  networking.hostName = "OVHCloud";
+
   # Firewall
   networking.nftables.enable = true;
   networking.firewall.enable = true;
