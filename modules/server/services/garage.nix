@@ -129,6 +129,10 @@ in {
       };
     };
 
+    networking.firewall = {
+      allowedTCPPorts = [cfg.rpcPort];
+    };
+
     systemd.tmpfiles.rules = [
       "d ${cfg.settings.metadata_dir} 0700 root root -"
       "d ${cfg.settings.data_dir} 0700 root root -"
