@@ -85,7 +85,35 @@ in {
       '';
     };
 
-    virtualisation.oci-containers.containers = {
+    virtualisation.oci-containers.containers = let
+      garage-config = (pkgs.formats.toml {}).generate "garage.toml" {
+        metadata_dir = "/var/lib/garage/meta";
+        data_dir = "/var/lib/garage/data";
+        db_engine = "lmdb";
+        metadata_auto_snapshot_interval = "6h";
+
+        replication_factor = cfg.settings.replication_factor;
+
+        bootstrap_peers = cfg.settings.bootstrap_peers;
+
+        compression_level = 2;
+
+        rpc_bind_addr = "[::]:${toString cfg.rpcPort}";
+        rpc_public_addr = "${cfg.settings.rpc_public_addr}:${toString cfg.rpcPort}";
+        rpc_secret_file = "/run/secrets/garage/RPC_SECRET";
+
+        s3_api = {
+          s3_region = "garage";
+          api_bind_addr = "[::]:${toString cfg.apiPort}";
+          root_domain = ".${cfg.domain}";
+        };
+        s3_web = {
+          bind_addr = "[::]:${toString cfg.webPort}";
+          root_domain = ".${cfg.webDomain}";
+          index = "index.html";
+        };
+      };
+    in {
       garage = {
         image = "docker.io/dxflrs/garage:v1.1.0";
         pull = "newer";
@@ -94,39 +122,11 @@ in {
           "--network=host"
         ];
         volumes = [
-          "/etc/garage.toml:/etc/garage.toml"
+          "${garage-config}:/etc/garage.toml"
           "${cfg.settings.data_dir}:/var/lib/garage/data"
           "${cfg.settings.metadata_dir}:/var/lib/garage/meta"
           "/run/secrets/garage/RPC_SECRET:/run/secrets/garage/RPC_SECRET"
         ];
-      };
-    };
-
-    environment.etc."garage.toml".source = (pkgs.formats.toml {}).generate "garage-config.toml" {
-      metadata_dir = "/var/lib/garage/meta";
-      data_dir = "/var/lib/garage/data";
-      db_engine = "lmdb";
-      metadata_auto_snapshot_interval = "6h";
-
-      replication_factor = cfg.settings.replication_factor;
-
-      bootstrap_peers = cfg.settings.bootstrap_peers;
-
-      compression_level = 2;
-
-      rpc_bind_addr = "[::]:${toString cfg.rpcPort}";
-      rpc_public_addr = "${cfg.settings.rpc_public_addr}:${toString cfg.rpcPort}";
-      rpc_secret_file = "/run/secrets/garage/RPC_SECRET";
-
-      s3_api = {
-        s3_region = "garage";
-        api_bind_addr = "[::]:${toString cfg.apiPort}";
-        root_domain = ".${cfg.domain}";
-      };
-      s3_web = {
-        bind_addr = "[::]:${toString cfg.webPort}";
-        root_domain = ".${cfg.webDomain}";
-        index = "index.html";
       };
     };
 
