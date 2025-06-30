@@ -10,6 +10,20 @@ with lib; let
 in {
   options.gasdev.services.garage = {
     enable = mkEnableOption "Enable service";
+    settings = {
+      metadata_dir = mkOption {
+        type = types.nonEmptyStr;
+        default = "/var/lib/garage/meta";
+      };
+      data_dir = mkOption {
+        type = types.nonEmptyStr;
+        default = "/var/lib/garage/data";
+      };
+      replication_factor = mkOption {
+        type = types.ints.unsigned;
+        default = 1;
+      };
+    };
     domain = mkOption {
       type = types.nonEmptyStr;
       description = "Public S3 API domain";
@@ -79,12 +93,12 @@ in {
     };
 
     environment.etc."garage.toml".source = (pkgs.formats.toml {}).generate "garage-config.toml" {
-      metadata_dir = "/var/lib/garage/meta";
-      data_dir = "/var/lib/garage/data";
+      metadata_dir = cfg.settings.metadata_dir;
+      data_dir = cfg.settings.data_dir;
       db_engine = "lmdb";
       metadata_auto_snapshot_interval = "6h";
 
-      replication_factor = 1;
+      replication_factor = cfg.settings.replication_factor;
 
       compression_level = 2;
 
