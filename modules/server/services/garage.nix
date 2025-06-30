@@ -24,6 +24,11 @@ in {
         default = 1;
       };
     };
+    expose = mkOption {
+      type = types.bool;
+      description = "Expose endpoints with caddy";
+      default = true;
+    };
     domain = mkOption {
       type = types.nonEmptyStr;
       description = "Public S3 API domain";
@@ -54,7 +59,7 @@ in {
   config = mkIf cfg.enable {
     sops.secrets."garage/RPC_SECRET".owner = "root";
 
-    services.caddy.virtualHosts."${cfg.domain} *.${cfg.domain}" = {
+    services.caddy.virtualHosts."${cfg.domain} *.${cfg.domain}" = mkIf cfg.expose {
       logFormat = "output file ${config.services.caddy.logDir}/access-${cfg.domain}.log";
       extraConfig = ''
         header {
@@ -66,7 +71,7 @@ in {
       '';
     };
 
-    services.caddy.virtualHosts."${cfg.webDomain} *.${cfg.webDomain}" = {
+    services.caddy.virtualHosts."${cfg.webDomain} *.${cfg.webDomain}" = mkIf cfg.expose {
       logFormat = "output file ${config.services.caddy.logDir}/access-s3web.gasdev.fr.log";
       extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString cfg.webPort}
