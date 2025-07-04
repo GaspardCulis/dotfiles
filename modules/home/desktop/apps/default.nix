@@ -22,6 +22,7 @@ in {
         prismlauncher
         thunderbird
         element-desktop
+        libreoffice-fresh
         youtube-music
         webcord
       ];
