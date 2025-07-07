@@ -18,6 +18,7 @@ in {
       default = with pkgs; [
         imv
         vlc
+        kicad
         qbittorrent
         prismlauncher
         thunderbird
