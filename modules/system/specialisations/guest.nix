@@ -39,12 +39,22 @@ in {
           "networkmanager"
         ];
         group = "${cfg.user}";
+        password = "guest";
+      };
 
-        packages = with pkgs; [
+      # `modules/system/users` required
+      home-manager.users."${cfg.user}" = {
+        home.username = "${cfg.user}";
+        home.homeDirectory = "/home/${cfg.user}";
+        home.stateVersion = "24.05";
+
+        home.packages = with pkgs; [
           firefox
           gimp
           libreoffice-fresh
         ];
+
+        gasdev.desktop.apps.software-center.enable = true;
       };
 
       fileSystems."/home/${cfg.user}" = {

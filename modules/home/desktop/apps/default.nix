@@ -10,6 +10,7 @@ in {
   imports = [
     ./alacritty.nix
     ./firefox.nix
+    ./software-center.nix
   ];
 
   options.gasdev.desktop.apps = {
