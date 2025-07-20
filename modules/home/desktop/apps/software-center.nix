@@ -28,7 +28,7 @@ in {
       };
 
       Service = {
-        ExecStart = "${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo";
+        ExecStart = "${pkgs.flatpak}/bin/flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo";
         Restart = "on-failure";
         RestartSec = "20s";
       };
