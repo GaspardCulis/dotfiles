@@ -49,12 +49,17 @@ in {
         home.stateVersion = "24.05";
 
         home.packages = with pkgs; [
-          firefox
           gimp
           libreoffice-fresh
         ];
 
-        gasdev.desktop.apps.software-center.enable = true;
+        gasdev.desktop.apps = {
+          firefox = {
+            enable = true;
+            progressiveWebApps.enable = true;
+          };
+          software-center.enable = true;
+        };
       };
 
       fileSystems."/home/${cfg.user}" = {
