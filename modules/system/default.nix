@@ -4,6 +4,7 @@
     ./openssh.nix
     ./users.nix
     ./specialisations/steamos.nix
+    ./specialisations/guest.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
