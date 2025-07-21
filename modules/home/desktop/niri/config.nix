@@ -67,6 +67,15 @@ in {
     "Mod+agrave".action.focus-workspace = 10;
   };
 
+  window-rules = [
+    {
+      open-maximized = true;
+
+      geometry-corner-radius = 12;
+      clip-to-geometry = true;
+    }
+  ];
+
   environment = {
     GDK_BACKEND = "wayland,x11";
     SDL_VIDEODRIVER = "wayland";
