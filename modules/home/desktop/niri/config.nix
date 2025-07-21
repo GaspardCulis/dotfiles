@@ -10,6 +10,8 @@
   power-profile-next = "${../../../../config/eww/scripts/power_profile} next";
   refresh-rate-toggle = "${../../../../config/eww/scripts/refresh_rate} toggle";
 in {
+  prefer-no-csd = true;
+
   input = {
     keyboard.xkb.layout = "fr";
     warp-mouse-to-focus.enable = true;
