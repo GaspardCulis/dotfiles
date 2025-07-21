@@ -50,6 +50,11 @@ in {
     "Mod+K".action = focus-window-up;
     "Mod+L".action = focus-column-right;
 
+    "Mod+Shift+H".action = move-column-left;
+    "Mod+Shift+J".action = move-window-down;
+    "Mod+Shift+K".action = move-window-up;
+    "Mod+Shift+L".action = move-column-right;
+
     "Mod+ampersand".action.focus-workspace = 1;
     "Mod+eacute".action.focus-workspace = 2;
     "Mod+quotedbl".action.focus-workspace = 3;
