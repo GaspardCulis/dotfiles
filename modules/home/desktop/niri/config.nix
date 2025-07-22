@@ -12,11 +12,6 @@
 in {
   prefer-no-csd = true;
 
-  input = {
-    keyboard.xkb.layout = "fr";
-    warp-mouse-to-focus.enable = true;
-  };
-
   binds = with config.lib.niri.actions; {
     "Mod+Q".action = close-window;
     "Mod+F".action = fullscreen-window;
@@ -49,6 +44,8 @@ in {
     "XF86MonBrightnessDown".action = spawn "${swayosd-client} --brightness lower";
     "XF86MonBrightnessUp".action = spawn "${swayosd-client} --brightness raise";
 
+    "Mod+S".action = switch-preset-column-width;
+
     "Mod+H".action = focus-column-left;
     "Mod+J".action = focus-window-down;
     "Mod+K".action = focus-window-up;
@@ -71,6 +68,25 @@ in {
     "Mod+agrave".action.focus-workspace = 10;
 
     "Mod+Shift+comma".action = show-hotkey-overlay;
+  };
+
+  input = {
+    keyboard.xkb.layout = "fr";
+    warp-mouse-to-focus.enable = true;
+  };
+
+  layout = {
+    preset-column-widths = [
+      {proportion = 1. / 3.;}
+      {proportion = 1. / 2.;}
+      {proportion = 2. / 3.;}
+    ];
+  };
+
+  switch-events = {
+    lid-close = {
+      action.spawn = {}; # TODO: Lock
+    };
   };
 
   window-rules = [
