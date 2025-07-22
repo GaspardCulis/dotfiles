@@ -75,7 +75,12 @@ in {
     "Mod+ccedilla".action.focus-workspace = 9;
     "Mod+agrave".action.focus-workspace = 10;
 
+    "Mod+O".action = toggle-overview;
     "Mod+Shift+comma".action = show-hotkey-overlay;
+  };
+
+  gestures = {
+    hot-corners.enable = false;
   };
 
   input = {
