@@ -110,13 +110,26 @@ in {
     {
       # Browser
       matches = [
-        {
-          app-id = "firefox";
-        }
+        {app-id = "firefox";}
       ];
       open-maximized = true;
     }
+    {
+      # Chat
+      matches = [
+        {app-id = "WebCord";}
+        {app-id = "Element";}
+      ];
+      open-on-workspace = "chat";
+      block-out-from = "screencast";
+      open-maximized = true;
+      open-focused = false;
+    }
   ];
+
+  workspaces."chat" = {
+    open-on-output = "eDP-1"; # Keep waifu gifs on primary monitor
+  };
 
   environment = {
     GDK_BACKEND = "wayland,x11";
