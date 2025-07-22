@@ -22,18 +22,22 @@ in {
     "Mod+F".action = fullscreen-window;
 
     "Mod+Return" = {
+      hotkey-overlay.title = "Spawn terminal emulator";
       action.spawn = "${apps.terminal}";
       repeat = false;
     };
     "Mod+B" = {
+      hotkey-overlay.title = "Spawn Web browser";
       action.spawn = "${apps.browser}";
       repeat = false;
     };
     "Mod+N" = {
+      hotkey-overlay.title = "Spawn file explorer";
       action.spawn = "${apps.explorer}";
       repeat = false;
     };
     "Mod+R" = {
+      hotkey-overlay.title = "Spawn quick launcher";
       action.spawn = "${apps.launcher}";
       repeat = false;
     };
