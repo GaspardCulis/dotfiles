@@ -47,6 +47,7 @@ in {
     "Mod+S".action = switch-preset-column-width;
     "Mod+F".action = maximize-column;
     "Mod+Shift+F".action = fullscreen-window;
+    "Mod+Shift+Space".action = toggle-window-floating;
 
     "Mod+H".action = focus-column-left;
     "Mod+J".action = focus-window-down;
