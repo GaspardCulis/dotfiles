@@ -69,12 +69,13 @@ in {
     "Mod+underscore".action.focus-workspace = 8;
     "Mod+ccedilla".action.focus-workspace = 9;
     "Mod+agrave".action.focus-workspace = 10;
+
+    "Mod+Shift+comma".action = show-hotkey-overlay;
   };
 
   window-rules = [
     {
-      open-maximized = true;
-
+      # Default
       geometry-corner-radius = {
         top-left = 12.0;
         top-right = 12.0;
@@ -82,6 +83,15 @@ in {
         bottom-right = 12.0;
       };
       clip-to-geometry = true;
+    }
+    {
+      # Browser
+      matches = [
+        {
+          app-id = "firefox";
+        }
+      ];
+      open-maximized = true;
     }
   ];
 
