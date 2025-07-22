@@ -14,7 +14,7 @@ in {
 
   binds = with config.lib.niri.actions; {
     "Mod+Q".action = close-window;
-    "Mod+F".action = fullscreen-window;
+    "Mod+Shift+Q".action = quit;
 
     "Mod+Return" = {
       hotkey-overlay.title = "Spawn terminal emulator";
@@ -45,6 +45,8 @@ in {
     "XF86MonBrightnessUp".action = spawn "${swayosd-client} --brightness raise";
 
     "Mod+S".action = switch-preset-column-width;
+    "Mod+F".action = maximize-column;
+    "Mod+Shift+F".action = fullscreen-window;
 
     "Mod+H".action = focus-column-left;
     "Mod+J".action = focus-window-down;
