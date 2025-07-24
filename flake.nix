@@ -24,11 +24,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    grub2-themes = {
-      url = "github:vinceliuice/grub2-themes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +78,6 @@
     nixpkgs,
     disko,
     deploy-rs,
-    grub2-themes,
     home-manager,
     stylix,
     jovian,
@@ -102,7 +96,6 @@
           ./hosts/Zephyrus
           ./modules/system
           disko.nixosModules.disko
-          grub2-themes.nixosModules.default
           stylix.nixosModules.stylix
           nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager

@@ -97,12 +97,5 @@
     };
   };
 
-  boot.loader.grub2-theme = {
-    enable = true;
-    theme = "tela";
-    footer = true;
-    customResolution = "2560x1440";
-  };
-
   system.stateVersion = "24.11";
 }
