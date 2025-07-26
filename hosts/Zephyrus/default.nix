@@ -60,8 +60,7 @@
 
   stylix = {
     enable = true;
-    image = ../../assets/wallpaper-exyl.png;
-    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-dune-light.yaml";
     fonts = {
       serif = {
         package = pkgs.dejavu_fonts;
