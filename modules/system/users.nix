@@ -78,6 +78,7 @@ in {
                   profiles.gaspard.enable = true;
                 };
               };
+              udiskr.enable = true;
             };
           };
 
