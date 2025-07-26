@@ -46,7 +46,7 @@ in {
         }: {
           Unit = {
             Description = "Eww ${name} widget";
-            PartOf = ["graphical-session.target"];
+            Requires = ["eww.service"];
             After = ["eww.service"];
           };
 
@@ -59,14 +59,15 @@ in {
           };
 
           Install = mkIf enable {
-            WantedBy = ["graphical-session.target"];
+            WantedBy = ["eww.service"];
           };
         };
       in {
         eww = {
           Unit = {
             Description = "ElKowars wacky widgets";
-            PartOf = ["graphical-session.target"];
+            After = ["graphical-session.target"];
+            Requires = ["graphical-session.target"];
           };
 
           Service = {

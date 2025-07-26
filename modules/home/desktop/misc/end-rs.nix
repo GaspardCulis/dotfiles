@@ -60,7 +60,6 @@ in {
       services.end-rs = {
         Unit = {
           Description = "Eww notification daemon (in Rust)";
-          PartOf = ["graphical-session.target"];
           Requires = ["eww.service"];
           After = ["eww.service"];
         };
@@ -75,7 +74,7 @@ in {
         };
 
         Install = {
-          WantedBy = ["graphical-session.target"];
+          WantedBy = ["eww.service"];
         };
       };
     };
