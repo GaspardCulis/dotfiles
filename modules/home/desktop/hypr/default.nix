@@ -49,10 +49,6 @@ in {
       };
     };
 
-    services = {
-      udiskie.enable = true;
-    };
-
     home.packages = with pkgs;
       [
         # Required packages
