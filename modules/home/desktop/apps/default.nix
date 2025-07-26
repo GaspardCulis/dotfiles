@@ -10,6 +10,7 @@ in {
   imports = [
     ./alacritty.nix
     ./firefox.nix
+    ./software-center.nix
   ];
 
   options.gasdev.desktop.apps = {
@@ -18,6 +19,7 @@ in {
       default = with pkgs; [
         imv
         vlc
+        kicad
         qbittorrent
         prismlauncher
         thunderbird

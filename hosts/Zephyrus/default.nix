@@ -39,6 +39,7 @@
       ];
     };
     specialisations.steamos.enable = true;
+    specialisations.guest.enable = true;
   };
 
   # Services

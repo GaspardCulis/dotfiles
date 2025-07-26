@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   lib,
@@ -35,8 +34,21 @@ in {
         group = "${cfg.user}";
       };
 
+      home-manager.users."${cfg.user}" = {
+        home.username = "${cfg.user}";
+        home.homeDirectory = "/home/${cfg.user}";
+        home.stateVersion = "24.05";
+
+        gasdev.desktop.apps = {
+          firefox = {
+            enable = true;
+            progressiveWebApps.enable = true;
+          };
+          software-center.enable = true;
+        };
+      };
+
       services.desktopManager.plasma6.enable = true;
-      services.flatpak.enable = true;
 
       jovian = {
         steam = {
@@ -51,16 +63,10 @@ in {
         };
       };
 
-      programs.firefox = {
-        enable = true;
-        nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-      };
-
       virtualisation.waydroid.enable = true;
 
       environment.systemPackages = with pkgs; [
         mangohud
-        firefoxpwa
         appimage-run
         # Games
         # inputs.suyu.packages.${pkgs.system}.suyu
