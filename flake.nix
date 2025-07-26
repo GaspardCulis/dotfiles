@@ -60,6 +60,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    udiskr = {
+      url = "github:GaspardCulis/udiskr/feat/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # SteamOS
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     suyu = {
