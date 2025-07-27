@@ -44,10 +44,6 @@ in {
       };
     };
 
-    services = {
-      udiskie.enable = true;
-    };
-
     programs.bash = mkIf cfg.autoStart {
       initExtra = lib.mkAfter ''
         if [ "$(tty)" = /dev/tty${toString cfg.autoStartTTY} ]; then
