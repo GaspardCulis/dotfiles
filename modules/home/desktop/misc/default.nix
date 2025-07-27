@@ -4,5 +4,6 @@
     ./end-rs.nix
     ./swayosd.nix
     ./swww.nix
+    ./udiskr.nix
   ];
 }
