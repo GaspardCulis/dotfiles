@@ -40,6 +40,13 @@ in {
         default = "anyrun";
       };
     };
+    applets = {
+      enable = mkOption {
+        description = "Enable default applet services";
+        type = types.bool;
+        default = cfg.enable;
+      };
+    };
     theme = {
       icons = {
         name = mkOption {
@@ -94,6 +101,11 @@ in {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";
       size = 24;
+    };
+
+    services = mkIf cfg.applets.enable {
+      network-manager-applet.enable = true;
+      blueman-applet.enable = true;
     };
 
     stylix = {
