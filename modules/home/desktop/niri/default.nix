@@ -21,6 +21,7 @@ in {
       default = with pkgs; [
         xdg-utils
         wdisplays
+        wl-clipboard
       ];
     };
   };
