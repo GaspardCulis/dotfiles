@@ -60,6 +60,7 @@
 
   stylix = {
     enable = true;
+    polarity = "light";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-dune-light.yaml";
     fonts = {
       serif = {
