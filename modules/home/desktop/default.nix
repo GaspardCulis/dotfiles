@@ -96,11 +96,12 @@ in {
       size = 24;
     };
 
-    gtk = {
-      enable = true;
-      iconTheme = {
+    stylix = {
+      icons = {
+        enable = true;
         package = cfg.theme.icons.package;
-        name = cfg.theme.icons.name;
+        dark = cfg.theme.icons.name;
+        light = cfg.theme.icons.name;
       };
     };
   };
