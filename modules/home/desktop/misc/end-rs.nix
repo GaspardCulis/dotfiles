@@ -31,9 +31,12 @@ in {
           critical = 0;
         };
 
-        icon_theme = config.gasdev.desktop.theme.icons.name;
+        icon_theme =
+          if config.stylix.polarity == "dark"
+          then config.stylix.icons.dark
+          else config.stylix.icons.light;
         icon_dirs = [
-          "${config.gasdev.desktop.theme.icons.package}/share/icons"
+          "${config.stylix.icons.package}/share/icons"
         ];
 
         eww_notification_window = "notification_overlay";

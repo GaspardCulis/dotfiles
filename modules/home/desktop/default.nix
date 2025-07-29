@@ -47,28 +47,6 @@ in {
         default = cfg.enable;
       };
     };
-    theme = {
-      icons = {
-        name = mkOption {
-          description = "Default icon pack name";
-          type = types.str;
-          default = "WhiteSur";
-        };
-        package = mkPackageOption pkgs "whitesur-icon-theme" {};
-        extraPackages = lib.mkOption {
-          type = lib.types.listOf lib.types.package;
-          default = [];
-        };
-      };
-      gtk = {
-        name = mkOption {
-          description = "Default GTK theme";
-          type = types.str;
-          default = "WhiteSur-Dark-solid-nord";
-        };
-        package = mkPackageOption pkgs "whitesur-gtk-theme" {};
-      };
-    };
   };
 
   config = mkIf cfg.enable {
@@ -83,10 +61,7 @@ in {
     home.packages =
       [
         pkgs.dconf
-
-        cfg.theme.icons.package
       ]
-      ++ cfg.theme.icons.extraPackages
       ++ (
         if cfg.apps.explorer == "cosmic-files"
         then [pkgs.cosmic-files]
@@ -106,15 +81,6 @@ in {
     services = mkIf cfg.applets.enable {
       network-manager-applet.enable = true;
       blueman-applet.enable = true;
-    };
-
-    stylix = {
-      icons = {
-        enable = true;
-        package = cfg.theme.icons.package;
-        dark = cfg.theme.icons.name;
-        light = cfg.theme.icons.name;
-      };
     };
   };
 }

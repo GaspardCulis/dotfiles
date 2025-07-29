@@ -1,7 +1,7 @@
 {
   inputs,
   config,
-  _pkgs,
+  pkgs,
   lib,
   ...
 }:
@@ -84,6 +84,16 @@ in {
 
           services = {
             ssh-agent.enable = true;
+          };
+
+          stylix = {
+            enable = true;
+            icons = {
+              enable = true;
+              package = pkgs.colloid-icon-theme;
+              dark = "Colloid-Dark";
+              light = "Colloid-Light";
+            };
           };
 
           xdg.mimeApps = mkIf cfg.gaspard.enableDesktop {
