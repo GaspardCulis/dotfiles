@@ -23,7 +23,30 @@ in {
       enableBashIntegration = config.gasdev.shell.bash.enable;
     };
 
-    home.file.".config/eww".source = ../../../../config/eww;
+    home.file.".config/eww" = {
+      source = ../../../../config/eww;
+      recursive = true;
+    };
+
+    home.file.".config/eww/theme.scss".text = let
+      colors = config.lib.stylix.colors;
+    in ''
+      /* Theme color variables */
+      $background: #${colors.base00};
+      $background-active: #${colors.base01};
+      $text: #${colors.base07};
+
+      $purple: #${colors.base0E};;
+      $blue: #${colors.base0D};
+      $green: #${colors.base0B};
+      $yellow: #${colors.base0A};
+      $orange: #${colors.base09};
+      $red: #${colors.base08};
+
+      $normal: $green;
+      $warning: $orange;
+      $critical: $red;
+    '';
 
     home.packages = [
       # Script dependencies
