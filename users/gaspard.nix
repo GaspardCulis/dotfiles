@@ -1,4 +1,9 @@
-{...}: {
+{
+  lib,
+  pkgs,
+  enableDesktop ? false,
+  ...
+}: {
   home.username = "gaspard";
   home.homeDirectory = "/home/gaspard";
   home.stateVersion = "24.05";
@@ -12,36 +17,37 @@
       helix.enable = true;
       zellij.enable = true;
     };
-    desktop = {
+    desktop = lib.mkIf enableDesktop {
       enable = true;
-      hypr = {
+      niri = {
         enable = true;
         autoStart = true;
       };
-      apps = {
+      apps = lib.mkIf enableDesktop {
         firefox = {
           progressiveWebApps.enable = true;
           profiles.gaspard.enable = true;
         };
       };
+      udiskr.enable = true;
     };
-  };
-
-  stylix = {
-    enable = true;
-    image = ../assets/wallpaper.png;
   };
 
   services = {
     ssh-agent.enable = true;
   };
 
-  home.file.".ssh/authorized_keys".text = ''
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICm9trfkWL5FVHuo/5YONd+oZY4nQnpHLDOnXoOrl9j9 u0_a220@pixel
-  '';
+  stylix = {
+    enable = true;
+    icons = {
+      enable = true;
+      package = pkgs.colloid-icon-theme;
+      dark = "Colloid-Dark";
+      light = "Colloid-Light";
+    };
+  };
 
-  xdg.mimeApps = {
+  xdg.mimeApps = lib.mkIf enableDesktop {
     enable = true;
     defaultApplications = {
       "text/html" = "firefox.desktop";

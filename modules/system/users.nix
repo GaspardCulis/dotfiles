@@ -1,8 +1,8 @@
 {
-  inputs,
   config,
-  pkgs,
+  inputs,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -52,61 +52,10 @@ in {
         ../home
       ];
       users = {
-        "gaspard" = mkIf cfg.gaspard.enable {
-          home.username = "gaspard";
-          home.homeDirectory = "/home/gaspard";
-          home.stateVersion = "24.05";
-
-          programs.home-manager.enable = true;
-          programs.direnv.enable = true;
-
-          gasdev = {
-            shell = {
-              bash.enable = true;
-              helix.enable = true;
-              zellij.enable = true;
-            };
-            desktop = mkIf cfg.gaspard.enableDesktop {
-              enable = true;
-              niri = {
-                enable = true;
-                autoStart = true;
-              };
-              apps = mkIf cfg.gaspard.enableDesktop {
-                firefox = {
-                  progressiveWebApps.enable = true;
-                  profiles.gaspard.enable = true;
-                };
-              };
-              udiskr.enable = true;
-            };
-          };
-
-          services = {
-            ssh-agent.enable = true;
-          };
-
-          stylix = {
-            enable = true;
-            icons = {
-              enable = true;
-              package = pkgs.colloid-icon-theme;
-              dark = "Colloid-Dark";
-              light = "Colloid-Light";
-            };
-          };
-
-          xdg.mimeApps = mkIf cfg.gaspard.enableDesktop {
-            enable = true;
-            defaultApplications = {
-              "text/html" = "firefox.desktop";
-              "x-scheme-handler/http" = "firefox.desktop";
-              "x-scheme-handler/https" = "firefox.desktop";
-              "x-scheme-handler/about" = "firefox.desktop";
-              "x-scheme-handler/unknown" = "firefox.desktop";
-            };
-          };
-        };
+        "gaspard" = mkIf cfg.gaspard.enable (import ../../users/gaspard.nix {
+          inherit lib pkgs;
+          enableDesktop = cfg.gaspard.enableDesktop;
+        });
       };
     };
   };
