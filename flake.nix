@@ -151,7 +151,13 @@
           niri-flake.homeModules.niri
           stylix.homeModules.stylix
           ./modules/home
-          ./users/gaspard.nix
+
+          (import
+            ./users/gaspard.nix
+            {
+              inherit pkgs;
+              enableDesktop = true;
+            })
         ];
       };
     };

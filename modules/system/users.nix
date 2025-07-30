@@ -53,7 +53,7 @@ in {
       ];
       users = {
         "gaspard" = mkIf cfg.gaspard.enable (import ../../users/gaspard.nix {
-          inherit lib pkgs;
+          inherit pkgs;
           enableDesktop = cfg.gaspard.enableDesktop;
         });
       };

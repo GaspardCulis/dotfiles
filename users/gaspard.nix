@@ -1,9 +1,10 @@
 {
-  lib,
   pkgs,
   enableDesktop ? false,
   ...
-}: {
+}: let
+  lib = pkgs.lib;
+in {
   home.username = "gaspard";
   home.homeDirectory = "/home/gaspard";
   home.stateVersion = "24.05";
