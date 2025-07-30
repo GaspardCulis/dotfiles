@@ -38,7 +38,7 @@
         "networkmanager"
       ];
     };
-    specialisations.steamos.enable = true;
+    # specialisations.steamos.enable = true;
     specialisations.guest.enable = true;
   };
 
