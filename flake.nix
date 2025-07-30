@@ -149,7 +149,7 @@
         extraSpecialArgs = {inherit inputs;};
         modules = [
           niri-flake.homeModules.niri
-          stylix.nixosModules.stylix
+          stylix.homeModules.stylix
           ./modules/home
           ./users/gaspard.nix
         ];
