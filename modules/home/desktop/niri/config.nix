@@ -37,6 +37,10 @@ in {
       repeat = false;
     };
 
+    "Mod+F6".action = screenshot {
+      show-pointer = true;
+    };
+
     "XF86AudioMute".action = spawn "${swayosd-client} --output-volume mute-toggle";
     "XF86AudioMicMute".action = spawn "${swayosd-client} --input-volume mute-toggle";
     "XF86AudioLowerVolume".action = spawn "${swayosd-client} --output-volume lower";
