@@ -74,6 +74,7 @@ in {
         bash-language-server
         typescript-language-server
         marksman
+        kdePackages.qtdeclarative # qmlls
         python3Packages.python-lsp-server
         nil
         tinymist
@@ -114,6 +115,11 @@ in {
               name = "java";
               pkg = google-java-format;
               command = ["google-java-format" "-"];
+            })
+            (lang {
+              name = "qml";
+              pkg = kdePackages.qtdeclarative;
+              command = ["qmlformat"];
             })
             (lang {
               name = "rust";
