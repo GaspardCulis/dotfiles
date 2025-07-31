@@ -18,7 +18,6 @@ in {
     programs.helix = {
       enable = true;
       settings = {
-        theme = lib.mkForce "jaaj";
         editor = {
           color-modes = true;
           cursorline = true;
@@ -56,13 +55,6 @@ in {
             a = ["ensure_selections_forward" "collapse_selection" "move_char_right" "insert_mode"];
             A-R = [":clipboard-paste-replace"];
           };
-        };
-      };
-
-      themes = {
-        jaaj = {
-          inherits = "stylix";
-          "ui.background" = {};
         };
       };
 
