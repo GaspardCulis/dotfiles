@@ -41,7 +41,63 @@ in {
         showResultsImmediately = false;
         maxEntries = null;
       };
-      extraCss = builtins.readFile ../../../../config/anyrun/style.css;
+      extraCss = let
+        colors = config.lib.stylix.colors;
+      in ''
+        #window {
+          background-color: transparent;
+        }
+
+        box#main {
+          border-radius: 10px;
+          background-color: #${colors.base00};
+          border: 2px solid #${colors.base02};
+        }
+
+        list#main {
+          background-color: transparent;
+        }
+
+        entry#entry {
+          margin: 3px;
+          border-radius: 20px;
+          background: transparent;
+        }
+
+        #match {
+          padding: 2.5px;
+          border-radius: 4px;
+        }
+
+        #match:selected {
+          background: #${colors.base01};
+          border-right: 4px solid #${colors.base0C};
+          border-left: 4px solid #${colors.base0C};
+          color: #${colors.base07};
+        }
+
+        #match:selected label#info {
+          animation: fade 0.1s linear;
+        }
+
+        @keyframes fade {
+          0% {
+            color: transparent;
+          }
+
+          100% {
+            color: #b0b0b0;
+          }
+        }
+
+        #match label#info {
+          color: transparent;
+        }
+
+        #match:hover {
+          background: #${colors.base01};
+        }
+      '';
 
       extraConfigFiles."applications.ron".text = builtins.readFile ../../../../config/anyrun/applications.ron;
       extraConfigFiles."symbols.ron".text = builtins.readFile ../../../../config/anyrun/symbols.ron;
