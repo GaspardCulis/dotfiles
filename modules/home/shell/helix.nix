@@ -65,6 +65,7 @@ in {
         jdt-language-server
         bash-language-server
         typescript-language-server
+        vscode-css-languageserver
         marksman
         kdePackages.qtdeclarative # qmlls
         python3Packages.python-lsp-server
