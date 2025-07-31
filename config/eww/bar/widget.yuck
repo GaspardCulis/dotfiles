@@ -12,7 +12,7 @@
 }')
 
 (defpoll time :interval "10s"
-  `date +"  %H:%M    %a, %b %d"`)
+  `date +" %H:%M  %a,%b %d"`)
 (defpoll power_profile :interval "10s" :initial "" "~/.config/eww/scripts/power_profile")
 (defpoll gpu_status :initial "active" :interval "2s" "cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status")
 (defpoll power_now :initial "0" :interval "5s" "cat /sys/class/power_supply/BAT0/power_now")
@@ -49,7 +49,7 @@
     network.state == "wireless"
       ? network-icon["wifi-${network.wifi.signal}"]
       : network-icon[network.state]
-  }   ${
+  } ${
     network.state == "disconnected" ? "No network" :
     network.state == "ethernet" ? "Ethernet" :
     network.state == "wireless" ? network.wifi.ssid :
@@ -64,7 +64,7 @@
     :onclick "bash -c 'blueman-manager &> /dev/null &'"
     (label
       :class "bluetooth"
-      :text " ${bluetooth.count > 0 ? bluetooth.count : bluetooth.power}")
+      :text "${bluetooth.count > 0 ? bluetooth.count : bluetooth.power}")
   )
 )
 
@@ -135,8 +135,8 @@
 (defwidget battery []
   (label
     :text "${EWW_BATTERY.BAT0.status == "Discharging" ? 
-      "   ${EWW_BATTERY.BAT0.capacity}% (${round(energy_now/power_now, 0)}h${round((energy_now/power_now - round(energy_now/power_now - 0.5, 0)) * 60, 0)} at ${round(power_now/1000000, 2)}W)" : 
-      "   ${EWW_BATTERY.BAT0.capacity}%"
+      " ${EWW_BATTERY.BAT0.capacity}% (${round(energy_now/power_now, 0)}h${round((energy_now/power_now - round(energy_now/power_now - 0.5, 0)) * 60, 0)} at ${round(power_now/1000000, 2)}W)" : 
+      " ${EWW_BATTERY.BAT0.capacity}%"
     }"
     :class "${EWW_BATTERY.BAT0.status == "Discharging" ? EWW_BATTERY.BAT0.capacity <= 15 || power_now/1000000 > 25 ? "critical" : EWW_BATTERY.BAT0.capacity <= 30 || power_now/1000000 > 15 ? "warning" : "normal" : "normal"}")
 )
@@ -146,7 +146,7 @@
     :onclick "pamixer -t"
     :onscroll "echo {} | sed 's/up/-i/g; s/down/-d/g' | xargs -I{} pamixer {} 1"
     (label
-      :text "${volume.speaker == "Muted" ? "󰝟" : ""}   ${volume.speaker}"
+      :text "${volume.speaker == "Muted" ? "󰝟" : ""} ${volume.speaker}"
       :class "volume"
     )
   )
