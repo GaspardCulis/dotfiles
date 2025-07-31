@@ -102,6 +102,15 @@ in {
     ];
   };
 
+  outputs = {
+    "eDP-1" = {
+      scale = 1.2;
+    };
+    "HDMI-A-1" = {
+      scale = 1;
+    };
+  };
+
   switch-events = {
     lid-close = {
       action.spawn = {}; # TODO: Lock
