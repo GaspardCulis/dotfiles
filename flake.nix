@@ -207,16 +207,11 @@
       packages = with pkgs; [
         alejandra
         git
-        helix
         nil
         pkgs.sops
         home-manager.packages."${system}".home-manager
         pkgs.deploy-rs
       ];
-
-      shellHook = ''
-        export EDITOR=hx
-      '';
     };
   };
 }
