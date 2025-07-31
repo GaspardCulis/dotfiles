@@ -17,11 +17,11 @@
   )
 )
 
-(defwidget timer []
+(defwidget timer-box []
   (box
     :orientation "v"
     :space-evenly false
-    :class "timer ${timer_state.state}"
+    :class "timer-box ${timer_state.state}"
     (label :class "timer-title" :text "Grind timer")
     (start-button :valign "center" :vexpand true)
     (revealer
@@ -44,6 +44,5 @@
     :anchor "top left")
   :stacking "bottom"
   :focusable false
-  :exclusive true
-  (timer)
+  (timer-box)
 )

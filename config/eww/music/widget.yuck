@@ -4,9 +4,9 @@
 
 (deflisten music_info :initial '{"title": "", "artist": "", "artUrl": "", "status": ""}' "~/.config/eww/scripts/get-music-info")
 
-(defwidget music []
+(defwidget music-box []
   (box
-    :class "music"
+    :class "music-box"
     :orientation "h"
     :spacing 25
     :space-evenly false
@@ -69,6 +69,5 @@
     :anchor "top left")
   :stacking "bottom"
   :focusable false
-  :exclusive true
-  (music)
+  (music-box)
 )
