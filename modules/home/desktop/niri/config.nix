@@ -12,7 +12,12 @@
 in {
   prefer-no-csd = true;
 
-  binds = with config.lib.niri.actions; {
+  binds = with config.lib.niri.actions; let
+    left = "H";
+    down = "J";
+    up = "K";
+    right = "L";
+  in {
     "Mod+Q".action = close-window;
     "Mod+Shift+Q".action = quit;
 
@@ -56,20 +61,20 @@ in {
     "Mod+M".action = move-column-to-monitor-next;
     "Mod+Shift+M".action = move-workspace-to-monitor-next;
 
-    "Mod+H".action = focus-column-left;
-    "Mod+J".action = focus-window-down;
-    "Mod+K".action = focus-window-up;
-    "Mod+L".action = focus-column-right;
+    "Mod+${left}".action = focus-column-left;
+    "Mod+${down}".action = focus-window-down;
+    "Mod+${up}".action = focus-window-up;
+    "Mod+${right}".action = focus-column-right;
 
-    "Mod+Shift+H".action = move-column-left;
-    "Mod+Shift+J".action = move-window-down;
-    "Mod+Shift+K".action = move-window-up;
-    "Mod+Shift+L".action = move-column-right;
+    "Mod+Shift+${left}".action = consume-or-expel-window-left;
+    "Mod+Shift+${down}".action = move-window-down-or-to-workspace-down;
+    "Mod+Shift+${up}".action = move-window-up-or-to-workspace-up;
+    "Mod+Shift+${right}".action = consume-or-expel-window-right;
 
-    "Mod+WheelScrollRight".action = focus-column-right;
-    "Mod+WheelScrollLeft".action = focus-column-left;
-    "Mod+Shift+WheelScrollRight".action = move-column-right;
-    "Mod+Shift+WheelScrollLeft".action = move-column-left;
+    "Mod+WheelScrollUp".action = focus-column-right;
+    "Mod+WheelScrollDown".action = focus-column-left;
+    "Mod+Shift+WheelScrollUp".action = move-column-right;
+    "Mod+Shift+WheelScrollDown".action = move-column-left;
 
     "Mod+ampersand".action.focus-workspace = 1;
     "Mod+eacute".action.focus-workspace = 2;
