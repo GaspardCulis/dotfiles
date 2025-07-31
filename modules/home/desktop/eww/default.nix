@@ -34,7 +34,7 @@ in {
       /* Theme color variables */
       $background: #${colors.base00};
       $background-active: #${colors.base01};
-      $text: #${colors.base07};
+      $text: #${colors.base06};
 
       $purple: #${colors.base0E};;
       $blue: #${colors.base0D};
