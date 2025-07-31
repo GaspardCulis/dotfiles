@@ -10,7 +10,7 @@
     border-radius: 10px;
     background-color: $background;
 
-    & > * + * {
+    &>*+* {
       margin-left: 20px;
     }
   }
@@ -39,37 +39,11 @@
     color: $purple;
   }
 
-  .systray {
-    margin: 0px;
-    margin-left: 6px;
-
-    & menu {
-      padding: 8px 8px;
-      border-radius: 10px;
-      background-color: $background;
-
-      menuitem {
-        margin: 1px 0;
-
-        &:hover {
-          padding-left: 2px;
-        }
-      }
-
-      separator {
-        margin: 6px 0;
-        min-height: 3px;
-        border-radius: 99px;
-        background-color: rgba(5, 5, 5, 0.35);
-      }
-    }
-
-    & > menuitem:first-child {
-      margin-left: 10px;
-    }
-  }
-
   & * {
+    button {
+      all: unset;
+    }
+
     .normal {
       color: $normal;
     }

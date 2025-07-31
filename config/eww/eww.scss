@@ -6,7 +6,10 @@
 @import "./notification/style.scss";
 
 * {
-  all: unset;
   color: $text;
   font-family: "FiraCode Nerd Font";
+}
+
+window {
+  background-color: transparent;
 }
