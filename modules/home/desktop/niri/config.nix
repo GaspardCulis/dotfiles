@@ -62,8 +62,8 @@ in {
     "Mod+Shift+M".action = move-workspace-to-monitor-next;
 
     "Mod+${left}".action = focus-column-left;
-    "Mod+${down}".action = focus-window-down;
-    "Mod+${up}".action = focus-window-up;
+    "Mod+${down}".action = focus-window-or-workspace-down;
+    "Mod+${up}".action = focus-window-or-workspace-up;
     "Mod+${right}".action = focus-column-right;
 
     "Mod+Shift+${left}".action = consume-or-expel-window-left;
