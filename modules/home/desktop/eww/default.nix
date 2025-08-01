@@ -32,16 +32,33 @@ in {
       colors = config.lib.stylix.colors;
     in ''
       /* Theme color variables */
-      $background: #${colors.base00};
-      $background-active: #${colors.base01};
-      $text: #${colors.base06};
+      $base00: #${colors.base00};
+      $base01: #${colors.base01};
+      $base02: #${colors.base02};
+      $base03: #${colors.base03};
+      $base04: #${colors.base04};
+      $base05: #${colors.base05};
+      $base06: #${colors.base06};
+      $base07: #${colors.base07};
+      $base08: #${colors.base08};
+      $base09: #${colors.base09};
+      $base0A: #${colors.base0A};
+      $base0B: #${colors.base0B};
+      $base0C: #${colors.base0C};
+      $base0D: #${colors.base0D};
+      $base0E: #${colors.base0E};
+      $base0F: #${colors.base0F};
 
-      $purple: #${colors.base0E};;
-      $blue: #${colors.base0D};
-      $green: #${colors.base0B};
-      $yellow: #${colors.base0A};
-      $orange: #${colors.base09};
-      $red: #${colors.base08};
+      $background: $base00;
+      $background-active: $base01;
+      $text: $base06;
+
+      $purple: $base0E;
+      $blue: $base0D;
+      $green: $base0B;
+      $yellow: $base0A;
+      $orange: $base09;
+      $red: $base08;
 
       $normal: $green;
       $warning: $orange;
