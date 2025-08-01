@@ -63,6 +63,8 @@
     polarity = "light";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/cupcake.yaml";
     fonts = {
+      sizes.terminal = 10;
+
       serif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
