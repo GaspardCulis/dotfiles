@@ -60,8 +60,8 @@
 
   stylix = {
     enable = true;
-    polarity = "light";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/cupcake.yaml";
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
     fonts = {
       sizes.terminal = 10;
 
