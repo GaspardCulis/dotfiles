@@ -66,7 +66,7 @@
     };
 
     udiskr = {
-      url = "github:GaspardCulis/udiskr/feat/nix-flake";
+      url = "github:00-KAMIDUKI/udiskr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

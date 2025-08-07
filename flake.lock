@@ -1218,16 +1218,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1753525545,
+        "lastModified": 1754283046,
         "narHash": "sha256-Rx8feUYuHyNM1+Edrk7h3YuAUdr2MC80RZ9UBuxCvLg=",
-        "owner": "GaspardCulis",
+        "owner": "00-KAMIDUKI",
         "repo": "udiskr",
-        "rev": "9264a8757f24ec223cab3408a46e1c20bbc38d70",
+        "rev": "eb7db44e967582be4a0954d7eac23ba22f13fa18",
         "type": "github"
       },
       "original": {
-        "owner": "GaspardCulis",
-        "ref": "feat/nix-flake",
+        "owner": "00-KAMIDUKI",
         "repo": "udiskr",
         "type": "github"
       }
