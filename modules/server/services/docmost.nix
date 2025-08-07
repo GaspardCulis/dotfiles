@@ -55,6 +55,7 @@ in {
         environment = {
           APP_URL = "https//${cfg.domain}";
           REDIS_URL = "redis://docmost-redis:6379";
+          DISABLE_TELEMETRY = "true";
         };
         environmentFiles = [
           config.sops.templates."docmost.env".path
