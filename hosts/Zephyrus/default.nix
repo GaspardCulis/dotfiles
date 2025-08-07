@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  networking.hostName = "Zephyrus";
+
   # Nix
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
