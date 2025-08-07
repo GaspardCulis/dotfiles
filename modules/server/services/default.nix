@@ -11,6 +11,7 @@
     ./openproject.nix
     ./outline.nix
     ./tandoor.nix
+    ./turn-rs.nix
     ./umami.nix
     ./uptime-kuma.nix
     ./vaultwarden.nix

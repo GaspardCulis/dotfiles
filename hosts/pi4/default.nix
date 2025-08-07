@@ -15,14 +15,29 @@
 
     users.gaspard.enable = true;
 
-    services.beszel.agent = {
-      enable = true;
-      usePodman = true;
-      openFirewall = true;
-      address = "0.0.0.0";
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICls5kQQss/5W7pzOhCQRJOZlAqklfC/10mW5J9fEVWu";
+    services = {
+      beszel.agent = {
+        enable = true;
+        usePodman = true;
+        openFirewall = true;
+        address = "0.0.0.0";
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICls5kQQss/5W7pzOhCQRJOZlAqklfC/10mW5J9fEVWu";
+        extraFilesystems = ["/mnt"];
+      };
+
+      webdav = {
+        enable = true;
+        directory = "/mnt/webdav";
+      };
     };
   };
+
+  services.caddy.globalConfig = ''
+    auto_https off
+    servers {
+    	trusted_proxies static 10.8.0.0/24
+    }
+  '';
 
   # SOPS
   sops.defaultSopsFile = ../../secrets/pi4/default.yaml;

@@ -11,6 +11,12 @@
     device = "/dev/disk/by-label/NIXOS_SD";
     fsType = "ext4";
   };
+  fileSystems."/mnt" = {
+    device = "/dev/disk/by-label/DisqueElon";
+    fsType = "ntfs";
+    options = ["nofail,noatime,users,rw"];
+  };
+
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     loader = {

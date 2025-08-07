@@ -19,6 +19,7 @@
     wget
     ncdu
     htop
+    rsync
     unzip
     neofetch
     uutils-coreutils-noprefix

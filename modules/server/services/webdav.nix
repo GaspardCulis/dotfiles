@@ -37,7 +37,8 @@ in {
       owner = "${config.services.webdav.user}";
     };
 
-    services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
+    # FIX: Thats an ugly fix
+    services.caddy.virtualHosts."http://${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 

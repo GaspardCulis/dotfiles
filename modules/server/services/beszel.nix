@@ -74,7 +74,7 @@ in {
         mkIf cfg.agent.usePodman {
           DOCKER_HOST = "unix:///var/run/podman/podman.sock";
         }
-        // (mkIf (cfg.agent.extraFilesystems != null) {
+        // (optionalAttrs (builtins.hasAttr "extraFilesystems" cfg.agent) {
           EXTRA_FILESYSTEMS = builtins.concatStringsSep "," cfg.agent.extraFilesystems;
         });
       wants = ["network-online.target"];
