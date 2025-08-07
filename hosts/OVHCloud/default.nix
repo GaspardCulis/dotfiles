@@ -31,6 +31,7 @@
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICls5kQQss/5W7pzOhCQRJOZlAqklfC/10mW5J9fEVWu";
       };
     };
+    services.docmost.enable = true;
     services.garage = {
       enable = true;
       settings = {

@@ -2,6 +2,7 @@
   imports = [
     ./authelia.nix
     ./beszel.nix
+    ./docmost.nix
     ./garage.nix
     ./khoj.nix
     ./matchbox.nix
