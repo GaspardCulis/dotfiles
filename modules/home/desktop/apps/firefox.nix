@@ -187,6 +187,22 @@ in {
               definedAliases = ["@cr"];
             };
 
+            "Modrinth Mods" = {
+              urls = [
+                {
+                  template = "https://modrinth.com/mods";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "https://modrinth.com/favicon.ico";
+              definedAliases = ["@mr"];
+            };
+
             "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
             "Wikipedia".metaData.alias = "@w";
           };
