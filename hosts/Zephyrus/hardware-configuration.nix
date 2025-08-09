@@ -15,14 +15,13 @@
 
   boot = {
     kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-    kernelModules = ["amdgpu"];
+    blacklistedKernelModules = ["nouveau"];
     kernelParams = [
       "mem_sleep_default=deep" # Should fix/change suspend method
       # Gayming performance
       "clocksource=tsc"
       "tsc=reliable"
     ];
-    extraModulePackages = with pkgs; [mesa];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "usbhid" "sdhci_pci"];
       kernelModules = [];
@@ -68,14 +67,34 @@
     #jack.enable = true;
   };
 
-  #NVIDIA
-  services.xserver.videoDrivers = ["nvidia"];
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  hardware.amdgpu = {
+    opencl.enable = true;
+  };
+
+  # NVIDIA
+  services.xserver.videoDrivers = [
+    "amdgpu"
+    "nvidia"
+  ];
   hardware.nvidia = {
-    modesetting.enable = true;
-    dynamicBoost.enable = true;
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+    dynamicBoost.enable = true;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+
+      amdgpuBusId = "PCI:7:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
   environment.systemPackages = with pkgs; [
     nvtopPackages.nvidia

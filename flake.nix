@@ -102,7 +102,6 @@
           ./modules/system
           disko.nixosModules.disko
           stylix.nixosModules.stylix
-          nixos-hardware.nixosModules.asus-zephyrus-ga503
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
           niri-flake.nixosModules.niri
