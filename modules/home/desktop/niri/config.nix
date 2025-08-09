@@ -1,4 +1,7 @@
-{config}: let
+{
+  config,
+  pkgs,
+}: let
   apps = config.gasdev.desktop.apps;
 
   swayosd-client = "${config.gasdev.desktop.swayosd.package}/bin/swayosd-client";
@@ -161,24 +164,9 @@ in {
     open-on-output = "eDP-1"; # Keep waifu gifs on primary monitor
   };
 
-  environment = {
-    GDK_BACKEND = "wayland,x11";
-    SDL_VIDEODRIVER = "wayland";
-    CLUTTER_BACKEND = "wayland";
-    _JAVA_AWT_WM_NONREPARENTING = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-
-    XDG_CURRENT_DESKTOP = "Niri";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Niri";
-
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    QT_QPA_PLATFORM = "wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-
-    XCURSOR_SIZE = "24";
-    MOZ_ENABLE_WAYLAND = "1";
+  xwayland-satellite = {
+    enable = true;
+    path = pkgs.lib.getExe pkgs.xwayland-satellite;
   };
 
   hotkey-overlay.skip-at-startup = true;

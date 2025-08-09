@@ -28,7 +28,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.niri = {
-      settings = import ./config.nix {inherit config;};
+      settings = import ./config.nix {inherit config pkgs;};
     };
 
     gasdev.desktop = {
