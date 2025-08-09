@@ -106,6 +106,9 @@
           home-manager.nixosModules.home-manager
           jovian.nixosModules.jovian
           niri-flake.nixosModules.niri
+          {
+            nixpkgs.overlays = [niri-flake.overlays.niri];
+          }
         ];
       };
 
