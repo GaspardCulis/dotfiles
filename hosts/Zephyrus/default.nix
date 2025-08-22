@@ -90,10 +90,7 @@
   };
 
   programs = {
-    niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
+    niri.enable = true;
     nix-ld.enable = true;
     adb.enable = true;
     gamemode = {
