@@ -24,6 +24,9 @@ in {
         wl-clipboard
       ];
     };
+    xwayland = {
+      enable = mkEnableOption "Enable xwayland-satellite integration";
+    };
   };
 
   config = mkIf cfg.enable {

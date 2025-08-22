@@ -3,6 +3,7 @@
   pkgs,
 }: let
   apps = config.gasdev.desktop.apps;
+  cfg = config.gasdev.desktop.niri;
 
   swayosd-client = "${config.gasdev.desktop.swayosd.package}/bin/swayosd-client";
   uwu-launcher = ../../../../bin/hypr/uwu-launcher;
@@ -94,6 +95,10 @@ in {
     "Mod+Shift+comma".action = show-hotkey-overlay;
   };
 
+  environment = {
+    DISPLAY = pkgs.lib.mkIf cfg.xwayland.enable ":0";
+  };
+
   gestures = {
     hot-corners.enable = false;
   };
@@ -122,6 +127,15 @@ in {
       scale = 1;
     };
   };
+
+  spawn-at-startup =
+    if cfg.xwayland.enable
+    then [
+      {
+        command = ["${pkgs.lib.getExe pkgs.xwayland-satellite}"];
+      }
+    ]
+    else [];
 
   switch-events = {
     lid-close = {
@@ -162,11 +176,6 @@ in {
 
   workspaces."chat" = {
     open-on-output = "eDP-1"; # Keep waifu gifs on primary monitor
-  };
-
-  xwayland-satellite = {
-    enable = true;
-    path = pkgs.lib.getExe pkgs.xwayland-satellite;
   };
 
   hotkey-overlay.skip-at-startup = true;

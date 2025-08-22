@@ -23,6 +23,7 @@ in {
       niri = {
         enable = true;
         autoStart = true;
+        xwayland.enable = true;
       };
       apps = lib.mkIf enableDesktop {
         firefox = {
