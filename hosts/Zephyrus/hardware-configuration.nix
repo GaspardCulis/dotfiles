@@ -21,6 +21,10 @@
       # Gayming performance
       "clocksource=tsc"
       "tsc=reliable"
+      # These flags are used to enable backlight control when the dGPU is working in hybrid mode
+      "i915.enable_dpcd_backlight=1"
+      "nvidia.NVreg_EnableBacklightHandler=0"
+      "nvidia.NVReg_RegistryDwords=EnableBrightnessControl=0"
     ];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "usbhid" "sdhci_pci"];
@@ -66,6 +70,11 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+  # fixes mic mute button
+  services.udev.extraHwdb = ''
+    evdev:name:*:dmi:bvn*:bvr*:bd*:svnASUS*:pn*:*
+     KEYBOARD_KEY_ff31007c=f20
+  '';
 
   hardware.graphics = {
     enable = true;
