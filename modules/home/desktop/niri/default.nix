@@ -21,7 +21,7 @@ in {
       default = with pkgs; [
         xdg-utils
         wdisplays
-        wl-clipboard
+        wl-clipboard-rs
       ];
     };
     xwayland = {
@@ -47,6 +47,8 @@ in {
         };
       };
     };
+
+    home.packages = cfg.extraPackages;
 
     programs.bash = mkIf cfg.autoStart {
       initExtra = lib.mkAfter ''
