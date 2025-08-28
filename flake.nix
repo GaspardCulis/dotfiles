@@ -62,7 +62,7 @@
 
     jaaj-rs = {
       url = "git+https://git.ahur.ac/Jaaj-San/jaaj-rs?rev=e5e5596e85e57ec8a0c4aeb34f64c423320c532d";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; # Take advantage of gasdev cachix
     };
 
     udiskr = {
