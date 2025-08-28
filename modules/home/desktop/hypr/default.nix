@@ -1,13 +1,11 @@
 {
   config,
-  inputs,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.desktop.hypr;
-  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 in {
   options.gasdev.desktop.hypr = {
     enable = mkEnableOption "Enable opiniated Hyprland config";
@@ -31,8 +29,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       settings = import ./config.nix {inherit config;};
-      package = package;
-      plugins = [inputs.hy3.packages.${pkgs.system}.hy3];
+      plugins = with pkgs; [hyprlandPlugins.hy3];
     };
 
     gasdev.desktop = {
@@ -66,7 +63,7 @@ in {
     programs.bash = mkIf cfg.autoStart {
       initExtra = lib.mkAfter ''
         if [ "$(tty)" = /dev/tty${toString cfg.autoStartTTY} ]; then
-          exec ${package}/bin/Hyprland
+          exec ${config.wayland.windowManager.hyprland.package}/bin/Hyprland
         fi
       '';
     };
