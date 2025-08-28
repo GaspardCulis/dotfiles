@@ -19,11 +19,11 @@ in {
       config = {
         plugins =
           [
-            inputs.anyrun.packages.${pkgs.system}.applications
-            inputs.anyrun.packages.${pkgs.system}.symbols
-            inputs.anyrun.packages.${pkgs.system}.websearch
-            inputs.anyrun.packages.${pkgs.system}.rink
-            inputs.anyrun.packages.${pkgs.system}.shell
+            "${pkgs.anyrun}/lib/libapplications.so"
+            "${pkgs.anyrun}/lib/libsymbols.so"
+            "${pkgs.anyrun}/lib/libwebsearch.so"
+            "${pkgs.anyrun}/lib/librink.so"
+            "${pkgs.anyrun}/lib/libshell.so"
           ]
           ++ (
             if cfg.anixrun.enable
