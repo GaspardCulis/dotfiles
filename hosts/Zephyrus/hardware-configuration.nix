@@ -103,7 +103,7 @@
       amdgpuBusId = "PCI:7:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   environment.systemPackages = with pkgs; [
     nvtopPackages.nvidia
