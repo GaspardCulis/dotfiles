@@ -1,0 +1,19 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
+    pane split_direction="Vertical" {
+        pane size="20%" {
+            plugin location="strider"
+        }
+        pane split_direction="Horizontal" {
+            pane command="hx" {
+                args "."
+            }
+            pane size="20%"
+        }
+    }
+    pane size=2 borderless=true {
+        plugin location="status-bar"
+    }
+}

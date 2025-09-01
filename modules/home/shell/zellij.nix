@@ -1,6 +1,5 @@
 {
   config,
-  _inputs,
   pkgs,
   lib,
   ...
@@ -14,7 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     home.file = {
-      ".config/zellij/config.kdl".source = ../../../config/zellij/config.kdl;
+      ".config/zellij".source = ../../../config/zellij;
     };
 
     home.packages = [
