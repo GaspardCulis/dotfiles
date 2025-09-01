@@ -16,16 +16,6 @@ in {
     services.swayosd = {
       enable = true;
       package = cfg.package;
-      stylePath = "${config.home.homeDirectory}/.config/swayosd/style.css";
-    };
-
-    home.file = {
-      ".config/swayosd/style.css".text = ''
-        window {
-          background: #20d7d1;
-          opacity: 0.8;
-        }
-      '';
     };
   };
 }
