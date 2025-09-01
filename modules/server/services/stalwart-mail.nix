@@ -35,6 +35,9 @@ in {
     sops.secrets."stalwart-mail/ADMIN_SECRET".owner = "stalwart-mail";
     sops.secrets."stalwart-mail/ACME_SECRET".owner = "stalwart-mail";
 
+    sops.secrets."stalwart-mail/SIGNATURE_KEY_RSA".owner = "stalwart-mail";
+    sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".owner = "stalwart-mail";
+
     sops.secrets."stalwart-mail/S3_BUCKET".owner = "stalwart-mail";
     sops.secrets."stalwart-mail/S3_REGION".owner = "stalwart-mail";
     sops.secrets."stalwart-mail/S3_ENDPOINT".owner = "stalwart-mail";
@@ -107,6 +110,36 @@ in {
           mechanisms = "[plain, login]";
         };
         directory."imap".lookup.domains = ["${domain}"];
+        auth.dkim = {
+          sign = ''
+            [ { if = "listener != 'smtp'", then = "['rsa', 'ed25519']" },
+              { else = false } ]
+          '';
+        };
+        signatures = {
+          rsa = {
+            private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_RSA".path}}%";
+            domain = "${domain}";
+            selector = "rsa-default";
+            headers = ["From" "To" "Cc" "Date" "Subject" "Message-ID" "Organization" "MIME-Version" "Content-Type" "In-Reply-To" "References" "List-Id" "User-Agent" "Thread-Topic" "Thread-Index"];
+            algorithm = "rsa-sha256";
+            canonicalization = "relaxed/relaxed";
+            expire = "10d";
+            set-body-length = false;
+            report = true;
+          };
+          ed25519 = {
+            private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".path}}%";
+            domain = "${domain}";
+            selector = "ed-default";
+            headers = ["From" "To" "Cc" "Date" "Subject" "Message-ID" "Organization" "MIME-Version" "Content-Type" "In-Reply-To" "References" "List-Id" "User-Agent" "Thread-Topic" "Thread-Index"];
+            algorithm = "ed25519-sha256";
+            canonicalization = "relaxed/relaxed";
+            expire = "10d";
+            set-body-length = false;
+            report = false;
+          };
+        };
         storage = {
           data = "rocksdb";
           fts = "rocksdb";
