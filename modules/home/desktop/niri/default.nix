@@ -19,7 +19,6 @@ in {
     extraPackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = with pkgs; [
-        xdg-utils
         wdisplays
         wl-clipboard-rs
       ];

@@ -19,7 +19,6 @@ in {
       type = lib.types.listOf lib.types.package;
       default = with pkgs; [
         egl-wayland # For NVIDIA compatibility
-        xdg-utils
         wdisplays
       ];
     };

@@ -58,9 +58,10 @@ in {
       };
     };
 
-    home.packages =
+    home.packages = with pkgs;
       [
-        pkgs.dconf
+        dconf
+        xdg-utils
       ]
       ++ (
         if cfg.apps.explorer == "cosmic-files"
