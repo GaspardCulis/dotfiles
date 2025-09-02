@@ -10,6 +10,10 @@ in {
   home.homeDirectory = "/home/gaspard";
   home.stateVersion = "24.05";
 
+  imports = [
+    ../utils/allowed-unfree.nix
+  ];
+
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
 
