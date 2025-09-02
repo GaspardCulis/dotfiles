@@ -1,5 +1,4 @@
 {
-  _inputs,
   config,
   pkgs,
   lib,
