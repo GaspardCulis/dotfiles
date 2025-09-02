@@ -7,13 +7,7 @@
 with lib; let
   cfg = config.gasdev.desktop.apps.games;
 in {
-  imports = [
-    ./apps
-    ./eww
-    ./hypr
-    ./misc
-    ./niri
-  ];
+  imports = [];
 
   options.gasdev.desktop.apps.games = {
     enable = mkEnableOption "Enable gaming config";
@@ -32,6 +26,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = cfg.defaultPackages ++ cfg.extraPackages;
+    home.packages = cfg.packages ++ cfg.extraPackages;
   };
 }
