@@ -11,7 +11,10 @@ in {
   options.gasdev.users = {
     gaspard = {
       enable = mkEnableOption "Enable user";
-      enableDesktop = mkEnableOption "Enable desktop environment";
+      desktop = {
+        enable = mkEnableOption "Enable desktop environment";
+        enableGaming = mkEnableOption "Enable default games config";
+      };
       extraGroups = mkOption {
         type = lib.types.listOf lib.types.nonEmptyStr;
         description = "Extra user groups";
@@ -31,8 +34,13 @@ in {
           "wheel"
         ]
         ++ (
-          if cfg.gaspard.enableDesktop
+          if cfg.gaspard.desktop.enable
           then ["video" "seat"]
+          else []
+        )
+        ++ (
+          if cfg.gaspard.desktop.enableGaming
+          then ["gamemode"]
           else []
         )
         ++ cfg.gaspard.extraGroups;
@@ -54,7 +62,8 @@ in {
       users = {
         "gaspard" = mkIf cfg.gaspard.enable (import ../../users/gaspard.nix {
           inherit pkgs;
-          enableDesktop = cfg.gaspard.enableDesktop;
+          enableDesktop = cfg.gaspard.desktop.enable;
+          enableGaming = cfg.gaspard.desktop.enableGaming;
         });
       };
     };

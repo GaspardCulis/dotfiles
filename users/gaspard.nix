@@ -1,6 +1,7 @@
 {
   pkgs,
   enableDesktop ? false,
+  enableGaming ? false,
   ...
 }: let
   lib = pkgs.lib;
@@ -30,6 +31,7 @@ in {
           progressiveWebApps.enable = true;
           profiles.gaspard.enable = true;
         };
+        games.enable = enableGaming;
       };
       udiskr.enable = true;
     };
