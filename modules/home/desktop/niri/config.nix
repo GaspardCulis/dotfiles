@@ -21,6 +21,8 @@ in {
     down = "J";
     up = "K";
     right = "L";
+
+    sh = spawn "sh" "-c";
   in {
     "Mod+Q".action = close-window;
     "Mod+Shift+Q".action = quit;
@@ -49,6 +51,7 @@ in {
     "Mod+F6".action = screenshot {
       show-pointer = true;
     };
+    "Mod+DOLLAR".action = sh "niri msg pick-color | grep -oP 'Hex: \\K#\\w+' | tr -d '\\n' | wl-copy";
 
     "XF86AudioMute".action = spawn swayosd-client "--output-volume" "mute-toggle";
     "XF86AudioMicMute".action = spawn swayosd-client "--input-volume" "mute-toggle";
