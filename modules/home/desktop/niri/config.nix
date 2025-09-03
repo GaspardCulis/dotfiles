@@ -176,6 +176,14 @@ in {
       open-maximized = true;
       open-focused = false;
     }
+    {
+      # Games in fullscreen
+      matches = [
+        {title = "Mindustry";}
+        {app-id = "Vintage Story";}
+      ];
+      open-fullscreen = true;
+    }
   ];
 
   workspaces."chat" = {
