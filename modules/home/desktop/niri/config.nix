@@ -122,6 +122,7 @@ in {
   outputs = {
     "eDP-1" = {
       scale = 1.2;
+      variable-refresh-rate = "on-demand";
     };
     "HDMI-A-1" = {
       scale = 1;
