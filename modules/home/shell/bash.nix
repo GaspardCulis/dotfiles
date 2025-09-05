@@ -54,6 +54,7 @@ in {
         gpl = "git pull";
 
         ns = "nix-shell";
+        nd = "nix develop";
         nsp = "nix-shell -p";
 
         ls = "lsd";
