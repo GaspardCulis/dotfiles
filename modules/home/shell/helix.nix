@@ -136,8 +136,8 @@ in {
             })
             (lang {
               name = "markdown";
-              pkg = mdformat;
-              command = ["mdformat" "--wrap" "80" "-"];
+              pkg = deno;
+              command = ["deno" "fmt" "-" "--ext" "md"];
             })
             {
               name = "typst";
