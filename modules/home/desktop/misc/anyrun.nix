@@ -43,61 +43,56 @@ in {
         showResultsImmediately = false;
         maxEntries = null;
       };
-      extraCss = let
-        colors = config.lib.stylix.colors;
-      in ''
-        #window {
+      extraCss = ''
+        window {
           background-color: transparent;
         }
 
-        box#main {
+        box.main {
+          padding: 5px;
           border-radius: 10px;
-          background-color: #${colors.base00};
-          border: 2px solid #${colors.base02};
+          border: 2px solid @theme_selected_bg_color;
+          background-color: @theme_bg_color;
+          box-shadow: 0 0 5px black;
         }
 
-        list#main {
+        text {
+          min-height: 30px;
+          padding: 5px;
+          border-radius: 5px;
+        }
+
+        .matches {
           background-color: transparent;
         }
 
-        entry#entry {
+        entry.entry {
           margin: 3px;
           border-radius: 20px;
           background: transparent;
         }
 
-        #match {
+        .match {
           padding: 2.5px;
           border-radius: 4px;
         }
 
-        #match:selected {
-          background: #${colors.base01};
-          border-right: 4px solid #${colors.base0C};
-          border-left: 4px solid #${colors.base0C};
-          color: #${colors.base07};
+        .match:selected {
+          background: @theme_bg_color;
+          border-right: 4px solid @theme_selected_bg_color;
+          border-left: 4px solid @theme_selected_bg_color;
         }
 
-        #match:selected label#info {
+        .match:selected label.info {
           animation: fade 0.1s linear;
         }
 
-        @keyframes fade {
-          0% {
-            color: transparent;
-          }
-
-          100% {
-            color: #b0b0b0;
-          }
-        }
-
-        #match label#info {
+        .match label.info {
           color: transparent;
         }
 
-        #match:hover {
-          background: #${colors.base01};
+        .match:hover {
+          background: @theme_bg_color;
         }
       '';
 
