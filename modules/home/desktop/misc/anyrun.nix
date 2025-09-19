@@ -10,20 +10,22 @@ with lib; let
 in {
   options.gasdev.desktop.anyrun = {
     enable = mkEnableOption "Enable opiniated anyrun config";
+    package = mkPackageOption pkgs "anyrun" {};
     anixrun.enable = mkEnableOption "Enable anixrun extra plugin";
   };
 
   config = mkIf cfg.enable {
     programs.anyrun = {
       enable = true;
+      package = cfg.package;
       config = {
         plugins =
           [
-            "${pkgs.anyrun}/lib/libapplications.so"
-            "${pkgs.anyrun}/lib/libsymbols.so"
-            "${pkgs.anyrun}/lib/libwebsearch.so"
-            "${pkgs.anyrun}/lib/librink.so"
-            "${pkgs.anyrun}/lib/libshell.so"
+            "${cfg.package}/lib/libapplications.so"
+            "${cfg.package}/lib/libsymbols.so"
+            "${cfg.package}/lib/libwebsearch.so"
+            "${cfg.package}/lib/librink.so"
+            "${cfg.package}/lib/libshell.so"
           ]
           ++ (
             if cfg.anixrun.enable
