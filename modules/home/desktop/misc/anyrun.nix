@@ -56,18 +56,13 @@ in {
           box-shadow: 0 0 5px black;
         }
 
-        text {
-          min-height: 30px;
-          padding: 5px;
-          border-radius: 5px;
-        }
-
         .matches {
           background-color: transparent;
         }
 
-        entry.entry {
-          margin: 3px;
+        text {
+          min-height: 30px;
+          padding: 5px;
           border-radius: 20px;
           background: transparent;
         }
