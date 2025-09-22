@@ -17,5 +17,10 @@ in {
       enable = true;
       package = cfg.package;
     };
+    #
+    # NVIDIA Optimus fix
+    systemd.user.services.swayosd.environment = {
+      GSK_RENDERER = "gl";
+    };
   };
 }
