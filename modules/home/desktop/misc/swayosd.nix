@@ -20,7 +20,8 @@ in {
     #
     # NVIDIA Optimus fix
     systemd.user.services.swayosd.environment = {
-      GSK_RENDERER = "gl";
+      # GSK_RENDERER = "gl";
+      VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
     };
   };
 }
