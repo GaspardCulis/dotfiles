@@ -7,10 +7,27 @@
 }:
 with lib; let
   cfg = config.gasdev.desktop.anyrun;
+  anyrun-icd-patch = pkgs.symlinkJoin {
+    name = "anyrun-icd-patch";
+    paths = [
+      (
+        # Fix dGPU usage on Optimus laptops: https://github.com/anyrun-org/anyrun/issues/254
+        pkgs.writeScriptBin "anyrun" ''
+          #!/bin/sh
+          export VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
+          exec ${pkgs.anyrun}/bin/anyrun "$@"
+        ''
+      )
+      pkgs.anyrun
+    ];
+  };
 in {
   options.gasdev.desktop.anyrun = {
     enable = mkEnableOption "Enable opiniated anyrun config";
-    package = mkPackageOption pkgs "anyrun" {};
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = anyrun-icd-patch;
+    };
     anixrun.enable = mkEnableOption "Enable anixrun extra plugin";
   };
 
