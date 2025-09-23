@@ -30,10 +30,7 @@
     };
     users.gaspard = {
       enable = true;
-      desktop = {
-        enable = true;
-        enableGaming = true;
-      };
+      desktop.enable = true;
       extraGroups = [
         "uucp"
         "audio"

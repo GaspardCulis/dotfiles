@@ -13,7 +13,6 @@ in {
       enable = mkEnableOption "Enable user";
       desktop = {
         enable = mkEnableOption "Enable desktop environment";
-        enableGaming = mkEnableOption "Enable default games config";
       };
       extraGroups = mkOption {
         type = lib.types.listOf lib.types.nonEmptyStr;
@@ -38,11 +37,6 @@ in {
           then ["video" "seat"]
           else []
         )
-        ++ (
-          if cfg.gaspard.desktop.enableGaming
-          then ["gamemode"]
-          else []
-        )
         ++ cfg.gaspard.extraGroups;
       group = "gaspard";
 
@@ -63,7 +57,6 @@ in {
         "gaspard" = mkIf cfg.gaspard.enable (import ../../users/gaspard.nix {
           inherit pkgs;
           enableDesktop = cfg.gaspard.desktop.enable;
-          enableGaming = cfg.gaspard.desktop.enableGaming;
         });
       };
     };

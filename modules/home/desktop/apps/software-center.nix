@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       flatpak
-      kdePackages.discover
+      gnome-software
     ];
 
     home.file.".profile".text = ''

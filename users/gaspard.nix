@@ -1,7 +1,6 @@
 {
   pkgs,
   enableDesktop ? false,
-  enableGaming ? false,
   ...
 }: let
   lib = pkgs.lib;
@@ -31,11 +30,11 @@ in {
         xwayland.enable = true;
       };
       apps = lib.mkIf enableDesktop {
+        software-center.enable = true;
         firefox = {
           progressiveWebApps.enable = true;
           profiles.gaspard.enable = true;
         };
-        games.enable = enableGaming;
       };
       udiskr.enable = true;
     };
