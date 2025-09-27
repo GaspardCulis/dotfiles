@@ -23,9 +23,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."domost/APP_SECRET".owner = "root";
+    sops.secrets."docmost/APP_SECRET".owner = "root";
     sops.secrets."docmost/DB_USER".owner = "root";
-    sops.secrets."docmost/DP_PASS".owner = "root";
+    sops.secrets."docmost/DB_PASS".owner = "root";
     sops.secrets."docmost/SMTP_USERNAME".owner = "root";
     sops.secrets."docmost/SMTP_PASSWORD".owner = "root";
 
