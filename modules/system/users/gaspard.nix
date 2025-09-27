@@ -37,11 +37,6 @@ in {
         )
         ++ cfg.extraGroups;
       group = "gaspard";
-
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQyRXFQ6iA5p0vDuoGSHZfajiVZPAGIyqhTziM7QgBV gaspard@nixos"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICm9trfkWL5FVHuo/5YONd+oZY4nQnpHLDOnXoOrl9j9 u0_a220@pixel"
-      ];
     };
 
     nix.settings.trusted-users = ["gaspard"];
