@@ -47,7 +47,7 @@ in {
     home-manager = {
       extraSpecialArgs = {inherit inputs;};
       sharedModules = [
-        ../home
+        ../../home
       ];
       users = {
         "gaspard" = import ../../../users/gaspard.nix {
