@@ -2,33 +2,23 @@
   description = "Configuration Home Manager jaajesque";
 
   inputs = {
+    # Common
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    caddy = {
-      url = "github:GaspardCulis/nixos-caddy-ovh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Server
+    caddy.url = "github:GaspardCulis/nixos-caddy-ovh";
+    deploy-rs.url = "github:serokell/deploy-rs";
+    disko.url = "github:nix-community/disko";
+    sops-nix.url = "github:Mic92/sops-nix";
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # Desktop
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,6 +60,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     disko,
     deploy-rs,
     home-manager,
@@ -100,22 +91,22 @@
       OVHCloud = let
         domain = "gasdev.fr";
       in
-        nixpkgs.lib.nixosSystem {
+        nixpkgs-stable.lib.nixosSystem {
           specialArgs = {inherit inputs domain;};
           modules = [
             ./hosts/OVHCloud
             ./modules/system
             ./modules/server
             disko.nixosModules.disko
-            home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
           ];
         };
 
       pi4 = let
         domain = "pi.gasdev.fr";
       in
-        nixpkgs.lib.nixosSystem {
+        nixpkgs-stable.lib.nixosSystem {
           specialArgs = {inherit inputs domain;};
           system = "aarch64-linux";
           modules = [
