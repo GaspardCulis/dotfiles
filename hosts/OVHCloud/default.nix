@@ -20,7 +20,8 @@
       openFirewall = true;
     };
 
-    users.gaspard.enable = true;
+    # FIX: Breaking due to external flakes modules
+    # users.gaspard.enable = true;
 
     services.auth.enable = true;
     services.beszel = {
