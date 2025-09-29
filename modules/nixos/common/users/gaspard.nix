@@ -44,8 +44,8 @@ in {
     home-manager.users."gaspard" = mkIf cfg.enable {
       imports =
         if cfg.desktop.enable
-        then [(self + /configurations/home/gaspard)]
-        else [(self + /configurations/home/gaspard/desktop.nix)];
+        then [(self + /configurations/home/gaspard/desktop.nix)]
+        else [(self + /configurations/home/gaspard)];
     };
   };
 }
