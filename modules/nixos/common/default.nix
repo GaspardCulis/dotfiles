@@ -2,7 +2,7 @@
   imports = [
     ./podman.nix
     ./openssh.nix
-    ./users.nix
+    ./users
   ];
 
   nix.settings = {

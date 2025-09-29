@@ -31,7 +31,18 @@
       enable = true;
       openFirewall = true;
     };
-    users = ["gaspard"];
+    users.gaspard = {
+      enable = true;
+      desktop.enable = true;
+      extraGroups = [
+        "uucp"
+        "audio"
+        "dialout"
+        "adbusers"
+        "gamemode"
+        "networkmanager"
+      ];
+    };
     # specialisations.steamos.enable = true;
     # specialisations.guest.enable = true;
   };

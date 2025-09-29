@@ -1,20 +1,17 @@
 {
-  flake,
   pkgs,
+  enableDesktop ? false,
   ...
 }: let
-  inherit (flake) inputs;
-  inherit (inputs) self;
+  lib = pkgs.lib;
 in {
-  imports = [
-    self.homeModules.default
-    self.homeModules.desktop
-    inputs.niri-flake.homeModules.niri
-    ../../utils/allowed-unfree.nix
-  ];
-
   home.username = "gaspard";
   home.homeDirectory = "/home/gaspard";
+  home.stateVersion = "24.05";
+
+  imports = [
+    ../utils/allowed-unfree.nix
+  ];
 
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
@@ -25,14 +22,14 @@ in {
       helix.enable = true;
       zellij.enable = true;
     };
-    desktop = {
+    desktop = lib.mkIf enableDesktop {
       enable = true;
       niri = {
         enable = true;
         autoStart = true;
         xwayland.enable = true;
       };
-      apps = {
+      apps = lib.mkIf enableDesktop {
         software-center.enable = true;
         firefox = {
           progressiveWebApps.enable = true;
@@ -71,7 +68,7 @@ in {
     };
   };
 
-  xdg.mimeApps = {
+  xdg.mimeApps = lib.mkIf enableDesktop {
     enable = true;
     defaultApplications = {
       "text/html" = "firefox.desktop";
