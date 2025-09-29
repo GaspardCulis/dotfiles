@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./shell
-    ./desktop
   ];
+
+  home.stateVersion = "24.05";
 }
