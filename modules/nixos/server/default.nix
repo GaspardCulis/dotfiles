@@ -1,9 +1,11 @@
 {
   config,
-  inputs,
+  flake,
   pkgs,
   ...
-}: {
+}: let
+  inherit (flake) inputs;
+in {
   imports = [./services];
 
   # Save on storage

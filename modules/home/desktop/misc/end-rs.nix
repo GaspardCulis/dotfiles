@@ -1,11 +1,12 @@
 {
-  inputs,
+  flake,
   config,
   pkgs,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake) inputs;
   cfg = config.gasdev.desktop.end-rs;
 in {
   options.gasdev.desktop.end-rs = {
