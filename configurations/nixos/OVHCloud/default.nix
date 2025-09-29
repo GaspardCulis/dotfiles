@@ -1,11 +1,8 @@
 # This file is just *top-level* configuration.
-{ flake, ... }:
-
-let
+{flake, ...}: let
   inherit (flake) inputs;
   inherit (inputs) self;
-in
-{
+in {
   imports = [
     self.nixosModules.default
     self.nixosModules.server

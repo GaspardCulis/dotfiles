@@ -15,7 +15,8 @@ with lib; let
     hash = "sha256-RN9H7atiNOr4wqgzfwE/8hUMJ4zpgMBu3dXA37c/lH0=";
   };
   musare-backend =
-    pkgs.buildNpmPackage {
+    pkgs.buildNpmPackage
+    {
       pname = "musare-backend";
       version = "4.7.0";
       nodejs = pkgs.nodejs_18;
@@ -29,7 +30,8 @@ with lib; let
     }
     + "/lib/node_modules/musare-backend";
   musare-frontend =
-    pkgs.buildNpmPackage {
+    pkgs.buildNpmPackage
+    {
       pname = "musare-frontend";
       version = "4.7.0";
 

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./podman.nix
     ./openssh.nix
@@ -11,7 +10,7 @@
       "nix-command"
       "flakes"
     ];
-    substituters = [ "https://gasdev.cachix.org" ];
+    substituters = ["https://gasdev.cachix.org"];
   };
 
   time.timeZone = "Europe/Paris";

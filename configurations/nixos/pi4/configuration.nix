@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -26,7 +25,7 @@
         openFirewall = true;
         address = "0.0.0.0";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICls5kQQss/5W7pzOhCQRJOZlAqklfC/10mW5J9fEVWu";
-        extraFilesystems = [ "/mnt" ];
+        extraFilesystems = ["/mnt"];
       };
 
       garage = {

@@ -28,7 +28,12 @@
       "nvidia.NVReg_RegistryDwords=EnableBrightnessControl=0"
     ];
     initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "usbhid" "sdhci_pci"];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "usbhid"
+        "sdhci_pci"
+      ];
       kernelModules = [];
     };
     loader = {
