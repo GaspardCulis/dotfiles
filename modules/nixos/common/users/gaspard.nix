@@ -1,11 +1,11 @@
 {
   config,
-  inputs,
-  pkgs,
+  flake,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake.inputs) self;
   cfg = config.gasdev.users.gaspard;
 in {
   options.gasdev.users.gaspard = {
@@ -41,17 +41,11 @@ in {
 
     nix.settings.trusted-users = ["gaspard"];
 
-    home-manager = {
-      extraSpecialArgs = {inherit inputs;};
-      sharedModules = [
-        ../../home
-      ];
-      users = {
-        "gaspard" = import ../../../users/gaspard.nix {
-          inherit pkgs;
-          enableDesktop = cfg.desktop.enable;
-        };
-      };
+    home-manager.users."gaspard" = mkIf cfg.enable {
+      imports =
+        if cfg.desktop.enable
+        then [(self + /configurations/home/gaspard)]
+        else [(self + /configurations/home/gaspard/desktop.nix)];
     };
   };
 }
