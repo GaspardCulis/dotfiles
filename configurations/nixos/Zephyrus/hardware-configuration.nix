@@ -10,7 +10,7 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../../utils/allowed-unfree.nix
+    ../../../utils/allowed-unfree.nix
     ./disko-config.nix
   ];
 
