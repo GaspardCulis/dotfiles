@@ -5,6 +5,8 @@
 in {
   imports = [
     self.nixosModules.default
+    inputs.disko.nixosModules.disko
+    inputs.stylix.nixosModules.stylix
     ./configuration.nix
   ];
 }

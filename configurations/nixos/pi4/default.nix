@@ -6,6 +6,7 @@ in {
   imports = [
     self.nixosModules.default
     self.nixosModules.server
+    inputs.disko.nixosModules.disko
     ./configuration.nix
   ];
 }
