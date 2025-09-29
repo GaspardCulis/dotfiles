@@ -1,21 +1,7 @@
-{...}: {
-  imports = [
-    ./authelia.nix
-    ./beszel.nix
-    ./docmost.nix
-    ./garage.nix
-    ./khoj.nix
-    ./matchbox.nix
-    ./musare.nix
-    ./nakama.nix
-    ./stalwart-mail.nix
-    ./openproject.nix
-    ./outline.nix
-    ./tandoor.nix
-    ./turn-rs.nix
-    ./umami.nix
-    ./uptime-kuma.nix
-    ./vaultwarden.nix
-    ./webdav.nix
-  ];
+# A module that automatically imports everything else in the parent folder.
+{
+  imports = with builtins;
+    map
+    (fn: ./${fn})
+    (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
 }
