@@ -1,11 +1,12 @@
 {
   config,
-  inputs,
+  flake,
   pkgs,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake) inputs;
   cfg = config.gasdev.shell.fish;
 in {
   options.gasdev.shell.fish = {
