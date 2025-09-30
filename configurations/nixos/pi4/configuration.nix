@@ -19,6 +19,8 @@
     # users.gaspard.enable = true;
 
     services = {
+      caddy.enable = true;
+
       beszel.agent = {
         enable = true;
         usePodman = true;

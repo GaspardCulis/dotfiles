@@ -23,6 +23,11 @@
     # FIX: Breaking due to external flakes modules
     # users.gaspard.enable = true;
 
+    services.caddy = {
+      enable = true;
+      ovhPlugins.enable = true;
+    };
+
     services.auth.enable = true;
     services.beszel = {
       enable = true;
