@@ -19,7 +19,6 @@ in {
       default = with pkgs; [
         imv
         vlc
-        kicad
         qbittorrent
         thunderbird
         element-desktop
