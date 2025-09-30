@@ -6,7 +6,6 @@ pkgs.rustPlatform.buildRustPackage {
     url = "https://github.com/mycrl/turn-rs";
     rev = "c292a8e4f255a893a75b06977eaaa38c58cabc6f";
   };
-  useFetchCargoVendor = true;
   cargoHash = "sha256-wnbovuxh3wc1TU8BYZEOG/8SO9bCUd0eWRC81MtAdqo=";
 
   nativeBuildInputs = [
