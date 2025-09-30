@@ -1,33 +1,18 @@
 {
   config,
+  flake,
   pkgs,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+
   cfg = config.gasdev.services.matchbox;
   domain = config.gasdev.server.domain;
 
-  matchbox_src = pkgs.fetchFromGitHub {
-    owner = "johanhelsing";
-    repo = "matchbox";
-    rev = "v0.11.0";
-    hash = "sha256-fF6SeZhfOkyK1hAWxdcXjf6P6pVJWLlkIUtyGxVrm94=";
-  };
-
-  matchbox = pkgs.rustPlatform.buildRustPackage {
-    pname = "matchbox_server";
-    version = "0.11.0";
-    src = matchbox_src;
-    useFetchCargoVendor = true;
-    cargoHash = "sha256-ELA9+wTFYxiuG/QLb0oxN5KfVSalWKmKEvzRlxNHQnw=";
-
-    nativeBuildInputs = [
-      pkgs.pkg-config
-    ];
-
-    buildInputs = [];
-  };
+  matchbox = pkgs.callPackage (self + /packages/matchbox.nix) {};
 in {
   options.gasdev.services.matchbox = {
     enable = mkEnableOption "Enable service";
