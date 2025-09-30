@@ -1,11 +1,11 @@
 {
   config,
-  domain,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.vaultwarden;
+  domain = config.gasdev.server.domain;
   mail = config.gasdev.services.mail;
 in {
   options.gasdev.services.vaultwarden = {

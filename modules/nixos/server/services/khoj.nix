@@ -1,11 +1,11 @@
 {
   config,
-  domain,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.khoj;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.khoj = {
     enable = mkEnableOption "Enable service";

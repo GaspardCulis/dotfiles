@@ -1,12 +1,12 @@
 {
   config,
-  domain,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.auth;
+  domain = config.gasdev.server.domain;
   mail = config.gasdev.services.mail;
 in {
   options.gasdev.services.auth = {

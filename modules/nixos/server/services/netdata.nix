@@ -1,11 +1,11 @@
 {
   config,
-  domain,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.netdata;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.netdata = {
     enable = mkEnableOption "Enable service";

@@ -1,11 +1,11 @@
 {
   config,
-  domain,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.webdav;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.webdav = {
     enable = mkEnableOption "Enable service";

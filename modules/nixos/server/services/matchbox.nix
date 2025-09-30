@@ -1,12 +1,12 @@
 {
   config,
-  domain,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.matchbox;
+  domain = config.gasdev.server.domain;
 
   matchbox_src = pkgs.fetchFromGitHub {
     owner = "johanhelsing";

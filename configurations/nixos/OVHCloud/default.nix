@@ -10,4 +10,6 @@ in {
     inputs.sops-nix.nixosModules.sops
     ./configuration.nix
   ];
+
+  nixos-unified.sshTarget = "root@gasdev.fr";
 }

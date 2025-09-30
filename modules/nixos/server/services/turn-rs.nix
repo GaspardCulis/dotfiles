@@ -1,12 +1,12 @@
 {
   config,
-  domain,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.turn-rs;
+  domain = config.gasdev.server.domain;
 
   turn-rs = pkgs.rustPlatform.buildRustPackage {
     pname = "turn-rs";

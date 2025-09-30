@@ -15,6 +15,8 @@
   ];
 
   gasdev = {
+    server.domain = "gasdev.fr";
+
     openssh = {
       enable = true;
       openFirewall = true;

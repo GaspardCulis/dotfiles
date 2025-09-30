@@ -1,11 +1,11 @@
 {
   config,
-  domain,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.umami;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.umami = {
     enable = mkEnableOption "Enable service";

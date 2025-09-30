@@ -1,12 +1,12 @@
 {
   config,
-  domain,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.garage;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.garage = {
     enable = mkEnableOption "Enable service";

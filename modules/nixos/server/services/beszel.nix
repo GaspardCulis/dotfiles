@@ -1,12 +1,12 @@
 {
   config,
-  domain,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.beszel;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.beszel = {
     enable = mkEnableOption "Enable service";

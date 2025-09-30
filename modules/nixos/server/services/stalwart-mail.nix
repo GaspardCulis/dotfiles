@@ -1,11 +1,11 @@
 {
   config,
-  domain,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.mail;
+  domain = config.gasdev.server.domain;
 in {
   options.gasdev.services.mail = {
     enable = mkEnableOption "Enable service";

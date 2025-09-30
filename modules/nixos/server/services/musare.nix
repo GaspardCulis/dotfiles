@@ -1,12 +1,12 @@
 {
   config,
-  domain,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.gasdev.services.musare;
+  domain = config.gasdev.server.domain;
 
   musare = pkgs.fetchFromGitHub {
     owner = "Musare";
