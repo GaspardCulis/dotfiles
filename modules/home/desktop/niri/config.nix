@@ -61,6 +61,7 @@ in {
     "XF86MonBrightnessUp".action = spawn swayosd-client "--brightness" "raise";
 
     "Mod+S".action = switch-preset-column-width;
+    "Mod+Shift+S".action = switch-preset-column-width-back;
     "Mod+F".action = maximize-column;
     "Mod+Shift+F".action = fullscreen-window;
     "Mod+Shift+Space".action = toggle-window-floating;
@@ -113,7 +114,7 @@ in {
 
   layout = {
     default-column-width = {
-      proportion = 1. / 2.;
+      proportion = 2. / 3.;
     };
     preset-column-widths = [
       {proportion = 1. / 3.;}
@@ -159,13 +160,6 @@ in {
       clip-to-geometry = true;
     }
     {
-      # Browser
-      matches = [
-        {app-id = "firefox";}
-      ];
-      open-maximized = true;
-    }
-    {
       # Chat
       matches = [
         {app-id = "WebCord";}
@@ -173,7 +167,6 @@ in {
       ];
       open-on-workspace = "chat";
       block-out-from = "screencast";
-      open-maximized = true;
       open-focused = false;
     }
     {
