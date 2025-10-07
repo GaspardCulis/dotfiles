@@ -19,6 +19,7 @@ in {
 
     xdg.systemDirs.data = [
       "$HOME/.local/share/flatpak/exports/share"
+      "/var/lib/flatpak/exports/share"
     ];
 
     systemd.user.services.flatpak-repo = {
