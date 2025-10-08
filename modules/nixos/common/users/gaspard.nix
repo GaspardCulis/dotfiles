@@ -18,6 +18,11 @@ in {
       description = "Extra user groups";
       default = [];
     };
+    extraModules = mkOption {
+      type = lib.types.listOf (types.either lib.types.attrs lib.types.path);
+      description = "Extra home modules";
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -43,9 +48,12 @@ in {
 
     home-manager.users."gaspard" = mkIf cfg.enable {
       imports =
-        if cfg.desktop.enable
-        then [(self + /configurations/home/gaspard/desktop.nix)]
-        else [(self + /configurations/home/gaspard)];
+        (
+          if cfg.desktop.enable
+          then [(self + /configurations/home/gaspard/desktop.nix)]
+          else [(self + /configurations/home/gaspard)]
+        )
+        ++ cfg.extraModules;
     };
   };
 }
