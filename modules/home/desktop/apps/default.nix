@@ -8,6 +8,7 @@ with lib; let
   cfg = config.gasdev.desktop.apps;
 in {
   imports = [
+    ./games
     ./alacritty.nix
     ./firefox.nix
     ./software-center.nix
