@@ -8,7 +8,6 @@
 in {
   imports = [
     ./default.nix
-    ../../../utils/allowed-unfree.nix
     self.homeModules.desktop
     inputs.niri-flake.homeModules.niri
   ];
