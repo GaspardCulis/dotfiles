@@ -59,6 +59,11 @@
           publicKey = "L7FNP+XjELr4AYW3jeZNKNS25ukJ3rMvIz3YYSYd61Y=";
           allowedIPs = ["10.8.0.111/32"];
         }
+        {
+          # Ayti
+          publicKey = "HIyjO8UQ0AGYhRztMfe1qgaAJqYiX7kncanmm10Qwhk=";
+          allowedIPs = ["10.8.0.43/32"];
+        }
       ];
     };
   };
