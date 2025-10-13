@@ -25,44 +25,46 @@
     # FIX: Breaking due to external flakes modules
     # users.gaspard.enable = true;
 
-    services.caddy = {
-      enable = true;
-      ovhPlugins.enable = true;
-    };
-
-    services.auth.enable = true;
-    services.beszel = {
-      enable = true;
-      agent = {
+    services = {
+      caddy = {
         enable = true;
-        usePodman = true;
-        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICls5kQQss/5W7pzOhCQRJOZlAqklfC/10mW5J9fEVWu";
+        ovhPlugins.enable = true;
       };
-    };
-    services.docmost.enable = true;
-    services.garage = {
-      enable = true;
-      settings = {
-        replication_factor = 2;
-        rpc_public_addr = "10.8.0.1";
-        bootstrap_peers = [
-          "c1166e37e36ac85369cd3a9fd1fb44f372869a078ce9e8ee642d00b3fb87dc01@10.8.0.31:3901"
-        ];
+
+      auth.enable = true;
+      beszel = {
+        enable = true;
+        agent = {
+          enable = true;
+          usePodman = true;
+          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICls5kQQss/5W7pzOhCQRJOZlAqklfC/10mW5J9fEVWu";
+        };
       };
+      docmost.enable = true;
+      garage = {
+        enable = true;
+        settings = {
+          replication_factor = 2;
+          rpc_public_addr = "10.8.0.1";
+          bootstrap_peers = [
+            "c1166e37e36ac85369cd3a9fd1fb44f372869a078ce9e8ee642d00b3fb87dc01@10.8.0.31:3901"
+          ];
+        };
+      };
+      mail.enable = true;
+      matchbox.enable = true;
+      nakama.enable = true;
+      outline.enable = true;
+      tandoor.enable = true;
+      turn-rs = {
+        enable = true;
+        interface = "51.210.104.210";
+        openFirewall = true;
+      };
+      umami.enable = true;
+      uptime-kuma.enable = true;
+      vaultwarden.enable = true;
     };
-    services.mail.enable = true;
-    services.matchbox.enable = true;
-    services.nakama.enable = true;
-    services.outline.enable = true;
-    services.tandoor.enable = true;
-    services.turn-rs = {
-      enable = true;
-      interface = "51.210.104.210";
-      openFirewall = true;
-    };
-    services.umami.enable = true;
-    services.uptime-kuma.enable = true;
-    services.vaultwarden.enable = true;
   };
 
   # Proxy to Pi4
