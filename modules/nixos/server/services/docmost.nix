@@ -58,7 +58,7 @@ in {
         ports = ["127.0.0.1:${toString cfg.port}:3000"];
         dependsOn = ["docmost-db"];
         environment = {
-          APP_URL = "https//${cfg.domain}";
+          APP_URL = "https://${cfg.domain}";
           REDIS_URL = "redis://docmost-redis:6379";
           DISABLE_TELEMETRY = "true";
           # Mail
