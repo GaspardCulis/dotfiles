@@ -7,6 +7,9 @@ in {
     self.nixosModules.default
     inputs.disko.nixosModules.disko
     inputs.stylix.nixosModules.stylix
+    inputs.niri-flake.nixosModules.niri
     ./configuration.nix
   ];
+
+  nixpkgs.overlays = [inputs.niri-flake.overlays.niri];
 }

@@ -9,7 +9,6 @@ in {
   imports = [
     ./default.nix
     self.homeModules.desktop
-    inputs.niri-flake.homeModules.niri
   ];
 
   gasdev = {
