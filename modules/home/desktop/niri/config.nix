@@ -66,8 +66,9 @@ in {
     "Mod+Shift+F".action = fullscreen-window;
     "Mod+Shift+Space".action = toggle-window-floating;
 
-    "Mod+M".action = move-column-to-monitor-next;
-    "Mod+Shift+M".action = move-workspace-to-monitor-next;
+    "Mod+M".action = focus-monitor-next;
+    "Mod+Shift+M".action = move-column-to-monitor-next;
+    "Mod+Ctrl+Shift+M".action = move-workspace-to-monitor-next;
 
     "Mod+${left}".action = focus-column-left;
     "Mod+${down}".action = focus-window-or-workspace-down;
