@@ -21,6 +21,11 @@ in {
       description = "Internal container port";
       default = 9091;
     };
+    clients = mkOption {
+      type = lib.types.listOf lib.types.attrs;
+      description = "OIDC Clients";
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -92,28 +97,7 @@ in {
 
       identity_providers = {
         oidc = {
-          clients = [
-            {
-              client_id = "penpot";
-              client_name = "Penpot";
-              client_secret = "$pbkdf2-sha512$310000$WuYHbHrVI3wMn/tZXwDTMA$WnS0VoR4jLNQnXjJUN46EfnC4QMdpdnNcYsGvSCpkbzguO4of.tCgAeLsfzLgWn9CSGMt20TZOQfc/7IbfwBHg";
-              redirect_uris = "https://penpot.gasdev.fr/api/auth/oauth/oidc/callback";
-              token_endpoint_auth_method = "client_secret_post";
-              authorization_policy = "one_factor";
-              scopes = ["email" "openid" "profile"];
-            }
-            {
-              client_id = "outline";
-              client_name = "Outline";
-              client_secret = "$pbkdf2-sha512$310000$KykggigTF2ZRKzEdHqPD0A$TV66lPDqlTodPjFGMpxMUaeQPywHliW8yTXfXsMh4EBkYI3cIqmDc.z6Yk/3/So2.HqsRWwfPlEHmBn9Esq/4A";
-              public = false;
-              authorization_policy = "one_factor";
-              redirect_uris = ["https://outline.gasdev.fr/auth/oidc.callback"];
-              scopes = ["openid" "offline_access" "profile" "email"];
-              userinfo_signed_response_alg = "none";
-              token_endpoint_auth_method = "client_secret_post";
-            }
-          ];
+          clients = cfg.clients;
         };
       };
 

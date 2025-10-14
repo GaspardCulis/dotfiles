@@ -67,5 +67,19 @@ in {
       builtins.elem (lib.getName pkg) [
         "outline"
       ];
+
+    gasdev.services.auth.clients = [
+      {
+        client_id = "outline";
+        client_name = "Outline";
+        client_secret = "$pbkdf2-sha512$310000$KykggigTF2ZRKzEdHqPD0A$TV66lPDqlTodPjFGMpxMUaeQPywHliW8yTXfXsMh4EBkYI3cIqmDc.z6Yk/3/So2.HqsRWwfPlEHmBn9Esq/4A";
+        public = false;
+        authorization_policy = "one_factor";
+        redirect_uris = ["https://${cfg.domain}/auth/oidc.callback"];
+        scopes = ["openid" "offline_access" "profile" "email"];
+        userinfo_signed_response_alg = "none";
+        token_endpoint_auth_method = "client_secret_post";
+      }
+    ];
   };
 }
