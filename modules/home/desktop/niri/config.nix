@@ -175,6 +175,7 @@ in {
       matches = [
         {title = "Mindustry";}
         {app-id = "Vintage Story";}
+        {app-id = "Terraria.bin.x86_64";}
       ];
       open-fullscreen = true;
     }
