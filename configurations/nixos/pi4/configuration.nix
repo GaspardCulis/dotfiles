@@ -10,7 +10,7 @@
   ];
 
   gasdev = {
-    server.domain = "gasdev.fr";
+    server.domain = "pi.gasdev.fr";
 
     openssh = {
       enable = true;
