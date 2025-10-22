@@ -37,4 +37,8 @@ in {
     '';
     force = true;
   };
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 }
