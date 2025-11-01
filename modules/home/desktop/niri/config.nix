@@ -96,6 +96,17 @@ in {
     "Mod+ccedilla".action.focus-workspace = 9;
     "Mod+agrave".action.focus-workspace = 10;
 
+    "Mod+Shift+ampersand".action.move-column-to-workspace = 1;
+    "Mod+Shift+eacute".action.move-column-to-workspace = 2;
+    "Mod+Shift+quotedbl".action.move-column-to-workspace = 3;
+    "Mod+Shift+apostrophe".action.move-column-to-workspace = 4;
+    "Mod+Shift+parenleft".action.move-column-to-workspace = 5;
+    "Mod+Shift+minus".action.move-column-to-workspace = 6;
+    "Mod+Shift+egrave".action.move-column-to-workspace = 7;
+    "Mod+Shift+underscore".action.move-column-to-workspace = 8;
+    "Mod+Shift+ccedilla".action.move-column-to-workspace = 9;
+    "Mod+Shift+agrave".action.move-column-to-workspace = 10;
+
     "Mod+O".action = toggle-overview;
     "Mod+Shift+comma".action = show-hotkey-overlay;
   };
@@ -181,8 +192,16 @@ in {
     }
   ];
 
-  workspaces."chat" = {
-    open-on-output = "eDP-1"; # Keep waifu gifs on primary monitor
+  workspaces = {
+    "1-work" = {};
+    "2-browse" = {};
+    "3-notes" = {};
+    "4" = {};
+    "5" = {};
+    "6" = {};
+    "7" = {};
+    "8" = {};
+    "9-chat" = {open-on-output = "eDP-1";}; # Keep waifu gifs on primary monitor
   };
 
   hotkey-overlay.skip-at-startup = true;
