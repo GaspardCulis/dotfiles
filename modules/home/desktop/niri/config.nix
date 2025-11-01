@@ -61,12 +61,14 @@ in {
     "XF86MonBrightnessUp".action = spawn swayosd-client "--brightness" "raise";
 
     "Mod+S".action = switch-preset-column-width;
+    "Mod+Shift+S".action = switch-preset-column-width-back;
     "Mod+F".action = maximize-column;
     "Mod+Shift+F".action = fullscreen-window;
     "Mod+Shift+Space".action = toggle-window-floating;
 
-    "Mod+M".action = move-column-to-monitor-next;
-    "Mod+Shift+M".action = move-workspace-to-monitor-next;
+    "Mod+M".action = focus-monitor-next;
+    "Mod+Shift+M".action = move-column-to-monitor-next;
+    "Mod+Ctrl+Shift+M".action = move-workspace-to-monitor-next;
 
     "Mod+${left}".action = focus-column-left;
     "Mod+${down}".action = focus-window-or-workspace-down;
@@ -113,7 +115,7 @@ in {
 
   layout = {
     default-column-width = {
-      proportion = 1. / 2.;
+      proportion = 2. / 3.;
     };
     preset-column-widths = [
       {proportion = 1. / 3.;}
@@ -159,13 +161,6 @@ in {
       clip-to-geometry = true;
     }
     {
-      # Browser
-      matches = [
-        {app-id = "firefox";}
-      ];
-      open-maximized = true;
-    }
-    {
       # Chat
       matches = [
         {app-id = "WebCord";}
@@ -173,7 +168,6 @@ in {
       ];
       open-on-workspace = "chat";
       block-out-from = "screencast";
-      open-maximized = true;
       open-focused = false;
     }
     {
@@ -181,6 +175,7 @@ in {
       matches = [
         {title = "Mindustry";}
         {app-id = "Vintage Story";}
+        {app-id = "Terraria.bin.x86_64";}
       ];
       open-fullscreen = true;
     }

@@ -6,6 +6,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
+    nixos-unified.url = "github:srid/nixos-unified";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -57,140 +60,10 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    disko,
-    deploy-rs,
-    home-manager,
-    stylix,
-    jovian,
-    niri-flake,
-    nixos-hardware,
-    sops-nix,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in rec {
-    nixosConfigurations = {
-      Zephyrus = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/Zephyrus
-          ./modules/system
-          disko.nixosModules.disko
-          stylix.nixosModules.stylix
-          home-manager.nixosModules.home-manager
-          jovian.nixosModules.jovian
-          niri-flake.nixosModules.niri
-        ];
-      };
-
-      OVHCloud = let
-        domain = "gasdev.fr";
-      in
-        nixpkgs-stable.lib.nixosSystem {
-          specialArgs = {inherit inputs domain;};
-          modules = [
-            ./hosts/OVHCloud
-            ./modules/system
-            ./modules/server
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-          ];
-        };
-
-      pi4 = let
-        domain = "pi.gasdev.fr";
-      in
-        nixpkgs-stable.lib.nixosSystem {
-          specialArgs = {inherit inputs domain;};
-          system = "aarch64-linux";
-          modules = [
-            ./hosts/pi4
-            ./modules/system
-            ./modules/server
-            "${nixpkgs}/nixos/modules/profiles/minimal.nix"
-            nixos-hardware.nixosModules.raspberry-pi-4
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-          ];
-        };
+  # Wired using https://nixos-unified.org/guide/autowiring
+  outputs = inputs:
+    inputs.nixos-unified.lib.mkFlake {
+      inherit inputs;
+      root = ./.;
     };
-
-    homeConfigurations = {
-      "gaspard" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          niri-flake.homeModules.niri
-          stylix.homeModules.stylix
-          ./modules/home
-
-          (import
-            ./users/gaspard.nix
-            {
-              inherit pkgs;
-              enableDesktop = true;
-            })
-        ];
-      };
-    };
-
-    deploy.nodes = {
-      OVHCloud = {
-        hostname = "gasdev.fr";
-        profiles.system = {
-          user = "root";
-          sshUser = "root";
-          sshOpts = ["-p" "22"];
-          sudo = "";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.OVHCloud;
-        };
-      };
-      pi4 = {
-        hostname = "10.8.0.31";
-        profiles.system = {
-          user = "root";
-          sshUser = "root";
-          sshOpts = ["-p" "22" "-J" "root@gasdev.fr"];
-          sudo = "";
-          path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.pi4;
-        };
-      };
-    };
-
-    images.pi4 =
-      (self.nixosConfigurations.pi4.extendModules {
-        modules = [
-          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          {
-            disabledModules = ["profiles/base.nix"];
-          }
-        ];
-      })
-      .config
-      .system
-      .build
-      .sdImage;
-    packages.x86_64-linux.pi4-image = images.pi4;
-    packages.aarch64-linux.pi4-image = images.pi4;
-
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-
-    devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [
-        alejandra
-        git
-        nil
-        pkgs.sops
-        home-manager.packages."${system}".home-manager
-        pkgs.deploy-rs
-      ];
-    };
-  };
 }

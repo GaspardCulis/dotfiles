@@ -1,11 +1,12 @@
 {
   config,
-  inputs,
+  flake,
   pkgs,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake) inputs;
   cfg = config.gasdev.desktop.anyrun;
   anyrun-icd-patch = pkgs.symlinkJoin {
     name = "anyrun-icd-patch";

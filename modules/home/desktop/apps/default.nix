@@ -8,6 +8,7 @@ with lib; let
   cfg = config.gasdev.desktop.apps;
 in {
   imports = [
+    ./games
     ./alacritty.nix
     ./firefox.nix
     ./software-center.nix
@@ -19,7 +20,6 @@ in {
       default = with pkgs; [
         imv
         vlc
-        kicad
         qbittorrent
         thunderbird
         element-desktop
