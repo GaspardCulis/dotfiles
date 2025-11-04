@@ -66,6 +66,8 @@ in {
     "Mod+Shift+F".action = fullscreen-window;
     "Mod+Shift+Space".action = toggle-window-floating;
 
+    "Mod+E".action = toggle-column-tabbed-display;
+
     "Mod+M".action = focus-monitor-next;
     "Mod+Shift+M".action = move-column-to-monitor-next;
     "Mod+Ctrl+Shift+M".action = move-workspace-to-monitor-next;
