@@ -179,7 +179,7 @@ in {
         {app-id = "WebCord";}
         {app-id = "Element";}
       ];
-      open-on-workspace = "chat";
+      open-on-workspace = "9-chat";
       block-out-from = "screencast";
       open-focused = false;
     }
