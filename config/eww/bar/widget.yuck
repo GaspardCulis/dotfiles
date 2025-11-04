@@ -21,7 +21,7 @@
 
 (deflisten network :initial '{}' "~/.config/eww/scripts/get-network-info")
 (deflisten bluetooth :initial '{}' "~/.config/eww/scripts/get-bluetooth-info")
-(deflisten hypr :initial '{"spaces": [], "current": 0, "title": ""}' "~/.config/eww/scripts/hypr/hyprstatus")
+(deflisten desktop :initial '{"spaces": [], "current": 0, "title": ""}' "~/.config/eww/scripts/niristatus")
 
 (deflisten volume :initial "{}" "~/.config/eww/scripts/get-volume")
 
@@ -69,12 +69,12 @@
 )
 
 (defwidget workspaces [monitor]
-  (eventbox :onscroll "bash ~/.config/eww/scripts/hypr/change-active-workspace {} ${hypr.current}" :class "workspaces"
+  (eventbox :onscroll "bash ~/.config/eww/scripts/hypr/change-active-workspace {} ${desktop.current}" :class "workspaces"
     (box :space-evenly true
-      (label :text "${hypr.spaces}${hypr.current}" :visible false)
-      (for workspace in {hypr.spaces}
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}" :visible "${workspace.monitor == monitor}"
-          (box :class "workspace-entry ${workspace.id == hypr.current ? "current" : ""}"
+      (label :text "${desktop.spaces}${desktop.current}" :visible false)
+      (for workspace in {desktop.spaces}
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}" :visible "${workspace.monitor == monitor && (workspace.windows != [] || workspace.id == desktop.current)}"
+          (box :class "workspace-entry ${workspace.id == desktop.current ? "current" : ""}"
             (label :text "${workspace.id}")
           )
         )
@@ -85,7 +85,7 @@
 
 (defwidget activewindow []
   (label
-    :text "${hypr.title ?: "..."}"
+    :text "${desktop.title ?: "..."}"
     :limit-width 64)
 )
 
