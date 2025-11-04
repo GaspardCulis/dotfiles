@@ -1,0 +1,22 @@
+#!/usr/bin/env dash
+
+spaces() {
+	niri msg -j workspaces | jq -c 'map({id: .idx, windows: if .active_window_id == null then [] else [.active_window_id] end, monitor: .output}) | sort_by(.id)'
+}
+
+current() {
+	niri msg -j workspaces | jq '.[] | select(.is_focused) | .idx'
+}
+
+title() {
+	niri msg -j focused-window | jq .title
+}
+
+status() {
+	echo "{\"spaces\": $(spaces), \"current\": $(current), \"title\": $(title)}"
+}
+
+status
+niri msg --json event-stream | while read -r line; do
+	status
+done
