@@ -36,7 +36,12 @@ in {
   ];
 
   "$mainMod" = "SUPER";
-  bind =
+  bind = let
+    left = "left";
+    down = "down";
+    up = "up";
+    right = "right";
+  in
     [
       "$mainMod, Q, killactive,"
       "$mainMod SHIFT, Q, exit,"
@@ -81,25 +86,25 @@ in {
       "$mainMod, s, hy3:changegroup, toggletab"
       "$mainMod, e, hy3:changegroup, opposite"
 
-      "$mainMod, left, hy3:movefocus, l"
-      "$mainMod, right, hy3:movefocus, r"
-      "$mainMod, up, hy3:movefocus, u"
-      "$mainMod, down, hy3:movefocus, d"
+      "$mainMod, ${left}, hy3:movefocus, l"
+      "$mainMod, ${right}, hy3:movefocus, r"
+      "$mainMod, ${up}, hy3:movefocus, u"
+      "$mainMod, ${down}, hy3:movefocus, d"
 
-      "$mainMod+CONTROL, left, hy3:movefocus, l, visible"
-      "$mainMod+CONTROL, down, hy3:movefocus, d, visible"
-      "$mainMod+CONTROL, up, hy3:movefocus, u, visible"
-      "$mainMod+CONTROL, right, hy3:movefocus, r, visible"
+      "$mainMod+CONTROL, ${left}, hy3:movefocus, l, visible"
+      "$mainMod+CONTROL, ${down}, hy3:movefocus, d, visible"
+      "$mainMod+CONTROL, ${up}, hy3:movefocus, u, visible"
+      "$mainMod+CONTROL, ${right}, hy3:movefocus, r, visible"
 
-      "$mainMod SHIFT, left, hy3:movewindow, l, once"
-      "$mainMod SHIFT, right, hy3:movewindow, r, once"
-      "$mainMod SHIFT, up, hy3:movewindow, u, once"
-      "$mainMod SHIFT, down, hy3:movewindow, d, once"
+      "$mainMod SHIFT, ${left}, hy3:movewindow, l, once"
+      "$mainMod SHIFT, ${right}, hy3:movewindow, r, once"
+      "$mainMod SHIFT, ${up}, hy3:movewindow, u, once"
+      "$mainMod SHIFT, ${down}, hy3:movewindow, d, once"
 
-      "$mainMod+CONTROL+SHIFT, left, hy3:movewindow, l, once, visible"
-      "$mainMod+CONTROL+SHIFT, down, hy3:movewindow, d, once, visible"
-      "$mainMod+CONTROL+SHIFT, up, hy3:movewindow, u, once, visible"
-      "$mainMod+CONTROL+SHIFT, right, hy3:movewindow, r, once, visible"
+      "$mainMod+CONTROL+SHIFT, ${left}, hy3:movewindow, l, once, visible"
+      "$mainMod+CONTROL+SHIFT, ${down}, hy3:movewindow, d, once, visible"
+      "$mainMod+CONTROL+SHIFT, ${up}, hy3:movewindow, u, once, visible"
+      "$mainMod+CONTROL+SHIFT, ${right}, hy3:movewindow, r, once, visible"
 
       "$mainMod, mouse_down, workspace, e+1"
       "$mainMod, mouse_up, workspace, e-1"
