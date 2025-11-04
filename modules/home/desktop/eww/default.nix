@@ -125,7 +125,7 @@ in {
         eww-bar = mkIf cfg.widget.bar.enable (mkWidget {
           name = "bar";
           type = "window";
-          monitor = 0;
+          monitor = "eDP-1";
         });
 
         eww-bar-extmon = mkIf cfg.widget.bar.enable (mkWidget {
