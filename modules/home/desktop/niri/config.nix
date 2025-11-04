@@ -124,6 +124,8 @@ in {
   input = {
     keyboard.xkb.layout = "fr";
     warp-mouse-to-focus.enable = true;
+
+    power-key-handling.enable = false;
   };
 
   layout = {
