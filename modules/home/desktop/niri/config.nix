@@ -48,7 +48,7 @@ in {
       repeat = false;
     };
 
-    "Mod+F6".action = screenshot {
+    "Mod+F6".action.screenshot = {
       show-pointer = true;
     };
     "Mod+DOLLAR".action = sh "niri msg pick-color | grep -oP 'Hex: \\K#\\w+' | tr -d '\\n' | wl-copy";
