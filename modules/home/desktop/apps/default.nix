@@ -10,6 +10,7 @@ in {
   imports = [
     ./games
     ./alacritty.nix
+    ./discord.nix
     ./firefox.nix
     ./software-center.nix
   ];
@@ -25,7 +26,6 @@ in {
         element-desktop
         libreoffice-fresh
         youtube-music
-        webcord
       ];
     };
     extraPackages = lib.mkOption {

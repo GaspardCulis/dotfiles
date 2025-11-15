@@ -20,11 +20,12 @@ in {
         xwayland.enable = true;
       };
       apps = {
-        software-center.enable = true;
+        discord.enable = true;
         firefox = {
           progressiveWebApps.enable = true;
           profiles.gaspard.enable = true;
         };
+        software-center.enable = true;
       };
       udiskr.enable = true;
     };
