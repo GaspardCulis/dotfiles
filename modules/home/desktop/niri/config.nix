@@ -180,6 +180,7 @@ in {
       matches = [
         {app-id = "WebCord";}
         {app-id = "Element";}
+        {app-id = "vesktop";}
       ];
       open-on-workspace = "9-chat";
       block-out-from = "screencast";
