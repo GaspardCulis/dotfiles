@@ -31,6 +31,7 @@
       enable = true;
       openFirewall = true;
     };
+    plymouth.enable = true;
     users.gaspard = {
       enable = true;
       desktop.enable = true;

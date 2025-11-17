@@ -2,6 +2,7 @@
   imports = [
     ./podman.nix
     ./openssh.nix
+    ./plymouth.nix
     ./users
   ];
 
