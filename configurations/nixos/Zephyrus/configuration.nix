@@ -57,6 +57,7 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   services.asusd.enable = true;
+  services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false; # Faster boot time
 
