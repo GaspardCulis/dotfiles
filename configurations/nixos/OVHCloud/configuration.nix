@@ -43,11 +43,7 @@
       garage = {
         enable = true;
         settings = {
-          replication_factor = 2;
-          rpc_public_addr = "10.8.0.1";
-          bootstrap_peers = [
-            "c1166e37e36ac85369cd3a9fd1fb44f372869a078ce9e8ee642d00b3fb87dc01@10.8.0.31:3901"
-          ];
+          replication_factor = 1;
         };
       };
       mail.enable = true;
