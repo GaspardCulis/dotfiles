@@ -44,6 +44,7 @@
         "networkmanager"
       ];
       extraModules = [
+        {gasdev.shell.helix.lspProfile = "bloated";}
         {gasdev.desktop.apps.vintagestory.enable = true;}
       ];
     };

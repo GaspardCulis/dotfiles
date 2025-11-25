@@ -6,9 +6,16 @@
 }:
 with lib; let
   cfg = config.gasdev.shell.helix;
+  bloated = cfg.lspProfile == "bloated";
+  minimal = bloated || (cfg.lspProfile == "minimal");
 in {
   options.gasdev.shell.helix = {
     enable = mkEnableOption "Enable opiniated helix config";
+    lspProfile = mkOption {
+      type = types.enum ["none" "minimal" "bloated"];
+      description = "Defines the enabled LSPs based on a certain profile";
+      default = "minimal";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -59,20 +66,23 @@ in {
       };
 
       # Yoinked from Ahurac's dotfiles, thx!
-      extraPackages = with pkgs; [
-        clang-tools
-        rust-analyzer
-        jdt-language-server
-        bash-language-server
-        typescript-language-server
-        vscode-css-languageserver
-        marksman
-        kdePackages.qtdeclarative # qmlls
-        python3Packages.python-lsp-server
-        nil
-        tinymist
-        yaml-language-server
-      ];
+      extraPackages = with pkgs;
+        lib.optionals minimal [
+          bash-language-server
+          marksman
+          nil
+          yaml-language-server
+        ]
+        ++ lib.optionals bloated [
+          clang-tools
+          rust-analyzer
+          python3Packages.python-lsp-server
+          jdt-language-server
+          kdePackages.qtdeclarative # qmlls
+          tinymist # Typst
+          typescript-language-server
+          vscode-css-languageserver
+        ];
       languages = {
         language = let
           lang = {
@@ -88,64 +98,68 @@ in {
             auto-format = true;
           };
         in
-          with pkgs; [
-            (lang {
-              name = "nix";
-              pkg = alejandra;
-              command = ["alejandra"];
-            })
-            (lang {
-              name = "c";
-              pkg = clang-tools;
-              command = ["clang-format"];
-            })
-            (lang {
-              name = "bash";
-              pkg = shfmt;
-              command = ["shfmt"];
-            })
-            (lang {
-              name = "java";
-              pkg = google-java-format;
-              command = ["google-java-format" "-"];
-            })
-            (lang {
-              name = "qml";
-              pkg = kdePackages.qtdeclarative;
-              command = ["qmlformat"];
-            })
-            (lang {
-              name = "rust";
-              pkg = rustfmt;
-              command = ["rustfmt"];
-            })
-            (lang {
-              name = "toml";
-              pkg = taplo;
-              command = ["taplo" "fmt" "-"];
-            })
-            (lang {
-              name = "wgsl";
-              pkg = wgsl-analyzer;
-              command = ["wgslfmt"];
-            })
-            (lang {
-              name = "python";
-              pkg = yapf;
-              command = ["yapf"];
-            })
-            (lang {
-              name = "markdown";
-              pkg = deno;
-              command = ["deno" "fmt" "-" "--ext" "md"];
-            })
-            {
-              name = "typst";
-              auto-format = true;
-            }
-          ];
-        language-server = {
-          wgsl_analyzer = {
+          with pkgs;
+            lib.optionals minimal [
+              (lang {
+                name = "nix";
+                pkg = alejandra;
+                command = ["alejandra"];
+              })
+              (lang {
+                name = "bash";
+                pkg = shfmt;
+                command = ["shfmt"];
+              })
+              (lang {
+                name = "toml";
+                pkg = taplo;
+                command = ["taplo" "fmt" "-"];
+              })
+              (lang {
+                name = "markdown";
+                pkg = deno;
+                command = ["deno" "fmt" "-" "--ext" "md"];
+              })
+            ]
+            ++ lib.optionals (cfg.lspProfile == "bloated") [
+              (lang {
+                name = "c";
+                pkg = clang-tools;
+                command = ["clang-format"];
+              })
+              (lang {
+                name = "rust";
+                pkg = rustfmt;
+                command = ["rustfmt"];
+              })
+              (lang {
+                name = "python";
+                pkg = yapf;
+                command = ["yapf"];
+              })
+              (lang {
+                name = "java";
+                pkg = google-java-format;
+                command = ["google-java-format" "-"];
+              })
+              (lang {
+                name = "qml";
+                pkg = kdePackages.qtdeclarative;
+                command = ["qmlformat"];
+              })
+              (lang {
+                name = "wgsl";
+                pkg = wgsl-analyzer;
+                command = ["wgslfmt"];
+              })
+              {
+                name = "typst";
+                auto-format = true;
+              }
+            ];
+
+        language-server = mkIf minimal {
+          wgsl_analyzer = mkIf bloated {
             command = "${pkgs.wgsl-analyzer}/bin/wgsl-analyzer";
           };
         };
