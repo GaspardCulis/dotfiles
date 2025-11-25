@@ -71,6 +71,7 @@ in {
           bash-language-server
           nil
           yaml-language-server
+          taplo
         ]
         ++ lib.optionals bloated [
           marksman
