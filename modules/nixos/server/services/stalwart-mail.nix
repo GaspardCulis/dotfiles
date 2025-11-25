@@ -111,10 +111,13 @@ in {
         };
         directory."imap".lookup.domains = ["${domain}"];
         auth.dkim = {
-          sign = ''
-            [ { if = "listener != 'smtp'", then = "['rsa', 'ed25519']" },
-              { else = false } ]
-          '';
+          sign = [
+            {
+              "if" = "listener != 'smtp'";
+              "then" = "['rsa', 'ed25519']";
+            }
+            {"else" = false;}
+          ];
         };
         signatures = {
           rsa = {
