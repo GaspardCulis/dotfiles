@@ -44,6 +44,7 @@
         enable = true;
         settings = {
           replication_factor = 1;
+          rpc_public_addr = "10.8.0.1";
         };
       };
       mail.enable = true;
