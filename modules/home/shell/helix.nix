@@ -69,11 +69,11 @@ in {
       extraPackages = with pkgs;
         lib.optionals minimal [
           bash-language-server
-          marksman
           nil
           yaml-language-server
         ]
         ++ lib.optionals bloated [
+          marksman
           clang-tools
           rust-analyzer
           python3Packages.python-lsp-server
@@ -115,11 +115,6 @@ in {
                 pkg = taplo;
                 command = ["taplo" "fmt" "-"];
               })
-              (lang {
-                name = "markdown";
-                pkg = deno;
-                command = ["deno" "fmt" "-" "--ext" "md"];
-              })
             ]
             ++ lib.optionals (cfg.lspProfile == "bloated") [
               (lang {
@@ -151,6 +146,11 @@ in {
                 name = "wgsl";
                 pkg = wgsl-analyzer;
                 command = ["wgslfmt"];
+              })
+              (lang {
+                name = "markdown";
+                pkg = deno;
+                command = ["deno" "fmt" "-" "--ext" "md"];
               })
               {
                 name = "typst";
