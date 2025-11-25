@@ -69,7 +69,7 @@ in {
         mangohud
         appimage-run
         # Games
-        # inputs.suyu.packages.${pkgs.system}.suyu
+        # inputs.suyu.packages.${pkgs.stdenv.hostPlatform.system}.suyu
         rpcs3
         prismlauncher
         vintagestory

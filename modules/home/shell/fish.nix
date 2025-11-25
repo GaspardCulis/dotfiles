@@ -35,8 +35,8 @@ in {
             then ''
               ${
                 if cfg.jaaj.colors
-                then inputs.jaaj-rs.packages.${pkgs.system}.lolcat
-                else inputs.jaaj-rs.packages.${pkgs.system}.default
+                then inputs.jaaj-rs.packages.${pkgs.stdenv.hostPlatform.system}.lolcat
+                else inputs.jaaj-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
               }/bin/jaaj-rs''
             else "";
         };

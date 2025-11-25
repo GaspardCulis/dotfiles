@@ -22,7 +22,7 @@ in {
         enable = true;
       }
       // lib.optionalAttrs cfg.ovhPlugins.enable {
-        package = inputs.caddy.packages.${pkgs.system}.caddy;
+        package = inputs.caddy.packages.${pkgs.stdenv.hostPlatform.system}.caddy;
 
         globalConfig = ''
           acme_dns ovh {

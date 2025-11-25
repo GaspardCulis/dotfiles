@@ -12,7 +12,7 @@ in {
   options.gasdev.desktop.end-rs = {
     enable = mkEnableOption "Enable opiniated end-rs service config";
     package = mkOption {
-      default = inputs.end-rs.packages.${pkgs.system}.default;
+      default = inputs.end-rs.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
   };
 

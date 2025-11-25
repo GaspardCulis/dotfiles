@@ -12,7 +12,7 @@ in {
   options.gasdev.desktop.udiskr = {
     enable = mkEnableOption "Enable udiskr auto-mount service";
     package = mkOption {
-      default = inputs.udiskr.packages.${pkgs.system}.default;
+      default = inputs.udiskr.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
   };
 

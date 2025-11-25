@@ -47,7 +47,7 @@ in {
           ]
           ++ (
             if cfg.anixrun.enable
-            then [inputs.anixrun.packages.${pkgs.system}.default]
+            then [inputs.anixrun.packages.${pkgs.stdenv.hostPlatform.system}.default]
             else []
           );
         x = {fraction = 0.5;};
