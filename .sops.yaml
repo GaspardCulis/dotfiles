@@ -1,6 +1,6 @@
 keys:
   - &admin_gaspard age1rgu2e75kt4uztr43y6wj70uz2sj3tr9lz58y4h6rk37alq2vwa5q9v35dr
-  - &server_ovh age1th4zyxdg3y5sdza9v3zlezzru7wyqwvk5y0t7jdv97ej3gd6d5hs5mg7cr
+  - &server_ovh age15x7zcnpypyr2dj8ma4q3sw8atvlj3txej6gt93p0rhjgmqlvkd6qjd9tsm
   - &server_pi4 age18gts35ruwj67kjgjtgrgrxup83apr8ekgrp98r434wcn2pf0l9sqnq5j2y
 creation_rules:
   - path_regex: secrets/OVHCloud/[^/]+\.(yaml|json|env|ini)$

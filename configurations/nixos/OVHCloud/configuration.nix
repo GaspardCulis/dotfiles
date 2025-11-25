@@ -57,7 +57,7 @@
       tandoor.enable = true;
       turn-rs = {
         enable = true;
-        interface = "51.210.104.210";
+        interface = "51.75.250.6";
         openFirewall = true;
       };
       umami.enable = true;
