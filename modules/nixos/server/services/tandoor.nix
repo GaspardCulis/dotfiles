@@ -73,6 +73,7 @@ in {
         autoStart = true;
         dependsOn = ["tandoor-db"];
         environment = {
+          TANDOOR_PORT = "8080";
           DB_ENGINE = "django.db.backends.postgresql";
           POSTGRES_HOST = "tandoor-db";
         };
