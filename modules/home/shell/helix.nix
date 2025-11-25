@@ -13,7 +13,7 @@ in {
     enable = mkEnableOption "Enable opiniated helix config";
     lspProfile = mkOption {
       type = types.enum ["none" "minimal" "bloated"];
-      description = "Defines the enabled LSPs based on a certain profile";
+      description = "Defines the opiniated subset of enabled LSPs";
       default = "minimal";
     };
   };
