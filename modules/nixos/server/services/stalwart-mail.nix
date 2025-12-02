@@ -19,15 +19,25 @@ in {
       description = "Public Web admin-panel domain";
       default = "mailadmin.${domain}";
     };
+    adminPort = mkOption {
+      type = types.ints.unsigned;
+      description = "Internal Web admin-panel port";
+      default = 40312;
+    };
     jmapPort = mkOption {
       type = types.ints.unsigned;
       description = "Internal JMAP port";
       default = 8080;
     };
-    adminPort = mkOption {
+    webdavDomain = mkOption {
+      type = types.nonEmptyStr;
+      description = "Public WebDAV domain";
+      default = "dav.${domain}";
+    };
+    webdavPort = mkOption {
       type = types.ints.unsigned;
-      description = "Internal Web admin-panel port";
-      default = 40312;
+      description = "Internal WebDAV port";
+      default = 5339;
     };
   };
 
@@ -59,6 +69,11 @@ in {
         "autodiscover.${domain}"
         "${domain}"
       ];
+    };
+    services.caddy.virtualHosts."${cfg.webdavDomain}" = {
+      extraConfig = ''
+        reverse_proxy http://127.0.0.1:${toString cfg.webdavPort}
+      '';
     };
     networking.firewall.allowedTCPPorts = [25 465 587 993];
 
@@ -94,6 +109,11 @@ in {
             management = {
               bind = ["127.0.0.1:${toString cfg.adminPort}"];
               protocol = "http";
+            };
+            webdav = {
+              bind = "[::]:${toString cfg.webdavPort}";
+              protocol = "http";
+              tls.implicit = false;
             };
           };
         };
