@@ -4,7 +4,7 @@
   inputs = {
     # Common
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixos-unified.url = "github:srid/nixos-unified";
     flake-parts.url = "github:hercules-ci/flake-parts";
