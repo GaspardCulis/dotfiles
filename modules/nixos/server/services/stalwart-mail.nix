@@ -46,7 +46,7 @@ in {
 
     services.caddy.virtualHosts."${cfg.adminDomain}" = {
       extraConfig = ''
-        reverse_proxy http://127.0.01:${toString cfg.adminPort}
+        reverse_proxy http://127.0.0.1:${toString cfg.adminPort}
       '';
     };
     services.caddy.virtualHosts."${cfg.smtpDomain}" = {
