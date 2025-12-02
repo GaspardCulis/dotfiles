@@ -51,7 +51,7 @@ in {
     };
     services.caddy.virtualHosts."${cfg.smtpDomain}" = {
       extraConfig = ''
-        reverse_proxy http://127.0.01:${toString cfg.jmapPort}
+        reverse_proxy http://127.0.0.1:${toString cfg.jmapPort}
       '';
       serverAliases = [
         "mta-sts.${domain}"
