@@ -117,6 +117,17 @@
     nvtopPackages.amd
   ];
 
+  specialisation = {
+    nvidia-sync.configuration = {
+      system.nixos.tags = ["nvidia-sync"];
+      hardware.nvidia = {
+        prime.offload.enable = lib.mkForce false;
+        prime.offload.enableOffloadCmd = lib.mkForce false;
+        prime.sync.enable = lib.mkForce true;
+      };
+    };
+  };
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
