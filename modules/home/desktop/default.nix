@@ -31,8 +31,8 @@ in {
       };
       explorer = mkOption {
         description = "Default file explorer app";
-        type = types.enum ["cosmic-files"];
-        default = "cosmic-files";
+        type = types.enum ["cosmic-files" "nautilus"];
+        default = "nautilus";
       };
       launcher = mkOption {
         description = "Default quick launcher app";
@@ -63,11 +63,8 @@ in {
         dconf
         xdg-utils
       ]
-      ++ (
-        if cfg.apps.explorer == "cosmic-files"
-        then [pkgs.cosmic-files]
-        else []
-      );
+      ++ lib.optionals (cfg.apps.explorer == "cosmic-files") [pkgs.cosmic-files]
+      ++ lib.optionals (cfg.apps.explorer == "nautilus") [pkgs.nautilus];
 
     fonts.fontconfig.enable = true;
 
