@@ -114,6 +114,16 @@ in {
   };
 
   environment = {
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+
+    MOZ_ENABLE_WAYLAND = "1";
+
     DISPLAY = pkgs.lib.mkIf cfg.xwayland.enable ":0";
   };
 
