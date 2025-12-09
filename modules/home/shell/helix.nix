@@ -124,11 +124,6 @@ in {
                 command = ["clang-format"];
               })
               (lang {
-                name = "rust";
-                pkg = rustfmt;
-                command = ["cargo-fmt"];
-              })
-              (lang {
                 name = "python";
                 pkg = yapf;
                 command = ["yapf"];
@@ -153,6 +148,10 @@ in {
                 pkg = deno;
                 command = ["deno" "fmt" "-" "--ext" "md"];
               })
+              {
+                name = "rust";
+                auto-format = true;
+              }
               {
                 name = "typst";
                 auto-format = true;
