@@ -4,6 +4,7 @@
     sha256 = "12i970v414225nl6i1szjfxwf5w0wzmw7r1cgzlni6wvjxvnag6a";
   };
 in {
+  users.groups.plugdev.name = "plugdev";
   gasdev.users.gaspard.extraGroups = [
     "plugdev"
   ];
