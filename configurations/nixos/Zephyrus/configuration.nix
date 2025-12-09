@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
+    ./probe-rs.nix
   ];
 
   networking.hostName = "Zephyrus";
