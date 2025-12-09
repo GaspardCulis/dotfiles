@@ -126,7 +126,7 @@ in {
               (lang {
                 name = "rust";
                 pkg = rustfmt;
-                command = ["rustfmt"];
+                command = ["cargo-fmt"];
               })
               (lang {
                 name = "python";
