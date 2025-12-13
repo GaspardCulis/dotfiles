@@ -20,6 +20,17 @@ in {
     };
   };
 
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "GaspardCulis";
+        email = "gaspard@gasdev.fr";
+        init.defaultBranch = "main";
+      };
+    };
+  };
+
   services = {
     ssh-agent.enable = true;
   };
