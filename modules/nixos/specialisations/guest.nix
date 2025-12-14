@@ -1,10 +1,14 @@
 {
   config,
+  flake,
   pkgs,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+
   cfg = config.gasdev.specialisations.guest;
 in {
   options.gasdev.specialisations.guest = {
@@ -27,6 +31,8 @@ in {
 
         displayManager.autoLogin.enable = true;
         displayManager.autoLogin.user = "${cfg.user}";
+
+        displayManager.ly.enable = lib.mkForce false;
       };
 
       users.groups."${cfg.user}".name = "${cfg.user}";
@@ -44,6 +50,11 @@ in {
 
       # `modules/system/users` required
       home-manager.users."${cfg.user}" = {
+        imports = [
+          self.homeModules.default
+          self.homeModules.desktop
+        ];
+
         home.username = "${cfg.user}";
         home.homeDirectory = "/home/${cfg.user}";
         home.stateVersion = "24.05";
