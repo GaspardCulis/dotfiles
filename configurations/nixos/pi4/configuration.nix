@@ -33,7 +33,7 @@
       };
 
       garage = {
-        enable = true;
+        enable = false;
         expose = false;
         settings = {
           replication_factor = 2;
