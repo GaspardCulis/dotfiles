@@ -47,6 +47,7 @@
           rpc_public_addr = "10.8.0.1";
         };
       };
+      github-readme-stats.enable = true;
       mail.enable = true;
       matchbox.enable = true;
       nakama.enable = true;
