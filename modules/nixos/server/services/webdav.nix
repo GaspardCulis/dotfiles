@@ -24,15 +24,25 @@ in {
       description = "Directory data is stored in";
       default = "/var/lib/webdav";
     };
+    users = mkOption {
+      type = types.listOf types.attrs;
+    };
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."webdav/USER_PASSWORD".owner = "${config.services.webdav.user}";
+    sops.secrets = lib.mkMerge [
+      (builtins.listToAttrs
+        (builtins.map (x: {
+            name = x.pass_sops_key;
+            value = config.services.webdav.user;
+          })
+          cfg.users))
+    ];
 
     sops.templates."webdav.env" = {
-      content = ''
-        USER_PASSWORD=${config.sops.placeholder."webdav/USER_PASSWORD"}
-      '';
+      content = builtins.concatStringsSep "\n" (
+        builtins.map (x: "PASSWORD_${x.name}=${config.sops.placeholder."${x.pass_sops_key}"}") cfg.users
+      );
 
       owner = "${config.services.webdav.user}";
     };
@@ -54,13 +64,13 @@ in {
         behindProxy = true;
         directory = cfg.directory;
 
-        users = [
-          {
-            username = "gaspard";
-            password = "{env}USER_PASSWORD";
+        users =
+          builtins.map (x: {
+            username = x.name;
+            password = "{env}PASSWORD_${x.name}";
             permissions = "CRUD";
-          }
-        ];
+          })
+          cfg.users;
       };
     };
 

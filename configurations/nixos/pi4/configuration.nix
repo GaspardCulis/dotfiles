@@ -49,6 +49,12 @@
       webdav = {
         enable = true;
         directory = "/mnt/webdav";
+        users = [
+          {
+            name = "gaspard";
+            pass_sops_key = "webdav/GASPARD_PASSWORD";
+          }
+        ];
       };
     };
   };
