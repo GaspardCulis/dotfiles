@@ -34,7 +34,7 @@ in {
       (builtins.listToAttrs
         (builtins.map (x: {
             name = x.pass_sops_key;
-            value = config.services.webdav.user;
+            value = {owner = config.services.webdav.user;};
           })
           cfg.users))
     ];
