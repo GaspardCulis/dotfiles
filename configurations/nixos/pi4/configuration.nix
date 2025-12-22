@@ -54,6 +54,11 @@
             name = "gaspard";
             pass_sops_key = "webdav/GASPARD_PASSWORD";
           }
+          {
+            name = "emma";
+            pass_sops_key = "webdav/EMMA_PASSWORD";
+            subdir = "emma";
+          }
         ];
       };
     };

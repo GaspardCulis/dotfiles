@@ -64,13 +64,15 @@ in {
         behindProxy = true;
         directory = cfg.directory;
 
-        users =
-          builtins.map (x: {
+        users = builtins.map (x: ({
             username = x.name;
             password = "{env}PASSWORD_${x.name}";
             permissions = "CRUD";
-          })
-          cfg.users;
+          }
+          // (lib.optionalAttrs (builtins.hasAttr "subdir" x) {
+            directory = "${cfg.directory}/${x.subdir}";
+          })))
+        cfg.users;
       };
     };
 
