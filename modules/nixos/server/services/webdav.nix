@@ -26,6 +26,8 @@ in {
     };
     users = mkOption {
       type = types.listOf types.attrs;
+      description = "The list of users that can access the webdav server. In the form { name: string, pass_sops_key: string, subdir?: string }";
+      default = [];
     };
   };
 
