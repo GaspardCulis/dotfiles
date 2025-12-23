@@ -5,6 +5,7 @@
 in {
   imports = [
     self.nixosModules.default
+    self.nixosModules.specialisations
     inputs.disko.nixosModules.disko
     inputs.stylix.nixosModules.stylix
     inputs.niri-flake.nixosModules.niri
