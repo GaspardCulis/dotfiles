@@ -71,10 +71,10 @@ in {
       enable = true;
       description = "Lightweight server monitoring platform";
       environment =
-        mkIf cfg.agent.usePodman
-        {
-          DOCKER_HOST = "unix:///var/run/podman/podman.sock";
-        }
+        (optionalAttrs cfg.agent.usePodman
+          {
+            DOCKER_HOST = "unix:///var/run/podman/podman.sock";
+          })
         // (optionalAttrs (builtins.hasAttr "extraFilesystems" cfg.agent) {
           EXTRA_FILESYSTEMS = builtins.concatStringsSep "," cfg.agent.extraFilesystems;
         });
