@@ -13,6 +13,7 @@ in {
     ./hypr
     ./misc
     ./niri
+    ./ashell.nix
   ];
 
   options.gasdev.desktop = {
