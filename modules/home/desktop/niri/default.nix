@@ -33,20 +33,6 @@ in {
       settings = import ./config.nix {inherit config pkgs;};
     };
 
-    gasdev.desktop = {
-      swayosd.enable = true;
-      end-rs.enable = true;
-      swww.enable = true;
-      eww = {
-        enable = true;
-        widget = {
-          bar.enable = true;
-          music.enable = true;
-          timer.enable = true;
-        };
-      };
-    };
-
     home.packages = cfg.extraPackages;
 
     programs.bash = mkIf cfg.autoStart {

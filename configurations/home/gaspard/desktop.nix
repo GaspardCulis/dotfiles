@@ -14,11 +14,25 @@ in {
   gasdev = {
     desktop = {
       enable = true;
+
       niri = {
         enable = true;
         autoStart = true;
         xwayland.enable = true;
       };
+
+      swayosd.enable = true;
+      end-rs.enable = true;
+      swww.enable = true;
+      eww = {
+        enable = true;
+        widget = {
+          bar.enable = true;
+          music.enable = true;
+          timer.enable = true;
+        };
+      };
+
       apps = {
         discord.enable = true;
         firefox = {

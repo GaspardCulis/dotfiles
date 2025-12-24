@@ -31,20 +31,6 @@ in {
       plugins = with pkgs; [hyprlandPlugins.hy3];
     };
 
-    gasdev.desktop = {
-      swayosd.enable = true;
-      end-rs.enable = true;
-      swww.enable = true;
-      eww = {
-        enable = true;
-        widget = {
-          bar.enable = true;
-          music.enable = true;
-          timer.enable = true;
-        };
-      };
-    };
-
     home.packages = with pkgs;
       [
         # Required packages
