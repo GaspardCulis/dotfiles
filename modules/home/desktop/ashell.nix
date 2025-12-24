@@ -31,6 +31,7 @@ in {
         };
 
         workspaces.enable_workspace_filling = true;
+        media_player.max_title_length = 50;
 
         settings = {
           audio_sinks_more_cmd = "pavucontrol -t 3";
