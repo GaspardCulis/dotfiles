@@ -25,8 +25,8 @@ in {
         position = "Top";
 
         modules = {
-          left = ["Clock" "Workspaces"];
-          center = ["WindowTitle" "MediaPlayer"];
+          left = ["Clock" "Workspaces" "MediaPlayer"];
+          center = ["WindowTitle"];
           right = ["SystemInfo" "Settings" "Tray"];
         };
 
