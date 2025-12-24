@@ -21,13 +21,13 @@ in {
         xwayland.enable = true;
       };
 
+      ashell.enable = true;
       swayosd.enable = true;
       end-rs.enable = true;
       swww.enable = true;
       eww = {
         enable = true;
         widget = {
-          bar.enable = true;
           music.enable = true;
           timer.enable = true;
         };
