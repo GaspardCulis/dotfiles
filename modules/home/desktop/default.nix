@@ -45,7 +45,7 @@ in {
       enable = mkOption {
         description = "Enable default applet services";
         type = types.bool;
-        default = cfg.enable;
+        default = false;
       };
     };
   };
