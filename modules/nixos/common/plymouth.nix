@@ -10,6 +10,11 @@ with lib; let
 in {
   options.gasdev.plymouth = {
     enable = mkEnableOption "Enable opiniated boot animation config";
+    deviceScale = mkOption {
+      description = "Device scale for HiDPI displays";
+      type = types.ints.positive;
+      default = 1;
+    };
   };
 
   config = mkIf cfg.enable ({
@@ -23,6 +28,9 @@ in {
               selected_themes = ["spinner_alt"];
             })
           ];
+          extraConfig = ''
+            DeviceScale=${cfg.deviceScale}
+          '';
         };
 
         # Enable "Silent boot"
