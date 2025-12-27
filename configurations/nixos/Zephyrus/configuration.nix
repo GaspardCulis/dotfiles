@@ -32,7 +32,10 @@
       enable = true;
       openFirewall = true;
     };
-    plymouth.enable = true;
+    plymouth = {
+      enable = true;
+      deviceScale = 2;
+    };
     users.gaspard = {
       enable = true;
       desktop.enable = true;
