@@ -29,7 +29,7 @@ in {
             })
           ];
           extraConfig = ''
-            DeviceScale=${cfg.deviceScale}
+            DeviceScale=${toString cfg.deviceScale}
           '';
         };
 
