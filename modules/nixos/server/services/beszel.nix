@@ -41,6 +41,7 @@ in {
       extraFilesystems = mkOption {
         type = types.listOf types.str;
         description = "Extra filesystems to be monitored";
+        default = [];
       };
     };
   };
@@ -75,9 +76,9 @@ in {
           {
             DOCKER_HOST = "unix:///var/run/podman/podman.sock";
           })
-        // (optionalAttrs (builtins.hasAttr "extraFilesystems" cfg.agent) {
+        // {
           EXTRA_FILESYSTEMS = builtins.concatStringsSep "," cfg.agent.extraFilesystems;
-        });
+        };
       wants = ["network-online.target"];
       after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
