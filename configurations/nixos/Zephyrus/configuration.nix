@@ -49,6 +49,7 @@
       ];
       extraModules = [
         {gasdev.shell.helix.lspProfile = "bloated";}
+        {gasdev.desktop.ashell.scale = 1.2;}
         {gasdev.desktop.apps.vintagestory.enable = true;}
       ];
     };

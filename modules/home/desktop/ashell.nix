@@ -15,6 +15,11 @@ in {
       type = lib.types.package;
       default = inputs.ashell.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
+    scale = lib.mkOption {
+      description = "The scaling factor of the status bar";
+      type = lib.types.float;
+      default = 1.0;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -43,6 +48,7 @@ in {
 
         appearance = {
           style = "Islands";
+          scale_factor = cfg.scale;
           font_name = config.stylix.fonts.monospace.name;
         };
       };
