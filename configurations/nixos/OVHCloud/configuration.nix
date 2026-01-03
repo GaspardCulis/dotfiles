@@ -22,7 +22,6 @@
       openFirewall = true;
     };
 
-    # FIX: Breaking due to external flakes modules
     users.gaspard.enable = true;
 
     services = {
