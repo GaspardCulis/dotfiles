@@ -25,7 +25,7 @@ in {
         thunderbird
         element-desktop
         libreoffice-fresh
-        youtube-music
+        pear-desktop
       ];
     };
     extraPackages = lib.mkOption {
