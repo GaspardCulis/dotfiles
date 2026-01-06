@@ -41,7 +41,6 @@ in {
         };
         software-center.enable = true;
       };
-      udiskr.enable = true;
     };
   };
 
