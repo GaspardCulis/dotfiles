@@ -64,6 +64,11 @@
           publicKey = "HIyjO8UQ0AGYhRztMfe1qgaAJqYiX7kncanmm10Qwhk=";
           allowedIPs = ["10.8.0.43/32"];
         }
+        {
+          # xephi
+          publicKey = "VluN/57nNzwbV/rIP4FEMHdoqP2whAqntgxrqkSlbSI=";
+          allowedIPs = ["10.8.0.73/32"];
+        }
       ];
     };
   };
