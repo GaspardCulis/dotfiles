@@ -76,6 +76,7 @@
     cachix
     wg-netmanager
     networkmanager-openconnect
+    android-tools
   ];
 
   stylix = {
@@ -110,7 +111,6 @@
   programs = {
     niri.enable = true;
     nix-ld.enable = true;
-    adb.enable = true;
     gamemode = {
       enable = true;
       settings = {
