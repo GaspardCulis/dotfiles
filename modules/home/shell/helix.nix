@@ -1,10 +1,12 @@
 {
   config,
+  flake,
   pkgs,
   lib,
   ...
 }:
 with lib; let
+  inherit (flake) inputs;
   cfg = config.gasdev.shell.helix;
   bloated = cfg.lspProfile == "bloated";
   minimal = bloated || (cfg.lspProfile == "minimal");
@@ -16,13 +18,98 @@ in {
       description = "Defines the opiniated subset of enabled LSPs";
       default = "minimal";
     };
+    wakatime = mkEnableOption "Enable wakatime integration";
   };
 
   config = mkIf cfg.enable {
     home.sessionVariables = {
       EDITOR = "hx";
     };
-    programs.helix = {
+
+    programs.helix = let
+      languages = with pkgs;
+        lib.optionals minimal [
+          {
+            name = "nix";
+            lsPkg = nil;
+            lsName = "nil";
+            fmtPkg = alejandra;
+            fmtCmd = ["alejandra"];
+          }
+          {
+            name = "bash";
+            lsPkg = bash-language-server;
+            lsName = "bash-language-server";
+            fmtPkg = shfmt;
+            fmtCmd = ["shfmt"];
+          }
+          {
+            name = "yaml";
+            lsPkg = yaml-language-server;
+            lsName = "yaml-language-server";
+          }
+          {
+            name = "toml";
+            lsPkg = taplo;
+            lsName = "taplo";
+            fmtPkg = taplo;
+            fmtCmd = ["taplo" "fmt" "-"];
+          }
+        ]
+        ++ lib.optionals (cfg.lspProfile == "bloated") [
+          {
+            name = "c";
+            lsPkg = clang-tools;
+            lsName = "clangd";
+            fmtPkg = clang-tools;
+            fmtCmd = ["clang-format"];
+          }
+          {
+            name = "python";
+            lsName = "ty";
+            lsPkg = ty;
+            fmtPkg = yapf;
+            fmtCmd = ["yapf"];
+          }
+          {
+            name = "java";
+            lsPkg = jdt-language-server;
+            lsName = "jdtls";
+            fmtPkg = google-java-format;
+            fmtCmd = ["google-java-format" "-"];
+          }
+          {
+            name = "qml";
+            lsPkg = kdePackages.qtdeclarative;
+            lsName = "qmlls";
+            fmtPkg = kdePackages.qtdeclarative;
+            fmtCmd = ["qmlformat"];
+          }
+          {
+            name = "wgsl";
+            lsPkg = wgsl-analyzer;
+            lsName = "wgsl-analyzer";
+            fmtPkg = wgsl-analyzer;
+            fmtCmd = ["wgslfmt"];
+          }
+          {
+            name = "markdown";
+            lsPkg = markdown-oxide;
+            lsName = "markdown-oxide";
+            fmtPkg = deno;
+            fmtCmd = ["deno" "fmt" "-" "--ext" "md"];
+          }
+          {
+            name = "rust";
+            lsName = "rust-analyzer";
+          }
+          {
+            name = "typst";
+            lsPkg = tinymist;
+            lsName = "tinymist";
+          }
+        ];
+    in {
       enable = true;
       settings = {
         editor = {
@@ -65,102 +152,49 @@ in {
         };
       };
 
-      # Yoinked from Ahurac's dotfiles, thx!
-      extraPackages = with pkgs;
-        lib.optionals minimal [
-          bash-language-server
-          nil
-          yaml-language-server
-          taplo
-        ]
-        ++ lib.optionals bloated [
-          marksman
-          clang-tools
-          rust-analyzer
-          python3Packages.python-lsp-server
-          jdt-language-server
-          kdePackages.qtdeclarative # qmlls
-          tinymist # Typst
-          typescript-language-server
-          vscode-css-languageserver
-        ];
-      languages = {
-        language = let
-          lang = {
-            name,
-            pkg,
-            command,
-          }: {
-            inherit name;
-            formatter = {
-              command = "${pkg}/bin/" + builtins.elemAt command 0;
-              args = lib.lists.drop 1 command;
-            };
-            auto-format = true;
-          };
-        in
-          with pkgs;
-            lib.optionals minimal [
-              (lang {
-                name = "nix";
-                pkg = alejandra;
-                command = ["alejandra"];
-              })
-              (lang {
-                name = "bash";
-                pkg = shfmt;
-                command = ["shfmt"];
-              })
-              (lang {
-                name = "toml";
-                pkg = taplo;
-                command = ["taplo" "fmt" "-"];
-              })
-            ]
-            ++ lib.optionals (cfg.lspProfile == "bloated") [
-              (lang {
-                name = "c";
-                pkg = clang-tools;
-                command = ["clang-format"];
-              })
-              (lang {
-                name = "python";
-                pkg = yapf;
-                command = ["yapf"];
-              })
-              (lang {
-                name = "java";
-                pkg = google-java-format;
-                command = ["google-java-format" "-"];
-              })
-              (lang {
-                name = "qml";
-                pkg = kdePackages.qtdeclarative;
-                command = ["qmlformat"];
-              })
-              (lang {
-                name = "wgsl";
-                pkg = wgsl-analyzer;
-                command = ["wgslfmt"];
-              })
-              (lang {
-                name = "markdown";
-                pkg = deno;
-                command = ["deno" "fmt" "-" "--ext" "md"];
-              })
-              {
-                name = "rust";
-                auto-format = true;
-              }
-              {
-                name = "typst";
-                auto-format = true;
-              }
-            ];
+      # Required LSP packages
+      extraPackages = pkgs.lib.pipe languages [
+        (map (l: l.lsPkg or null))
+        (builtins.filter (p: p != null))
+        pkgs.lib.unique
+      ];
 
-        language-server = mkIf minimal {
-          wgsl_analyzer = mkIf bloated {
-            command = "${pkgs.wgsl-analyzer}/bin/wgsl-analyzer";
+      languages = {
+        language =
+          map (
+            l: let
+              # Check if both formatter package and command exist
+              hasFmt = (l.fmtPkg or null) != null && (l.fmtCmd or null) != null;
+              # Check if an LSP name is provided
+              hasLs = (l.lsName or null) != null;
+            in {
+              inherit (l) name;
+              auto-format = true;
+
+              # Build the language-servers list (wakatime + optional LS)
+              language-servers =
+                (
+                  if hasLs
+                  then [l.lsName]
+                  else []
+                )
+                ++ (
+                  if cfg.wakatime
+                  then ["wakatime"]
+                  else []
+                );
+
+              formatter = mkIf hasFmt {
+                command = "${l.fmtPkg}/bin/${builtins.head l.fmtCmd}";
+                args = builtins.tail l.fmtCmd;
+              };
+            }
+          )
+          languages; # This refers to your new list of objects
+
+        language-server = {
+          wakatime = mkIf cfg.wakatime {
+            command = "${inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/wakatime-ls";
           };
         };
       };

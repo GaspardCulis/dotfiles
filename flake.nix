@@ -49,6 +49,11 @@
       # inputs.nixpkgs.follows = "nixpkgs"; # Take advantage of gasdev cachix
     };
 
+    wakatime-ls = {
+      url = "github:mrnossiom/wakatime-ls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     udiskr = {
       url = "github:GaspardCulis/udiskr";
       inputs.nixpkgs.follows = "nixpkgs";
