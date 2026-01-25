@@ -42,7 +42,7 @@
         {
           publicKey = "KLULII6VEUWMhyIba6oxxHdZsVP3TMVlNY1Vz49q7jg=";
           allowedIPs = ["0.0.0.0/0"];
-          endpoint = "vpn.gasdev.fr:993";
+          endpoint = "51.75.250.6:993";
           persistentKeepalive = 25;
         }
       ];
