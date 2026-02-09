@@ -780,11 +780,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763174172,
-        "narHash": "sha256-u6dcvXk2K6eYVYhmfiN3xmhIf3yUo5KPwm79UOD37Jo=",
+        "lastModified": 1753497720,
+        "narHash": "sha256-yzZkDMVfPpNyTciQOfriWpRXrgGNT/cvrFAEQZ//SZs=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "89af6762b01409edbb595888a69311e8e5954110",
+        "rev": "c8b8b812010515b7d9bd7e538f06a9f4edb373ff",
         "type": "github"
       },
       "original": {
@@ -1021,15 +1021,15 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1763231785,
-        "narHash": "sha256-Ok8hzwYswJlWr7dOWIHMGUkIt4x7j+gINKiaA4HLCkE=",
-        "owner": "GaspardCulis",
+        "lastModified": 1768621637,
+        "narHash": "sha256-PfZrqiR7Ez35R88aBzyFPdpp9u4+zS4GQjeT+NTYh00=",
+        "owner": "d-itu",
         "repo": "udiskr",
-        "rev": "bf00109f0c1cf4d2dd566c96210b4064c13c1253",
+        "rev": "02cefb14db9328c2dcd0fffb8f2335eed13944ca",
         "type": "github"
       },
       "original": {
-        "owner": "GaspardCulis",
+        "owner": "d-itu",
         "repo": "udiskr",
         "type": "github"
       }

@@ -55,7 +55,7 @@
     };
 
     udiskr = {
-      url = "github:GaspardCulis/udiskr";
+      url = "github:d-itu/udiskr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
