@@ -47,6 +47,7 @@
         };
       };
       github-readme-stats.enable = true;
+      github-readme-streak-stats.enable = true;
       mail.enable = true;
       matchbox.enable = true;
       nakama.enable = true;
