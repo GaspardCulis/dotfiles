@@ -24,7 +24,7 @@ in {
 
   config = mkIf cfg.enable {
     sops.secrets."github-readme-streak-stats/GITHUB_TOKEN".owner = "root";
-    sops.templates."github-readme-stats.env" = {
+    sops.templates."github-readme-streak-stats.env" = {
       content = ''
         WHITELIST=GaspardCulis
         TOKEN=${config.sops.placeholder."github-readme-streak-stats/GITHUB_TOKEN"}
