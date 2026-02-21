@@ -32,6 +32,10 @@ in {
       owner = "root";
     };
 
+    services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
+      reverse_proxy http://127.0.0.1:${toString cfg.port}
+    '';
+
     virtualisation.oci-containers.containers = {
       github-readme-streak-stats = {
         image = "docker.io/gaspardcs/streak-stats:latest";
