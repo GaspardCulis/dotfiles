@@ -33,7 +33,7 @@ in {
     };
 
     virtualisation.oci-containers.containers = {
-      vaultwarden = {
+      github-readme-streak-stats = {
         image = "docker.io/gaspardcs/streak-stats:latest";
         pull = "newer";
         autoStart = true;
