@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./hardware-configuration.nix
+    ./restic.nix
   ];
 
   networking.hostName = "pi4";
