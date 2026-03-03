@@ -16,11 +16,11 @@
   pipewire,
   libpulseaudio,
   dotnet-runtime_8,
-  x11Support ? false,
+  x11Support ? true,
   libxi,
   libxcursor,
   libx11,
-  waylandSupport ? true,
+  waylandSupport ? false,
   wayland ? null,
   libxkbcommon ? null,
   imagemagick,
@@ -70,7 +70,7 @@ assert waylandSupport -> libxkbcommon != null;
       (makeDesktopItem {
         name = "vintagestory";
         desktopName = "Vintage Story";
-        exec = "vintagestory";
+        exec = "nvidia-offload vintagestory";
         icon = "vintagestory";
         comment = "Innovate and explore in a sandbox world";
         categories = ["Game"];
