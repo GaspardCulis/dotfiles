@@ -28,6 +28,7 @@ in {
         log_level = "warn";
         outputs = "All";
         position = "Top";
+        layer = "Top";
 
         modules = {
           left = ["Clock" "Workspaces" "MediaPlayer"];
