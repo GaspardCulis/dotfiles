@@ -193,7 +193,7 @@ in {
         {app-id = "Element";}
         {app-id = "vesktop";}
       ];
-      open-on-workspace = "9-chat";
+      open-on-workspace = "9";
       block-out-from = "screencast";
       open-focused = false;
     }
@@ -209,15 +209,15 @@ in {
   ];
 
   workspaces = {
-    "1-work" = {};
-    "2-browse" = {};
-    "3-notes" = {};
+    "1" = {};
+    "2" = {};
+    "3" = {};
     "4" = {};
     "5" = {};
     "6" = {};
     "7" = {};
     "8" = {};
-    "9-chat" = {open-on-output = "eDP-1";}; # Keep waifu gifs on primary monitor
+    "9" = {open-on-output = "eDP-1";}; # Keep waifu gifs on primary monitor
   };
 
   hotkey-overlay.skip-at-startup = true;
