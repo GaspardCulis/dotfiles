@@ -26,7 +26,7 @@
     htop
     rsync
     unzip
-    neofetch
+    fastfetch
     uutils-coreutils-noprefix
   ];
 }
