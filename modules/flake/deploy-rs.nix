@@ -5,10 +5,28 @@
   ...
 }: let
   inherit (inputs) self;
+  # Nixpkgs used by the target systems. Using stable
   nixpkgs = inputs.nixpkgs-stable;
+  # QOL alias
   deploy-rs = inputs.deploy-rs;
 
   flake = {inherit self inputs config;};
+
+  # nixpkgs with deploy-rs overlay but force the nixpkgs package
+  deploy-rs-nixpkgs = system: let
+    pkgs = import nixpkgs {inherit system;};
+  in (import nixpkgs {
+    inherit system;
+    overlays = [
+      deploy-rs.overlays.default
+      (self: super: {
+        deploy-rs = {
+          inherit (pkgs) deploy-rs;
+          lib = super.deploy-rs.lib;
+        };
+      })
+    ];
+  });
 
   home-manager = {
     imports = [
@@ -30,7 +48,7 @@ in {
           sshUser = "root";
           sshOpts = ["-p" "22"];
           sudo = "";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos (nixpkgs.lib.nixosSystem {
+          path = (deploy-rs-nixpkgs "x86_64-linux").deploy-rs.lib.activate.nixos (nixpkgs.lib.nixosSystem {
             specialArgs = {inherit flake;};
 
             modules = [
@@ -48,7 +66,7 @@ in {
           sshUser = "root";
           sshOpts = ["-p" "22" "-J" "root@gasdev.fr"];
           sudo = "";
-          path = deploy-rs.lib.aarch64-linux.activate.nixos (nixpkgs.lib.nixosSystem {
+          path = (deploy-rs-nixpkgs "aarch64-linux").lib.activate.nixos (nixpkgs.lib.nixosSystem {
             specialArgs = {inherit flake;};
             system = "aarch64-linux";
 
