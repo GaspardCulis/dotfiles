@@ -13,7 +13,7 @@ in {
     enable = mkEnableOption "Enable opiniated service config";
     package = lib.mkOption {
       type = lib.types.package;
-      default = inputs.ashell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      default = pkgs.ashell;
     };
     scale = lib.mkOption {
       description = "The scaling factor of the status bar";
@@ -23,8 +23,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file = {
-      ".config/ashell/config.toml".source = (pkgs.formats.toml {}).generate "ashell-config.toml" {
+    programs.ashell = {
+      enable = true;
+      systemd.enable = true;
+      package = cfg.package;
+
+      settings = {
         log_level = "warn";
         outputs = "All";
         position = "Top";
@@ -47,38 +51,11 @@ in {
           bluetooth_more_cmd = "blueman-manager";
         };
 
-        appearance = let
-          colors = config.lib.stylix.colors;
-        in {
+        appearance = {
           style = "Islands";
           scale_factor = cfg.scale;
-          font_name = config.stylix.fonts.monospace.name;
 
-          success_color = "#${colors.base0B}";
-          text_color = "#${colors.base06}";
-
-          workspace_colors = ["#${colors.base0D}" "#${colors.base0D}" "#${colors.base0E}"];
-
-          primary_color = {
-            base = "#${colors.base0D}";
-            text = "#${colors.base00}";
-          };
-
-          secondary_color = {
-            base = "#${colors.base03}";
-            strong = "#${colors.base02}";
-          };
-
-          danger_color = {
-            base = "#${colors.base08}";
-            weak = "#${colors.base09}";
-          };
-
-          background_color = {
-            base = "#${colors.base00}";
-            weak = "#${colors.base01}";
-            strong = "#${colors.base02}";
-          };
+          # Let stylix handle the rest
         };
       };
     };
@@ -89,28 +66,5 @@ in {
       pavucontrol
       networkmanagerapplet
     ];
-
-    systemd.user = {
-      services = {
-        ashell = {
-          Unit = {
-            Description = "A ready to go Wayland status bar for Hyprland and Niri";
-            After = ["graphical-session.target"];
-            Requires = ["graphical-session.target"];
-          };
-
-          Service = {
-            Type = "simple";
-            ExecStart = "${cfg.package}/bin/ashell";
-            Restart = "always";
-            RestartSec = "2s";
-          };
-
-          Install = {
-            WantedBy = ["graphical-session.target"];
-          };
-        };
-      };
-    };
   };
 }
