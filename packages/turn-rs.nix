@@ -1,15 +1,12 @@
 {pkgs, ...}:
 pkgs.rustPlatform.buildRustPackage {
   pname = "turn-rs";
-  version = "4.0.0";
-  src = pkgs.fetchFromGitHub {
-    owner = "mycrl";
-    repo = "turn-rs";
+  version = "3.4.0";
+  src = builtins.fetchGit {
     url = "https://github.com/mycrl/turn-rs";
-    rev = "v4.0.0";
-    hash = "sha256-HYrFnwxj4BRk2PGK52il5Bh5hxvWHJNQ/5Y0u5FSTwY=";
+    rev = "c292a8e4f255a893a75b06977eaaa38c58cabc6f";
   };
-  cargoHash = "sha256-q1kq2ISzKZfJfKTRkMrVMQqngAqG2INfej9lGoll5c0=";
+  cargoHash = "sha256-wnbovuxh3wc1TU8BYZEOG/8SO9bCUd0eWRC81MtAdqo=";
 
   nativeBuildInputs = [
     pkgs.pkg-config
