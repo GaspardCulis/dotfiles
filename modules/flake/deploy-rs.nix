@@ -66,7 +66,7 @@ in {
           sshUser = "root";
           sshOpts = ["-p" "22" "-J" "root@gasdev.fr"];
           sudo = "";
-          path = (deploy-rs-nixpkgs "aarch64-linux").lib.activate.nixos (nixpkgs.lib.nixosSystem {
+          path = (deploy-rs-nixpkgs "aarch64-linux").deploy-rs.lib.activate.nixos (nixpkgs.lib.nixosSystem {
             specialArgs = {inherit flake;};
             system = "aarch64-linux";
 
