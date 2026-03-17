@@ -25,7 +25,6 @@ in {
         thunderbird
         element-desktop
         libreoffice-fresh
-        pear-desktop
       ];
     };
     extraPackages = lib.mkOption {
