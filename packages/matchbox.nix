@@ -1,14 +1,14 @@
 {pkgs, ...}:
 pkgs.rustPlatform.buildRustPackage {
   pname = "matchbox_server";
-  version = "0.11.0";
+  version = "0.14.0";
   src = pkgs.fetchFromGitHub {
     owner = "johanhelsing";
     repo = "matchbox";
-    rev = "v0.11.0";
-    hash = "sha256-fF6SeZhfOkyK1hAWxdcXjf6P6pVJWLlkIUtyGxVrm94=";
+    rev = "v0.14.0";
+    hash = "sha256-NlmGUXroKh+SXvXSecjNka0t4SaxWbUL8XFXkkXKK+U=";
   };
-  cargoHash = "sha256-ELA9+wTFYxiuG/QLb0oxN5KfVSalWKmKEvzRlxNHQnw=";
+  cargoHash = "sha256-YeCncI51oO2r2gphdtQ3GRulu7x2XeXiSrcWxn3J+dE=";
 
   nativeBuildInputs = [
     pkgs.pkg-config
