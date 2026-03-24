@@ -112,6 +112,7 @@ in {
             name = "astro";
             lsPkg = astro-language-server;
             lsName = "astro-ls";
+            tailwind = true;
           }
         ];
     in {
@@ -187,6 +188,11 @@ in {
                   if cfg.wakatime
                   then ["wakatime"]
                   else []
+                )
+                ++ (
+                  if (l.tailwind or false)
+                  then ["tailwindcss-ls"]
+                  else []
                 );
 
               formatter = mkIf hasFmt {
@@ -200,6 +206,11 @@ in {
         language-server = {
           wakatime = mkIf cfg.wakatime {
             command = "${inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/wakatime-ls";
+          };
+
+          tailwindcss-ls = mkIf (cfg.lspProfile == "bloated") {
+            command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
+            args = ["--stdio"];
           };
         };
       };
