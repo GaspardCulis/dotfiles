@@ -1,7 +1,7 @@
 {...}: let
   probe-rs-rules = builtins.fetchurl {
     url = "https://probe.rs/files/69-probe-rs.rules";
-    sha256 = "12i970v414225nl6i1szjfxwf5w0wzmw7r1cgzlni6wvjxvnag6a";
+    sha256 = "1q7ryhl27lalbzzaifxaf0gb18xfzwvpk34sg8l2s1xinb4rr9fi";
   };
 in {
   users.groups.plugdev.name = "plugdev";
