@@ -108,6 +108,11 @@ in {
             lsPkg = tinymist;
             lsName = "tinymist";
           }
+          {
+            name = "astro";
+            lsPkg = astro-language-server;
+            lsName = "astro-ls";
+          }
         ];
     in {
       enable = true;
