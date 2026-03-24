@@ -109,6 +109,16 @@ in {
             lsName = "tinymist";
           }
           {
+            name = "javascript";
+            lsPkg = typescript-language-server;
+            lsName = "typescript-language-server";
+          }
+          {
+            name = "typescript";
+            lsPkg = typescript-language-server;
+            lsName = "typescript-language-server";
+          }
+          {
             name = "astro";
             lsPkg = astro-language-server;
             lsName = "astro-ls";
@@ -159,20 +169,11 @@ in {
       };
 
       # Required LSP packages
-      extraPackages =
-        (pkgs.lib.pipe languages [
-          (map (l: l.lsPkg or null))
-          (builtins.filter (p: p != null))
-          pkgs.lib.unique
-        ])
-        ++ (
-          if cfg.lspProfile == "bloated"
-          then [
-            pkgs.typescript-language-server
-            pkgs.vscode-json-language-server
-          ]
-          else []
-        );
+      extraPackages = pkgs.lib.pipe languages [
+        (map (l: l.lsPkg or null))
+        (builtins.filter (p: p != null))
+        pkgs.lib.unique
+      ];
 
       languages = {
         language =
