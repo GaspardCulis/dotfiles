@@ -124,6 +124,12 @@ in {
             lsName = "astro-ls";
             tailwind = true;
           }
+          {
+            name = "css";
+            lsPkg = vscode-css-languageserver;
+            lsName = "vscode-css-language-server";
+            tailwind = true;
+          }
         ];
     in {
       enable = true;
