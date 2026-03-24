@@ -28,7 +28,13 @@ in {
     sops.secrets."vaultwarden/SMTP_PASSWORD".owner = "root";
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
-      reverse_proxy http://127.0.0.1:${toString cfg.port}
+      encode zstd gzip
+
+      reverse_proxy http://127.0.0.1:${toString cfg.port} {
+        # Send the true remote IP to Rocket, so that Vaultwarden can put this in the
+        # log, so that fail2ban can ban the correct IP.
+        header_up X-Real-IP {remote_host}
+      }
     '';
 
     sops.templates."vaultwarden.env" = {
