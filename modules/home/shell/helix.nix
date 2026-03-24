@@ -159,11 +159,20 @@ in {
       };
 
       # Required LSP packages
-      extraPackages = pkgs.lib.pipe languages [
-        (map (l: l.lsPkg or null))
-        (builtins.filter (p: p != null))
-        pkgs.lib.unique
-      ];
+      extraPackages =
+        (pkgs.lib.pipe languages [
+          (map (l: l.lsPkg or null))
+          (builtins.filter (p: p != null))
+          pkgs.lib.unique
+        ])
+        ++ (
+          if cfg.lspProfile == "bloated"
+          then [
+            pkgs.typescript-language-server
+            pkgs.vscode-json-language-server
+          ]
+          else []
+        );
 
       languages = {
         language =
