@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       flatpak
-      gnome-software
+      bazaar
     ];
 
     xdg.systemDirs.data = [
