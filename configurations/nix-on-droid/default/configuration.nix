@@ -9,7 +9,7 @@ in {
   # Simply install just the packages
   environment.packages = with pkgs; [
     git
-    awk
+    gawk
     openssh
   ];
 
