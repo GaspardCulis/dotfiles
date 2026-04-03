@@ -1,12 +1,15 @@
-{ flake, config, lib, pkgs, ... }:
-let
+{
+  flake,
+  pkgs,
+  ...
+}: let
   inherit (flake) inputs;
   inherit (inputs) self;
-in
-{
+in {
   # Simply install just the packages
   environment.packages = with pkgs; [
     git
+    awk
     openssh
   ];
 
@@ -31,4 +34,3 @@ in
     ];
   };
 }
-
