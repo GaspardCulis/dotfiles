@@ -1,4 +1,4 @@
-{...} : {
+{...}: {
   # Read the changelog before changing this value
   home.stateVersion = "24.05";
 
@@ -7,4 +7,7 @@
     helix.enable = true;
     zellij.enable = true;
   };
+
+  # Stylix not present
+  programs.helix.settings.theme = "sonokai";
 }
