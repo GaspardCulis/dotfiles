@@ -54,6 +54,9 @@ in {
           else [(self + /configurations/home/gaspard)]
         )
         ++ cfg.extraModules;
+
+      home.username = "gaspard";
+      home.homeDirectory = "/home/gaspard";
     };
   };
 }

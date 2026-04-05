@@ -6,9 +6,6 @@ in {
     self.homeModules.default
   ];
 
-  home.username = "gaspard";
-  home.homeDirectory = "/home/gaspard";
-
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
 
