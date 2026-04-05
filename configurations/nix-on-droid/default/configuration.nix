@@ -22,6 +22,8 @@ in {
   # Set up nix for flakes
   time.timeZone = "Europe/Paris";
 
+  user.userName = pkgs.lib.mkForce "gaspard";
+
   # Configure home-manager
   home-manager = {
     config = ./home.nix;
