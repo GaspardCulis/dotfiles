@@ -30,15 +30,21 @@ in {
       enable = true;
       historyFileSize = 4294967295;
       historySize = 4294967295;
-      initExtra = mkIf cfg.jaaj.enable ''
+      initExtra = ''
         eval "$(starship init bash)"
         eval "$(zoxide init --cmd cd bash)"
 
         ${
-          if cfg.jaaj.colors
-          then inputs.jaaj-rs.packages.${pkgs.stdenv.hostPlatform.system}.lolcat
-          else inputs.jaaj-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
-        }/bin/jaaj-rs
+          if cfg.jaaj.enable
+          then ''
+            ${
+              if cfg.jaaj.colors
+              then inputs.jaaj-rs.packages.${pkgs.stdenv.hostPlatform.system}.lolcat
+              else inputs.jaaj-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
+            }/bin/jaaj-rs
+          ''
+          else ""
+        }
       '';
       bashrcExtra = ''
         [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
