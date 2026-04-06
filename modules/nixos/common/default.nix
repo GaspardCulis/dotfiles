@@ -12,6 +12,8 @@
       "flakes"
     ];
     substituters = ["https://gasdev.cachix.org"];
+    trusted-substituters = ["https://gasdev.cachix.org"];
+    trusted-public-keys = ["gasdev.cachix.org-1:eBesrrBJpsMZ33OmvG4aKvfdyVkDa2OKCJ2o80IMJfE="];
   };
 
   time.timeZone = "Europe/Paris";
