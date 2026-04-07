@@ -52,6 +52,12 @@ in {
 
         bind '"\e[A":history-search-backward'
         bind '"\e[B":history-search-forward'
+
+        mkcd() {
+          mkdir "$@" || return
+          shift "$(( $# - 1 ))"
+          cd -- "$1"
+        }
       '';
       shellAliases = {
         gs = "git status";
