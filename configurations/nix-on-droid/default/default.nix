@@ -6,7 +6,6 @@ in {
   config.stylix.overlays.enable = false;
 
   imports = [
-    # self.nixosModules.default
     inputs.stylix.nixOnDroidModules.stylix
     ./configuration.nix
   ];
