@@ -32,7 +32,38 @@ in {
     useUserPackages = true;
     extraSpecialArgs = {inherit flake;};
     sharedModules = [
+      inputs.stylix.homeModules.default
       self.homeModules.default
     ];
+  };
+
+  stylix = {
+    enable = true;
+    homeManagerIntegration.autoImport = false;
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
+    fonts = {
+      sizes.terminal = 10;
+
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+
+      monospace = {
+        package = pkgs.nerd-fonts.fira-code;
+        name = "FiraCode Nerd Font";
+      };
+
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
 }
