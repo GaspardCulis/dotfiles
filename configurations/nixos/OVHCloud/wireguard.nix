@@ -69,6 +69,11 @@
           publicKey = "VluN/57nNzwbV/rIP4FEMHdoqP2whAqntgxrqkSlbSI=";
           allowedIPs = ["10.8.0.73/32"];
         }
+        {
+          # statitz
+          publicKey = "IWUWFCw93SP1/XygZiX2p2KVE7NFvVGvHjtgvIc38A0=";
+          allowedIPs = ["10.8.0.241/32"];
+        }
       ];
     };
   };
