@@ -12,6 +12,10 @@ in {
     '';
     substituters = ["https://gasdev.cachix.org"];
     trustedPublicKeys = ["gasdev.cachix.org-1:eBesrrBJpsMZ33OmvG4aKvfdyVkDa2OKCJ2o80IMJfE="];
+
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs.outPath}"
+    ];
   };
 
   # Simply install just the packages
