@@ -20,7 +20,7 @@ in {
         ];
       };
 
-      extraSpecialArgs = {inherit flake;};
+      extraSpecialArgs = {inherit flake nixpkgs;};
 
       modules = [
         ../../configurations/nix-on-droid/default

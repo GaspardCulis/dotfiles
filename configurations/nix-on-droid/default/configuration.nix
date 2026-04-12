@@ -1,6 +1,7 @@
 {
   flake,
   pkgs,
+  nixpkgs,
   ...
 }: let
   inherit (flake) inputs;
@@ -14,7 +15,7 @@ in {
     trustedPublicKeys = ["gasdev.cachix.org-1:eBesrrBJpsMZ33OmvG4aKvfdyVkDa2OKCJ2o80IMJfE="];
 
     nixPath = [
-      "nixpkgs=${inputs.nixpkgs.outPath}"
+      "nixpkgs=${nixpkgs}"
     ];
   };
 
