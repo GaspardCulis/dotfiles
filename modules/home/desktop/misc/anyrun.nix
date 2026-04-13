@@ -25,6 +25,7 @@ with lib; let
 in {
   options.gasdev.desktop.anyrun = {
     enable = mkEnableOption "Enable opiniated anyrun config";
+    daemon = mkEnableOption "Run anyrun as a service for faster loading time";
     package = lib.mkOption {
       type = lib.types.package;
       default = anyrun-icd-patch;
@@ -112,6 +113,25 @@ in {
       extraConfigFiles."applications.ron".text = builtins.readFile ../../../../config/anyrun/applications.ron;
       extraConfigFiles."symbols.ron".text = builtins.readFile ../../../../config/anyrun/symbols.ron;
       extraConfigFiles."websearch.ron".text = builtins.readFile ../../../../config/anyrun/websearch.ron;
+    };
+
+    systemd.user.services.anyrun = mkIf cfg.daemon {
+      Unit = {
+        Description = "Anyrun daemon";
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
+      };
+
+      Service = {
+        Type = "simple";
+        ExecStart = "${cfg.package}/bin/anyrun daemon";
+        Restart = "on-failure";
+        KillMode = "process";
+      };
+
+      Install = {
+        WantedBy = ["graphical-session.target"];
+      };
     };
   };
 }

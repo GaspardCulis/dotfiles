@@ -52,7 +52,11 @@ in {
 
   config = mkIf cfg.enable {
     gasdev.desktop = {
-      anyrun.enable = cfg.apps.launcher == "anyrun";
+      anyrun = mkIf (cfg.apps.launcher == "anyrun") {
+        enable = true;
+        daemon = true;
+      };
+
       apps = {
         alacritty.enable = cfg.apps.terminal == "alacritty";
         firefox.enable = cfg.apps.browser == "firefox";
