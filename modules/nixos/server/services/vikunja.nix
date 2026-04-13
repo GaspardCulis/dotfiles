@@ -10,6 +10,7 @@ with lib; let
 in {
   options.gasdev.services.vikunja = {
     enable = mkEnableOption "Enable service";
+    registration.enable = mkEnableOption "Whether to let new users registering themselves or not";
     domain = mkOption {
       type = types.nonEmptyStr;
       description = "Public domain";
@@ -61,6 +62,11 @@ in {
           VIKUNJA_MAILER_HOST = "${mail.smtpDomain}";
           VIKUNJA_MAILER_PORT = "587";
           VIKUNJA_MAILER_USERNAME = "todo@${domain}";
+
+          VIKUNJA_SERVICE_ENABLEREGISTRATION =
+            if cfg.registration.enable
+            then "true"
+            else "false";
         };
         environmentFiles = [
           config.sops.templates."vikunja.env".path
