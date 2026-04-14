@@ -74,6 +74,8 @@ in {
         dependsOn = ["tandoor-db"];
         environment = {
           TANDOOR_PORT = "8080";
+          ALLOWED_HOSTS = cfg.domain;
+
           DB_ENGINE = "django.db.backends.postgresql";
           POSTGRES_HOST = "tandoor-db";
         };
