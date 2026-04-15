@@ -33,6 +33,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.networking.nat.enable;
+        message = "NAT should be enabled when using this module";
+      }
+    ];
+
     sops.secrets."wg-easy/INIT_USERNAME".owner = "root";
     sops.secrets."wg-easy/INIT_PASSWORD".owner = "root";
 
@@ -99,21 +106,13 @@ in {
       "ip6table_nat"
     ];
 
-    networking = {
-      # nat = {
-      #   enable = true;
-      #   externalInterface = "wg0";
-      #   internalInterfaces = ["lo0"];
-      # };
-
-      firewall = {
-        allowedUDPPorts = [
-          cfg.wgPort
-        ];
-        allowedTCPPorts = [
-          cfg.wgPort
-        ];
-      };
+    networking.firewall = {
+      allowedUDPPorts = [
+        cfg.wgPort
+      ];
+      allowedTCPPorts = [
+        cfg.wgPort
+      ];
     };
   };
 }
