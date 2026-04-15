@@ -63,6 +63,10 @@
       vaultwarden.enable = true;
       vikunja.enable = true;
       wakapi.enable = true;
+      wg-easy = {
+        enable = true;
+        amnezia = true;
+      };
     };
   };
 
