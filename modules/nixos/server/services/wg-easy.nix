@@ -61,7 +61,7 @@ in {
         pull = "newer";
         autoStart = true;
         volumes = [
-          "wg-quick-etc:/etc/wireguard"
+          "wg-easy-etc:/etc/wireguard"
           "/run/current-system/kernel-modules:/lib/modules:ro"
         ];
         ports = [
