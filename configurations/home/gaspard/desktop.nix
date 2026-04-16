@@ -24,7 +24,7 @@ in {
       ashell.enable = true;
       swayosd.enable = true;
       end-rs.enable = true;
-      swww.enable = true;
+      awww.enable = true;
       eww = {
         enable = true;
         widget = {
