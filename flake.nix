@@ -40,7 +40,7 @@
 
     end-rs = {
       url = "github:Dr-42/end-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; # On gasdev cachix
     };
 
     anixrun = {
