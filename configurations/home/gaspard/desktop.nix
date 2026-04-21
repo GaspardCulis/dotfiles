@@ -25,6 +25,7 @@ in {
       swayosd.enable = true;
       end-rs.enable = true;
       awww.enable = true;
+      activate-linux.enable = true;
       eww = {
         enable = true;
         widget = {
