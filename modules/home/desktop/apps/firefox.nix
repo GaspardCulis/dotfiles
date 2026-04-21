@@ -203,6 +203,22 @@ in {
               definedAliases = ["@mr"];
             };
 
+            "F-Droid" = {
+              urls = [
+                {
+                  template = "https://search.f-droid.org";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "https://f-droid.org/assets/fdroid-logo-text_S0MUfk_FsnAYL7n2MQye-34IoSNm6QM6xYjDnMqkufo=.svg";
+              definedAliases = ["@fd"];
+            };
+
             "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
             "Wikipedia".metaData.alias = "@w";
           };
