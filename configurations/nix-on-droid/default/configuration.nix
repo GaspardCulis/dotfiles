@@ -31,6 +31,10 @@ in {
 
   environment.packages = with pkgs; [
     uutils-coreutils-noprefix
+    gawk
+    curl
+    wget
+    fastfetch
     git
     openssh
     cachix
