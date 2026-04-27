@@ -29,10 +29,9 @@ in {
     unsupported.enable = true;
   };
 
-  # Simply install just the packages
   environment.packages = with pkgs; [
+    uutils-coreutils-noprefix
     git
-    gawk
     openssh
     cachix
   ];
