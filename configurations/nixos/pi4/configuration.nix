@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./hardware-configuration.nix
+    ./immich.nix
     ./restic.nix
   ];
 
