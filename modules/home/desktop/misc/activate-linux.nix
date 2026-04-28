@@ -7,7 +7,8 @@
   cfg = config.gasdev.desktop.activate-linux;
 in {
   options.gasdev.desktop.activate-linux = {
-    enable = lib.mkEnableOption "Enable opiniated end-rs service config";
+    enable = lib.mkEnableOption "Enable service";
+    autoStart = lib.mkEnableOption "Autostart the service";
     package = lib.mkPackageOption pkgs "activate-linux" {};
   };
 
@@ -27,7 +28,7 @@ in {
           RestartSec = "2s";
         };
 
-        Install = {
+        Install = lib.mkIf cfg.autoStart {
           WantedBy = ["graphical-session.target"];
         };
       };
