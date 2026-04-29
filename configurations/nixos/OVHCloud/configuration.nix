@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./hardware-configuration.nix
+    ./html-serve.nix
     ./wireguard.nix
   ];
 
