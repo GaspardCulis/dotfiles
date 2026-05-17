@@ -3,6 +3,7 @@
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia-settings"
+      "nvidia-kernel-modules"
       "cuda_sanitizer_api"
       "cuda_profiler_api"
       "cuda_cuobjdump"
