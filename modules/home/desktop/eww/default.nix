@@ -20,7 +20,6 @@ in {
   config = mkIf cfg.enable {
     programs.eww = {
       enable = true;
-      enableBashIntegration = config.gasdev.shell.bash.enable;
     };
 
     home.file.".config/eww" = {
