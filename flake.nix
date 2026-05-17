@@ -6,14 +6,19 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
-    nixos-unified.url = "github:srid/nixos-unified";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
+    nixos-unified.url = "github:srid/nixos-unified";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid";
