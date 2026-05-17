@@ -25,7 +25,7 @@
     };
   };
   # Network & Bluetooth
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
   # Wireguard
   networking.firewall.checkReversePath = "loose";
