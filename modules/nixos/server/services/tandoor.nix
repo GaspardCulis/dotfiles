@@ -42,7 +42,7 @@ in {
         S3_ACCESS_KEY=${config.sops.placeholder."tandoor/S3_ACCESS_KEY"}
         S3_SECRET_ACCESS_KEY=${config.sops.placeholder."tandoor/S3_SECRET_ACCESS_KEY"}
 
-        EMAIL_HOST=${mail.smtpDomain}
+        EMAIL_HOST=${mail.jmapDomain}
         EMAIL_PORT=465
         EMAIL_USE_SSL=1
         EMAIL_HOST_USER=${config.sops.placeholder."tandoor/SMTP_USERNAME"}

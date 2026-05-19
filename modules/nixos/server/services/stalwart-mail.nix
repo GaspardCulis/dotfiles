@@ -9,9 +9,9 @@ with lib; let
 in {
   options.gasdev.services.mail = {
     enable = mkEnableOption "Enable service";
-    smtpDomain = mkOption {
+    jmapDomain = mkOption {
       type = types.nonEmptyStr;
-      description = "Public SMTP domain";
+      description = "Public JMAP domain";
       default = "mail.${domain}";
     };
     adminDomain = mkOption {
@@ -59,7 +59,7 @@ in {
         reverse_proxy http://127.0.0.1:${toString cfg.adminPort}
       '';
     };
-    services.caddy.virtualHosts."${cfg.smtpDomain}" = {
+    services.caddy.virtualHosts."${cfg.jmapDomain}" = {
       extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString cfg.jmapPort}
       '';
@@ -81,7 +81,8 @@ in {
       enable = true;
       settings = {
         server = {
-          hostname = "${cfg.smtpDomain}";
+          defaultHostname = "${domain}";
+          http.permissive-cors = true;
           tls = {
             enable = true;
             implicit = true;
@@ -117,14 +118,10 @@ in {
             };
           };
         };
-        lookup.default = {
-          hostname = "${cfg.smtpDomain}";
-          domain = "${domain}";
-        };
         certificate.default = {
           default = true;
-          cert = "%{file:/var/lib/stalwart-mail/cert/${cfg.smtpDomain}.pem}%";
-          private-key = "%{file:/var/lib/stalwart-mail/cert/${cfg.smtpDomain}.priv.pem}%";
+          cert = "%{file:/var/lib/stalwart-mail/cert/${cfg.jmapDomain}.pem}%";
+          private-key = "%{file:/var/lib/stalwart-mail/cert/${cfg.jmapDomain}.priv.pem}%";
         };
         session.auth = {
           mechanisms = "[plain, login]";
@@ -229,14 +226,14 @@ in {
       script = ''
         set -eu
 
-        CADDY_CERT_DIR="/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${cfg.smtpDomain}"
+        CADDY_CERT_DIR="/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${cfg.jmapDomain}"
         STALWART_CERT_DIR="/var/lib/stalwart-mail/cert"
 
         mkdir -p "''\${CADDY_CERT_DIR}"
         mkdir -p "''\${STALWART_CERT_DIR}"
 
-        cat "''\${CADDY_CERT_DIR}/${cfg.smtpDomain}.crt" > "''\${STALWART_CERT_DIR}/${cfg.smtpDomain}.pem"
-        cat "''\${CADDY_CERT_DIR}/${cfg.smtpDomain}.key" > "''\${STALWART_CERT_DIR}/${cfg.smtpDomain}.priv.pem"
+        cat "''\${CADDY_CERT_DIR}/${cfg.jmapDomain}.crt" > "''\${STALWART_CERT_DIR}/${cfg.jmapDomain}.pem"
+        cat "''\${CADDY_CERT_DIR}/${cfg.jmapDomain}.key" > "''\${STALWART_CERT_DIR}/${cfg.jmapDomain}.priv.pem"
 
         chown -R stalwart-mail:stalwart-mail "''\${STALWART_CERT_DIR}"
         chmod -R 0700 "''\${STALWART_CERT_DIR}"

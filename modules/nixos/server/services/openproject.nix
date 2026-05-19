@@ -57,7 +57,7 @@ in {
           # SMTP
           OPENPROJECT_MAIL__FROM = "openproject@${domain}";
           OPENPROJECT_EMAIL__DELIVERY__METHOD = "smtp";
-          OPENPROJECT_SMTP__ADDRESS = "${mail.smtpDomain}";
+          OPENPROJECT_SMTP__ADDRESS = "${mail.jmapDomain}";
           OPENPROJECT_SMTP__PORT = "465";
           OPENPROJECT_SMTP__DOMAIN = "${domain}";
           OPENPROJECT_SMTP__AUTHENTICATION = "plain";

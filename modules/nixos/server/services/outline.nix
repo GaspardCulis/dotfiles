@@ -49,7 +49,7 @@ in {
       };
 
       smtp = {
-        host = "${mail.smtpDomain}";
+        host = "${mail.jmapDomain}";
         port = 465;
         username = "postmaster";
         passwordFile = config.sops.secrets."outline/SMTP_PASSWORD".path;

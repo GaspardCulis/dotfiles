@@ -63,7 +63,7 @@ in {
           DISABLE_TELEMETRY = "true";
           # Mail
           MAIL_DRIVER = "smtp";
-          SMTP_HOST = mail.smtpDomain;
+          SMTP_HOST = mail.jmapDomain;
           SMTP_PORT = "465";
           SMTP_SECURE = "true";
           MAIL_FROM_ADDRESS = "no-reply@gasdev.fr";

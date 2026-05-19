@@ -126,7 +126,7 @@ in {
       notifier = {
         disable_startup_check = true;
         smtp = {
-          address = "submissions://${mail.smtpDomain}:465";
+          address = "submissions://${mail.jmapDomain}:465";
           username = "postmaster";
           sender = "Authelia <authelia@${domain}>";
         };

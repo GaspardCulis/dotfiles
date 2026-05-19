@@ -59,7 +59,7 @@ in {
 
           # SMTP
           VIKUNJA_MAILER_ENABLED = "true";
-          VIKUNJA_MAILER_HOST = "${mail.smtpDomain}";
+          VIKUNJA_MAILER_HOST = "${mail.jmapDomain}";
           VIKUNJA_MAILER_PORT = "587";
           VIKUNJA_MAILER_USERNAME = "todo@${domain}";
 

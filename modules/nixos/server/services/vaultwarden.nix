@@ -61,7 +61,7 @@ in {
           SIGNUPS_ALLOWED = "false";
           DOMAIN = "https://${cfg.domain}";
           # SMTP
-          SMTP_HOST = "${mail.smtpDomain}";
+          SMTP_HOST = "${mail.jmapDomain}";
           SMTP_PORT = "465";
           SMTP_FROM = "vaultwarden@${domain}";
           SMTP_SECURITY = "force_tls";
