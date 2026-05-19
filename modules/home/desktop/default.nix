@@ -81,9 +81,13 @@ in {
       size = 24;
     };
 
-    services = mkIf cfg.applets.enable {
-      network-manager-applet.enable = true;
-      blueman-applet.enable = true;
-    };
+    services =
+      (mkIf cfg.applets.enable {
+        network-manager-applet.enable = true;
+        blueman-applet.enable = true;
+      })
+      // {
+        mpris-proxy.enable = true;
+      };
   };
 }
