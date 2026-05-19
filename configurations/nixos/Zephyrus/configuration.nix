@@ -66,7 +66,6 @@
   systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://codeberg.org/fairyglade/ly/issues/706#issuecomment-5460939
   # Other
   services.seatd.enable = true;
-  services.blueman.enable = true;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   services.asusd.enable = true;
