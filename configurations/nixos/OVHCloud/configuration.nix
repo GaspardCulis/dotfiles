@@ -32,6 +32,7 @@
       };
 
       auth.enable = true;
+      bulwarkmail.enable = true;
       beszel = {
         enable = true;
         agent = {
