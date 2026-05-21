@@ -34,7 +34,7 @@ in {
 
     sops.templates."vikunja.env" = {
       content = ''
-        VIKUNJA_SERVICE_JWTSECRET=${config.sops.placeholder."vikunja/SERVICE_JWTSECRET"}
+        VIKUNJA_SERVICE_SECRET=${config.sops.placeholder."vikunja/SERVICE_JWTSECRET"}
         VIKUNJA_MAILER_USERNAME=${config.sops.placeholder."vikunja/MAILER_USERNAME"}
         VIKUNJA_MAILER_PASSWORD=${config.sops.placeholder."vikunja/MAILER_PASSWORD"}
       '';
