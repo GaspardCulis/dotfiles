@@ -81,7 +81,7 @@ in {
       enable = true;
       settings = {
         server = {
-          defaultHostname = "${domain}";
+          hostname = "${cfg.jmapDomain}";
           http.permissive-cors = true;
           tls = {
             enable = true;
