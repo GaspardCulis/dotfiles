@@ -5,5 +5,7 @@ in {
     root /var/www/html
 
     file_server
+
+    redir / /storm
   '';
 }
