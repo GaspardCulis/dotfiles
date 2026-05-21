@@ -53,7 +53,7 @@ in {
         environment = {
           JMAP_SERVER_URL = "https://${mail.jmapDomain}";
 
-          APP_NAME = "Gasdev Webmail";
+          APP_NAME = "Gasmail";
           LOGIN_COMPANY_NAME = "Gasdev";
 
           SETTINGS_SYNC_ENABLED = "true";
