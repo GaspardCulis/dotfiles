@@ -76,5 +76,5 @@
   sops.defaultSopsFile = ../../../secrets/pi4/default.yaml;
   sops.secrets."wireguard/private_key".owner = "root";
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.11";
 }
