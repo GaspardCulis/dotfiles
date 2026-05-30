@@ -15,7 +15,10 @@ with lib; let
         # Fix dGPU usage on Optimus laptops: https://github.com/anyrun-org/anyrun/issues/254
         pkgs.writeScriptBin "anyrun" ''
           #!/bin/sh
-          export VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
+          icd=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
+          if [ -f $icd ]; then
+            export VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
+          fi
           exec ${pkgs.anyrun}/bin/anyrun "$@"
         ''
       )

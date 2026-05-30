@@ -6,6 +6,24 @@
 }:
 with lib; let
   cfg = config.gasdev.desktop;
+
+  nautilus-icd-patch = pkgs.symlinkJoin {
+    name = "anyrun-icd-patch";
+    paths = [
+      (
+        # Fix dGPU usage on Optimus laptops
+        pkgs.writeScriptBin "nautilus" ''
+          #!/bin/sh
+          icd=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
+          if [ -f $icd ]; then
+            export VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json
+          fi
+          exec ${pkgs.nautilus}/bin/nautilus "$@"
+        ''
+      )
+      pkgs.nautilus
+    ];
+  };
 in {
   imports = [
     ./apps
@@ -69,7 +87,7 @@ in {
         xdg-utils
       ]
       ++ lib.optionals (cfg.apps.explorer == "cosmic-files") [pkgs.cosmic-files]
-      ++ lib.optionals (cfg.apps.explorer == "nautilus") [pkgs.nautilus];
+      ++ lib.optionals (cfg.apps.explorer == "nautilus") [nautilus-icd-patch];
 
     fonts.fontconfig.enable = true;
 
