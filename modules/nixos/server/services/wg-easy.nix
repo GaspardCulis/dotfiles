@@ -77,7 +77,10 @@ in {
           INIT_PORT = toString cfg.wgPort;
           INIT_IPV4_CIDR = cfg.ipv4;
 
-          EXPERIMENTAL_AWG = toString cfg.amnezia;
+          EXPERIMENTAL_AWG =
+            if cfg.amnezia
+            then "true"
+            else "false";
         };
         environmentFiles = [
           config.sops.templates."wg-easy.env".path
