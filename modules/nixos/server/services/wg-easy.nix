@@ -27,7 +27,7 @@ in {
     ipv4 = mkOption {
       type = types.nonEmptyStr;
       description = "Init IPv4 cidr";
-      default = "10.8.1.0/24";
+      default = "10.8.0.0/24";
     };
     amnezia = mkEnableOption "Enable AmneziaWG support";
   };
@@ -76,6 +76,7 @@ in {
           INIT_HOST = cfg.domain;
           INIT_PORT = toString cfg.wgPort;
           INIT_IPV4_CIDR = cfg.ipv4;
+          INIT_ALLOWED_IPS = cfg.ipv4;
 
           EXPERIMENTAL_AWG =
             if cfg.amnezia
@@ -101,13 +102,19 @@ in {
       };
     };
 
-    boot.kernelModules = [
-      "wireguard"
-      "ip_tables"
-      "iptable_nat"
-      "ip6_tables"
-      "ip6table_nat"
-    ];
+    boot.kernelModules =
+      [
+        "wireguard"
+        "ip_tables"
+        "iptable_nat"
+        "ip6_tables"
+        "ip6table_nat"
+      ]
+      ++ (
+        if cfg.amnezia
+        then ["amneziawg"]
+        else []
+      );
 
     networking.firewall = {
       allowedUDPPorts = [

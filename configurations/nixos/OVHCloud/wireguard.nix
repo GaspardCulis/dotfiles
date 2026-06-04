@@ -10,7 +10,7 @@
 
   networking.wireguard.interfaces = {
     # Private network for admin and server machines. Let wg0 for wg-easy
-    wg-private = {
+    wg0 = {
       # Determines the IP address and subnet of the server's end of the tunnel interface.
       ips = ["10.8.0.1/24"];
 
