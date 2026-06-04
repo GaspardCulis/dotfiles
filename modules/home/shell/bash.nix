@@ -50,8 +50,10 @@ in {
         [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
         [[ -z "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
 
-        bind '"\e[A":history-search-backward'
-        bind '"\e[B":history-search-forward'
+        if [ "$PS1" ] ; then
+          bind '"\e[A":history-search-backward'
+          bind '"\e[B":history-search-forward'
+        fi
 
         mkcd() {
           mkdir "$@" || return
