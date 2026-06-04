@@ -27,7 +27,7 @@ in {
     ipv4 = mkOption {
       type = types.nonEmptyStr;
       description = "Init IPv4 cidr";
-      default = "10.8.0.0/24";
+      default = "10.8.1.0/24";
     };
     amnezia = mkEnableOption "Enable AmneziaWG support";
   };

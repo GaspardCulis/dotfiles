@@ -9,11 +9,8 @@
   };
 
   networking.wireguard.interfaces = {
-    # "wg0" is the network interface name. You can name the interface arbitrarily.
-    wg0 = {
-      # Use AmneziaWG implementation for DPI obfuscation
-      type = "amneziawg";
-
+    # Private network for admin and server machines. Let wg0 for wg-easy
+    wg-private = {
       # Determines the IP address and subnet of the server's end of the tunnel interface.
       ips = ["10.8.0.1/24"];
 
@@ -45,35 +42,10 @@
           allowedIPs = ["10.8.0.42/32"];
         }
         {
-          # Family desktop
-          publicKey = "cpBhnLD4u5brDZsc2uqXVlelApCIXFdRnfJXJU1WDmM=";
-          allowedIPs = ["10.8.0.11/32"];
-        }
-        {
           # pi4
           publicKey = "F9AkCI0FGkrFhCq+SvCT1F2RG2ApNUy+SeIj1+VPtXI=";
           allowedIPs = ["10.8.0.31/32"];
         }
-        {
-          # Leito
-          publicKey = "L7FNP+XjELr4AYW3jeZNKNS25ukJ3rMvIz3YYSYd61Y=";
-          allowedIPs = ["10.8.0.111/32"];
-        }
-        {
-          # Ayti
-          publicKey = "HIyjO8UQ0AGYhRztMfe1qgaAJqYiX7kncanmm10Qwhk=";
-          allowedIPs = ["10.8.0.43/32"];
-        }
-        {
-          # xephi
-          publicKey = "VqDHwQ+bziUMramBYhKDOi8MDtJe5wztfNspmw5RqxE=";
-          allowedIPs = ["10.8.0.73/32"];
-        }
-        # {
-        #   # statitz
-        #   publicKey = "IWUWFCw93SP1/XygZiX2p2KVE7NFvVGvHjtgvIc38A0=";
-        #   allowedIPs = ["10.8.0.241/32"];
-        # }
       ];
     };
   };
