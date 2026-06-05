@@ -123,6 +123,12 @@ in {
             lsPkg = astro-language-server;
             lsName = "astro-ls";
             tailwind = true;
+            extraConfig = {
+              formatter = {
+                command = "${pkgs.prettier}/bin/prettier";
+                args = ["--plugin" "prettier-plugin-astro" "--parser" "astro"];
+              };
+            };
           }
           {
             name = "css";
@@ -185,39 +191,37 @@ in {
         language =
           map (
             l: let
-              # Check if both formatter package and command exist
               hasFmt = (l.fmtPkg or null) != null && (l.fmtCmd or null) != null;
-              # Check if an LSP name is provided
               hasLs = (l.lsName or null) != null;
-            in {
-              inherit (l) name;
-              auto-format = true;
+            in ({
+                inherit (l) name;
+                auto-format = true;
 
-              # Build the language-servers list (wakatime + optional LS)
-              language-servers =
-                (
-                  if hasLs
-                  then [l.lsName]
-                  else []
-                )
-                ++ (
-                  if cfg.wakatime
-                  then ["wakatime"]
-                  else []
-                )
-                ++ (
-                  if (l.tailwind or false)
-                  then ["tailwindcss-ls"]
-                  else []
-                );
+                language-servers =
+                  (
+                    if hasLs
+                    then [l.lsName]
+                    else []
+                  )
+                  ++ (
+                    if cfg.wakatime
+                    then ["wakatime"]
+                    else []
+                  )
+                  ++ (
+                    if (l.tailwind or false)
+                    then ["tailwindcss-ls"]
+                    else []
+                  );
 
-              formatter = mkIf hasFmt {
-                command = "${l.fmtPkg}/bin/${builtins.head l.fmtCmd}";
-                args = builtins.tail l.fmtCmd;
-              };
-            }
+                formatter = mkIf hasFmt {
+                  command = "${l.fmtPkg}/bin/${builtins.head l.fmtCmd}";
+                  args = builtins.tail l.fmtCmd;
+                };
+              }
+              // l.extraConfig or {})
           )
-          languages; # This refers to your new list of objects
+          languages;
 
         language-server = {
           wakatime = mkIf cfg.wakatime {
@@ -227,6 +231,15 @@ in {
           tailwindcss-ls = mkIf (cfg.lspProfile == "bloated") {
             command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
             args = ["--stdio"];
+          };
+
+          astro-ls = mkIf (cfg.lspProfile == "bloated") {
+            command = "astro-ls";
+            args = ["--stdio"];
+            config = {
+              typescript.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+              environment = "node";
+            };
           };
         };
       };
