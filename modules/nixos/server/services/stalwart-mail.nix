@@ -205,7 +205,7 @@ in {
       };
     };
 
-    systemd.services.stalwart-mail = {
+    systemd.services.stalwart = {
       environment = {
         STALWART_PATH = "/var/lib/stalwart-mail";
       };
@@ -215,16 +215,16 @@ in {
       };
     };
 
-    systemd.timers."stalwart-mail-update-certs" = {
+    systemd.timers."stalwart-update-certs" = {
       wantedBy = ["timers.target"];
       timerConfig = {
         OnCalendar = "daily";
         Persistent = true;
-        Unit = "stalwart-mail-update-certs.service";
+        Unit = "stalwart-update-certs.service";
       };
     };
 
-    systemd.services."stalwart-mail-update-certs" = {
+    systemd.services."stalwart-update-certs" = {
       script = ''
         set -eu
 
