@@ -72,10 +72,6 @@
   services.power-profiles-daemon.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false; # Faster boot time
 
-  networking.networkmanager.plugins = with pkgs; [
-    networkmanager-openconnect
-  ];
-
   # Programs
   environment.systemPackages = with pkgs; [
     cachix
