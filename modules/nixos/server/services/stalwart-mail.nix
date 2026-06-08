@@ -79,6 +79,8 @@ in {
 
     services.stalwart-mail = {
       enable = true;
+      stateVersion = "25.11";
+
       settings = {
         server = {
           hostname = "${cfg.jmapDomain}";
