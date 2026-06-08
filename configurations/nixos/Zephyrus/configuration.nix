@@ -56,7 +56,6 @@
         {gasdev.desktop.apps.vintagestory.enable = true;}
       ];
     };
-    # specialisations.steamos.enable = true;
     # specialisations.guest.enable = true;
   };
 

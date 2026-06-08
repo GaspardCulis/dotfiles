@@ -62,13 +62,6 @@
       url = "github:d-itu/udiskr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # SteamOS
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
-    suyu = {
-      url = "github:Noodlez1232/suyu-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # Wired using https://nixos-unified.org/guide/autowiring
