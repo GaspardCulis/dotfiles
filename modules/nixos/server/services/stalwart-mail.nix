@@ -77,7 +77,7 @@ in {
     };
     networking.firewall.allowedTCPPorts = [25 465 587 993];
 
-    services.stalwart-mail = {
+    services.stalwart = {
       enable = true;
       stateVersion = "25.11";
 
