@@ -18,8 +18,6 @@
     nixos-unified.url = "github:srid/nixos-unified";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid";
       inputs.nixpkgs.follows = "nixpkgs";
