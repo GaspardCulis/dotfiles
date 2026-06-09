@@ -48,12 +48,6 @@ in {
     sops.secrets."stalwart-mail/SIGNATURE_KEY_RSA".owner = "stalwart-mail";
     sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".owner = "stalwart-mail";
 
-    sops.secrets."stalwart-mail/S3_BUCKET".owner = "stalwart-mail";
-    sops.secrets."stalwart-mail/S3_REGION".owner = "stalwart-mail";
-    sops.secrets."stalwart-mail/S3_ENDPOINT".owner = "stalwart-mail";
-    sops.secrets."stalwart-mail/S3_ACCESS_KEY".owner = "stalwart-mail";
-    sops.secrets."stalwart-mail/S3_SECRET_KEY".owner = "stalwart-mail";
-
     services.caddy.virtualHosts."${cfg.adminDomain}" = {
       extraConfig = ''
         reverse_proxy http://127.0.0.1:${toString cfg.adminPort}
@@ -165,7 +159,7 @@ in {
         storage = {
           data = "rocksdb";
           fts = "rocksdb";
-          blob = "garage";
+          blob = "rocksdb";
           lookup = "rocksdb";
           directory = "internal";
         };
@@ -173,15 +167,6 @@ in {
           type = "rocksdb";
           path = "%{env:STALWART_PATH}%/data";
           compression = "lz4";
-        };
-        store."garage" = {
-          type = "s3";
-          timeout = "30s";
-          bucket = "%{file:${config.sops.secrets."stalwart-mail/S3_BUCKET".path}}%";
-          region = "%{file:${config.sops.secrets."stalwart-mail/S3_REGION".path}}%";
-          endpoint = "%{file:${config.sops.secrets."stalwart-mail/S3_ENDPOINT".path}}%";
-          access-key = "%{file:${config.sops.secrets."stalwart-mail/S3_ACCESS_KEY".path}}%";
-          secret-key = "%{file:${config.sops.secrets."stalwart-mail/S3_SECRET_KEY".path}}%";
         };
         directory."internal" = {
           type = "internal";
