@@ -61,7 +61,6 @@ in {
         "mta-sts.${domain}"
         "autoconfig.${domain}"
         "autodiscover.${domain}"
-        "${domain}"
       ];
     };
     services.caddy.virtualHosts."${cfg.webdavDomain}" = {

@@ -1,4 +1,6 @@
-{...}: {
+{config, ...}: let
+  domain = config.gasdev.server.domain;
+in {
   imports = [
     ./hardware-configuration.nix
     ./wireguard.nix
@@ -71,8 +73,13 @@
     };
   };
 
+  # Redirect to website
+  services.caddy.virtualHosts."${domain}".extraConfig = ''
+    redir https://www.${domain} permanent
+  '';
+
   # Proxy to Pi4
-  services.caddy.virtualHosts."pi.gasdev.fr, *.pi.gasdev.fr".extraConfig = ''
+  services.caddy.virtualHosts."pi.${domain}, *.pi.${domain}".extraConfig = ''
     reverse_proxy 10.8.0.31:80
   '';
 
