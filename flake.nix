@@ -30,6 +30,8 @@
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
 
+    storm-backend.url = "github:STORM-Gear/storm-backend";
+
     # Desktop
     stylix = {
       url = "github:nix-community/stylix";

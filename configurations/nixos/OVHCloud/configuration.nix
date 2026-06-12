@@ -4,6 +4,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./wireguard.nix
+    ./storm.nix
   ];
 
   networking.hostName = "OVHCloud";
