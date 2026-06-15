@@ -18,12 +18,18 @@ in {
   sops.secrets."storm-backend/STRIPE_SECRET".owner = serviceUser;
   sops.secrets."storm-backend/ANALYTICS_WEBSITE_ID".owner = serviceUser;
   sops.secrets."storm-backend/ANALYTICS_API_URL".owner = serviceUser;
+  sops.secrets."storm-backend/STMP_HOST".owner = serviceUser;
+  sops.secrets."storm-backend/SMTP_USER".owner = serviceUser;
+  sops.secrets."storm-backend/SMTP_PASS".owner = serviceUser;
 
   sops.templates."storm-backend.env" = {
     content = ''
       STRIPE_SECRET=${config.sops.placeholder."storm-backend/STRIPE_SECRET"}
       ANALYTICS_WEBSITE_ID=${config.sops.placeholder."storm-backend/ANALYTICS_WEBSITE_ID"}
       ANALYTICS_API_URL=${config.sops.placeholder."storm-backend/ANALYTICS_API_URL"}
+      STMP_HOST=${config.sops.placeholder."storm-backend/SMTP_HOST"}
+      STMP_USER=${config.sops.placeholder."storm-backend/SMTP_USER"}
+      STMP_PASS=${config.sops.placeholder."storm-backend/SMTP_PASS"}
     '';
     owner = serviceUser;
   };
