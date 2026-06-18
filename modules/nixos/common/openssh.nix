@@ -24,6 +24,7 @@ in {
         ports = [cfg.port];
         settings = {
           PasswordAuthentication = false;
+          AcceptEnv = ["LANG" "LC_*" "TERM" "COLORTERM"];
         };
       };
       fail2ban = mkIf cfg.fail2ban {
