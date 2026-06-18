@@ -1,4 +1,5 @@
 {
+  options,
   config,
   flake,
   pkgs,
@@ -140,6 +141,11 @@ in {
     in {
       enable = true;
       settings = {
+        theme =
+          if (builtins.hasAttr "stylix" options)
+          then "stylix"
+          else "sonokai";
+
         editor = {
           color-modes = true;
           cursorline = true;
