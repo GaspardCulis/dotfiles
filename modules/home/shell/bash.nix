@@ -55,6 +55,10 @@ in {
           bind '"\e[B":history-search-forward'
         fi
 
+        if [ -f ~/.bash_env ] ; then
+          . ~/.bash_env
+        fi
+
         mkcd() {
           mkdir "$@" || return
           shift "$(( $# - 1 ))"
