@@ -22,6 +22,7 @@ in {
 
     openssh = {
       enable = true;
+      fail2ban = true;
       openFirewall = true;
     };
 
