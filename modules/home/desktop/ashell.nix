@@ -53,6 +53,12 @@ in {
           toast_position = "bottom_right";
         };
 
+        osd = {
+          enabled = true;
+          show_volume_percentage = true;
+          show_brightness_percentage = true;
+        };
+
         settings = {
           audio_sinks_more_cmd = "pavucontrol -t 3";
           audio_sources_more_cmd = "pavucontrol -t 4";

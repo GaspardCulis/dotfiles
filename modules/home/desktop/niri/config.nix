@@ -5,7 +5,7 @@
   apps = config.gasdev.desktop.apps;
   cfg = config.gasdev.desktop.niri;
 
-  swayosd-client = "${config.gasdev.desktop.swayosd.package}/bin/swayosd-client";
+  ashell = pkgs.lib.getExe config.gasdev.desktop.ashell.package;
   uwu-launcher = ../../../../bin/hypr/uwu-launcher;
   swaylock = ../../../../bin/hypr/swaylock-hyprland;
 
@@ -53,12 +53,12 @@ in {
     };
     "Mod+DOLLAR".action = sh "niri msg pick-color | grep -oP 'Hex: \\K#\\w+' | tr -d '\\n' | wl-copy";
 
-    "XF86AudioMute".action = spawn swayosd-client "--output-volume" "mute-toggle";
-    "XF86AudioMicMute".action = spawn swayosd-client "--input-volume" "mute-toggle";
-    "XF86AudioLowerVolume".action = spawn swayosd-client "--output-volume" "lower";
-    "XF86AudioRaiseVolume".action = spawn swayosd-client "--output-volume" "raise";
-    "XF86MonBrightnessDown".action = spawn swayosd-client "--brightness" "lower";
-    "XF86MonBrightnessUp".action = spawn swayosd-client "--brightness" "raise";
+    "XF86AudioMute".action = spawn ashell "msg" "volume-toggle-mute";
+    "XF86AudioMicMute".action = spawn ashell "msg" "microphone-toggle-mute";
+    "XF86AudioLowerVolume".action = spawn ashell "msg" "volume-down";
+    "XF86AudioRaiseVolume".action = spawn ashell "msg" "volume-up";
+    "XF86MonBrightnessDown".action = spawn ashell "msg" "brightness-down";
+    "XF86MonBrightnessUp".action = spawn ashell "msg" "brightness-up";
 
     "Mod+S".action = switch-preset-column-width;
     "Mod+Shift+S".action = switch-preset-column-width-back;

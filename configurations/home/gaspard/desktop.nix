@@ -22,7 +22,6 @@ in {
       };
 
       ashell.enable = true;
-      swayosd.enable = true;
       awww.enable = true;
       activate-linux.enable = true;
 
