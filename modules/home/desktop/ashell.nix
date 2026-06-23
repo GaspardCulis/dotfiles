@@ -37,7 +37,7 @@ in {
         layer = "Top";
 
         modules = {
-          left = ["Clock" "Workspaces" "MediaPlayer"];
+          left = ["Tempo" "Workspaces" "MediaPlayer"];
           center = ["WindowTitle"];
           right = ["SystemInfo" "Settings" "Tray"];
         };
