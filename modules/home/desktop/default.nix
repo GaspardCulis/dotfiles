@@ -8,7 +8,7 @@ with lib; let
   cfg = config.gasdev.desktop;
 
   nautilus-icd-patch = pkgs.symlinkJoin {
-    name = "anyrun-icd-patch";
+    name = "nautilus-icd-patch";
     paths = [
       (
         # Fix dGPU usage on Optimus laptops
