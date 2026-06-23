@@ -19,12 +19,12 @@ in {
 
         bindings.keys = [
           {
-            key = "h";
+            key = "left";
             "with" = "control";
             action = "SelectPrevSplit";
           }
           {
-            key = "l";
+            key = "right";
             "with" = "control";
             action = "SelectNextSplit";
           }
