@@ -47,7 +47,7 @@ in {
         };
 
         window = {
-          opacity = 0.8;
+          opacity = lib.mkForce 0.8;
         };
       };
     };
