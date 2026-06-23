@@ -40,8 +40,8 @@ in {
     apps = {
       terminal = mkOption {
         description = "Default terminal emulator app";
-        type = types.enum ["alacritty"];
-        default = "alacritty";
+        type = types.enum ["alacritty" "rio"];
+        default = "rio";
       };
       browser = mkOption {
         description = "Default web browser app";
@@ -77,6 +77,7 @@ in {
 
       apps = {
         alacritty.enable = cfg.apps.terminal == "alacritty";
+        rio.enable = cfg.apps.terminal == "rio";
         firefox.enable = cfg.apps.browser == "firefox";
       };
     };
