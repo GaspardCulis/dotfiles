@@ -12,6 +12,7 @@ in {
     ./alacritty.nix
     ./discord.nix
     ./firefox.nix
+    ./rio.nix
     ./software-center.nix
   ];
 
