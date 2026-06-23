@@ -23,16 +23,8 @@ in {
 
       ashell.enable = true;
       swayosd.enable = true;
-      end-rs.enable = true;
       awww.enable = true;
       activate-linux.enable = true;
-      eww = {
-        enable = true;
-        widget = {
-          music.enable = true;
-          timer.enable = true;
-        };
-      };
 
       apps = {
         discord.enable = true;

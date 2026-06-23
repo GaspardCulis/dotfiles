@@ -39,11 +39,19 @@ in {
         modules = {
           left = ["Tempo" "Workspaces" "MediaPlayer"];
           center = ["WindowTitle"];
-          right = ["SystemInfo" "Settings" "Tray"];
+          right = ["SystemInfo" "Settings" "Tray" "Notifications"];
         };
 
         workspaces.enable_workspace_filling = true;
         media_player.max_title_length = 50;
+
+        notifications = {
+          show_timestamps = true;
+          show_bodies = true;
+          grouped = true;
+          toast = true;
+          toast_position = "bottom_right";
+        };
 
         settings = {
           audio_sinks_more_cmd = "pavucontrol -t 3";
