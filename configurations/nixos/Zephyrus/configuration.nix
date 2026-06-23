@@ -26,6 +26,11 @@
 
   security.pam.services.swaylock = {};
 
+  environment.sessionVariables = {
+    # Most apps should use iGPU
+    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+  };
+
   gasdev = {
     podman.enable = true;
     openssh = {

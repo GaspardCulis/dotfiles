@@ -17,10 +17,5 @@ in {
       enable = true;
       package = cfg.package;
     };
-    #
-    # NVIDIA Optimus fix
-    systemd.user.services.swayosd.Service = {
-      Environment = "VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-    };
   };
 }
