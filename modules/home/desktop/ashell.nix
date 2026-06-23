@@ -29,6 +29,8 @@ in {
       package = cfg.package;
 
       settings = {
+        region = "fr-FR";
+
         log_level = "warn";
         outputs = "All";
         position = "Top";
