@@ -42,7 +42,7 @@ in {
         };
 
         editor = {
-          program = config.programs.helix.package;
+          program = lib.getExe config.programs.helix.package;
           args = [];
         };
 
