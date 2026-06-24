@@ -108,6 +108,8 @@ in {
             name = "typst";
             lsPkg = tinymist;
             lsName = "tinymist";
+            fmtPkg = typstyle;
+            fmtCmd = ["typstyle"];
           }
           {
             name = "javascript";
