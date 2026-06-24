@@ -109,7 +109,7 @@ in {
             lsPkg = tinymist;
             lsName = "tinymist";
             fmtPkg = typstyle;
-            fmtCmd = ["typstyle"];
+            fmtCmd = ["typstyle" "--wrap-text"];
           }
           {
             name = "javascript";
