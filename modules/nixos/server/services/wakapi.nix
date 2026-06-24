@@ -76,6 +76,7 @@ in {
         scopes = ["openid" "profile" "email"];
         userinfo_signed_response_alg = "none";
         token_endpoint_auth_method = "client_secret_post";
+        pre_configured_consent_duration = "1 month";
       }
     ];
   };
