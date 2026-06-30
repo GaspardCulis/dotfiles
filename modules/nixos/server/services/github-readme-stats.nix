@@ -43,20 +43,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."github-readme-stats/GITHUB_PAT".owner = "root";
+    sops.secrets."github-readme-stats/GITHUB_PAT".owner = config.gasdev.server.containersUser;
     sops.templates."github-readme-stats.env" = {
       content = ''
         WHITELIST=GaspardCulis
         PAT_1=${config.sops.placeholder."github-readme-stats/GITHUB_PAT"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       github-readme-stats = {
         image = "localhost/github-readme-stats:latest";
         imageFile = pkgs.dockerTools.buildImage {

@@ -23,13 +23,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."tandoor/SECRET_KEY".owner = "root";
-    sops.secrets."tandoor/S3_ACCESS_KEY".owner = "root";
-    sops.secrets."tandoor/S3_SECRET_ACCESS_KEY".owner = "root";
-    sops.secrets."tandoor/POSTGRES_USER".owner = "root";
-    sops.secrets."tandoor/POSTGRES_PASSWORD".owner = "root";
-    sops.secrets."tandoor/SMTP_USERNAME".owner = "root";
-    sops.secrets."tandoor/SMTP_PASSWORD".owner = "root";
+    sops.secrets."tandoor/SECRET_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."tandoor/S3_ACCESS_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."tandoor/S3_SECRET_ACCESS_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."tandoor/POSTGRES_USER".owner = config.gasdev.server.containersUser;
+    sops.secrets."tandoor/POSTGRES_PASSWORD".owner = config.gasdev.server.containersUser;
+    sops.secrets."tandoor/SMTP_USERNAME".owner = config.gasdev.server.containersUser;
+    sops.secrets."tandoor/SMTP_PASSWORD".owner = config.gasdev.server.containersUser;
 
     sops.templates."tandoor.env" = {
       content = ''
@@ -49,7 +49,7 @@ in {
         EMAIL_HOST_PASSWORD=${config.sops.placeholder."tandoor/SMTP_PASSWORD"}
         DEFAULT_FROM_EMAIL=tandoor@gasdev.fr
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
     sops.templates."tandoor-db.env" = {
@@ -59,14 +59,14 @@ in {
         POSTGRES_USER=${config.sops.placeholder."tandoor/POSTGRES_USER"}
         POSTGRES_PASSWORD=${config.sops.placeholder."tandoor/POSTGRES_PASSWORD"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       tandoor = {
         image = "docker.io/vabene1111/recipes";
         pull = "newer";

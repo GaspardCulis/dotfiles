@@ -23,9 +23,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."vaultwarden/ADMIN_TOKEN".owner = "root";
-    sops.secrets."vaultwarden/SMTP_USERNAME".owner = "root";
-    sops.secrets."vaultwarden/SMTP_PASSWORD".owner = "root";
+    sops.secrets."vaultwarden/ADMIN_TOKEN".owner = config.gasdev.server.containersUser;
+    sops.secrets."vaultwarden/SMTP_USERNAME".owner = config.gasdev.server.containersUser;
+    sops.secrets."vaultwarden/SMTP_PASSWORD".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       encode zstd gzip
@@ -43,10 +43,10 @@ in {
         SMTP_USERNAME=${config.sops.placeholder."vaultwarden/SMTP_USERNAME"}
         SMTP_PASSWORD=${config.sops.placeholder."vaultwarden/SMTP_PASSWORD"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       vaultwarden = {
         image = "docker.io/vaultwarden/server:latest-alpine";
         pull = "newer";

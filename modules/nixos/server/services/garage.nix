@@ -64,7 +64,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."garage/RPC_SECRET".owner = "root";
+    sops.secrets."garage/RPC_SECRET".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain} *.${cfg.domain}" = mkIf cfg.expose {
       logFormat = "output file ${config.services.caddy.logDir}/access-${cfg.domain}.log";
@@ -85,7 +85,7 @@ in {
       '';
     };
 
-    virtualisation.oci-containers.containers = let
+    gasdev.server.containers = let
       garage-config = (pkgs.formats.toml {}).generate "garage.toml" {
         metadata_dir = "/var/lib/garage/meta";
         data_dir = "/var/lib/garage/data";

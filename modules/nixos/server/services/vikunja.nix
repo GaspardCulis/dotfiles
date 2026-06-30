@@ -24,9 +24,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."vikunja/SERVICE_JWTSECRET".owner = "root";
-    sops.secrets."vikunja/MAILER_USERNAME".owner = "root";
-    sops.secrets."vikunja/MAILER_PASSWORD".owner = "root";
+    sops.secrets."vikunja/SERVICE_JWTSECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."vikunja/MAILER_USERNAME".owner = config.gasdev.server.containersUser;
+    sops.secrets."vikunja/MAILER_PASSWORD".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
@@ -38,10 +38,10 @@ in {
         VIKUNJA_MAILER_USERNAME=${config.sops.placeholder."vikunja/MAILER_USERNAME"}
         VIKUNJA_MAILER_PASSWORD=${config.sops.placeholder."vikunja/MAILER_PASSWORD"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       vikunja = {
         image = "docker.io/vikunja/vikunja:2";
         pull = "newer";

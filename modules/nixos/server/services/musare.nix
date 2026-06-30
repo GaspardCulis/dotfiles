@@ -59,14 +59,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."musare/APP_SECRET".owner = "root";
-    sops.secrets."musare/YOUTUBE_API_KEY".owner = "root";
-    sops.secrets."musare/SPOTIFY_CLIENT_ID".owner = "root";
-    sops.secrets."musare/SPOTIFY_CLIENT_SECRET".owner = "root";
-    sops.secrets."musare/MONGO_USER_USERNAME".owner = "root";
-    sops.secrets."musare/MONGO_USER_PASSWORD".owner = "root";
-    sops.secrets."musare/MONGO_ROOT_PASSWORD".owner = "root";
-    sops.secrets."musare/REDIS_PASSWORD".owner = "root";
+    sops.secrets."musare/APP_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/YOUTUBE_API_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/SPOTIFY_CLIENT_ID".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/SPOTIFY_CLIENT_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/MONGO_USER_USERNAME".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/MONGO_USER_PASSWORD".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/MONGO_ROOT_PASSWORD".owner = config.gasdev.server.containersUser;
+    sops.secrets."musare/REDIS_PASSWORD".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       root * ${musare-frontend}
@@ -93,7 +93,7 @@ in {
         MONGO_INITDB_DATABASE=musare
         REDIS_PASSWORD=${config.sops.placeholder."musare/REDIS_PASSWORD"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
     sops.templates."musare/config.json" = {
       content = ''
@@ -125,7 +125,7 @@ in {
       '';
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       musare-backend = {
         image = "localhost/musare:backend";
         imageFile = pkgs.dockerTools.buildImage {

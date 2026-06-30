@@ -51,7 +51,7 @@ in {
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    virtualisation.oci-containers.containers = mkIf cfg.enable {
+    gasdev.server.containers = mkIf cfg.enable {
       beszel-admin = {
         image = "docker.io/henrygd/beszel";
         pull = "newer";

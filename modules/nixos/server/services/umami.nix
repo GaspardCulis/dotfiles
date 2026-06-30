@@ -22,9 +22,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."umami/APP_SECRET".owner = "root";
-    sops.secrets."umami/DB_USER".owner = "root";
-    sops.secrets."umami/DB_PASS".owner = "root";
+    sops.secrets."umami/APP_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."umami/DB_USER".owner = config.gasdev.server.containersUser;
+    sops.secrets."umami/DB_PASS".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
@@ -35,17 +35,17 @@ in {
         APP_SECRET=${config.sops.placeholder."umami/APP_SECRET"}
         DATABASE_URL=postgresql://${config.sops.placeholder."umami/DB_USER"}:${config.sops.placeholder."umami/DB_PASS"}@umami-db:5432/umami
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
     sops.templates."umami-db.env" = {
       content = ''
         POSTGRES_USER=${config.sops.placeholder."umami/DB_USER"}
         POSTGRES_PASSWORD=${config.sops.placeholder."umami/DB_PASS"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       umami = {
         image = "ghcr.io/umami-software/umami:postgresql-latest";
         pull = "newer";

@@ -29,19 +29,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."authelia/JWT_SECRET".owner = "root";
-    sops.secrets."authelia/SMTP_PASSWORD".owner = "root";
-    sops.secrets."authelia/SESSION_SECRET".owner = "root";
-    sops.secrets."authelia/STORAGE_PASSWORD".owner = "root";
-    sops.secrets."authelia/STORAGE_ENCRYPTION_KEY".owner = "root";
-    sops.secrets."authelia/OIDC_HMAC_SECRET".owner = "root";
-    sops.secrets."authelia/OIDC_JWKS_PRIVATE_KEY".owner = "root";
+    sops.secrets."authelia/JWT_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."authelia/SMTP_PASSWORD".owner = config.gasdev.server.containersUser;
+    sops.secrets."authelia/SESSION_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."authelia/STORAGE_PASSWORD".owner = config.gasdev.server.containersUser;
+    sops.secrets."authelia/STORAGE_ENCRYPTION_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."authelia/OIDC_HMAC_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."authelia/OIDC_JWKS_PRIVATE_KEY".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."auth.gasdev.fr".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       authelia = {
         image = "docker.io/authelia/authelia:latest";
         pull = "newer";

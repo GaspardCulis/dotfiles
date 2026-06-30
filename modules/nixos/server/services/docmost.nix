@@ -23,11 +23,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."docmost/APP_SECRET".owner = "root";
-    sops.secrets."docmost/DB_USER".owner = "root";
-    sops.secrets."docmost/DB_PASS".owner = "root";
-    sops.secrets."docmost/SMTP_USERNAME".owner = "root";
-    sops.secrets."docmost/SMTP_PASSWORD".owner = "root";
+    sops.secrets."docmost/APP_SECRET".owner = config.gasdev.server.containersUser;
+    sops.secrets."docmost/DB_USER".owner = config.gasdev.server.containersUser;
+    sops.secrets."docmost/DB_PASS".owner = config.gasdev.server.containersUser;
+    sops.secrets."docmost/SMTP_USERNAME".owner = config.gasdev.server.containersUser;
+    sops.secrets."docmost/SMTP_PASSWORD".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
@@ -40,17 +40,17 @@ in {
         SMTP_USERNAME=${config.sops.placeholder."docmost/SMTP_USERNAME"}
         SMTP_PASSWORD=${config.sops.placeholder."docmost/SMTP_PASSWORD"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
     sops.templates."docmost-db.env" = {
       content = ''
         POSTGRES_USER=${config.sops.placeholder."docmost/DB_USER"}
         POSTGRES_PASSWORD=${config.sops.placeholder."docmost/DB_PASS"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       docmost = {
         image = "docker.io/docmost/docmost:latest";
         pull = "newer";

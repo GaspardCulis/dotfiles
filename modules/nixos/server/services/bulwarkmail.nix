@@ -23,22 +23,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."bulwarkmail/ADMIN_PASSWORD".owner = "root";
-    sops.secrets."bulwarkmail/SESSION_SECRET".owner = "root";
+    sops.secrets."bulwarkmail/ADMIN_PASSWORD".owner = config.gasdev.server.containersUser;
+    sops.secrets."bulwarkmail/SESSION_SECRET".owner = config.gasdev.server.containersUser;
 
     sops.templates."bulwarkmail.env" = {
       content = ''
         ADMIN_PASSWORD=${config.sops.placeholder."bulwarkmail/ADMIN_PASSWORD"}
         SESSION_SECRET=${config.sops.placeholder."bulwarkmail/SESSION_SECRET"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       bulwarkmail = {
         image = "ghcr.io/bulwarkmail/webmail:latest";
         pull = "newer";

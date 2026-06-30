@@ -40,8 +40,8 @@ in {
       }
     ];
 
-    sops.secrets."wg-easy/INIT_USERNAME".owner = "root";
-    sops.secrets."wg-easy/INIT_PASSWORD".owner = "root";
+    sops.secrets."wg-easy/INIT_USERNAME".owner = config.gasdev.server.containersUser;
+    sops.secrets."wg-easy/INIT_PASSWORD".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.webPort}
@@ -52,10 +52,10 @@ in {
         INIT_USERNAME=${config.sops.placeholder."wg-easy/INIT_USERNAME"}
         INIT_PASSWORD=${config.sops.placeholder."wg-easy/INIT_PASSWORD"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       wg-easy = {
         image = "ghcr.io/wg-easy/wg-easy:15";
         pull = "newer";

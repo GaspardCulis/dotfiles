@@ -41,14 +41,14 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."nakama/DB_PASS".owner = "root";
-    sops.secrets."nakama/SERVER_KEY".owner = "root";
-    sops.secrets."nakama/ENCRYPTION_KEY".owner = "root";
-    sops.secrets."nakama/REFRESH_ENCRYPTION_KEY".owner = "root";
-    sops.secrets."nakama/HTTP_KEY".owner = "root";
-    sops.secrets."nakama/CONSOLE_USER".owner = "root";
-    sops.secrets."nakama/CONSOLE_PASS".owner = "root";
-    sops.secrets."nakama/SIGNING_KEY".owner = "root";
+    sops.secrets."nakama/DB_PASS".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/SERVER_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/ENCRYPTION_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/REFRESH_ENCRYPTION_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/HTTP_KEY".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/CONSOLE_USER".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/CONSOLE_PASS".owner = config.gasdev.server.containersUser;
+    sops.secrets."nakama/SIGNING_KEY".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.grpcDomain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.grpcPort}
@@ -66,7 +66,7 @@ in {
       content = ''
         POSTGRES_PASSWORD=${config.sops.placeholder."nakama/DB_PASS"}
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
     sops.templates."nakama/config.yml" = {
@@ -90,10 +90,10 @@ in {
 
           signing_key: "${config.sops.placeholder."nakama/SIGNING_KEY"}"
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       nakama = {
         image = "registry.heroiclabs.com/heroiclabs/nakama:latest";
         pull = "newer";

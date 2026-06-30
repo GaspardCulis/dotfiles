@@ -3,7 +3,10 @@
   lib,
   ...
 }: {
-  imports = [./services];
+  imports = [
+    ./services
+    ./containers.nix
+  ];
 
   options.gasdev.server = {
     domain = lib.mkOption {

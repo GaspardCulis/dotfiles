@@ -23,8 +23,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."wakapi/WAKAPI_PASSWORD_SALT".owner = "root";
-    sops.secrets."wakapi/OIDC_CLIENT_SECRET".owner = "root";
+    sops.secrets."wakapi/WAKAPI_PASSWORD_SALT".owner = config.gasdev.server.containersUser;
+    sops.secrets."wakapi/OIDC_CLIENT_SECRET".owner = config.gasdev.server.containersUser;
 
     services.caddy.virtualHosts."${cfg.domain}".extraConfig = ''
       reverse_proxy http://127.0.0.1:${toString cfg.port}
@@ -47,10 +47,10 @@ in {
 
         WAKAPI_LEADERBOARD_REQUIRE_AUTH=true
       '';
-      owner = "root";
+      owner = config.gasdev.server.containersUser;
     };
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       wakapi = {
         image = "ghcr.io/muety/wakapi:latest";
         pull = "newer";

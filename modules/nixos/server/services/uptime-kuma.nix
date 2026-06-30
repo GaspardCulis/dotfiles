@@ -26,7 +26,7 @@ in {
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
-    virtualisation.oci-containers.containers = {
+    gasdev.server.containers = {
       uptime-kuma = {
         image = "docker.io/louislam/uptime-kuma:1";
         pull = "newer";
