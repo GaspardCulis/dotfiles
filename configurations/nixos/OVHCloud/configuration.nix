@@ -56,6 +56,7 @@ in {
       mail.enable = true;
       # matchbox.enable = true;
       nakama.enable = true;
+      nocobase.enable = true;
       outline.enable = true;
       tandoor.enable = true;
       # turn-rs = {
