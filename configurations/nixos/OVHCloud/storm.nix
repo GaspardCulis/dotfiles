@@ -15,7 +15,8 @@ in {
     inputs.storm-backend.nixosModules.default
   ];
 
-  sops.secrets."storm-backend/STRIPE_SECRET".owner = serviceUser;
+  sops.secrets."storm-backend/STRIPE_SECRET_KEY".owner = serviceUser;
+  sops.secrets."storm-backend/STRIPE_SIGNING_SECRET".owner = serviceUser;
   sops.secrets."storm-backend/ANALYTICS_WEBSITE_ID".owner = serviceUser;
   sops.secrets."storm-backend/ANALYTICS_API_URL".owner = serviceUser;
   sops.secrets."storm-backend/SMTP_HOST".owner = serviceUser;
@@ -25,7 +26,8 @@ in {
 
   sops.templates."storm-backend.env" = {
     content = ''
-      STRIPE_SECRET=${config.sops.placeholder."storm-backend/STRIPE_SECRET"}
+      STRIPE_SECRET_KEY=${config.sops.placeholder."storm-backend/STRIPE_SECRET_KEY"}
+      STRIPE_SIGNING_SECRET=${config.sops.placeholder."storm-backend/STRIPE_SIGNING_SECRET"}
       ANALYTICS_WEBSITE_ID=${config.sops.placeholder."storm-backend/ANALYTICS_WEBSITE_ID"}
       ANALYTICS_API_URL=${config.sops.placeholder."storm-backend/ANALYTICS_API_URL"}
       SMTP_HOST=${config.sops.placeholder."storm-backend/SMTP_HOST"}
