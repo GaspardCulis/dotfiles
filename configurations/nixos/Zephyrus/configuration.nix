@@ -80,6 +80,7 @@
   # Programs
   environment.systemPackages = with pkgs; [
     cachix
+    usbutils
     wg-netmanager
     android-tools
   ];
