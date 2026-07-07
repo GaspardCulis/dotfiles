@@ -81,6 +81,7 @@ in {
         grant_types = ["authorization_code" "refresh_token"];
         userinfo_signed_response_alg = "none";
         token_endpoint_auth_method = "client_secret_post";
+        pre_configured_consent_duration = "1 month";
       }
     ];
   };
