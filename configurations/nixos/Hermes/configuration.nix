@@ -64,6 +64,9 @@
   # Services
   services = {
     displayManager.plasma-login-manager.enable = true;
+
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
   };
 
   # Fixes
