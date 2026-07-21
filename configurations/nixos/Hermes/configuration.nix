@@ -28,13 +28,38 @@
   gasdev = {
     users.gaspard = {
       enable = true;
+      desktop.enable = true;
+
+      extraModules = [
+        {
+          gasdev.desktop.ashell.scale = 1.2;
+        }
+      ];
     };
   };
 
+  # Packages
   environment.systemPackages = with pkgs; [
+    usbutils
+    cachix
     helix
     wget
   ];
+
+  # Programs
+  programs = {
+    niri.enable = true;
+
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
+  };
+
+  # Services
+  # Display manager
+  services.displayManager.ly.enable = true;
+  systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://codeberg.org/fairyglade/ly/issues/706#issuecomment-5460939
 
   stylix = {
     enable = true;
