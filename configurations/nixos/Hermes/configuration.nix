@@ -18,6 +18,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
+  boot.initrd.systemd.enable = true;
 
   networking.hostName = "Hermes";
 
@@ -61,9 +62,25 @@
   };
 
   # Services
-  # Display manager
-  services.displayManager.ly.enable = true;
-  systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://codeberg.org/fairyglade/ly/issues/706#issuecomment-5460939
+  services = {
+    displayManager.plasma-login-manager.enable = true;
+  };
+
+  # Fixes
+  # Unlock KDE wallet using LUKS
+  systemd.services.plasmalogin.serviceConfig.KeyringMode = "inherit";
+  security.pam.services.plasmalogin-autologin.rules.auth = {
+    systemd_loadkey = {
+      order = 0;
+      control = "optional";
+      modulePath = "${pkgs.systemd}/lib/security/pam_systemd_loadkey.so";
+    };
+    plasmalogin = {
+      order = 1;
+      control = "include";
+      modulePath = "plasmalogin";
+    };
+  };
 
   stylix = {
     enable = true;
