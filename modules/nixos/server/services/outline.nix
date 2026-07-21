@@ -75,12 +75,16 @@ in {
         client_secret = "$pbkdf2-sha512$310000$KykggigTF2ZRKzEdHqPD0A$TV66lPDqlTodPjFGMpxMUaeQPywHliW8yTXfXsMh4EBkYI3cIqmDc.z6Yk/3/So2.HqsRWwfPlEHmBn9Esq/4A";
         public = false;
         authorization_policy = "one_factor";
+        require_pkce = false;
+        pkce_challenge_method = "";
         redirect_uris = ["https://${cfg.domain}/auth/oidc.callback"];
         scopes = ["openid" "offline_access" "profile" "email"];
         response_types = ["code"];
         grant_types = ["authorization_code" "refresh_token"];
+        access_token_signed_response_alg = "none";
         userinfo_signed_response_alg = "none";
         token_endpoint_auth_method = "client_secret_post";
+
         pre_configured_consent_duration = "1 month";
       }
     ];
