@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -64,7 +59,9 @@
 
   # Services
   services = {
-    displayManager.plasma-login-manager.enable = true;
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
 
     upower.enable = true;
     power-profiles-daemon.enable = true;
@@ -85,6 +82,12 @@
       modulePath = "plasmalogin";
     };
   };
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    discover
+    konsole
+    kate
+  ];
 
   stylix = {
     enable = true;
