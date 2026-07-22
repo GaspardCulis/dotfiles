@@ -19,6 +19,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   boot.initrd.systemd.enable = true;
+  boot.loader.timeout = 2;
 
   networking.hostName = "Hermes";
 
