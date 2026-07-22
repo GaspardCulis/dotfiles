@@ -15,6 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = false;
   boot.initrd.systemd.enable = true;
   boot.loader.timeout = 2;
+  boot.plymouth.enable = true;
 
   networking.hostName = "Hermes";
 
