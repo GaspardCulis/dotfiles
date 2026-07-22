@@ -26,6 +26,11 @@
   console.keyMap = "fr";
   services.xserver.xkb.layout = "fr";
 
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocales = ["fr_FR.UTF-8/UTF-8"];
+  };
+
   gasdev = {
     users.gaspard = {
       enable = true;
