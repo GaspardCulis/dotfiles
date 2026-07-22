@@ -39,6 +39,11 @@
     };
   };
 
+  users.users.emma = {
+    isNormalUser = true;
+    group = "users";
+  };
+
   # Packages
   environment.systemPackages = with pkgs; [
     usbutils
