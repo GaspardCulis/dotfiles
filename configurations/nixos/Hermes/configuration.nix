@@ -48,6 +48,17 @@
     isNormalUser = true;
     group = "users";
   };
+  home-manager.users."emma" = {
+    imports = [
+      ../../../modules/home/desktop/apps/software-center.nix
+    ];
+
+    gasdev.desktop.apps.software-center.enable = true;
+
+    home.username = "emma";
+    home.homeDirectory = "/home/emma";
+    home.stateVersion = "26.05";
+  };
 
   # Packages
   environment.systemPackages = with pkgs; [
@@ -72,8 +83,6 @@
     desktopManager.plasma6.enable = true;
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
-
-    flatpak.enable = true;
 
     upower.enable = true;
     power-profiles-daemon.enable = true;
