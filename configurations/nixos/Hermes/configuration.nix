@@ -81,9 +81,10 @@
 
   # Services
   services = {
-    desktopManager.plasma6.enable = true;
+    accounts-daemon.enable = true;
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
+    desktopManager.plasma6.enable = true;
 
     upower.enable = true;
     power-profiles-daemon.enable = true;
