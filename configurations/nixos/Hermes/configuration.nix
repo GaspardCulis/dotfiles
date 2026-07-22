@@ -73,6 +73,8 @@
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
 
+    flatpak.enable = true;
+
     upower.enable = true;
     power-profiles-daemon.enable = true;
   };
