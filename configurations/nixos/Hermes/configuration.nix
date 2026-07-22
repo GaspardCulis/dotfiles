@@ -55,6 +55,8 @@
 
     gasdev.desktop.apps.software-center.enable = true;
 
+    gtk.gtk2.configLocation = "/home/emma/.config/.gtkrc-2.0";
+
     home.username = "emma";
     home.homeDirectory = "/home/emma";
     home.stateVersion = "26.05";
