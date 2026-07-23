@@ -1,4 +1,3 @@
-
 # This file is just *top-level* configuration.
 {flake, ...}: let
   inherit (flake) inputs;
@@ -9,6 +8,7 @@ in {
     inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
     inputs.stylix.nixosModules.stylix
     inputs.niri-flake.nixosModules.niri
+    inputs.steam-asahi.nixosModules.default
     ./configuration.nix
   ];
 

@@ -922,6 +922,7 @@
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "sops-nix": "sops-nix",
+        "steam-asahi": "steam-asahi",
         "storm-backend": "storm-backend",
         "stylix": "stylix",
         "udiskr": "udiskr",
@@ -1089,6 +1090,26 @@
         "owner": "Mic92",
         "repo": "sops-nix",
         "type": "github"
+      }
+    },
+    "steam-asahi": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783716902,
+        "narHash": "sha256-OE530QAePHtlsT2qEbtmQCHe5UF4Kj3skORWtllQWUI=",
+        "ref": "refs/heads/main",
+        "rev": "386b0504d36986cf545e91aa38bde918f9c7b162",
+        "revCount": 18,
+        "type": "git",
+        "url": "https://codeberg.org/ooonea/steam-asahi"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/ooonea/steam-asahi"
       }
     },
     "storm-backend": {
