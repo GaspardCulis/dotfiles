@@ -21,6 +21,9 @@
     pciutils # lspci
     pulseaudio # pactl
     zenity
+
+    # Then games and stuff
+    eden
   ];
 
   # ---- Memory tier: THE piece stock NixOS is missing vs Fedora Asahi ----
