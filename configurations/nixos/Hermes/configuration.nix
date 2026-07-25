@@ -75,12 +75,14 @@
   # Programs
   programs = {
     niri.enable = true;
-
-    localsend = {
-      enable = true;
-      openFirewall = true;
-    };
   };
+  # Localsend currently broken fonts, see https://github.com/localsend/localsend/issues/2873
+  # programs.localsend = {
+  #   enable = true;
+  #   openFirewall = true;
+  # };
+  networking.firewall.allowedTCPPorts = [53317];
+  networking.firewall.allowedUDPPorts = [53317];
 
   # Services
   services = {
