@@ -91,6 +91,8 @@
     displayManager.sddm.wayland.enable = true;
     desktopManager.plasma6.enable = true;
 
+    flatpak.enable = true;
+
     upower.enable = true;
     power-profiles-daemon.enable = true;
   };
