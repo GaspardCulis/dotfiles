@@ -1,21 +1,14 @@
 {config, ...}: {
   sops.secrets."hermes-agent-env".owner = "root";
 
-  services.hermes-agent = {
-    enable = true;
-    container = {
-      enable = true;
-      backend = "podman";
-      hostUsers = ["gaspard"];
-    };
-    addToSystemPackages = true;
-    extraDependencyGroups = ["messaging"];
-    environmentFiles = [config.sops.secrets."hermes-agent-env".path];
+  containers.hermes-agent = {
+    flake = "github:MarcusLeFils/nixos-config/main";
+    autoStart = true;
 
-    settings = {
-      model = {
-        # TODO
-      };
+    bindMounts = {
+      "${config.sops.secrets."hermes-agent-env".path}".isReadOnly = true;
+
+      "/var/lib/hermes".isReadOnly = false;
     };
   };
 }
