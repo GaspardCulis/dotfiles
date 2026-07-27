@@ -3,13 +3,13 @@ keys:
   - &server_ovh age15x7zcnpypyr2dj8ma4q3sw8atvlj3txej6gt93p0rhjgmqlvkd6qjd9tsm
   - &server_pi4 age1gvlspzka8ge8qdj5s2tm0cu756txhd7gkvps5wu40qqwft7hjd9scl3jes
 creation_rules:
-  - path_regex: secrets/OVHCloud/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/Zeus/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - pgp:
       age:
       - *admin_gaspard
       - *server_ovh
-  - path_regex: secrets/pi4/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/Hephaistos/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - pgp:
       age:
