@@ -41,7 +41,7 @@
 in {
   flake = {
     deploy.nodes = {
-      OVHCloud = {
+      Zeus = {
         hostname = "gasdev.fr";
         profiles.system = {
           user = "root";
@@ -53,13 +53,13 @@ in {
 
             modules = [
               home-manager
-              ../../configurations/nixos/OVHCloud
+              ../../configurations/nixos/Zeus
             ];
           });
         };
       };
 
-      pi4 = {
+      Hephaistos = {
         hostname = "10.8.0.31";
         profiles.system = {
           user = "root";
@@ -72,7 +72,7 @@ in {
 
             modules = [
               home-manager
-              ../../configurations/nixos/pi4
+              ../../configurations/nixos/Hephaistos
             ];
           });
         };

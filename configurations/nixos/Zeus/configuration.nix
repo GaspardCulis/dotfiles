@@ -7,7 +7,7 @@ in {
     ./storm.nix
   ];
 
-  networking.hostName = "OVHCloud";
+  networking.hostName = "Zeus";
 
   # Firewall
   networking.nftables.enable = true;
@@ -87,7 +87,7 @@ in {
   '';
 
   # SOPS
-  sops.defaultSopsFile = ../../../secrets/OVHCloud/default.yaml;
+  sops.defaultSopsFile = ../../../secrets/Zeus/default.yaml;
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
   system.stateVersion = "24.11";

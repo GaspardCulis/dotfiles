@@ -4,7 +4,7 @@
     ./probe-rs.nix
   ];
 
-  networking.hostName = "Zephyrus";
+  networking.hostName = "Zephyr";
 
   # Nix
   nix.settings = {
