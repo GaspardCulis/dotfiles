@@ -236,6 +236,10 @@ in {
             command = "${inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/wakatime-ls";
           };
 
+          yaml-language-server = mkIf (cfg.lspProfile == "minimal") {
+            config.yaml.format.enable = true;
+          };
+
           tailwindcss-ls = mkIf (cfg.lspProfile == "bloated") {
             command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
             args = ["--stdio"];
