@@ -26,4 +26,6 @@ in {
     port = servicePort;
     secretsFile = config.sops.templates."storm-backend-env".path;
   };
+
+  gasdev.services.nocobase.dbPort = 55432;
 }
