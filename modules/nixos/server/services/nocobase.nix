@@ -19,6 +19,11 @@ in {
       description = "Internal port";
       default = 2060;
     };
+    dbPort = mkOption {
+      type = types.nullOr types.ints.unsigned;
+      description = "Optionally expose database port on the host";
+      default = null;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -74,6 +79,9 @@ in {
         image = "docker.io/postgres:16-alpine";
         pull = "newer";
         autoStart = true;
+        ports = mkIf (cfg.dbPort != null) [
+          "127.0.0.1:${toString cfg.dbPort}:5432"
+        ];
         environment = {
           POSTGRES_DB = "nocobase";
         };
