@@ -23,6 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nixos-apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Server
     caddy.url = "github:GaspardCulis/nixos-caddy-ovh";
@@ -62,6 +66,11 @@
 
     udiskr = {
       url = "github:d-itu/udiskr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    steam-asahi = {
+      url = "git+https://codeberg.org/ooonea/steam-asahi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -32,6 +32,8 @@ in {
       nativeMessagingHosts = optional cfg.progressiveWebApps.enable cfg.progressiveWebApps.package;
       languagePacks = ["fr" "en-US"];
 
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;

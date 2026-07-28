@@ -224,6 +224,21 @@
         "type": "github"
       }
     },
+    "flake-compat_2": {
+      "locked": {
+        "lastModified": 1761640442,
+        "narHash": "sha256-AtrEP6Jmdvrqiv4x2xa5mrtaIp3OEe8uBYCDZDS+hu8=",
+        "owner": "nix-community",
+        "repo": "flake-compat",
+        "rev": "4a56054d8ffc173222d09dad23adf4ba946c8884",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -520,6 +535,27 @@
       "original": {
         "owner": "nix-community",
         "repo": "nix-on-droid",
+        "type": "github"
+      }
+    },
+    "nixos-apple-silicon": {
+      "inputs": {
+        "flake-compat": "flake-compat_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784496018,
+        "narHash": "sha256-wmEC6UPwmBCILILU8iCdzdd74P1eA8P5gFGYnptA4qU=",
+        "owner": "nix-community",
+        "repo": "nixos-apple-silicon",
+        "rev": "3902c801519264191a7c3dfec8dd1f9faeb38fd5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-apple-silicon",
         "type": "github"
       }
     },
@@ -881,10 +917,12 @@
         "jaaj-rs": "jaaj-rs",
         "niri-flake": "niri-flake",
         "nix-on-droid": "nix-on-droid",
+        "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-unified": "nixos-unified",
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "sops-nix": "sops-nix",
+        "steam-asahi": "steam-asahi",
         "storm-backend": "storm-backend",
         "stylix": "stylix",
         "udiskr": "udiskr",
@@ -1052,6 +1090,26 @@
         "owner": "Mic92",
         "repo": "sops-nix",
         "type": "github"
+      }
+    },
+    "steam-asahi": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783716902,
+        "narHash": "sha256-OE530QAePHtlsT2qEbtmQCHe5UF4Kj3skORWtllQWUI=",
+        "ref": "refs/heads/main",
+        "rev": "386b0504d36986cf545e91aa38bde918f9c7b162",
+        "revCount": 18,
+        "type": "git",
+        "url": "https://codeberg.org/ooonea/steam-asahi"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/ooonea/steam-asahi"
       }
     },
     "storm-backend": {
