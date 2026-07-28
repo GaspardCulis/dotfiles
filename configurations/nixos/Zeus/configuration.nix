@@ -3,6 +3,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
+    ./hermes-agent.nix
     ./wireguard.nix
     ./storm.nix
   ];

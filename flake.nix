@@ -35,6 +35,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     storm-backend.url = "github:STORM-Gear/storm-backend";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
 
     # Desktop
     stylix = {
