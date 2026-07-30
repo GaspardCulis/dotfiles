@@ -8,6 +8,7 @@ in {
     self.nixosModules.server
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
+    inputs.hermes-agent.nixosModules.default
     ./configuration.nix
   ];
 }
