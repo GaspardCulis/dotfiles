@@ -70,6 +70,7 @@ in {
         DB_PORT = "5432";
         DB_DATABASE = "storm";
         PUBLIC_URL = "https://${directusDomain}";
+        WEBSOCKETS_ENABLED = "true";
       };
       environmentFiles = [
         config.sops.secrets."storm/directus-env".path
