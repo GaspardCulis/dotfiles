@@ -10,6 +10,19 @@ in {
 
   networking.hostName = "Zeus";
 
+  networking.interfaces.ens3.ipv6 = {
+    addresses = [
+      {
+        address = "2001:41d0:305:2100::74f6";
+        prefixLength = 64;
+      }
+    ];
+  };
+  networking.defaultGateway6 = {
+    address = "2001:41d0:305:2100::1";
+    interface = "ens3";
+  };
+
   # Firewall
   networking.nftables.enable = true;
   networking.firewall.enable = true;
