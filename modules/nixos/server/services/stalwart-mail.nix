@@ -128,7 +128,7 @@ in {
           sign = [
             {
               "if" = "listener != 'smtp'";
-              "then" = ["ed25519-gasdev.fr"];
+              "then" = "['ed25519-gasdev.fr']";
             }
             {"else" = false;}
           ];
