@@ -122,15 +122,41 @@ in {
           mechanisms = "[plain, login]";
         };
         directory."imap".lookup.domains = ["${domain}"];
+
         auth.dkim = {
+          verify = "relaxed";
           sign = [
             {
               "if" = "listener != 'smtp'";
-              "then" = "['rsa', 'ed25519']";
+              "then" = ["ed25519-gasdev.fr"];
             }
             {"else" = false;}
           ];
         };
+        auth.spf.verify = {
+          ehlo = [
+            {
+              "if" = "listener = 'smtp'";
+              "then" = "relaxed";
+            }
+            {"else" = "disable";}
+          ];
+          "mail-from" = [
+            {
+              "if" = "listener = 'smtp'";
+              "then" = "relaxed";
+            }
+            {"else" = "disable";}
+          ];
+        };
+        auth.dmarc.verify = [
+          {
+            "if" = "listener = 'smtp'";
+            "then" = "relaxed";
+          }
+          {"else" = "disable";}
+        ];
+
         signatures = {
           "ed25519-gasdev.fr" = {
             private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".path}}%";
