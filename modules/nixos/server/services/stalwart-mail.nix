@@ -132,17 +132,6 @@ in {
           ];
         };
         signatures = {
-          "rsa-gasdev.fr" = {
-            private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_RSA".path}}%";
-            domain = "${domain}";
-            selector = "202411r";
-            headers = ["From" "To" "Cc" "Date" "Subject" "Message-ID" "Organization" "MIME-Version" "Content-Type" "In-Reply-To" "References" "List-Id" "User-Agent" "Thread-Topic" "Thread-Index"];
-            algorithm = "rsa-sha256";
-            canonicalization = "relaxed/relaxed";
-            expire = "10d";
-            set-body-length = false;
-            report = true;
-          };
           "ed25519-gasdev.fr" = {
             private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".path}}%";
             domain = "${domain}";
@@ -152,7 +141,7 @@ in {
             canonicalization = "relaxed/relaxed";
             expire = "10d";
             set-body-length = false;
-            report = false;
+            report = true;
           };
         };
         storage = {
