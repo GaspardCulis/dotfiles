@@ -135,7 +135,7 @@ in {
           rsa = {
             private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_RSA".path}}%";
             domain = "${domain}";
-            selector = "rsa-default";
+            selector = "202411r";
             headers = ["From" "To" "Cc" "Date" "Subject" "Message-ID" "Organization" "MIME-Version" "Content-Type" "In-Reply-To" "References" "List-Id" "User-Agent" "Thread-Topic" "Thread-Index"];
             algorithm = "rsa-sha256";
             canonicalization = "relaxed/relaxed";
@@ -146,7 +146,7 @@ in {
           ed25519 = {
             private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".path}}%";
             domain = "${domain}";
-            selector = "ed-default";
+            selector = "202411e";
             headers = ["From" "To" "Cc" "Date" "Subject" "Message-ID" "Organization" "MIME-Version" "Content-Type" "In-Reply-To" "References" "List-Id" "User-Agent" "Thread-Topic" "Thread-Index"];
             algorithm = "ed25519-sha256";
             canonicalization = "relaxed/relaxed";
