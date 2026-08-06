@@ -132,7 +132,7 @@ in {
           ];
         };
         signatures = {
-          rsa = {
+          "rsa-gasdev.fr" = {
             private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_RSA".path}}%";
             domain = "${domain}";
             selector = "202411r";
@@ -143,7 +143,7 @@ in {
             set-body-length = false;
             report = true;
           };
-          ed25519 = {
+          "ed25519-gasdev.fr" = {
             private-key = "%{file:${config.sops.secrets."stalwart-mail/SIGNATURE_KEY_ED25519".path}}%";
             domain = "${domain}";
             selector = "202411e";
