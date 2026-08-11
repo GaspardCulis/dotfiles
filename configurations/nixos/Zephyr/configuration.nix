@@ -85,23 +85,17 @@
     enable = true;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
-    fonts = {
-      sizes.terminal = 10;
-
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+    fonts = let
+      font = {
+        package = pkgs.monocraft;
+        name = "Monocraft";
       };
+    in {
+      sizes.terminal = 12;
 
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-
-      monospace = {
-        package = pkgs.nerd-fonts.fira-code;
-        name = "FiraCode Nerd Font";
-      };
+      serif = font;
+      sansSerif = font;
+      monospace = font;
 
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
