@@ -71,6 +71,7 @@ in {
           style = "Islands";
           scale_factor = cfg.scale;
 
+          font_name = config.stylix.fonts.monospace.name;
           # Let stylix handle the rest
         };
       };
