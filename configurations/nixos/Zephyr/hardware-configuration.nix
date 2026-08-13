@@ -52,6 +52,7 @@
 
   # Network & Bluetooth
   networking.networkmanager.enable = true;
+  networking.wireless.iwd.enable = true;
   networking.firewall.checkReversePath = "loose"; # For wireguard
 
   hardware.bluetooth.enable = true;
