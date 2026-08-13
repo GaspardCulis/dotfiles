@@ -68,7 +68,7 @@ in {
         };
 
         appearance = {
-          style = "Islands";
+          style = "Solid";
           scale_factor = cfg.scale;
 
           font_name = config.stylix.fonts.monospace.name;
