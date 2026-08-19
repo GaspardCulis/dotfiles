@@ -184,6 +184,7 @@ in {
             };
             a = ["ensure_selections_forward" "collapse_selection" "move_char_right" "insert_mode"];
             A-R = [":clipboard-paste-replace"];
+            C-S-r = [":reload-all"];
           };
         };
       };
