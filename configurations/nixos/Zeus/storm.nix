@@ -4,10 +4,6 @@
   group = "storm-gear";
   stateDir = "/var/lib/storm-gear";
 in {
-  imports = [
-    inputs.storm-backend.nixosModules.default
-  ];
-
   users.groups.${group} = {};
   systemd.tmpfiles.rules = [
     "d ${stateDir} 0750 root ${group} -"
