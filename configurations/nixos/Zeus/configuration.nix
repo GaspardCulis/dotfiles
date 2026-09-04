@@ -71,6 +71,7 @@ in {
       # matchbox.enable = true;
       nakama.enable = true;
       outline.enable = true;
+      papra.enable = true;
       tandoor.enable = true;
       # turn-rs = {
       #   enable = true;
