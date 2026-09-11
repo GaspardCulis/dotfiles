@@ -66,6 +66,7 @@ in {
           bluetooth_more_cmd = "blueman-manager";
         };
 
+        animations.enabled = true;
         appearance = {
           bar.surface = "solid";
           scale_factor = cfg.scale;
