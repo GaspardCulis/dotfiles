@@ -31,7 +31,6 @@ in {
       settings = {
         region = "fr-FR";
 
-        log_level = "warn";
         outputs = "All";
         position = "Top";
         layer = "Top";
@@ -43,7 +42,7 @@ in {
         };
 
         workspaces.enable_workspace_filling = true;
-        media_player.max_title_length = 50;
+        media_player.max_text_length = 50;
 
         notifications = {
           show_timestamps = true;
