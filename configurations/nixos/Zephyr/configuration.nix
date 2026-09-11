@@ -87,8 +87,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
     fonts = let
       font = {
-        package = pkgs.monocraft;
-        name = "Monocraft";
+        package = pkgs.nerd-fonts.fira-code;
+        name = "FiraCode Nerd Font";
       };
     in {
       sizes.terminal = 12;
