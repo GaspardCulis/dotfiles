@@ -23,7 +23,7 @@ in {
       terminal = mkOption {
         description = "Default terminal emulator app";
         type = types.enum ["alacritty" "rio"];
-        default = "alacritty";
+        default = "rio";
       };
       browser = mkOption {
         description = "Default web browser app";
