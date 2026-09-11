@@ -50,7 +50,7 @@ in {
           show_bodies = true;
           grouped = true;
           toast = true;
-          toast_position = "bottom_right";
+          toast_position = "BottomRight";
         };
 
         osd = {
@@ -68,7 +68,7 @@ in {
         };
 
         appearance = {
-          style = "Solid";
+          bar.surface = "solid";
           scale_factor = cfg.scale;
 
           font_name = config.stylix.fonts.monospace.name;
