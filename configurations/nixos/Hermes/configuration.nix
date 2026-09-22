@@ -39,6 +39,13 @@
     users.gaspard = {
       enable = true;
       desktop.enable = true;
+      extraGroups = [
+        "uucp"
+        "audio"
+        "dialout"
+        "adbusers"
+        "networkmanager"
+      ];
 
       extraModules = [
         {
@@ -55,6 +62,12 @@
   users.users.emma = {
     isNormalUser = true;
     group = "users";
+    extraGroups = [
+      "uucp"
+      "audio"
+      "dialout"
+      "networkmanager"
+    ];
   };
   home-manager.users."emma" = {
     imports = [
