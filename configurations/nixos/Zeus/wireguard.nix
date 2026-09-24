@@ -37,7 +37,7 @@
           allowedIPs = ["10.8.0.69/32"];
         }
         {
-          # Zephyrus
+          # Zephyr
           publicKey = "42Vj5VG4bJpOUE7j5UW28IFSmPlV+X3tIA9ne55W0Fo=";
           allowedIPs = ["10.8.0.42/32"];
         }
@@ -45,6 +45,11 @@
           # pi4
           publicKey = "F9AkCI0FGkrFhCq+SvCT1F2RG2ApNUy+SeIj1+VPtXI=";
           allowedIPs = ["10.8.0.31/32"];
+        }
+        {
+          # Hermes
+          publicKey = "a8Ogz+S9yZI84udgiQQLrRCRUFSEuDoHcOFvrKPyLgs=";
+          allowedIPs = ["10.8.0.4/32"];
         }
       ];
     };
