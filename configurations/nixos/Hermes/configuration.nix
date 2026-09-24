@@ -89,6 +89,8 @@
     cachix
     helix
     wget
+
+    wg-netmanager
   ];
 
   # Programs
