@@ -31,6 +31,9 @@ in {
     services.caddy.virtualHosts."${domain}".extraConfig = ''
       reverse_proxy /.well-known/matrix/* http://127.0.0.1:${toString cfg.port}
     '';
+    services.caddy.virtualHosts."${domain}:8448 ${cfg.domain}:8448".extraConfig = ''
+      reverse_proxy http://127.0.0.1:${toString cfg.port}
+    '';
 
     networking.firewall.allowedTCPPorts = [8448];
 
