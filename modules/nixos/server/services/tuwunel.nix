@@ -29,6 +29,8 @@ in {
       reverse_proxy http://127.0.0.1:${toString cfg.port}
     '';
 
+    networking.firewall.allowedTCPPorts = [8448];
+
     services.matrix-tuwunel = {
       enable = true;
       settings.global = {
