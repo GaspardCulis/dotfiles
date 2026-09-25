@@ -45,7 +45,7 @@ in {
         displayName = "Authelia";
         clientId = "outline";
         clientSecretFile = config.sops.secrets."outline/OIDC_CLIENT_SECRET".path;
-        scopes = ["openid" "offline_access" "profile" "email"];
+        scopes = ["openid" "profile" "email"];
       };
 
       smtp = {
@@ -78,7 +78,7 @@ in {
         require_pkce = false;
         pkce_challenge_method = "";
         redirect_uris = ["https://${cfg.domain}/auth/oidc.callback"];
-        scopes = ["openid" "offline_access" "profile" "email"];
+        scopes = ["openid" "profile" "email"];
         response_types = ["code"];
         grant_types = ["authorization_code" "refresh_token"];
         access_token_signed_response_alg = "none";
