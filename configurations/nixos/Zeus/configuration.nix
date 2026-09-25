@@ -73,6 +73,7 @@ in {
       outline.enable = true;
       papra.enable = true;
       tandoor.enable = true;
+      tuwunel.enable = true;
       # turn-rs = {
       #   enable = true;
       #   interface = "51.75.250.6";
