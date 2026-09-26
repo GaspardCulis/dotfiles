@@ -136,10 +136,7 @@
     };
   };
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
     discover
-    konsole
-    kate
   ];
 
   stylix = {
