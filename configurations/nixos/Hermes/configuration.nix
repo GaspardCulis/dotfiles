@@ -138,6 +138,8 @@
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     discover
   ];
+  # wireplumber shutdown hang
+  systemd.user.services.wireplumber.serviceConfig.TimeoutStopSec = 3;
 
   stylix = {
     enable = true;
