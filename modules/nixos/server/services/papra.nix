@@ -57,6 +57,7 @@ in {
 
         AUTH_IS_REGISTRATION_ENABLED = false;
         AUTH_IS_PASSWORD_RESET_ENABLED = false;
+        AUTH_PROVIDERS_EMAIL_IS_ENABLED = false;
       };
       environmentFile = config.sops.templates."papra.env".path;
     };
