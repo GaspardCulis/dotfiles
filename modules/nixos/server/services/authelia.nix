@@ -26,6 +26,11 @@ in {
       description = "OIDC Clients";
       default = [];
     };
+    claims_policies = mkOption {
+      type = lib.types.attrs;
+      description = "Claim policies";
+      default = {};
+    };
   };
 
   config = mkIf cfg.enable {
@@ -97,7 +102,7 @@ in {
 
       identity_providers = {
         oidc = {
-          clients = cfg.clients;
+          inherit (cfg) clients claims_policies;
         };
       };
 
