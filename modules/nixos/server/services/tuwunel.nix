@@ -73,6 +73,7 @@ in {
         client_id = "tuwunel";
         client_name = "Tuwunel";
         client_secret = "$pbkdf2-sha512$310000$rVfwgsxX.UWbb8s2GRQRyg$/FNYtcQTpXi3pqxf0TsoYz4IjZp9XEL.t2OwcXQ.oit9z1LqH/pVItbmg39gJ61H4Jw7lo0fgq9ukFP14jDWgQ";
+        claims_policy = "tuwunel";
         public = false;
         authorization_policy = "one_factor";
         redirect_uris = ["https://${cfg.domain}/_matrix/client/unstable/login/sso/callback/tuwunel"];
@@ -86,5 +87,8 @@ in {
         pre_configured_consent_duration = "1 month";
       }
     ];
+    gasdev.services.auth.claims_policies.tuwunel = {
+      id_token = ["email" "name" "groups" "preferred_username"];
+    };
   };
 }
