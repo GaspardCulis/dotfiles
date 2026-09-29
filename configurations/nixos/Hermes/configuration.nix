@@ -25,7 +25,7 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
 
-  time.timeZone = "Europe/Paris";
+  time.timeZone = pkgs.lib.mkForce "Australia/Adelaide";
 
   console.keyMap = "fr";
   services.xserver.xkb.layout = "fr";
