@@ -1,117 +1,116 @@
 {
   config,
   pkgs,
-}: let
+}:
+with config.lib.niri.actions; let
   apps = config.gasdev.desktop.apps;
   cfg = config.gasdev.desktop.niri;
 
-  ashell = pkgs.lib.getExe config.gasdev.desktop.ashell.package;
-  uwu-launcher = ../../../../bin/hypr/uwu-launcher;
-  swaylock = ../../../../bin/hypr/swaylock-hyprland;
+  left = "H";
+  down = "J";
+  up = "K";
+  right = "L";
 
-  gamemode = ../../../../bin/hypr/gamemode.sh;
-  togglescreen = ../../../../bin/hypr/togglescreen;
-  power-profile-next = "${../../../../config/eww/scripts/power_profile} next";
-  refresh-rate-toggle = "${../../../../config/eww/scripts/refresh_rate} toggle";
+  sh = spawn "sh" "-c";
 in {
   prefer-no-csd = true;
 
-  binds = with config.lib.niri.actions; let
-    left = "H";
-    down = "J";
-    up = "K";
-    right = "L";
+  binds =
+    {
+      "Mod+Q".action = close-window;
+      "Mod+Shift+Q".action = quit;
 
-    sh = spawn "sh" "-c";
-  in {
-    "Mod+Q".action = close-window;
-    "Mod+Shift+Q".action = quit;
+      "Mod+Return" = {
+        hotkey-overlay.title = "Spawn terminal emulator";
+        action.spawn = "${apps.terminal}";
+        repeat = false;
+      };
+      "Mod+B" = {
+        hotkey-overlay.title = "Spawn Web browser";
+        action.spawn = "${apps.browser}";
+        repeat = false;
+      };
+      "Mod+N" = {
+        hotkey-overlay.title = "Spawn file explorer";
+        action.spawn = "${apps.explorer}";
+        repeat = false;
+      };
+      "Mod+R" = {
+        hotkey-overlay.title = "Spawn quick launcher";
+        action.spawn = "${apps.launcher}";
+        repeat = false;
+      };
 
-    "Mod+Return" = {
-      hotkey-overlay.title = "Spawn terminal emulator";
-      action.spawn = "${apps.terminal}";
-      repeat = false;
-    };
-    "Mod+B" = {
-      hotkey-overlay.title = "Spawn Web browser";
-      action.spawn = "${apps.browser}";
-      repeat = false;
-    };
-    "Mod+N" = {
-      hotkey-overlay.title = "Spawn file explorer";
-      action.spawn = "${apps.explorer}";
-      repeat = false;
-    };
-    "Mod+R" = {
-      hotkey-overlay.title = "Spawn quick launcher";
-      action.spawn = "${apps.launcher}";
-      repeat = false;
-    };
+      "Mod+F6".action.screenshot = {
+        show-pointer = true;
+      };
+      "Mod+DOLLAR".action = sh "niri msg pick-color | grep -oP 'Hex: \\K#\\w+' | tr -d '\\n' | wl-copy";
 
-    "Mod+F6".action.screenshot = {
-      show-pointer = true;
-    };
-    "Mod+DOLLAR".action = sh "niri msg pick-color | grep -oP 'Hex: \\K#\\w+' | tr -d '\\n' | wl-copy";
+      "Mod+S".action = switch-preset-column-width;
+      "Mod+Shift+S".action = switch-preset-column-width-back;
+      "Mod+F".action = maximize-column;
+      "Mod+Shift+F".action = fullscreen-window;
+      "Mod+Shift+Space".action = toggle-window-floating;
 
-    "XF86AudioMute".action = spawn ashell "msg" "volume-toggle-mute";
-    "XF86AudioMicMute".action = spawn ashell "msg" "microphone-toggle-mute";
-    "XF86AudioLowerVolume".action = spawn ashell "msg" "volume-down";
-    "XF86AudioRaiseVolume".action = spawn ashell "msg" "volume-up";
-    "XF86MonBrightnessDown".action = spawn ashell "msg" "brightness-down";
-    "XF86MonBrightnessUp".action = spawn ashell "msg" "brightness-up";
+      "Mod+E".action = toggle-column-tabbed-display;
 
-    "Mod+S".action = switch-preset-column-width;
-    "Mod+Shift+S".action = switch-preset-column-width-back;
-    "Mod+F".action = maximize-column;
-    "Mod+Shift+F".action = fullscreen-window;
-    "Mod+Shift+Space".action = toggle-window-floating;
+      "Mod+M".action = focus-monitor-next;
+      "Mod+Shift+M".action = move-column-to-monitor-next;
+      "Mod+Ctrl+Shift+M".action = move-workspace-to-monitor-next;
 
-    "Mod+E".action = toggle-column-tabbed-display;
+      "Mod+${left}".action = focus-column-left;
+      "Mod+${down}".action = focus-window-or-workspace-down;
+      "Mod+${up}".action = focus-window-or-workspace-up;
+      "Mod+${right}".action = focus-column-right;
 
-    "Mod+M".action = focus-monitor-next;
-    "Mod+Shift+M".action = move-column-to-monitor-next;
-    "Mod+Ctrl+Shift+M".action = move-workspace-to-monitor-next;
+      "Mod+Shift+${left}".action = consume-or-expel-window-left;
+      "Mod+Shift+${down}".action = move-window-down-or-to-workspace-down;
+      "Mod+Shift+${up}".action = move-window-up-or-to-workspace-up;
+      "Mod+Shift+${right}".action = consume-or-expel-window-right;
 
-    "Mod+${left}".action = focus-column-left;
-    "Mod+${down}".action = focus-window-or-workspace-down;
-    "Mod+${up}".action = focus-window-or-workspace-up;
-    "Mod+${right}".action = focus-column-right;
+      "Mod+WheelScrollUp".action = focus-column-right;
+      "Mod+WheelScrollDown".action = focus-column-left;
+      "Mod+Shift+WheelScrollUp".action = move-column-right;
+      "Mod+Shift+WheelScrollDown".action = move-column-left;
 
-    "Mod+Shift+${left}".action = consume-or-expel-window-left;
-    "Mod+Shift+${down}".action = move-window-down-or-to-workspace-down;
-    "Mod+Shift+${up}".action = move-window-up-or-to-workspace-up;
-    "Mod+Shift+${right}".action = consume-or-expel-window-right;
+      "Mod+ampersand".action.focus-workspace = 1;
+      "Mod+eacute".action.focus-workspace = 2;
+      "Mod+quotedbl".action.focus-workspace = 3;
+      "Mod+apostrophe".action.focus-workspace = 4;
+      "Mod+parenleft".action.focus-workspace = 5;
+      "Mod+minus".action.focus-workspace = 6;
+      "Mod+egrave".action.focus-workspace = 7;
+      "Mod+underscore".action.focus-workspace = 8;
+      "Mod+ccedilla".action.focus-workspace = 9;
+      "Mod+agrave".action.focus-workspace = 10;
 
-    "Mod+WheelScrollUp".action = focus-column-right;
-    "Mod+WheelScrollDown".action = focus-column-left;
-    "Mod+Shift+WheelScrollUp".action = move-column-right;
-    "Mod+Shift+WheelScrollDown".action = move-column-left;
+      "Mod+Shift+ampersand".action.move-column-to-workspace = 1;
+      "Mod+Shift+eacute".action.move-column-to-workspace = 2;
+      "Mod+Shift+quotedbl".action.move-column-to-workspace = 3;
+      "Mod+Shift+apostrophe".action.move-column-to-workspace = 4;
+      "Mod+Shift+parenleft".action.move-column-to-workspace = 5;
+      "Mod+Shift+minus".action.move-column-to-workspace = 6;
+      "Mod+Shift+egrave".action.move-column-to-workspace = 7;
+      "Mod+Shift+underscore".action.move-column-to-workspace = 8;
+      "Mod+Shift+ccedilla".action.move-column-to-workspace = 9;
+      "Mod+Shift+agrave".action.move-column-to-workspace = 10;
 
-    "Mod+ampersand".action.focus-workspace = 1;
-    "Mod+eacute".action.focus-workspace = 2;
-    "Mod+quotedbl".action.focus-workspace = 3;
-    "Mod+apostrophe".action.focus-workspace = 4;
-    "Mod+parenleft".action.focus-workspace = 5;
-    "Mod+minus".action.focus-workspace = 6;
-    "Mod+egrave".action.focus-workspace = 7;
-    "Mod+underscore".action.focus-workspace = 8;
-    "Mod+ccedilla".action.focus-workspace = 9;
-    "Mod+agrave".action.focus-workspace = 10;
-
-    "Mod+Shift+ampersand".action.move-column-to-workspace = 1;
-    "Mod+Shift+eacute".action.move-column-to-workspace = 2;
-    "Mod+Shift+quotedbl".action.move-column-to-workspace = 3;
-    "Mod+Shift+apostrophe".action.move-column-to-workspace = 4;
-    "Mod+Shift+parenleft".action.move-column-to-workspace = 5;
-    "Mod+Shift+minus".action.move-column-to-workspace = 6;
-    "Mod+Shift+egrave".action.move-column-to-workspace = 7;
-    "Mod+Shift+underscore".action.move-column-to-workspace = 8;
-    "Mod+Shift+ccedilla".action.move-column-to-workspace = 9;
-    "Mod+Shift+agrave".action.move-column-to-workspace = 10;
-
-    "Mod+O".action = toggle-overview;
-    "Mod+Shift+comma".action = show-hotkey-overlay;
-  };
+      "Mod+O".action = toggle-overview;
+      "Mod+Shift+comma".action = show-hotkey-overlay;
+    }
+    // (
+      let
+        ashell = pkgs.lib.getExe config.gasdev.desktop.ashell.package;
+      in
+        pkgs.lib.optionalAttrs config.gasdev.desktop.ashell.enable {
+          "XF86AudioMute".action = spawn ashell "msg" "volume-toggle-mute";
+          "XF86AudioMicMute".action = spawn ashell "msg" "microphone-toggle-mute";
+          "XF86AudioLowerVolume".action = spawn ashell "msg" "volume-down";
+          "XF86AudioRaiseVolume".action = spawn ashell "msg" "volume-up";
+          "XF86MonBrightnessDown".action = spawn ashell "msg" "brightness-down";
+          "XF86MonBrightnessUp".action = spawn ashell "msg" "brightness-up";
+        }
+    );
 
   environment = {
     GDK_BACKEND = "wayland,x11";
