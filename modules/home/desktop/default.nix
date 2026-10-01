@@ -9,11 +9,12 @@ with lib; let
 in {
   imports = [
     ./apps
+    ./ashell.nix
     ./eww
     ./hypr
     ./misc
     ./niri
-    ./ashell.nix
+    ./noctalia.nix
   ];
 
   options.gasdev.desktop = {
@@ -35,10 +36,10 @@ in {
         type = types.enum ["cosmic-files" "nautilus"];
         default = "nautilus";
       };
-      launcher = mkOption {
+      # Temp test to try out the other way (let launchers declare themselves)
+      launcherCmd = mkOption {
         description = "Default quick launcher app";
-        type = types.enum ["anyrun"];
-        default = "anyrun";
+        type = types.oneOf [types.nonEmptyStr (types.listOf types.nonEmptyStr)];
       };
     };
     applets = {
@@ -52,11 +53,6 @@ in {
 
   config = mkIf cfg.enable {
     gasdev.desktop = {
-      anyrun = mkIf (cfg.apps.launcher == "anyrun") {
-        enable = true;
-        daemon = true;
-      };
-
       apps = {
         alacritty.enable = cfg.apps.terminal == "alacritty";
         rio.enable = cfg.apps.terminal == "rio";

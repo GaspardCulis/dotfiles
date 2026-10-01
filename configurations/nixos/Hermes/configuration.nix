@@ -52,7 +52,7 @@
           gasdev = {
             shell.helix.lspProfile = "bloated";
             shell.helix.wakatime = true;
-            desktop.ashell.scale = 1.2;
+            desktop.noctalia.scale = 1.2;
           };
         }
       ];

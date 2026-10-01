@@ -1,13 +1,12 @@
 {
   flake,
   config,
-  pkgs,
   lib,
   ...
 }:
 with lib; let
   inherit (flake) inputs;
-  cfg = config.gasdev.desktop.ashell;
+  cfg = config.gasdev.desktop.noctalia;
 in {
   imports = [
     inputs.noctalia.homeModules.default
@@ -23,8 +22,29 @@ in {
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !config.gasdev.desktop.ashell.enable;
+        message = "ashell conflicts with noctalia";
+      }
+      {
+        assertion = !config.gasdev.desktop.awww.enable;
+        message = "awww conflicts with noctalia";
+      }
+      {
+        assertion = !config.gasdev.desktop.anyrun.enable;
+        message = "anyrun conflicts with noctalia";
+      }
+    ];
+
+    gasdev.desktop.apps.launcherCmd = ["noctalia" "msg" "panel-toggle" "launcher"];
+
     programs.noctalia = {
       enable = true;
+
+      settings = {
+        shell.ui_scale = cfg.scale;
+      };
     };
   };
 }

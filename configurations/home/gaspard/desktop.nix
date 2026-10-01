@@ -21,8 +21,7 @@ in {
         xwayland.enable = true;
       };
 
-      ashell.enable = true;
-      awww.enable = true;
+      noctalia.enable = true;
       activate-linux.enable = true;
 
       apps = {

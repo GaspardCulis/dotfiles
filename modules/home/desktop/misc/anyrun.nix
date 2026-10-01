@@ -20,6 +20,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    gasdev.desktop.apps.launcherCmd = "anyrun";
+
     programs.anyrun = {
       enable = true;
       package = cfg.package;

@@ -12,6 +12,12 @@ with config.lib.niri.actions; let
   right = "L";
 
   sh = spawn "sh" "-c";
+
+  ashellEnabled = config.gasdev.desktop.ashell.enable;
+  ashell = pkgs.lib.getExe config.gasdev.desktop.ashell.package;
+
+  noctacliaEnabled = config.gasdev.desktop.noctalia.enable;
+  noctalia = "noctalia";
 in {
   prefer-no-csd = true;
 
@@ -37,7 +43,7 @@ in {
       };
       "Mod+R" = {
         hotkey-overlay.title = "Spawn quick launcher";
-        action.spawn = "${apps.launcher}";
+        action.spawn = apps.launcherCmd;
         repeat = false;
       };
 
@@ -98,19 +104,22 @@ in {
       "Mod+O".action = toggle-overview;
       "Mod+Shift+comma".action = show-hotkey-overlay;
     }
-    // (
-      let
-        ashell = pkgs.lib.getExe config.gasdev.desktop.ashell.package;
-      in
-        pkgs.lib.optionalAttrs config.gasdev.desktop.ashell.enable {
-          "XF86AudioMute".action = spawn ashell "msg" "volume-toggle-mute";
-          "XF86AudioMicMute".action = spawn ashell "msg" "microphone-toggle-mute";
-          "XF86AudioLowerVolume".action = spawn ashell "msg" "volume-down";
-          "XF86AudioRaiseVolume".action = spawn ashell "msg" "volume-up";
-          "XF86MonBrightnessDown".action = spawn ashell "msg" "brightness-down";
-          "XF86MonBrightnessUp".action = spawn ashell "msg" "brightness-up";
-        }
-    );
+    // pkgs.lib.optionalAttrs ashellEnabled {
+      "XF86AudioMute".action = spawn ashell "msg" "volume-toggle-mute";
+      "XF86AudioMicMute".action = spawn ashell "msg" "microphone-toggle-mute";
+      "XF86AudioLowerVolume".action = spawn ashell "msg" "volume-down";
+      "XF86AudioRaiseVolume".action = spawn ashell "msg" "volume-up";
+      "XF86MonBrightnessDown".action = spawn ashell "msg" "brightness-down";
+      "XF86MonBrightnessUp".action = spawn ashell "msg" "brightness-up";
+    }
+    // pkgs.lib.optionalAttrs noctacliaEnabled {
+      "XF86AudioMute".action = spawn noctalia "msg" "volume-mute";
+      "XF86AudioMicMute".action = spawn noctalia "msg" "mic-mute";
+      "XF86AudioLowerVolume".action = spawn noctalia "msg" "volume-down";
+      "XF86AudioRaiseVolume".action = spawn noctalia "msg" "volume-up";
+      "XF86MonBrightnessDown".action = spawn noctalia "msg" "brightness-down";
+      "XF86MonBrightnessUp".action = spawn noctalia "msg" "brightness-up";
+    };
 
   environment = {
     GDK_BACKEND = "wayland,x11";
@@ -160,13 +169,10 @@ in {
   };
 
   spawn-at-startup =
-    if cfg.xwayland.enable
-    then [
-      {
-        command = ["${pkgs.lib.getExe pkgs.xwayland-satellite}"];
-      }
-    ]
-    else [];
+    pkgs.lib.lists.optionals cfg.xwayland.enable
+    [{command = ["${pkgs.lib.getExe pkgs.xwayland-satellite}"];}]
+    ++ pkgs.lib.lists.optionals noctacliaEnabled
+    [{command = ["noctalia"];}];
 
   switch-events = {
     lid-close = {
@@ -195,6 +201,12 @@ in {
       ];
       open-fullscreen = true;
     }
+    (pkgs.lib.optionalAttrs noctacliaEnabled {
+      matches = [{app-id = "dev.noctalia.Noctalia";}];
+      open-floating = true;
+      default-column-width = {fixed = 1080;};
+      default-window-height = {fixed = 920;};
+    })
   ];
 
   workspaces = {
@@ -210,4 +222,15 @@ in {
   };
 
   hotkey-overlay.skip-at-startup = true;
+
+  layer-rules = [
+    (pkgs.lib.optionalAttrs noctacliaEnabled {
+      matches = [{namespace = "^noctalia-backdrop";}];
+      place-within-backdrop = true;
+    })
+  ];
+
+  debug = pkgs.lib.mkIf noctacliaEnabled {
+    honor-xdg-activation-with-invalid-serial = {};
+  };
 }
