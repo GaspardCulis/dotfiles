@@ -182,6 +182,16 @@ in {
 
   window-rules = [
     {
+      # Default
+      geometry-corner-radius = {
+        top-left = 12.0;
+        top-right = 12.0;
+        bottom-left = 12.0;
+        bottom-right = 12.0;
+      };
+      clip-to-geometry = true;
+    }
+    {
       # Chat
       matches = [
         {app-id = "WebCord";}
