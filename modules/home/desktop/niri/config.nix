@@ -18,6 +18,8 @@ with config.lib.niri.actions; let
 
   noctacliaEnabled = config.gasdev.desktop.noctalia.enable;
   noctalia = "noctalia";
+
+  playerctl = pkgs.lib.getExe pkgs.playerctl;
 in {
   prefer-no-csd = true;
 
@@ -103,6 +105,11 @@ in {
 
       "Mod+O".action = toggle-overview;
       "Mod+Shift+comma".action = show-hotkey-overlay;
+
+      "XF86AudioPlay".action = spawn playerctl "play";
+      "XF86AudioPause".action = spawn playerctl "pause";
+      "XF86AudioNext".action = spawn playerctl "next";
+      "XF86AudioPrev".action = spawn playerctl "previous";
     }
     // pkgs.lib.optionalAttrs ashellEnabled {
       "XF86AudioMute".action = spawn ashell "msg" "volume-toggle-mute";
