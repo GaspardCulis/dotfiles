@@ -106,8 +106,8 @@ in {
       "Mod+O".action = toggle-overview;
       "Mod+Shift+comma".action = show-hotkey-overlay;
 
-      "XF86AudioPlay".action = spawn playerctl "play";
-      "XF86AudioPause".action = spawn playerctl "pause";
+      "XF86AudioPlay".action = spawn playerctl "play-pause";
+      "XF86AudioPause".action = spawn playerctl "play-pause";
       "XF86AudioNext".action = spawn playerctl "next";
       "XF86AudioPrev".action = spawn playerctl "previous";
     }
