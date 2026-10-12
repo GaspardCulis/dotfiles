@@ -36,6 +36,8 @@ in {
           blinking-interval = 600;
         };
 
+        env-vars = ["TERM=xterm-256color"];
+
         bell = {
           visual = true;
           audio = false;
