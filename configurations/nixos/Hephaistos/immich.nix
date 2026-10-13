@@ -14,6 +14,10 @@ in {
     mediaLocation = "/mnt/immich";
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "immich-2.7.5"
+  ];
+
   # Video acceleration
   services.immich.accelerationDevices = null;
   hardware.graphics.enable = true;
