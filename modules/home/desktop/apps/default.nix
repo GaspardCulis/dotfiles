@@ -22,9 +22,9 @@ in {
       default = with pkgs; [
         imv
         qbittorrent
-        thunderbird
         element-desktop
-        libreoffice-fresh
+        libreoffice
+        obsidian
       ];
     };
     extraPackages = lib.mkOption {
@@ -35,5 +35,10 @@ in {
 
   config = mkIf config.gasdev.desktop.enable {
     home.packages = cfg.packages ++ cfg.extraPackages;
+
+    nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "obsidian"
+      ];
   };
 }
