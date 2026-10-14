@@ -1,6 +1,7 @@
 {
   flake,
   pkgs,
+  lib,
   ...
 }: let
   inherit (flake) inputs;
@@ -34,8 +35,6 @@ in {
       };
     };
   };
-
-  programs.obsidian.enable = true;
 
   stylix = {
     enable = true;
