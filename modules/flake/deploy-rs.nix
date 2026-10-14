@@ -1,5 +1,9 @@
 # Allow using this repo in `nix flake init`
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  ...
+}: let
   inherit (inputs) self;
 
   # Nixpkgs used by the target systems. Using stable
@@ -21,6 +25,11 @@
       })
     ];
   });
+
+  nodeSystem = {
+    Zeus = "x86_64-linux";
+    Hephaistos = "aarch64-linux";
+  };
 in {
   flake = {
     deploy.nodes = {
@@ -47,6 +56,13 @@ in {
       };
     };
 
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+    checks =
+      builtins.mapAttrs
+      (system: deployLib:
+        deployLib.deployChecks (self.deploy
+          // {
+            nodes = lib.filterAttrs (name: _: (nodeSystem.${name} or null) == system) self.deploy.nodes;
+          }))
+      deploy-rs.lib;
   };
 }
