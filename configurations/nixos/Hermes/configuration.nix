@@ -12,7 +12,14 @@ in {
   ];
 
   hardware.asahi.enable = true;
-  hardware.asahi.peripheralFirmwareDirectory = inputs.aea-tools.packages.aarch64-linux.default;
+  hardware.asahi.peripheralFirmwareDirectory =
+    pkgs.runCommand "asahi-vendorfw" {
+      nativeBuildInputs = [pkgs.asahi-fwextract];
+    } ''
+      mkdir -p $out
+      asahi-fwextract ${inputs.aea-tools.packages.aarch64-linux.default} $out
+    '';
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
