@@ -27,6 +27,10 @@
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    aea-tools = {
+      url = "github:GavBog/aea-tools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Server
     caddy.url = "github:GaspardCulis/nixos-caddy-ovh";

@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  flake,
+  pkgs,
+  ...
+}: let
+  inherit (flake) inputs;
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -6,6 +12,7 @@
   ];
 
   hardware.asahi.enable = true;
+  hardware.asahi.peripheralFirmwareDirectory = inputs.aea-tools.packages.aarch64-linux.default;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
