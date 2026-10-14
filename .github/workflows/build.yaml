@@ -6,12 +6,32 @@ on:
       - main
 
 jobs:
+  # Check if flake.lock has changed
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      deps: ${{ steps.filter.outputs.deps }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # required top compare with previous commit
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          base: ${{ github.event.before }}
+          filters: |
+            deps:
+              - 'flake.lock'
+              - '.github/workflows/build.yaml'
+
   build:
+    needs: changes
+    if: needs.changes.outputs.deps == 'true'
+
     strategy:
       fail-fast: false
       matrix:
         include:
-          # Adapte le runner à l'architecture réelle de chaque hôte
           - { host: Hephaistos, runner: ubuntu-26.04-arm }
           - { host: Hermes, runner: ubuntu-26.04-arm }
           - { host: Zephyr, runner: ubuntu-26.04 }
