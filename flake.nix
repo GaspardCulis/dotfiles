@@ -74,11 +74,6 @@
       url = "github:d-itu/udiskr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    steam-asahi = {
-      url = "git+https://codeberg.org/ooonea/steam-asahi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # Wired using https://nixos-unified.org/guide/autowiring
