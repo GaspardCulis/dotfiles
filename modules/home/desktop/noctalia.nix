@@ -19,6 +19,11 @@ in {
       type = lib.types.float;
       default = 1.0;
     };
+    wallpaper = lib.mkOption {
+      description = "Wallpaper path";
+      type = lib.types.either lib.types.path lib.types.str;
+      default = ../../../assets/ricks-toilets.jpg;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -44,6 +49,11 @@ in {
 
       settings = {
         shell.ui_scale = cfg.scale;
+
+        wallpaper = {
+          enabled = true;
+          default.path = cfg.wallpaper;
+        };
       };
     };
   };
