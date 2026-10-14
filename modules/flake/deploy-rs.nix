@@ -1,9 +1,11 @@
 # Allow using this repo in `nix flake init`
 {inputs, ...}: let
   inherit (inputs) self;
+
+  # Nixpkgs used by the target systems. Using stable
+  nixpkgs = inputs.nixpkgs-stable;
   # QOL alias
   deploy-rs = inputs.deploy-rs;
-
   # nixpkgs with deploy-rs overlay but force the nixpkgs package to avoid compilation
   deploy-rs-nixpkgs = system: let
     pkgs = import nixpkgs {inherit system;};
