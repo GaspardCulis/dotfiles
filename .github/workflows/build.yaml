@@ -12,6 +12,7 @@ jobs:
       matrix:
         include:
           # Adapte le runner à l'architecture réelle de chaque hôte
+          - { host: Hephaistos, runner: ubuntu-26.04-arm }
           - { host: Hermes, runner: ubuntu-26.04-arm }
           - { host: Zephyr, runner: ubuntu-26.04 }
           - { host: Zeus, runner: ubuntu-26.04 }
