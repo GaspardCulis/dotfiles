@@ -38,7 +38,7 @@
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
 
-    storm-gear.url = "github:STORM-Gear/nixos-config";
+    storm-gear.url = "github:STORM-Gear/nixos-config"; # CI cached on gasdev cachix
     hermes-agent.url = "github:NousResearch/hermes-agent";
 
     # Desktop
@@ -67,7 +67,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jaaj-rs.url = "git+https://git.ahur.ac/Jaaj-San/jaaj-rs";
+    jaaj-rs = {
+      url = "git+https://git.ahur.ac/Jaaj-San/jaaj-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wakatime-ls = {
       url = "github:mrnossiom/wakatime-ls";
