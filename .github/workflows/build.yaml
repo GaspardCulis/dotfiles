@@ -12,9 +12,9 @@ jobs:
       matrix:
         include:
           # Adapte le runner à l'architecture réelle de chaque hôte
-          - { host: Hermes, runner: ubuntu-26.04-arm, extraFlags: "--impure" }
-          - { host: Zephyr, runner: ubuntu-26.04, extraFlags: "" }
-          - { host: Zeus, runner: ubuntu-26.04, extraFlags: "" }
+          - { host: Hermes, runner: ubuntu-26.04-arm }
+          - { host: Zephyr, runner: ubuntu-26.04 }
+          - { host: Zeus, runner: ubuntu-26.04 }
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v7
@@ -33,5 +33,4 @@ jobs:
         run: |
           nix build \
             ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel" \
-            ${{ matrix.extraFlags }} \
             --no-link --print-out-paths
