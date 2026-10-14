@@ -35,6 +35,8 @@ in {
     };
   };
 
+  programs.obsidian.enable = true;
+
   stylix = {
     enable = true;
     icons = {
