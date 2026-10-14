@@ -22,13 +22,21 @@ in {
     Zeus = lib.mkForce (nixpkgs.lib.nixosSystem {
       specialArgs = {inherit flake;};
       system = "x86_64-linux";
-      modules = [hm-stable ../../configurations/nixos/Zeus];
+      modules = [
+        "${inputs.nixos-unified}/nix/modules/configurations"
+        hm-stable
+        ../../configurations/nixos/Zeus
+      ];
     });
 
     Hephaistos = lib.mkForce (nixpkgs.lib.nixosSystem {
       specialArgs = {inherit flake;};
       system = "aarch64-linux";
-      modules = [hm-stable ../../configurations/nixos/Hephaistos];
+      modules = [
+        "${inputs.nixos-unified}/nix/modules/configurations"
+        hm-stable
+        ../../configurations/nixos/Hephaistos
+      ];
     });
   };
 }
