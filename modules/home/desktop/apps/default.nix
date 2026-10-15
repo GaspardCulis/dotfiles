@@ -20,10 +20,11 @@ in {
     packages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = with pkgs; [
-        imv
-        qbittorrent
-        element-desktop
+        vlc
+        loupe
+        sable
         libreoffice
+        qbittorrent
       ];
     };
     extraPackages = lib.mkOption {
