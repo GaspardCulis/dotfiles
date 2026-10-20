@@ -82,7 +82,6 @@ in {
       umami.enable = true;
       uptime-kuma.enable = true;
       vaultwarden.enable = true;
-      vikunja.enable = true;
       wakapi.enable = true;
       wg-easy = {
         enable = true;
