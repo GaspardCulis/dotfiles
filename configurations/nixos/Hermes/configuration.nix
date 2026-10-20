@@ -131,6 +131,7 @@ in {
           path = pkgs.bibata-cursors;
         };
       };
+      passwordless-sync-users = ["gaspard"];
     };
     desktopManager.plasma6.enable = true;
 
