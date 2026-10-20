@@ -8,6 +8,7 @@ in {
     inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
     inputs.stylix.nixosModules.stylix
     inputs.niri-flake.nixosModules.niri
+    inputs.noctalia-greeter.nixosModules.default
     ./configuration.nix
   ];
 

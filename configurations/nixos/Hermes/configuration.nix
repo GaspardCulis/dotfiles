@@ -122,8 +122,16 @@ in {
   # Services
   services = {
     accounts-daemon.enable = true;
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
+    displayManager.noctalia-greeter = {
+      enable = true;
+      settings = {
+        cursor = {
+          theme = "Bibata-Modern-Classic";
+          size = 24;
+          path = pkgs.bibata-cursors;
+        };
+      };
+    };
     desktopManager.plasma6.enable = true;
 
     flatpak.enable = true;
