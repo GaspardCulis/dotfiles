@@ -131,6 +131,7 @@ in {
           path = pkgs.bibata-cursors;
 
           appearance.hide_logo = true;
+          clock.position = "bottom-left";
         };
       };
       passwordless-sync-users = ["gaspard"];
