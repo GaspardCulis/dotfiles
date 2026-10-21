@@ -129,6 +129,8 @@ in {
           theme = "Bibata-Modern-Classic";
           size = 24;
           path = pkgs.bibata-cursors;
+
+          appearance.hide_logo = true;
         };
       };
       passwordless-sync-users = ["gaspard"];
