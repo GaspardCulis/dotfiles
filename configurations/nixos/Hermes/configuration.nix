@@ -129,10 +129,10 @@ in {
           theme = "Bibata-Modern-Classic";
           size = 24;
           path = pkgs.bibata-cursors;
-
-          appearance.hide_logo = true;
-          clock.position = "bottom-left";
         };
+
+        appearance.hide_logo = true;
+        clock.position = "bottom-left";
       };
       passwordless-sync-users = ["gaspard"];
     };
