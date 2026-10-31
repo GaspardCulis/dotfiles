@@ -61,7 +61,7 @@ in {
 
         home.packages = with pkgs; [
           gimp
-          libreoffice
+          # libreoffice
         ];
 
         gasdev.desktop.apps = {
