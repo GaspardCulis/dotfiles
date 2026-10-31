@@ -23,7 +23,12 @@ in {
         vlc
         loupe
         sable
-        libreoffice
+
+        libreoffice-qt
+        hunspell
+        hunspellDicts.fr_FR
+        hunspellDicts.en_US
+
         qbittorrent
       ];
     };

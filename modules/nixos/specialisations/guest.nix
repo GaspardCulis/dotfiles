@@ -61,7 +61,7 @@ in {
 
         home.packages = with pkgs; [
           gimp
-          libreoffice-fresh
+          libreoffice-qt
         ];
 
         gasdev.desktop.apps = {
