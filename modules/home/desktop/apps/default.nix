@@ -24,10 +24,7 @@ in {
         loupe
         sable
 
-        libreoffice-qt
-        hunspell
-        hunspellDicts.fr_FR
-        hunspellDicts.en_US
+        libreoffice
 
         qbittorrent
       ];
