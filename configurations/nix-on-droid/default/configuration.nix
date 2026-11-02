@@ -55,8 +55,6 @@ in {
   home-manager = {
     config = ./home.nix;
     backupFileExtension = "hm-bak";
-    useGlobalPkgs = true;
-    useUserPackages = true;
     extraSpecialArgs = {inherit flake;};
     sharedModules = [
       inputs.stylix.homeModules.default
