@@ -1,4 +1,4 @@
-name: "Nix on droid check"
+name: "Nix on droid"
 
 on:
   push:
