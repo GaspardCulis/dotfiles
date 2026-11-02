@@ -11,8 +11,14 @@ in {
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    substituters = ["https://gasdev.cachix.org"];
-    trustedPublicKeys = ["gasdev.cachix.org-1:eBesrrBJpsMZ33OmvG4aKvfdyVkDa2OKCJ2o80IMJfE="];
+    substituters = [
+      "https://gasdev.cachix.org"
+      "https://nix-on-droid.cachix.org"
+    ];
+    trustedPublicKeys = [
+      "gasdev.cachix.org-1:eBesrrBJpsMZ33OmvG4aKvfdyVkDa2OKCJ2o80IMJfE="
+      "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU="
+    ];
 
     nixPath = [
       "nixpkgs=${nixpkgs}"

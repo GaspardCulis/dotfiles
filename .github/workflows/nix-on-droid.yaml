@@ -15,4 +15,8 @@ jobs:
         with:
           name: gasdev
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: nix build --impure --no-link --print-build-logs .#nixOnDroidConfigurations.default.activationPackage
+      - run: |
+          nix build --impure --no-link --print-build-logs \
+            --option extra-substituters https://nix-on-droid.cachix.org \
+            --option extra-trusted-public-keys "nix-on-droid.cachix.org-1:56snoMJTXmDRC1Ei24CmKoUqvHJ9XCp+nidK7qkMQrU=" \
+            .#nixOnDroidConfigurations.default.activationPackage
