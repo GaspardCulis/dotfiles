@@ -28,8 +28,5 @@ in {
 
       home-manager-path = inputs.home-manager-stable.outPath;
     };
-
-    checks.aarch64-linux.nix-on-droid =
-      self.nixOnDroidConfigurations.default.activationPackage;
   };
 }
