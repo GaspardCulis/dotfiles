@@ -1327,11 +1327,11 @@
         "rust-flake": "rust-flake_2"
       },
       "locked": {
-        "lastModified": 1791855841,
-        "narHash": "sha256-k2d4eqBHl+ObQ9UqZvmZmWF7v6V5Ezx7Bdj+9O7JIK0=",
+        "lastModified": 1793679351,
+        "narHash": "sha256-9lvsIQJ9pG+JShTqWi6gefnzzOE1YG4qINTQmU20QYI=",
         "owner": "STORM-Gear",
         "repo": "storm-backend",
-        "rev": "28e5da5fc2788352c8f1293ef2565f944012636a",
+        "rev": "153f5e7fce587ea86e54167f738ce9d7906079ab",
         "type": "github"
       },
       "original": {
@@ -1347,11 +1347,11 @@
         "storm-backend": "storm-backend"
       },
       "locked": {
-        "lastModified": 1792975685,
-        "narHash": "sha256-IRjjjpeug6yJ7KSYQBe6i9oY9yn/PTrqrb7LCd0+Qx0=",
+        "lastModified": 1793679433,
+        "narHash": "sha256-KgOOTf++i95vp3lls1MqIHIILnsoeSa69sAuRvwpbNE=",
         "owner": "STORM-Gear",
         "repo": "nixos-config",
-        "rev": "2edcdd55174a37f7df2ff9bb3d727b5a2c1402aa",
+        "rev": "a890ed8b2cf3f58d87c3adf99b7b4919b793702d",
         "type": "github"
       },
       "original": {
