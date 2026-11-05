@@ -181,11 +181,12 @@ in {
     ++ pkgs.lib.lists.optionals noctacliaEnabled
     [{command = ["noctalia"];}];
 
-  switch-events = {
-    lid-close = {
-      action.spawn = {}; # TODO: Lock
-    };
-  };
+  # TODO: Lock
+  # switch-events = {
+  #   lid-close = {
+  #     action.spawn = {};
+  #   };
+  # };
 
   window-rules = [
     {

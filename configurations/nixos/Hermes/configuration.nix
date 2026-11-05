@@ -68,10 +68,14 @@ in {
             shell.helix.wakatime = true;
             desktop.noctalia.scale = 1.2;
           };
-          programs.niri.settings.input.touchpad = {
-            dwt = true;
-            disabled-on-external-mouse = true;
-            drag = false;
+          programs.niri.settings = {
+            input.touchpad = {
+              dwt = true;
+              disabled-on-external-mouse = true;
+              drag = false;
+            };
+            switch-events.lid-close.action.spawn = ["niri" "msg" "action" "power-off-monitors"];
+            switch-events.lid-open.action.spawn = ["niri" "msg" "action" "power-on-monitors"];
           };
         }
       ];
@@ -147,7 +151,13 @@ in {
 
     udisks2.enable = true;
     gvfs.enable = true;
-    upower.enable = true;
+    upower = {
+      enable = true;
+      percentageLow = 15;
+      percentageCritical = 12;
+      percentageAction = 10;
+      criticalPowerAction = "PowerOff";
+    };
     power-profiles-daemon.enable = true;
   };
 
@@ -171,6 +181,13 @@ in {
   ];
   # wireplumber shutdown hang
   systemd.user.services.wireplumber.serviceConfig.TimeoutStopSec = 3;
+  # disable sleep
+  systemd.sleep.settings.Sleep = {
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspend = "no";
+    AllowSuspendThenHibernate = "no";
+  };
 
   stylix = {
     enable = true;
