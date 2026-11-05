@@ -68,6 +68,11 @@ in {
             shell.helix.wakatime = true;
             desktop.noctalia.scale = 1.2;
           };
+          programs.niri.settings.input.touchpad = {
+            dwt = true;
+            disabled-on-external-mouse = true;
+            drag = false;
+          };
         }
       ];
     };
