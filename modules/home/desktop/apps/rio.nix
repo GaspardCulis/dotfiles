@@ -50,6 +50,29 @@ in {
           args = [];
         };
 
+        hints = {
+          alphabet = "jfkdls;ahgurieowpq";
+          rules = [
+            {
+              regex = "(https://|http://)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+";
+              hyperlinks = true;
+              post-processing = true;
+
+              action = {
+                command = "xdg-open";
+              };
+              binding = {
+                key = "O";
+                mods = ["Control" "Shift"];
+              };
+              mouse = {
+                enabled = true;
+                mods = ["Control"];
+              };
+            }
+          ];
+        };
+
         window = {
           opacity = lib.mkForce 0.8;
           blur = true;
