@@ -52,6 +52,7 @@ in {
 
         window = {
           opacity = lib.mkForce 0.8;
+          blur = true;
         };
       };
     };
