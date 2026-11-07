@@ -36,6 +36,8 @@ in {
           blinking-interval = 600;
         };
 
+        developer.log-level = "WARN";
+
         env-vars = ["TERM=xterm-256color"];
 
         bell = {
