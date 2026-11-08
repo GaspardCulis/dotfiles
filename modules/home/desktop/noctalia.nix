@@ -1,6 +1,7 @@
 {
   flake,
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -50,11 +51,27 @@ in {
       settings = {
         shell.ui_scale = cfg.scale;
 
+        plugins = {
+          auto_update = "official";
+          enabled = [
+            "noctalia/wallpaper_depth"
+          ];
+        };
+
         wallpaper = {
           enabled = true;
           default.path = cfg.wallpaper;
         };
       };
     };
+
+    home.packages = with pkgs; [
+      (python3.withPackages (python-pkgs:
+        with python-pkgs; [
+          numpy
+          onnxruntime
+          pillow
+        ]))
+    ];
   };
 }
