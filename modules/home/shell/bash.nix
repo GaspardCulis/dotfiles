@@ -31,6 +31,9 @@ in {
       historyFileSize = 4294967295;
       historySize = 4294967295;
       initExtra = ''
+        bind '"\e[A":history-search-backward'
+        bind '"\e[B":history-search-forward'
+
         eval "$(starship init bash)"
         eval "$(zoxide init --cmd cd bash)"
 
@@ -49,11 +52,6 @@ in {
       bashrcExtra = ''
         [[ -z "$FUNCNEST" ]] && export FUNCNEST=100
         [[ -z "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
-
-        if [ "$PS1" ] ; then
-          bind '"\e[A":history-search-backward'
-          bind '"\e[B":history-search-forward'
-        fi
 
         if [ -f ~/.bash_env ] ; then
           . ~/.bash_env
