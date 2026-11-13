@@ -9,6 +9,7 @@ in {
     inputs.stylix.nixosModules.stylix
     inputs.niri-flake.nixosModules.niri
     inputs.noctalia-greeter.nixosModules.default
+    inputs.umbriel.nixosModules.default
     ./configuration.nix
   ];
 

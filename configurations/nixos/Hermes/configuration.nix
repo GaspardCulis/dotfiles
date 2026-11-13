@@ -119,6 +119,7 @@ in {
   # Programs
   programs = {
     niri.enable = true;
+    umbriel.enable = true;
   };
   # Localsend currently broken fonts, see https://github.com/localsend/localsend/issues/2873
   # programs.localsend = {
