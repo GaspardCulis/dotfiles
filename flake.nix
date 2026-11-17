@@ -38,7 +38,10 @@
     disko.url = "github:nix-community/disko";
     sops-nix.url = "github:Mic92/sops-nix";
 
-    storm-gear.url = "github:STORM-Gear/nixos-config";
+    storm-gear = {
+      url = "github:STORM-Gear/nixos-config";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     hermes-agent.url = "github:NousResearch/hermes-agent";
 
     # Desktop
