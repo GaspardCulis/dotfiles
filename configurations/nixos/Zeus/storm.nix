@@ -38,9 +38,27 @@ in {
     extraFlags = [
       "--system-call-filter=bpf"
     ];
+
+    # Fixes obot docker image trying to access /dev/console and getting Permission denied
+    allowedDevices = [
+      {
+        node = "/dev/console";
+        modifier = "rwm";
+      }
+    ];
   };
 
-  services.caddy.virtualHosts."admin.stormvario.fr backend.stormvario.fr".extraConfig = ''
-    reverse_proxy 192.168.57.1:80
-  '';
+  services.caddy.virtualHosts = let
+    subDomains = ["admin" "backend" "mcp"];
+  in
+    builtins.listToAttrs (builtins.map (v: {
+        name = "${v}.stormvario.fr";
+        value = {
+          extraConfig = ''
+            reverse_proxy 192.168.57.1:80
+
+          '';
+        };
+      })
+      subDomains);
 }
