@@ -39,10 +39,15 @@ in {
       "--system-call-filter=bpf"
     ];
 
-    # Fixes obot docker image trying to access /dev/console and getting Permission denied
     allowedDevices = [
+      # Fixes obot docker image trying to access /dev/console and getting Permission denied
       {
         node = "/dev/console";
+        modifier = "rwm";
+      }
+      # Fixes internal rootless container TAP networking permission issues
+      {
+        node = "/dev/net/tun";
         modifier = "rwm";
       }
     ];
