@@ -24,6 +24,7 @@ in {
         name = "GaspardCulis";
         email = "gaspard@gasdev.fr";
         init.defaultBranch = "main";
+        pull.rebase = true;
       };
     };
   };
