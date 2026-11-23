@@ -1482,11 +1482,11 @@
         "storm-backend": "storm-backend"
       },
       "locked": {
-        "lastModified": 1795417580,
-        "narHash": "sha256-WSmxUoYhqSiTbQZOPV4dyOn9crS+g6mwzWVWe7kWde8=",
+        "lastModified": 1795467034,
+        "narHash": "sha256-O5I+WBnuftBDN5wOHRg/XVAGL/pNPoP7bjSFO1bNSgs=",
         "owner": "STORM-Gear",
         "repo": "nixos-config",
-        "rev": "a3f84761be236a5800a4edbf12b387b8eba91811",
+        "rev": "3adc93069bd020e698e64bc6892af91901d2684b",
         "type": "github"
       },
       "original": {
