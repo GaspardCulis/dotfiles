@@ -39,7 +39,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     storm-gear = {
-      url = "github:STORM-Gear/nixos-config";
+      url = "github:STORM-Gear/nixos-config/feat/marcus";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     hermes-agent.url = "github:NousResearch/hermes-agent";
