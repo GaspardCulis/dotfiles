@@ -26,6 +26,7 @@ in {
     sops.secrets."papra/AUTH_OIDC_CLIENT_SECRET".owner = config.services.papra.user;
     sops.secrets."papra/DATABASE_ENCRYPTION_KEY".owner = config.services.papra.user;
     sops.secrets."papra/DOCUMENT_STORAGE_DOCUMENT_KEY_ENCRYPTION_KEYS".owner = config.services.papra.user;
+    sops.secrets."papra/MISTRAL_API_KEY".owner = config.services.papra.user;
 
     sops.templates."papra.env" = {
       content = ''
@@ -35,6 +36,8 @@ in {
 
         DATABASE_ENCRYPTION_KEY=${config.sops.placeholder."papra/DATABASE_ENCRYPTION_KEY"}
         DOCUMENT_STORAGE_DOCUMENT_KEY_ENCRYPTION_KEYS=${config.sops.placeholder."papra/DOCUMENT_STORAGE_DOCUMENT_KEY_ENCRYPTION_KEYS"}
+
+        MISTRAL_API_KEY=${config.sops.placeholder."papra/MISTRAL_API_KEY"}
       '';
       owner = config.services.papra.user;
     };
@@ -54,6 +57,8 @@ in {
 
         DOCUMENT_STORAGE_ENCRYPTION_IS_ENABLED = true;
         DOCUMENTS_OCR_LANGUAGES = "eng,fra";
+
+        CONTENT_EXTRACTION_STRATEGY = "mistral-ocr,internal";
 
         AUTH_IS_REGISTRATION_ENABLED = false;
         AUTH_IS_PASSWORD_RESET_ENABLED = false;
